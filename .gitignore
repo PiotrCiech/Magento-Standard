@@ -1,4 +1,3 @@
-# --- ŚRODOWISKO I IDE ---
 .env
 *.log
 .DS_Store
@@ -12,7 +11,6 @@
 /nbproject
 atlassian*
 
-# --- MAGENTO CORE
 /src/app/etc/env.php
 /src/auth.json
 /src/**/auth.json
@@ -24,13 +22,11 @@ atlassian*
 /src/lib/
 /src/node_modules/
 
-# --- MAGENTO PUB
 /src/pub/static/*
 !/src/pub/static/.htaccess
 /src/pub/media/*
 !/src/pub/media/.htaccess
 
-# --- INNE PLIKI TYMCZASOWE
 /src/.grunt
 /src/Gruntfile.js
 /src/package.json
