@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f031ef7fc56f0942e9e88ccd2301b4f",
+    "content-hash": "c0346da9ae099cf3c8512f916dfedcbf",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -18660,6 +18660,91 @@
             "time": "2025-12-11T10:52:59+00:00"
         },
         {
+            "name": "mageplaza/magento-2-polish-language-pack",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-polish-language-pack.git",
+                "reference": "163ccc60dcfe9cde544ff153149828b6bcccc04b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-polish-language-pack/zipball/163ccc60dcfe9cde544ff153149828b6bcccc04b",
+                "reference": "163ccc60dcfe9cde544ff153149828b6bcccc04b",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.3.13"
+            },
+            "default-branch": true,
+            "type": "magento2-language",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza team",
+                    "email": "hi@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Leader"
+                }
+            ],
+            "description": "Polish language package for Magento 2",
+            "homepage": "https://www.mageplaza.com",
+            "support": {
+                "issues": "https://github.com/mageplaza/magento-2-polish-language-pack/issues",
+                "source": "https://github.com/mageplaza/magento-2-polish-language-pack/tree/master"
+            },
+            "time": "2022-02-22T09:04:53+00:00"
+        },
+        {
+            "name": "mageplaza/module-core",
+            "version": "1.5.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "c527e66bf483f74d1dc3013dc64b2eefa6e8ecc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/c527e66bf483f74d1dc3013dc64b2eefa6e8ecc6",
+                "reference": "c527e66bf483f74d1dc3013dc64b2eefa6e8ecc6",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "support": {
+                "source": "https://github.com/mageplaza/module-core/tree/v1.5.15"
+            },
+            "time": "2025-10-21T07:24:34+00:00"
+        },
+        {
             "name": "marc-mabe/php-enum",
             "version": "v4.7.2",
             "source": {
@@ -29844,6 +29929,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "magento/composer": 10,
+        "mageplaza/magento-2-polish-language-pack": 20,
         "pdepend/pdepend": 20,
         "phpmd/phpmd": 20
     },
