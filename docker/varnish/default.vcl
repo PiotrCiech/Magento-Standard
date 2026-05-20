@@ -39,18 +39,22 @@ sub vcl_recv {
         if (client.ip !~ purge) {
             return (synth(405, "Method not allowed"));
         }
+
         # To use the X-Pool header for purging varnish during automated deployments, make sure the X-Pool header
         # has been added to the response in your backend server config. This is used, for example, by the
         # capistrano-magento2 gem for purging old content from varnish during it's deploy routine.
         if (!req.http.X-Magento-Tags-Pattern && !req.http.X-Pool) {
             return (synth(400, "X-Magento-Tags-Pattern or X-Pool header required"));
         }
+
         if (req.http.X-Magento-Tags-Pattern) {
           ban("obj.http.X-Magento-Tags ~ " + req.http.X-Magento-Tags-Pattern);
         }
+
         if (req.http.X-Pool) {
           ban("obj.http.X-Pool ~ " + req.http.X-Pool);
         }
+
         return (synth(200, "Purged"));
     }
 
@@ -124,7 +128,6 @@ sub vcl_hash {
         hash_data(req.http.X-Forwarded-Proto);
     }
     
-
     if (req.url ~ "/graphql") {
         call process_graphql_headers;
     }
@@ -150,7 +153,6 @@ sub process_graphql_headers {
 }
 
 sub vcl_backend_response {
-
     set beresp.grace = 3d;
 
     if (beresp.http.content-type ~ "text") {
@@ -169,6 +171,7 @@ sub vcl_backend_response {
     if ((beresp.status != 200 && beresp.status != 404) || beresp.http.Cache-Control ~ "private") {
         set beresp.uncacheable = true;
         set beresp.ttl = 86400s;
+
         return (deliver);
     }
 
@@ -247,6 +250,7 @@ sub vcl_hit {
         # Hit within TTL period
         return (deliver);
     }
+
     if (std.healthy(req.backend_hint)) {
         if (obj.ttl + 300s > 0s) {
             # Hit after TTL expiration, but within grace period
@@ -259,6 +263,7 @@ sub vcl_hit {
     } else {
         # server is not healthy, retrieve from cache
         set req.http.grace = "unlimited (unhealthy server)";
+
         return (deliver);
     }
 }
