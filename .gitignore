@@ -10,7 +10,7 @@
 /.settings
 /nbproject
 atlassian*
- 
+
 /src/app/etc/env.php
 /src/auth.json
 /src/**/auth.json
@@ -21,12 +21,12 @@ atlassian*
 /src/phpserver/
 /src/lib/
 /src/node_modules/
- 
+
 /src/pub/static/*
 !/src/pub/static/.htaccess
 /src/pub/media/*
 !/src/pub/media/.htaccess
- 
+
 /src/.grunt
 /src/Gruntfile.js
 /src/package.json
