@@ -256,6 +256,7 @@ sub vcl_hit {
         if (obj.ttl + 300s > 0s) {
             # Hit after TTL expiration, but within grace period
             set req.http.grace = "normal (healthy server)";
+            
             return (deliver);
         } else {
             # Hit after TTL and grace expiration
