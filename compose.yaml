@@ -15,9 +15,14 @@ services:
       - ./src:/var/www/html
     environment:
       COMPOSER_MEMORY_LIMIT: -1
+      VALKEY_PASSWORD: "${VALKEY_PASSWORD:?Ustaw VALKEY_PASSWORD w pliku .env (skopiuj z .env.example)}"
+      RABBITMQ_USER: "${RABBITMQ_USER:?Ustaw RABBITMQ_USER w pliku .env (skopiuj z .env.example)}"
+      RABBITMQ_PASSWORD: "${RABBITMQ_PASSWORD:?Ustaw RABBITMQ_PASSWORD w pliku .env}"
     depends_on:
       - db
       - opensearch
+      - rabbitmq
+      - valkey
 
   nginx:
     image: nginx:1.28-alpine
@@ -71,6 +76,32 @@ services:
     volumes:
       - opensearch_data:/usr/share/opensearch/data
 
+  valkey:
+    image: valkey/valkey:8
+    container_name: valkey
+    restart: unless-stopped
+    command:
+      - valkey-server
+      - --requirepass
+      - "${VALKEY_PASSWORD:?Ustaw VALKEY_PASSWORD w pliku .env (skopiuj z .env.example)}"
+    ports:
+      - "${VALKEY_PORT:-6379}:6379"
+    volumes:
+      - valkey_data:/data
+
+  rabbitmq:
+    image: rabbitmq:4.1-management
+    container_name: rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER:?Ustaw RABBITMQ_USER w pliku .env (skopiuj z .env.example)}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASSWORD:?Ustaw RABBITMQ_PASSWORD w pliku .env}"
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
 configs:
   nginx_magento:
     file: ./docker/nginx/default.conf
@@ -78,3 +109,5 @@ configs:
 volumes:
   db_data:
   opensearch_data:
+  valkey_data:
+  rabbitmq_data:
