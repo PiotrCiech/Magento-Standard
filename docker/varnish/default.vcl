@@ -189,6 +189,7 @@ sub vcl_backend_response {
            set beresp.ttl = 0s;
            set beresp.uncacheable = true;
         }
+
         unset beresp.http.set-cookie;
     }
 
