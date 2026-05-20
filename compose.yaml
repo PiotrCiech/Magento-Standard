@@ -28,8 +28,8 @@ services:
     image: nginx:1.28-alpine
     container_name: nginx
     restart: unless-stopped
-    ports:
-      - "${HTTP_PORT:-8080}:80"
+    expose:
+      - "80"
     volumes:
       - ./src:/var/www/html:ro
     configs:
@@ -37,6 +37,24 @@ services:
         target: /etc/nginx/conf.d/default.conf
     depends_on:
       - php
+      
+  varnish:
+    image: varnish:8
+    container_name: varnish
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/varnish/default.vcl:/etc/varnish/default.vcl:ro
+    command: >
+      varnishd
+      -F
+      -a :80
+      -T localhost:6082
+      -f /etc/varnish/default.vcl
+      -s malloc,512m
+    depends_on:
+      - nginx
 
   db:
     image: mariadb:11.8
