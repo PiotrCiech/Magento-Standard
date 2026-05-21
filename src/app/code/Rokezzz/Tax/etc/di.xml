@@ -1,10 +1,15 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Rokezzz\Tax\Console\Command\AdjustTaxPricesCommand">
+        <arguments>
+            <argument name="productCollectionProvider" xsi:type="object">Rokezzz\Tax\Model\ProductCollectionProvider</argument>
+        </arguments>
+    </type>
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="rokezzz_adjust_tax_prices" xsi:type="object">Rokezzz\Base\Console\Command\AdjustTaxPricesCommand</item>
+                <item name="rokezzz_adjust_tax_prices" xsi:type="object">Rokezzz\Tax\Console\Command\AdjustTaxPricesCommand</item>
             </argument>
         </arguments>
     </type>

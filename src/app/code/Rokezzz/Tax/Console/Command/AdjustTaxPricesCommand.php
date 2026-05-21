@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Base\Console\Command;
+namespace Rokezzz\Tax\Console\Command;
 
 use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Rokezzz\Tax\Model\ProductCollectionProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,7 +16,7 @@ class AdjustTaxPricesCommand extends Command
     private const PRICE_ATTRIBUTE = 'price';
 
     public function __construct(
-        private readonly CollectionFactory $productCollectionFactory,
+        private readonly ProductCollectionProvider $productCollectionProvider,
         private readonly ProductResource $productResource,
         ?string $name = null
     ) {
@@ -67,7 +67,7 @@ class AdjustTaxPricesCommand extends Command
 
     private function updatePrices(float $factor): int
     {
-        $collection = $this->productCollectionFactory->create();
+        $collection = $this->productCollectionProvider->create();
         $collection->addAttributeToSelect([self::PRICE_ATTRIBUTE]);
         $collection->setStoreId(0);
 

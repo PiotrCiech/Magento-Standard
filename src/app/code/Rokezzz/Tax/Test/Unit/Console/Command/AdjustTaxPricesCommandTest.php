@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Base\Test\Unit\Console\Command;
+namespace Rokezzz\Tax\Test\Unit\Console\Command;
 
 use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use PHPUnit\Framework\TestCase;
-use Rokezzz\Base\Console\Command\AdjustTaxPricesCommand;
+use Rokezzz\Tax\Console\Command\AdjustTaxPricesCommand;
+use Rokezzz\Tax\Model\ProductCollectionProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
@@ -41,7 +41,7 @@ class AdjustTaxPricesCommandTest extends TestCase
     private function createCommand(): AdjustTaxPricesCommand
     {
         return new AdjustTaxPricesCommand(
-            $this->createMock(CollectionFactory::class),
+            $this->createMock(ProductCollectionProvider::class),
             $this->createMock(ProductResource::class)
         );
     }
