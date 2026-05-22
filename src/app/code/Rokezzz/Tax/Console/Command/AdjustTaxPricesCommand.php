@@ -47,6 +47,7 @@ class AdjustTaxPricesCommand extends Command
 
         if ($percent <= 0 || $factor <= 0) {
             $output->writeln('<error>Invalid combination of percent and operation.</error>');
+            
             return self::FAILURE;
         }
 
