@@ -369,6 +369,7 @@ return [
         'PayPal_BraintreeGraphQl' => 1,
         'PayPal_BraintreeReward' => 1,
         'Rokezzz_IndexerSchedule' => 1,
-        'Rokezzz_ReCaptcha' => 1
+        'Rokezzz_ReCaptcha' => 1,
+        'Rokezzz_Tax' => 1
     ]
 ];
