@@ -9,7 +9,10 @@
  */
 
 $finder = PhpCsFixer\Finder::create()
+    ->files()
+    ->name('*.php')
     ->name('*.phtml')
+    ->in(__DIR__ . '/app/code/Rokezzz')
     ->exclude('dev/tests/integration/tmp')
     ->exclude('dev/tests/integration/var')
     ->exclude('lib/internal/Cm')
