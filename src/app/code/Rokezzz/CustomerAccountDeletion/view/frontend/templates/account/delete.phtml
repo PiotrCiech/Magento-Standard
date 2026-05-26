@@ -1,0 +1,73 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<div class="customer-account-delete">
+    <div class="block block-delete-account">
+        <div class="block-title">
+            <strong><?= $escaper->escapeHtml(__('Delete My Account')) ?></strong>
+        </div>
+        <div class="block-content">
+            <div class="message warning">
+                <div><?= $escaper->escapeHtml(__('This action cannot be undone.')) ?></div>
+            </div>
+            <p class="delete-account-description">
+                <?= $escaper->escapeHtml(__('Enter your current password to confirm deletion.')) ?>
+            </p>
+
+            <form class="form form-delete-account"
+                  id="delete-account-form"
+                  action="<?= $escaper->escapeUrl($block->getUrl('customerdelete/account/deletePost')) ?>"
+                  method="post"
+                  data-mage-init='{"validation": {}}'>
+                <?= $block->getBlockHtml('formkey') ?>
+
+                <fieldset class="fieldset">
+                    <div class="field password required">
+                        <label class="label" for="current-password">
+                            <span><?= $escaper->escapeHtml(__('Current Password')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="password"
+                                   name="current_password"
+                                   id="current-password"
+                                   class="input-text"
+                                   autocomplete="current-password"
+                                   data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="button"
+                                class="action primary delete-account-action"
+                                id="delete-account-button">
+                            <span><?= $escaper->escapeHtml(__('Delete account')) ?></span>
+                        </button>
+                    </div>
+                    <div class="secondary">
+                        <a class="action back" href="<?= $escaper->escapeUrl($block->getUrl('customer/account')) ?>">
+                            <span><?= $escaper->escapeHtml(__('Go back')) ?></span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#delete-account-button": {
+        "Rokezzz_CustomerAccountDeletion/js/delete-account-confirm": {
+            "formSelector": "#delete-account-form",
+            "title": "<?= $escaper->escapeJs(__('Delete Account')) ?>",
+            "content": "<?= $escaper->escapeJs(__('Are you sure you want to delete your account?')) ?>",
+            "confirmText": "<?= $escaper->escapeJs(__('Delete account')) ?>",
+            "cancelText": "<?= $escaper->escapeJs(__('Cancel')) ?>"
+        }
+    }
+}
+</script>
