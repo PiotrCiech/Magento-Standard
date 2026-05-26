@@ -25,7 +25,7 @@ class AdjustTaxPricesCommand extends Command
 
     protected function configure(): void
     {
-        
+
         $this->setName('rokezzz:tax:adjust-prices')
             ->setDescription('Adjust all product base prices by percentage')
             ->addArgument(
@@ -40,11 +40,8 @@ class AdjustTaxPricesCommand extends Command
             );
     }
 
-    protected function execute
-    (InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        
-        
         $percent = (float) $input->getArgument('percent');
         $operation = strtolower((string) $input->getArgument('operation'));
         $factor = $this->resolveFactor($percent, $operation);
@@ -56,6 +53,7 @@ class AdjustTaxPricesCommand extends Command
         }
 
         $updatedCount = $this->updatePrices($factor);
+
         $output->writeln(sprintf('<info>Done: %d</info>', $updatedCount));
 
         return self::SUCCESS;

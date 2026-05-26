@@ -146,6 +146,22 @@ The project contains two code style configurations:
 - `src/.php-cs-fixer.dist.php` - PHP-CS-Fixer configuration for `*.php` and `*.phtml` files in `src/app/code/Rokezzz`.
 - `src/phpcs.xml.dist` - PHPCS configuration using `PSR12` and `Magento2` rules for `app/code/Rokezzz`.
 
+The root `Makefile` contains helper commands for PHP-CS-Fixer. Run them from the main project directory, one level above `src`.
+
+Check code style and show the diff:
+
+```bash
+make cs-check
+```
+
+Fix code style automatically:
+
+```bash
+make cs-fix
+```
+
+These commands use `src/vendor/bin/php-cs-fixer` and the configuration from `src/.php-cs-fixer.dist.php`.
+
 ## Pull Request Checks
 
 GitHub Actions workflow is defined in `.github/workflows/php-cs-fixer.yml`.
