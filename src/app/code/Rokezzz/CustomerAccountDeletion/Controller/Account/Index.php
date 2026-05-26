@@ -24,7 +24,7 @@ class Index implements AccountInterface, HttpGetActionInterface
     {
         if (!$this->customerSession->isLoggedIn()) {
             $resultRedirect = $this->resultRedirectFactory->create();
-            
+
             return $resultRedirect->setPath('customer/account/login');
         }
 
