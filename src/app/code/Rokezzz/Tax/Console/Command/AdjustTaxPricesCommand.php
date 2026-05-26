@@ -25,7 +25,6 @@ class AdjustTaxPricesCommand extends Command
 
     protected function configure(): void
     {
-
         $this->setName('rokezzz:tax:adjust-prices')
             ->setDescription('Adjust all product base prices by percentage')
             ->addArgument(
