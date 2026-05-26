@@ -43,7 +43,7 @@ services:
     container_name: varnish
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "${HTTP_PORT:-8080}:80"
     volumes:
       - ./docker/varnish/default.vcl:/etc/varnish/default.vcl:ro
     command: >
