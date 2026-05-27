@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Theme\Block\Html\Footer;
+
+/** @var Footer $block */
+
+$currentYear = date('Y');
+$copyrightNotice = 'Copyright ©';
+$createdBy = 'Created by:';
+$storeNameLink = [
+    'name' => 'empty-magento',// replace with your store name
+];
+$companyNameLink = [
+    'name' => 'Rokezzz',
+    'link' => 'https://rokezzz.pl'
+];
+?>
+
+<small class="copyright">
+    <span>
+        <?= $copyrightNotice . ' ' . $currentYear ?>&nbsp;<?= $storeNameLink['name'] . ' - ' . __('All rights reserved.') ?>
+    </span>
+    <span class="created-by">
+        <span><?= __($createdBy) ?></span>
+        <a class="link" href="<?= $companyNameLink['link'] ?>" target="_blank" title="<?= $companyNameLink['name'] ?>">
+            <?= $companyNameLink['name'] ?>
+        </a>
+        <span>.</span>
+    </span>
+</small>

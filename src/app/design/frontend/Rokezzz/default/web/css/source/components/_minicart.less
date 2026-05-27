@@ -1,0 +1,34 @@
+& when (@media-common = true) {
+
+    .minicart-wrapper .action.showcart {
+        .counter.qty {
+            background: @mainColor;
+        }
+
+        &:hover {
+            .counter.qty {
+                background: @mainAccentColor;
+            }
+        }
+    }
+
+    #minicart-content-wrapper {
+        
+        .items-total {
+            float: unset;
+        }
+
+        .subtotal {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-box-align(center);
+
+            justify-content: space-between;
+
+            .label,
+            .amount.price-container {
+                line-height: 22px;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,55 @@
+@fontSizeXS: 12px;
+@fontSizeS: 14px;
+@fontSizeM: 16px;
+@fontSizeL: 20px;
+@fontSizeXL: 24px;
+@fontSizeXXL: 28px;
+@fontSizeXXXL: 36px;
+@fontSizeSubtitle: 40px;
+@fontSizeTitle: 72px;
+
+@lineHeightXS: 1.2;
+@lineHeightS: 1.3;
+@lineHeightM: 1.4;
+@lineHeightL: 1.5;
+@lineHeightXL: 1.6;
+@lineHeightXXL: 1.7;
+
+// ------------------------------------
+// Mobile First (@media-common)
+// ------------------------------------
+& when (@media-common = true) {
+    .text-small  { font-size: @fontSizeXS; line-height: @lineHeightS; }
+    .text-medium { font-size: @fontSizeS;  line-height: @lineHeightM; }
+    .text-large  { font-size: @fontSizeL;  line-height: @lineHeightM; }
+
+    .icon-sm { font-size: @fontSizeM;  color: @color-black; }
+    .icon-md { font-size: @fontSizeL;  color: @color-black; }
+    .icon-lg { font-size: @fontSizeXL; color: @color-black; }
+}
+
+// ------------------------------------
+//  Tablet (min-width: 768px)
+// ------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .text-small  { font-size: @fontSizeS;  line-height: @lineHeightM; }
+    .text-medium { font-size: @fontSizeM;  line-height: @lineHeightL; }
+    .text-large  { font-size: @fontSizeXXL; line-height: @lineHeightL; }
+
+    .icon-sm { font-size: @fontSizeL; }
+    .icon-md { font-size: @fontSizeXL; }
+    .icon-lg { font-size: @fontSizeXXL; }
+}
+
+// ------------------------------------
+//  Desktop (min-width: 1024px)
+// ------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .text-small  { font-size: @fontSizeM;   line-height: @lineHeightL; }
+    .text-medium { font-size: @fontSizeL;   line-height: @lineHeightXL; }
+    .text-large  { font-size: @fontSizeXXXL; line-height: @lineHeightXL; }
+
+    .icon-sm { font-size: @fontSizeXL; }
+    .icon-md { font-size: @fontSizeXXL; }
+    .icon-lg { font-size: @fontSizeSubtitle; }
+}
