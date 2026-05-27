@@ -1,0 +1,35 @@
+<?php
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+// Pobieramy natywny HTML wygenerowany przez Magento
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit);
+?>
+
+<div class="custom-navbar-wrapper" data-mage-init='{"Magento_Theme/js/topmenu": {}}'>
+    
+    <div class="mobile-only-nav">
+        <nav class="nav-wrapper">
+            <div class="mobile-nav-header">
+                <button class="nav-close" aria-label="Zamknij menu">✕</button>
+            </div>
+            
+            <ul class="mobile-nav-list">
+                <?= /* @noEscape */ $_menuHtml ?>
+            </ul>
+            
+            <div class="mobile-bottom-links">
+                <a href="<?= $block->getUrl('customer/account') ?>">Moje konto</a>
+                <a href="<?= $block->getUrl('wishlist') ?>">Lista życzeń</a>
+            </div>
+        </nav>
+        <div class="mobile-nav-overlay"></div>
+    </div>
+
+    <div class="desktop-only-nav">
+        <div class="desktop-nav-container">
+            <ul class="desktop-nav-list">
+                <?= /* @noEscape */ $_menuHtml ?>
+            </ul>
+        </div>
+    </div>
+
+</div>
