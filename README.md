@@ -146,7 +146,7 @@ The project contains two code style configurations:
 - `src/.php-cs-fixer.dist.php` - PHP-CS-Fixer configuration for `*.php` and `*.phtml` files in `src/app/code/Rokezzz`.
 - `src/phpcs.xml.dist` - PHPCS configuration using `PSR12` and `Magento2` rules for `app/code/Rokezzz`.
 
-The root `Makefile` contains helper commands for PHP-CS-Fixer. Run them from the main project directory, one level above `src`.
+The root `Makefile` contains helper commands. Run them from the main project directory, one level above `src` (where `compose.yaml` is located).
 
 Check code style and show the diff:
 
@@ -161,6 +161,48 @@ make cs-fix
 ```
 
 These commands use `src/vendor/bin/php-cs-fixer` and the configuration from `src/.php-cs-fixer.dist.php`.
+
+### Static content deploy (`static-deploy`)
+
+Publishes frontend and admin static assets (CSS, JS, fonts) from modules and themes into `src/pub/static`. Use this when styles or scripts return 404, or after theme or frontend changes.
+
+```bash
+make static-deploy
+```
+
+This runs `docker compose exec php php bin/magento setup:static-content:deploy pl_PL -f` inside the PHP container. The `-f` flag forces redeployment of files that already exist.
+
+To deploy another locale:
+
+```bash
+make static-deploy LOCALE=en_US
+```
+
+After deployment, flush cache if needed:
+
+```bash
+make cache-flush
+```
+
+This runs `docker compose exec php php bin/magento cache:flush` inside the PHP container.
+
+### Static deploy + flush (`static-refresh`)
+
+Runs static content deploy and cache flush in one command.
+
+```bash
+make static-refresh
+```
+
+It executes `make static-deploy` followed by `make cache-flush`.
+
+### Cache flush (`cache-flush`)
+
+Flushes all Magento cache types from the PHP container.
+
+```bash
+make cache-flush
+```
 
 ## Pull Request Checks
 
