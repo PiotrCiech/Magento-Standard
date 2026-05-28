@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace Rokezzz\Tax\Setup\Patch\Data;
 
 use Magento\Framework\App\Config\Storage\WriterInterface;
-use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Tax\Api\TaxRateRepositoryInterface;
+use Magento\Tax\Api\TaxRuleRepositoryInterface;
 use Magento\Tax\Model\Calculation\Rate;
 use Magento\Tax\Model\Calculation\RateFactory;
 use Magento\Tax\Model\Calculation\RuleFactory;
-use Magento\Tax\Api\TaxRateRepositoryInterface;
-use Magento\Tax\Api\TaxRuleRepositoryInterface;
 
 class AddTaxRulePatch implements DataPatchInterface
 {
-
     private const COUNTRY_ID = 'PL';
     private const REGION_NAME = 'Wielkopolskie';
-    
+
     private const TAX_RATES = [
         'PL-0%-Rate' => 0.00,
         'PL-5%-Rate' => 5.00,
@@ -62,7 +61,7 @@ class AddTaxRulePatch implements DataPatchInterface
         $taxRates = $this->createTaxRates(self::TAX_RATES);
         $createdTaxRateIds = array_filter(
             array_map(
-                fn(Rate $taxRate): ?int => $taxRate->getId() !== null ? (int) $taxRate->getId() : null,
+                fn (Rate $taxRate): ?int => $taxRate->getId() !== null ? (int) $taxRate->getId() : null,
                 $taxRates
             )
         );
@@ -72,7 +71,6 @@ class AddTaxRulePatch implements DataPatchInterface
         foreach (self::CONFIG_TO_INSTALL as $path => $value) {
             $this->configWriter->save($path, $value);
         }
-
 
         $connection->endSetup();
     }
