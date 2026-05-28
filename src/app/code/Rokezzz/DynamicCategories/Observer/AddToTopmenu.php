@@ -12,18 +12,11 @@ use Rokezzz\DynamicCategories\Model\Config;
 
 class AddToTopmenu implements ObserverInterface
 {
-    private NodeFactory $nodeFactory;
-    private UrlInterface $urlBuilder;
-    private Config $config;
-
     public function __construct(
-        NodeFactory $nodeFactory,
-        UrlInterface $urlBuilder,
-        Config $config
+        private readonly NodeFactory $nodeFactory,
+        private readonly UrlInterface $urlBuilder,
+        private readonly Config $config
     ) {
-        $this->nodeFactory = $nodeFactory;
-        $this->urlBuilder = $urlBuilder;
-        $this->config = $config;
     }
 
     public function execute(Observer $observer): void
