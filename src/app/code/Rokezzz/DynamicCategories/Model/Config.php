@@ -12,8 +12,9 @@ class Config
     private const XML_PATH_ENABLE_NEW = 'rokezzz_dynamiccategories/general/enable_new';
     private const XML_PATH_ENABLE_BESTSELLERS = 'rokezzz_dynamiccategories/general/enable_bestsellers';
 
-    public function __construct(private readonly ScopeConfigInterface $scopeConfig)
-    {
+    public function __construct(
+        private readonly ScopeConfigInterface $scopeConfig
+    ) {
         $this->scopeConfig = $scopeConfig;
     }
 
