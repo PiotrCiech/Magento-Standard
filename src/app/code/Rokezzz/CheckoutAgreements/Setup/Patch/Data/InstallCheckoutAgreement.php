@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\CheckoutAgreements\Setup\Patch\Data;
 
-use Magento\CheckoutAgreements\Model\AgreementFactory;
+use Magento\CheckoutAgreements\Model\Agreement;
 use Magento\CheckoutAgreements\Model\AgreementModeOptions;
 use Magento\CheckoutAgreements\Model\ResourceModel\Agreement as AgreementResource;
 use Magento\Config\Model\ResourceModel\Config as ConfigResource;
@@ -21,7 +21,7 @@ class InstallCheckoutAgreement implements DataPatchInterface
 
     public function __construct(
         private readonly ModuleDataSetupInterface $moduleDataSetup,
-        private readonly AgreementFactory $agreementFactory,
+        private readonly Agreement $agreement,
         private readonly AgreementResource $agreementResource,
         private readonly ConfigResource $configResource
     ) {
@@ -31,18 +31,17 @@ class InstallCheckoutAgreement implements DataPatchInterface
     {
         $connection = $this->moduleDataSetup->getConnection();
         $connection->startSetup();
-        $agreement = $this->agreementFactory->create();
-        $this->agreementResource->load($agreement, self::AGREEMENT_NAME, 'name');
+        $this->agreementResource->load($this->agreement, self::AGREEMENT_NAME, 'name');
 
-        $agreement->setData('name', self::AGREEMENT_NAME);
-        $agreement->setData('content', self::AGREEMENT_CONTENT);
-        $agreement->setData('checkbox_text', self::AGREEMENT_CHECKBOX_TEXT);
-        $agreement->setData('is_active', 1);
-        $agreement->setData('is_html', 0);
-        $agreement->setData('mode', AgreementModeOptions::MODE_MANUAL);
-        $agreement->setData('stores', [Store::DEFAULT_STORE_ID]);
+        $this->agreement->setData('name', self::AGREEMENT_NAME);
+        $this->agreement->setData('content', self::AGREEMENT_CONTENT);
+        $this->agreement->setData('checkbox_text', self::AGREEMENT_CHECKBOX_TEXT);
+        $this->agreement->setData('is_active', 1);
+        $this->agreement->setData('is_html', 0);
+        $this->agreement->setData('mode', AgreementModeOptions::MODE_MANUAL);
+        $this->agreement->setData('stores', [Store::DEFAULT_STORE_ID]);
 
-        $this->agreementResource->save($agreement);
+        $this->agreementResource->save($this->agreement);
 
         $this->configResource->saveConfig(
             self::ENABLE_AGREEMENTS_CONFIG_PATH,
