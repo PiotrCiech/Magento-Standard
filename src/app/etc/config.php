@@ -371,6 +371,7 @@ return [
         'PayPro_Przelewy24' => 0,
         'Rokezzz_CustomerAccountDeletion' => 1,
         'Rokezzz_CustomerNip' => 1,
+        'Rokezzz_DynamicCategories' => 1,
         'Rokezzz_IndexerSchedule' => 1,
         'Rokezzz_ReCaptcha' => 1,
         'Rokezzz_Tax' => 1
