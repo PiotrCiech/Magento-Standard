@@ -369,6 +369,7 @@ return [
         'PayPal_BraintreeGraphQl' => 1,
         'PayPal_BraintreeReward' => 1,
         'PayPro_Przelewy24' => 0,
+        'Rokezzz_CheckoutAgreements' => 1,
         'Rokezzz_CustomerAccountDeletion' => 1,
         'Rokezzz_CustomerNip' => 1,
         'Rokezzz_DynamicCategories' => 1,
