@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Rokezzz_CheckoutAgreements">
         <sequence>
-            <module name="Magento_Multishipping"/>
+            <module name="Magento_CheckoutAgreements"/>
         </sequence>
     </module>
 </config>

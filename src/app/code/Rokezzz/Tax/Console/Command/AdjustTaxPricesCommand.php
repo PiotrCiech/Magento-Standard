@@ -52,6 +52,7 @@ class AdjustTaxPricesCommand extends Command
         }
 
         $updatedCount = $this->updatePrices($factor);
+
         $output->writeln(sprintf('<info>Done: %d</info>', $updatedCount));
 
         return self::SUCCESS;

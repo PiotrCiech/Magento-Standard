@@ -5,6 +5,8 @@ declare(strict_types=1);
 $finder = PhpCsFixer\Finder::create()
     ->files()
     ->name('*.php')
+    ->files()
+    ->name('*.php')
     ->name('*.phtml')
     ->in(__DIR__ . '/app/code/Rokezzz');
 
