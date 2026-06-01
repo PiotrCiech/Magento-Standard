@@ -1,33 +1,17 @@
 <?php
-/**
- * Copyright 2021 Adobe
- * All Rights Reserved.
- */
 
-/**
- * PHP Coding Standards fixer configuration
- */
+declare(strict_types=1);
 
 $finder = PhpCsFixer\Finder::create()
     ->files()
     ->name('*.php')
     ->name('*.phtml')
-    ->in(__DIR__ . '/app/code/Rokezzz')
-    ->exclude('dev/tests/integration/tmp')
-    ->exclude('dev/tests/integration/var')
-    ->exclude('lib/internal/Cm')
-    ->exclude('lib/internal/Credis')
-    ->exclude('lib/internal/Less')
-    ->exclude('lib/internal/LinLibertineFont')
-    ->exclude('pub/media')
-    ->exclude('pub/static')
-    ->exclude('setup/vendor')
-    ->exclude('var');
+    ->in(__DIR__ . '/app/code/Rokezzz');
 
 $config = new PhpCsFixer\Config();
 $config->setFinder($finder)
     ->setRules([
-        '@PSR2' => true,
+        '@PSR12' => true,
         'array_syntax' => ['syntax' => 'short'],
         'concat_space' => ['spacing' => 'one'],
         'include' => true,
@@ -47,4 +31,5 @@ $config->setFinder($finder)
         'standardize_not_equals' => true,
         'ternary_operator_spaces' => true,
     ]);
+
 return $config;
