@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_wishlist" translate="label" sortOrder="910" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Wishlist</label>
+            <tab>general</tab>
+            <resource>Rokezzz_Wishlist::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Wishlist</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable wishlist (schowek)</label>
+                    <comment>When disabled, wishlist links, customer account section, and add-to-wishlist actions are hidden on the storefront.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>wishlist/general/active</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
