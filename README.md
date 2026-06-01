@@ -124,6 +124,14 @@ This module sets Magento indexers to scheduled mode using a data patch. After ru
 
 This module stores initial reCAPTCHA configuration for frontend and backend forms. It configures selected forms to use reCAPTCHA v3 and disables the legacy admin captcha configuration.
 
+### Rokezzz_Review
+
+This module enables Magento core product reviews via a data patch (`catalog/review/active`, `catalog/review/allow_guest`). After `setup:upgrade`, reviews are available on the product page. Toggle them in **Stores → Configuration → General → Rokezzz Reviews → Opinie produktowe**. New reviews are **Pending** until approved in **Marketing → User Content → All Reviews**.
+
+### Rokezzz_Wishlist
+
+This module enables Magento core wishlist (schowek) via a data patch (`wishlist/general/active`). Toggle it in **Stores → Configuration → General → Rokezzz Wishlist → Schowek → Enable wishlist**. When disabled, wishlist UI and controllers are blocked on the storefront.
+
 ## Post-installation
 
 After installation or after enabling/disabling modules, run:
