@@ -7,7 +7,7 @@
             <tab>general</tab>
             <resource>Rokezzz_Wishlist::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Schowek</label>
+                <label>Wishlist</label>
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable wishlist (schowek)</label>
                     <comment>When disabled, wishlist links, customer account section, and add-to-wishlist actions are hidden on the storefront.</comment>
