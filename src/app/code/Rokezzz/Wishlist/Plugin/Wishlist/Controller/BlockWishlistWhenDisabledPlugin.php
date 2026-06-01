@@ -11,9 +11,6 @@ use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Wishlist\Helper\Data as WishlistHelper;
 
-/**
- * Blocks direct access to wishlist URLs when wishlist is disabled in configuration.
- */
 class BlockWishlistWhenDisabledPlugin
 {
     public function __construct(
