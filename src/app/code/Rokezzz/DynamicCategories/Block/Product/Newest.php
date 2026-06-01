@@ -26,8 +26,6 @@ class Newest extends ListProduct
         private readonly Visibility $productVisibility,
         array $data = []
     ) {
-        $this->productCollection = $productCollection;
-        $this->productVisibility = $productVisibility;
         parent::__construct(
             $context,
             $postDataHelper,
