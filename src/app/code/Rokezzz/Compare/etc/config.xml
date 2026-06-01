@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rokezzz_compare>
+            <general>
+                <enabled>1</enabled>
+            </general>
+        </rokezzz_compare>
+        <catalog>
+            <recently_products>
+                <compared_count>4</compared_count>
+            </recently_products>
+        </catalog>
+    </default>
+</config>
