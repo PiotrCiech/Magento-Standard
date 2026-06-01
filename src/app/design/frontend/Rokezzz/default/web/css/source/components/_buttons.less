@@ -1,6 +1,5 @@
 & when (@media-common = true) {
 
-    // 1. Baza dla wszystkich przycisków (Reset i struktura)
     button,
     .action,
     a.action {
@@ -13,18 +12,16 @@
         line-height: 1;
         text-align: center;
         text-decoration: none;
-        border-radius: 4px; // Opcjonalnie: wyciągnij to do zmiennej @button__border-radius
+        border-radius: 4px;
         border: 1px solid transparent;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
 
-        // Stan Focus (Dostępność / A11y)
         &:focus {
             outline: none;
             box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
         }
 
-        // Stan Disabled (Wyłączony)
         &:disabled,
         &.disabled {
             opacity: 0.5;
@@ -33,17 +30,15 @@
         }
     }
 
-    // 2. Główny przycisk akcji (Primary)
-    // Np. "Dodaj do koszyka", "Przejdź do kasy", "Zapisz"
     .action.primary {
         background-color: @primary__color;
         border-color: @primary__color;
-        color: @color-white;
+        color: @whiteColor;
 
         &:hover {
             background-color: @primary__color__dark;
             border-color: @primary__color__dark;
-            color: @color-white;
+            color: @whiteColor;
         }
 
         &:active {
@@ -52,8 +47,6 @@
         }
     }
 
-    // 3. Dodatkowy przycisk akcji (Secondary / Ghost Button)
-    // Np. "Kontynuuj zakupy", "Wyczyść filtry"
     .action.secondary {
         background-color: transparent;
         border-color: @primary__color;
@@ -61,7 +54,7 @@
 
         &:hover {
             background-color: @primary__color;
-            color: @color-white;
+            color: @whiteColor;
         }
 
         &:active {
@@ -70,8 +63,6 @@
         }
     }
 
-    // 4. Przycisk w formie czystego tekstu (Text Button)
-    // Np. "Usuń przedmiot" w koszyku
     .action.btn-text {
         background: none;
         border: none;

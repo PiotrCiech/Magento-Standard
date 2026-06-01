@@ -4,7 +4,6 @@ define([
     'use strict';
 
     return function (config, element) {
-
         const body = $('body');
         const $el = $(element);
         const isDesktop = window.matchMedia('(min-width: 992px)');
@@ -29,59 +28,48 @@ define([
         $(document).on('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeMobileMenu();
-                $('.desktop-nav-list .touch-active')
-                    .removeClass('touch-active');
+                $('.desktop-nav-list .touch-active').removeClass('touch-active');
             }
         });
 
-        $el.find('.mobile-nav-list')
-            .on('click', 'li.parent > a', function (e) {
-                if (isDesktop.matches) {
-                    return;
-                }
+        $el.find('.mobile-nav-list').on('click', 'li.parent > a', function (e) {
+            if (isDesktop.matches) {
+                return;
+            }
 
+            const $link = $(this);
+            const clickX = e.pageX - $link.offset().left;
+            const linkWidth = $link.outerWidth();
+
+            if (clickX > linkWidth - 60) {
                 e.preventDefault();
 
-                const $link = $(this);
                 const isOpen = $link.hasClass('is-open');
 
                 $link.toggleClass('is-open');
-                $link.attr(
-                    'aria-expanded',
-                    isOpen ? 'false' : 'true'
-                );
+                $link.attr('aria-expanded', isOpen ? 'false' : 'true');
 
-                $link.siblings('.submenu')
-                    .stop(true, true)
-                    .slideToggle(200);
-            });
+                $link.siblings('.submenu').stop(true, true).slideToggle(200);
+            }
+        });
 
-        $el.find('.desktop-nav-list .level0.parent > a')
-            .on('click', function (e) {
-                if (
-                    !isDesktop.matches ||
-                    !('ontouchstart' in window || navigator.maxTouchPoints > 0)
-                ) {
-                    return;
-                }
+        $el.find('.desktop-nav-list .level0.parent > a').on('click', function (e) {
+            if (!isDesktop.matches || !('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+                return;
+            }
 
-                const $parent = $(this).parent();
+            const $parent = $(this).parent();
 
-                if (!$parent.hasClass('touch-active')) {
-                    e.preventDefault();
-                    $('.desktop-nav-list .level0')
-                        .removeClass('touch-active');
-                    $parent.addClass('touch-active');
-                }
-            });
+            if (!$parent.hasClass('touch-active')) {
+                e.preventDefault();
+                $('.desktop-nav-list .level0').removeClass('touch-active');
+                $parent.addClass('touch-active');
+            }
+        });
 
         $(document).on('click', function (e) {
-            if (
-                isDesktop.matches && // Zmiana na matchMedia
-                !$(e.target).closest('.desktop-nav-list').length
-            ) {
-                $('.desktop-nav-list .level0')
-                    .removeClass('touch-active');
+            if (isDesktop.matches && !$(e.target).closest('.desktop-nav-list').length) {
+                $('.desktop-nav-list .level0').removeClass('touch-active');
             }
         });
 

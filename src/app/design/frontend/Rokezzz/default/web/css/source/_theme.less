@@ -3,18 +3,18 @@
 // ======================================================
 
 // 1. Główne kolory marki
-@mainColor: @slate-900;
-@mainSecondColor: @blue-500;
-@mainAccentColor: @amber-500;
+@mainColor: @slate900;
+@mainSecondColor: @blue500;
+@mainAccentColor: @amber500;
 
-// 2. Base color mapping (Dla modułów zewnętrznych)
+// 2. Base color mapping
 @whiteColor: @color-white;
 @blackColor: @color-black;
-@grayColor: @gray-100;
-@lighterBlackColor: @gray-900;
-@backgroundColorAlternate: @gray-50;
+@grayColor: @gray100;
+@lighterBlackColor: @gray900;
+@backgroundColorAlternate: @gray50;
 
-// 3. Auto-generated shades (Z użyciem funkcji LESS)
+// 3. Auto-generated shades
 @primary__color: @mainColor;
 @primary__color__dark: darken(@primary__color, 10%);
 @primary__color__darker: darken(@primary__color, 20%);
@@ -28,7 +28,7 @@
 @accent__color: @mainAccentColor;
 @accent__color__dark: darken(@accent__color, 10%);
 
-// 4. Native Magento variables override (Rdzeń frameworka)
+// 4. Native Magento variables override
 @theme__color__primary: @primary__color;
 @theme__color__primary-alt: @secondary__color;
 @theme__color__secondary: @accent__color;
@@ -36,14 +36,14 @@
 // Tła, panele i teksty
 @page__background-color: @color-white;
 @panel__background-color: darken(@page__background-color, 4%);
-@text__color: @gray-900;
+@text__color: @gray900;
 
 // Akcje, stany i błędy
 @active__color: @secondary__color__dark;
-@error__color: @red-600;
+@error__color: @red600;
 
 // ======================================================
-// 5. TYPOGRAPHY (Skala wielkości czcionek)
+// 5. TYPOGRAPHY
 // ======================================================
 
 @fontSizeXS: 10px;

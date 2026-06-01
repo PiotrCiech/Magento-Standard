@@ -1,59 +1,33 @@
 <?php
+
+declare(strict_types=1);
+
+/** @var \Magento\Theme\Block\Html\Topmenu $block */
+
 $columnsLimit = $block->getColumnsLimit() ?: 0;
 $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit);
 ?>
-
-<div class="custom-navbar-wrapper"
-     data-mage-init='{"Magento_Theme/js/topmenu":{}}'>
-
+<div class="custom-navbar-wrapper" data-mage-init='{"Magento_Theme/js/topmenu":{}}'>
     <div class="mobile-only-nav">
-
-        <nav class="nav-wrapper"
-             aria-label="<?= $block->escapeHtml(__('Mobile Navigation')) ?>">
-
+        <nav class="nav-wrapper" aria-label="<?= $block->escapeHtml(__('Mobile Navigation')) ?>">
             <div class="mobile-nav-header">
-
-                <button
-                    class="nav-close"
-                    type="button"
-                    aria-label="<?= $block->escapeHtml(__('Close menu')) ?>">
-                    ✕
-                </button>
-
+                <button class="nav-close" type="button" aria-label="<?= $block->escapeHtml(__('Close menu')) ?>">✕</button>
             </div>
-
             <ul class="mobile-nav-list">
                 <?= /* @noEscape */ $_menuHtml ?>
             </ul>
-
             <div class="mobile-bottom-links">
-
-                <a href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>">
-                    <?= $block->escapeHtml(__('My Account')) ?>
-                </a>
-
-                <a href="<?= $block->escapeUrl($block->getUrl('wishlist')) ?>">
-                    <?= $block->escapeHtml(__('Wishlist')) ?>
-                </a>
-
+                <a href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>"><?= $block->escapeHtml(__('My Account')) ?></a>
+                <a href="<?= $block->escapeUrl($block->getUrl('wishlist')) ?>"><?= $block->escapeHtml(__('Wishlist')) ?></a>
             </div>
-
         </nav>
-
         <div class="mobile-nav-overlay"></div>
-
     </div>
-
     <div class="desktop-only-nav">
-
         <div class="desktop-nav-container">
-
             <ul class="desktop-nav-list">
                 <?= /* @noEscape */ $_menuHtml ?>
             </ul>
-
         </div>
-
     </div>
-
 </div>

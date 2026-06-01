@@ -6,5 +6,15 @@
         <move element="catalog.topnav" destination="page.top" before="-" />
 
         <referenceBlock name="catalog.topnav" template="Magento_Theme::html/topmenu.phtml" />
+
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+
+        <referenceContainer name="header.panel" remove="true"/>
+
+        <referenceBlock name="header.links" remove="true"/>
+
+        <referenceBlock name="catalog-search-advanced-link" remove="true"/>
+
+        <referenceBlock name="advanced-search-link" remove="true" />
     </body>
 </page>

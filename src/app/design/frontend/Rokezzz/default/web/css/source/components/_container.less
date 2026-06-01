@@ -1,6 +1,6 @@
-@container-max-width: 1440px;
-@container-padding-mobile: 15px;
-@container-padding-desktop: 20px;
+@containerMaxWidth: 1440px;
+@containerPaddingMobile: 15px;
+@containerPaddingDesktop: 20px;
 
 & when (@media-common = true) {
 
@@ -8,8 +8,8 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        padding-left: @container-padding-mobile;
-        padding-right: @container-padding-mobile;
+        padding-left: @containerPaddingMobile;
+        padding-right: @containerPaddingMobile;
         box-sizing: border-box;
     }
 
@@ -17,20 +17,18 @@
         padding-top: 30px;
         padding-bottom: 30px;
     }
-    
+
     .section-spacing-small {
         padding-top: 15px;
         padding-bottom: 15px;
     }
 }
 
-// ------------------------------------
-//  Tablet (min-width: 768px)
-// ------------------------------------
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
     .container {
-        padding-left: @container-padding-desktop;
-        padding-right: @container-padding-desktop;
+        padding-left: @containerPaddingDesktop;
+        padding-right: @containerPaddingDesktop;
     }
 
     .section-spacing {
@@ -39,12 +37,10 @@
     }
 }
 
-// ------------------------------------
-//  Desktop (min-width: 1024px)
-// ------------------------------------
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
     .container {
-        max-width: @container-max-width;
+        max-width: @containerMaxWidth;
     }
 
     .section-spacing {
@@ -53,10 +49,8 @@
     }
 }
 
-// ------------------------------------
-//  (min-width: 1440px)
-// ------------------------------------
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
     .section-spacing {
         padding-top: 100px;
         padding-bottom: 100px;

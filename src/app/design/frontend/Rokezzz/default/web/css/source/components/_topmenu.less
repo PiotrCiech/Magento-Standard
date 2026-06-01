@@ -1,9 +1,9 @@
-@nav-bg: @mainColor;
-@nav-text: @whiteColor;
-@nav-accent: @mainAccentColor;
-@nav-border: fade(@whiteColor, 8%);
+@navBg: @mainColor;
+@navText: @whiteColor;
+@navAccent: @mainAccentColor;
+@navBorder: fade(@whiteColor, 8%);
 
-& when (@media-common =true) {
+& when (@media-common = true) {
 
     .header.content {
         display: flex;
@@ -31,7 +31,7 @@
     }
 
     .custom-navbar-wrapper {
-        background: @nav-bg;
+        background: @navBg;
         width: 100%;
 
         ul,
@@ -63,7 +63,7 @@
         width: 85%;
         max-width: 350px;
         height: 100vh;
-        background: @nav-bg;
+        background: @navBg;
         z-index: 10000;
         transition: transform 0.35s ease, visibility 0.35s ease;
         display: flex;
@@ -91,7 +91,7 @@
         align-items: center;
         justify-content: flex-end;
         padding: 0 20px;
-        border-bottom: 1px solid @nav-border;
+        border-bottom: 1px solid @navBorder;
 
         .nav-close {
             border: 0;
@@ -126,7 +126,7 @@
         }
 
         .level0 {
-            border-bottom: 1px solid @nav-border;
+            border-bottom: 1px solid @navBorder;
 
             >a {
                 display: block;
@@ -171,7 +171,7 @@
     .mobile-bottom-links {
         margin-top: auto;
         display: flex;
-        border-top: 1px solid @nav-border;
+        border-top: 1px solid @navBorder;
 
         a {
             flex: 1;
@@ -179,7 +179,7 @@
             text-align: center;
             color: @whiteColor;
             font-size: 13px;
-            border-right: 1px solid @nav-border;
+            border-right: 1px solid @navBorder;
 
             &:last-child {
                 border-right: none;
@@ -188,12 +188,7 @@
     }
 }
 
-/* =========================
-   NAV OPEN STATE
-========================= */
-
 body.nav-open {
-
     overflow: hidden;
 
     .nav-wrapper {
@@ -206,10 +201,6 @@ body.nav-open {
         visibility: visible;
     }
 }
-
-/* =========================
-   DESKTOP
-========================= */
 
 @media (min-width: 992px) {
 
@@ -261,7 +252,7 @@ body.nav-open {
                         left: 15px;
                         width: calc(100% - 30px);
                         height: 3px;
-                        background: @nav-accent;
+                        background: @navAccent;
                         transform: scaleX(0);
                         transition: 0.3s;
                     }
@@ -299,7 +290,6 @@ body.nav-open {
                 }
 
                 >.submenu>.level1 {
-
                     flex: 1;
                     min-width: 140px;
 
@@ -309,7 +299,7 @@ body.nav-open {
                         font-weight: bold;
                         font-size: 15px;
                         margin-bottom: 12px;
-                        border-bottom: 1px solid @gray-100;
+                        border-bottom: 1px solid @gray100;
                         padding-bottom: 8px;
                     }
 
@@ -323,7 +313,7 @@ body.nav-open {
 
                     .level2 a {
                         display: block;
-                        color: @gray-900;
+                        color: @gray900;
                         padding: 6px 0;
                         font-size: 14px;
 
@@ -342,7 +332,7 @@ body.nav-open {
 
         a:focus-visible,
         button:focus-visible {
-            outline: 2px solid @nav-accent;
+            outline: 2px solid @navAccent;
             outline-offset: 2px;
         }
     }
