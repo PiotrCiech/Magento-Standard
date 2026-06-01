@@ -15,7 +15,6 @@ class Config
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig
     ) {
-        $this->scopeConfig = $scopeConfig;
     }
 
     public function isNewEnabled(?int $storeId = null): bool

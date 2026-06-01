@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_compare" translate="label" sortOrder="930" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Compare</label>
+            <tab>general</tab>
+            <resource>Magento_Config::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product compare</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable product compare</label>
+                    <comment>When disabled, add-to-compare links and the compare sidebar are hidden on the storefront.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>rokezzz_compare/general/enabled</config_path>
+                </field>
+                <field id="compared_count" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum products in compare list</label>
+                    <comment>Magento core setting. Use 0 to disable compare without the toggle above.</comment>
+                    <config_path>catalog/recently_products/compared_count</config_path>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

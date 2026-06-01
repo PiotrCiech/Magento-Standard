@@ -124,6 +124,10 @@ This module sets Magento indexers to scheduled mode using a data patch. After ru
 
 This module stores initial reCAPTCHA configuration for frontend and backend forms. It configures selected forms to use reCAPTCHA v3 and disables the legacy admin captcha configuration.
 
+### Rokezzz_Compare
+
+This module enables Magento product compare via a data patch (`rokezzz_compare/general/enabled`, `catalog/recently_products/compared_count`). Toggle it in **Stores → Configuration → General → Rokezzz Compare → Product compare → Enable product compare**. When disabled, add-to-compare links and the compare sidebar are hidden on the storefront.
+
 ## Post-installation
 
 After installation or after enabling/disabling modules, run:
