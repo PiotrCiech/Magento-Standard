@@ -377,6 +377,8 @@ return [
         'Rokezzz_IndexerSchedule' => 1,
         'Rokezzz_LocaleDefaults' => 1,
         'Rokezzz_ReCaptcha' => 1,
-        'Rokezzz_Tax' => 1
+        'Rokezzz_Review' => 1,
+        'Rokezzz_Tax' => 1,
+        'Rokezzz_Wishlist' => 1
     ]
 ];

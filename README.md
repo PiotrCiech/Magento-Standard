@@ -127,6 +127,13 @@ This module stores initial reCAPTCHA configuration for frontend and backend form
 ### Rokezzz_Compare
 
 This module enables Magento product compare via a data patch (`rokezzz_compare/general/enabled`, `catalog/recently_products/compared_count`). Toggle it in **Stores → Configuration → General → Rokezzz Compare → Product compare → Enable product compare**. When disabled, add-to-compare links and the compare sidebar are hidden on the storefront.
+### Rokezzz_Review
+
+This module enables Magento core product reviews via a data patch (`catalog/review/active`, `catalog/review/allow_guest`). After `setup:upgrade`, reviews are available on the product page. Toggle them in **Stores → Configuration → General → Rokezzz Reviews → Opinie produktowe**. New reviews are **Pending** until approved in **Marketing → User Content → All Reviews**.
+
+### Rokezzz_Wishlist
+
+This module enables Magento core wishlist (schowek) via a data patch (`wishlist/general/active`). Toggle it in **Stores → Configuration → General → Rokezzz Wishlist → Schowek → Enable wishlist**. When disabled, wishlist UI and controllers are blocked on the storefront.
 
 ## Post-installation
 
