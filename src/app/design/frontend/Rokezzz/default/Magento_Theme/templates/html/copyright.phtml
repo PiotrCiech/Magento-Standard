@@ -8,25 +8,29 @@ use Magento\Theme\Block\Html\Footer;
 
 $currentYear = date('Y');
 $copyrightNotice = 'Copyright ©';
-$createdBy = 'Created by:';
+$realization = __('Realization');
 $storeNameLink = [
-    'name' => 'empty-magento',// replace with your store name
+    'name' => 'Name',
 ];
 $companyNameLink = [
     'name' => 'Rokezzz',
-    'link' => 'https://rokezzz.pl'
+    'link' => 'https://rokezzz.pl/tworzenie-sklepow-internetowych-ostrzeszow',
+    'subname' => __('Online stores Ostrzeszów'),
 ];
 ?>
 
-<small class="copyright">
-    <span>
-        <?= $copyrightNotice . ' ' . $currentYear ?>&nbsp;<?= $storeNameLink['name'] . ' - ' . __('All rights reserved.') ?>
-    </span>
-    <span class="created-by">
-        <span><?= __($createdBy) ?></span>
-        <a class="link" href="<?= $companyNameLink['link'] ?>" target="_blank" title="<?= $companyNameLink['name'] ?>">
-            <?= $companyNameLink['name'] ?>
-        </a>
-        <span>.</span>
-    </span>
-</small>
+<div class="copyright-wrapper">
+<div class="copyright">
+<div class="rights">
+<span><?= $copyrightNotice . ' ' . $currentYear . ' ' . $storeNameLink['name'] ?> - </span>
+<span><?= __('All rights reserved.') ?></span>
+</div>
+<div class="created-by">
+<span><?= __($realization) ?></span>
+<a class="link" href="<?= $companyNameLink['link'] ?>" target="_blank" title="<?= $companyNameLink['name'] . ' ' . $companyNameLink['subname'] ?>">
+<span><?= $companyNameLink['name'] ?> - </span>
+<span><?= $companyNameLink['subname'] ?></span>
+</a>
+</div>
+</div>
+</div>

@@ -4,9 +4,9 @@ define([
     'use strict';
 
     return function (config, element) {
-        const body = $('body');
-        const $el = $(element);
-        const isDesktop = window.matchMedia('(min-width: 992px)');
+        const body = $('body'),
+            $el = $(element),
+            isDesktop = window.matchMedia('(min-width: 992px)');
 
         function closeMobileMenu() {
             body.removeClass('nav-open');
@@ -37,13 +37,12 @@ define([
                 return;
             }
 
-            const $link = $(this);
-            const clickX = e.pageX - $link.offset().left;
-            const linkWidth = $link.outerWidth();
+            const $link = $(this),
+                clickX = e.pageX - $link.offset().left,
+                linkWidth = $link.outerWidth();
 
             if (clickX > linkWidth - 60) {
                 e.preventDefault();
-
                 const isOpen = $link.hasClass('is-open');
 
                 $link.toggleClass('is-open');
