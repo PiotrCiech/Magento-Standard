@@ -379,6 +379,7 @@ return [
         'Rokezzz_ReCaptcha' => 1,
         'Rokezzz_Review' => 1,
         'Rokezzz_Tax' => 1,
+        'Rokezzz_ViteDev' => 1,
         'Rokezzz_Wishlist' => 1
     ]
 ];
