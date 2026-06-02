@@ -38,9 +38,9 @@ define([
             }
 
             const $link = $(this),
+                TOGGLE_AREA_WIDTH = 60,
                 clickX = e.pageX - $link.offset().left,
                 linkWidth = $link.outerWidth();
-                TOGGLE_AREA_WIDTH = 60;
 
             if (clickX > linkWidth - TOGGLE_AREA_WIDTH) {
                 e.preventDefault();

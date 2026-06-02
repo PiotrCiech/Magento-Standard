@@ -14,23 +14,24 @@ $storeNameLink = [
 ];
 $companyNameLink = [
     'name' => 'Rokezzz',
-    'link' => 'https://rokezzz.pl/tworzenie-sklepow-internetowych-ostrzeszow',
-    'subname' => __('Online stores Ostrzeszów'),
+    'link' => 'https://rokezzz.pl',
+    'subname' => __('Tworzenie stron internetowych i aplikacji webowych'),
 ];
 ?>
 
 <div class="copyright-wrapper">
-<div class="copyright">
-<div class="rights">
-<span><?= $copyrightNotice . ' ' . $currentYear . ' ' . $storeNameLink['name'] ?> - </span>
-<span><?= __('All rights reserved.') ?></span>
-</div>
-<div class="created-by">
-<span><?= __($realization) ?></span>
-<a class="link" href="<?= $companyNameLink['link'] ?>" target="_blank" title="<?= $companyNameLink['name'] . ' ' . $companyNameLink['subname'] ?>">
-<span><?= $companyNameLink['name'] ?> - </span>
-<span><?= $companyNameLink['subname'] ?></span>
-</a>
-</div>
-</div>
+    <div class="copyright">
+        <div class="rights">
+            <span><?= $copyrightNotice . ' ' . $currentYear . ' ' . $storeNameLink['name'] ?> - </span>
+            <span><?= __('All rights reserved.') ?></span>
+        </div>
+        <div class="created-by">
+            <span><?= $realization ?></span>
+            <a class="link" href="<?= $companyNameLink['link'] ?>" target="_blank" rel="noopener noreferrer"
+                title="<?= $companyNameLink['name'] . ' ' . $companyNameLink['subname'] ?>">
+                <span><?= $companyNameLink['name'] ?> - </span>
+                <span><?= $companyNameLink['subname'] ?></span>
+            </a>
+        </div>
+    </div>
 </div>

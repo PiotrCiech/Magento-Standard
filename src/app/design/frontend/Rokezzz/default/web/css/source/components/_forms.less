@@ -15,9 +15,15 @@
     textarea,
     select {
 
-        &:not([disabled]):focus {
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            outline: none;
             border-color: @mainAccentColor;
-            box-shadow: 0 0 4px @mainAccentColor;
+            box-shadow: 0 0 0 3px fade(@mainAccentColor, 20%);
+        }
+
+        &:focus-visible {
             outline: none;
         }
     }
