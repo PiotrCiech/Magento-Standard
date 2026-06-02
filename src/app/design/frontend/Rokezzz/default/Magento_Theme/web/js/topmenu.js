@@ -40,8 +40,9 @@ define([
             const $link = $(this),
                 clickX = e.pageX - $link.offset().left,
                 linkWidth = $link.outerWidth();
+                TOGGLE_AREA_WIDTH = 60;
 
-            if (clickX > linkWidth - 60) {
+            if (clickX > linkWidth - TOGGLE_AREA_WIDTH) {
                 e.preventDefault();
                 const isOpen = $link.hasClass('is-open');
 
