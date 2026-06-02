@@ -25,7 +25,13 @@
 
     <vars module="Magento_Catalog">
         <var name="gallery">
-            <var name="nav">thumbs</var> <var name="navdir">horizontal</var> <var name="navarrows">true</var> <var name="arrows">true</var> <var name="allowfullscreen">true</var> <var name="transition">slide</var> </var>
+            <var name="nav">thumbs</var>
+            <var name="navdir">horizontal</var>
+            <var name="navarrows">true</var>
+            <var name="arrows">true</var>
+            <var name="allowfullscreen">true</var>
+            <var name="transition">slide</var>
+        </var>
     </vars>
 
 </view>
