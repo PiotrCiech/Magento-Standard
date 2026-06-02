@@ -11,9 +11,7 @@ use Rokezzz\GoogleAnalytics\Model\Config\Source\TrackingType;
 class Config
 {
     private const XML_PATH_TRACKING_TYPE = 'rokezzz_google_analytics/general/tracking_type';
-
     private const XML_PATH_TRACKING_ID = 'rokezzz_google_analytics/general/tracking_id';
-
     private const TRACKING_ID_PATTERN = '/^[A-Za-z0-9_-]+$/';
 
     public function __construct(
