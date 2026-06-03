@@ -10,7 +10,6 @@ $viteBrowserHost = 'localhost';
 $viteCheckHost = 'vite';
 $viteClientUrl = sprintf('http://%s:%d/@vite/client', $viteBrowserHost, $vitePort);
 $viteEntryUrl = sprintf('http://%s:%d/src/main.js', $viteBrowserHost, $vitePort);
-
 $socket = @fsockopen($viteCheckHost, $vitePort, $errno, $errstr, 0.2);
 $viteAvailable = is_resource($socket);
 
