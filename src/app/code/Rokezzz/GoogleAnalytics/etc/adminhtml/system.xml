@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_google_analytics" translate="label" sortOrder="940" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Google Analytics</label>
+            <tab>general</tab>
+            <resource>Magento_Config::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Tracking</label>
+                <field id="tracking_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tracking method</label>
+                    <comment>GA4 and Google tag use gtag.js (e.g. G-XXXXXXXXXX). Google Tag Manager requires a GTM container ID (GTM-XXXXXXX).</comment>
+                    <source_model>Rokezzz\GoogleAnalytics\Model\Config\Source\TrackingType</source_model>
+                </field>
+                <field id="tracking_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Measurement / container ID</label>
+                    <comment>Examples: G-XXXXXXXXXX (GA4), AW-XXXXXXXXXX (Ads), GTM-XXXXXXX (Tag Manager). Scripts are injected only when a method is selected and this field is filled.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
