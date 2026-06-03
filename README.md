@@ -135,6 +135,10 @@ This module enables Magento core product reviews via a data patch (`catalog/revi
 
 This module enables Magento core wishlist (schowek) via a data patch (`wishlist/general/active`). Toggle it in **Stores → Configuration → General → Rokezzz Wishlist → Schowek → Enable wishlist**. When disabled, wishlist UI and controllers are blocked on the storefront.
 
+### Rokezzz_AvailabilityNotification
+
+This module wraps Magento core back-in-stock alerts (`catalog/productalert/allow_stock`). After `setup:upgrade`, availability notifications are **disabled** by default. Toggle them in **Stores → Configuration → General → Rokezzz Availability Notification → Product availability alerts → Enable availability notifications**. When disabled, the subscribe form on out-of-stock product pages is hidden and direct subscription requests are blocked on the storefront.
+
 ## Post-installation
 
 After installation or after enabling/disabling modules, run:
