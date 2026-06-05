@@ -5,13 +5,13 @@ define([
 
     return function (config, element) {
         const body = $('body'),
-            $el = $(element),
+            el = $(element),
             isDesktop = window.matchMedia('(min-width: 992px)');
 
         function closeMobileMenu() {
             body.removeClass('nav-open');
-            $el.find('.mobile-nav-list .submenu').hide();
-            $el.find('.mobile-nav-list a.is-open')
+            el.find('.mobile-nav-list .submenu').hide();
+            el.find('.mobile-nav-list a.is-open')
                 .removeClass('is-open')
                 .attr('aria-expanded', 'false');
         }
@@ -21,7 +21,7 @@ define([
             body.addClass('nav-open');
         });
 
-        $el.find('.nav-close, .mobile-nav-overlay').on('click', function () {
+        el.find('.nav-close, .mobile-nav-overlay').on('click', function () {
             closeMobileMenu();
         });
 
@@ -32,38 +32,38 @@ define([
             }
         });
 
-        $el.find('.mobile-nav-list').on('click', 'li.parent > a', function (e) {
+        el.find('.mobile-nav-list').on('click', 'li.parent > a', function (e) {
             if (isDesktop.matches) {
                 return;
             }
 
-            const $link = $(this),
-                TOGGLE_AREA_WIDTH = 60,
-                clickX = e.pageX - $link.offset().left,
-                linkWidth = $link.outerWidth();
+            const link = $(this),
+                toggleAreaWidth = 60,
+                clickX = e.pageX - link.offset().left,
+                linkWidth = link.outerWidth();
 
-            if (clickX > linkWidth - TOGGLE_AREA_WIDTH) {
+            if (clickX > linkWidth - toggleAreaWidth) {
                 e.preventDefault();
-                const isOpen = $link.hasClass('is-open');
+                
+                const isOpen = link.hasClass('is-open');
 
-                $link.toggleClass('is-open');
-                $link.attr('aria-expanded', isOpen ? 'false' : 'true');
-
-                $link.siblings('.submenu').stop(true, true).slideToggle(200);
+                link.toggleClass('is-open');
+                link.attr('aria-expanded', isOpen ? 'false' : 'true');
+                link.siblings('.submenu').stop(true, true).slideToggle(200);
             }
         });
 
-        $el.find('.desktop-nav-list .level0.parent > a').on('click', function (e) {
+        el.find('.desktop-nav-list .level0.parent > a').on('click', function (e) {
             if (!isDesktop.matches || !('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
                 return;
             }
 
-            const $parent = $(this).parent();
+            const parent = $(this).parent();
 
-            if (!$parent.hasClass('touch-active')) {
+            if (!parent.hasClass('touch-active')) {
                 e.preventDefault();
                 $('.desktop-nav-list .level0').removeClass('touch-active');
-                $parent.addClass('touch-active');
+                parent.addClass('touch-active');
             }
         });
 
