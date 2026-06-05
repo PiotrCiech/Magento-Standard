@@ -1,5 +1,6 @@
-& when (@media-common = true) {
+@transitionProperties: 0.2s ease;
 
+& when (@media-common = true) {
     button,
     .action,
     a.action {
@@ -15,7 +16,7 @@
         border-radius: 4px;
         border: 1px solid transparent;
         cursor: pointer;
-        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        transition: background-color @transitionProperties, border-color @transitionProperties, color @transitionProperties;
 
         &:focus {
             outline: none;
@@ -70,7 +71,7 @@
         color: @text__color;
         height: auto;
         min-height: 0;
-        transition: color 0.2s ease;
+        transition: color @transitionProperties;
 
         &:hover {
             color: @primary__color;
