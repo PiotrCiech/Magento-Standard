@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Rokezzz\MostPopular\Block\Widget\MostPopularList;
+
+/** @var MostPopularList $block */
+/** @var Escaper $escaper */
+?>
+<?php if ($block->shouldRender()): ?>
+    <div class="block rokezzz-most-popular widget block-products-list grid">
+        <?php if ($block->getTitle() !== ''): ?>
+            <div class="block-title">
+                <strong><?= $escaper->escapeHtml($block->getTitle()) ?></strong>
+            </div>
+        <?php endif; ?>
+        <div class="block-content">
+            <?= /* @noEscape */ $block->getProductItemsHtml() ?>
+        </div>
+    </div>
+<?php endif; ?>

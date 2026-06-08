@@ -1,0 +1,37 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Rokezzz\MostPopular\Block\Widget\MostPopularList;
+
+/** @var MostPopularList $block */
+/** @var Escaper $escaper */
+
+$collection = $block->getLoadedProductCollection();
+?>
+<?php if ($collection->count()): ?>
+    <div class="products wrapper grid products-grid">
+        <ol class="products list items product-items">
+            <?php foreach ($collection as $product): ?>
+                <li class="item product product-item">
+                    <div class="product-item-info">
+                        <a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>"
+                           class="product photo product-item-photo">
+                            <?= $block->getImage($product, 'category_page_grid')->toHtml() ?>
+                        </a>
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link"
+                                   href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>">
+                                    <?= $escaper->escapeHtml($product->getName()) ?>
+                                </a>
+                            </strong>
+                            <?= /* @noEscape */ $block->getProductPrice($product) ?>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+<?php endif; ?>
