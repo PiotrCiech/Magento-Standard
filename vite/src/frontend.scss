@@ -1,0 +1,18 @@
+/**
+ * Style aggregator for Vite HMR.
+ * Order: SCSS → LESS → CSS (last resort).
+ *
+ * @magento alias → src/ (Magento root in the repository).
+ */
+
+@use 'style';
+
+// --- SCSS (preferred) ---
+// @import '@magento/app/design/frontend/Vendor/theme/web/css/custom.scss';
+// @import '@magento/app/code/Rokezzz/SomeModule/view/frontend/web/css/module';
+
+// --- LESS ---
+// @import '@magento/app/code/Rokezzz/SomeModule/view/frontend/web/css/module.less';
+
+// --- CSS (only when SCSS/LESS is not available) ---
+// @import '@magento/app/code/Rokezzz/SomeModule/view/frontend/web/css/module.css';

@@ -23,6 +23,7 @@ The local environment is defined in `compose.yaml` and contains:
 - `opensearch` - OpenSearch service used by Magento search.
 - `valkey` - Redis-compatible cache backend.
 - `rabbitmq` - message queue with management panel.
+- `vite` - Node.js dev server for frontend HMR (Hot Module Replacement), port `5173`.
 
 Docker configuration files are located in:
 
@@ -138,6 +139,9 @@ This module enables Magento core wishlist (schowek) via a data patch (`wishlist/
 ### Rokezzz_AvailabilityNotification
 
 This module wraps Magento core back-in-stock alerts (`catalog/productalert/allow_stock`). After `setup:upgrade`, availability notifications are **disabled** by default. Toggle them in **Stores → Configuration → General → Rokezzz Availability Notification → Product availability alerts → Enable availability notifications**. When disabled, the subscribe form on out-of-stock product pages is hidden and direct subscription requests are blocked on the storefront.
+### Rokezzz_ViteDev
+
+Development-only bridge to the Vite server (`vite/`, Docker service `vite`). Injects Vite scripts on the storefront when port `5173` is up; register edited SCSS/LESS in `vite/src/frontend.scss`. Disable in production.
 
 ### Rokezzz_GoogleAnalytics
 

@@ -1,0 +1,24 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+
+$vitePort = 5173;
+$viteBrowserHost = 'localhost';
+$viteCheckHost = 'vite';
+$viteClientUrl = sprintf('http://%s:%d/@vite/client', $viteBrowserHost, $vitePort);
+$viteEntryUrl = sprintf('http://%s:%d/src/main.js', $viteBrowserHost, $vitePort);
+$socket = @fsockopen($viteCheckHost, $vitePort, $errno, $errstr, 0.2);
+$viteAvailable = is_resource($socket);
+
+if ($viteAvailable) {
+    fclose($socket);
+}
+
+?>
+<?php if ($viteAvailable): ?>
+    <script type="module" src="<?= $escaper->escapeUrl($viteClientUrl) ?>"></script>
+    <script type="module" src="<?= $escaper->escapeUrl($viteEntryUrl) ?>"></script>
+<?php endif; ?>

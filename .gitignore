@@ -1,5 +1,8 @@
 .env
 *.log
+
+/vite/node_modules/
+/vite/dist/
 .DS_Store
 .idea/
 .vscode/
