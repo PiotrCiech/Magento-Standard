@@ -17,11 +17,11 @@ use Magento\Framework\Url\Helper\Data as UrlHelper;
 class Newest extends ListProduct
 {
     public function __construct(
-        private readonly Context $context,
-        private readonly PostHelper $postDataHelper,
-        private readonly Resolver $layerResolver,
-        private readonly CategoryRepositoryInterface $categoryRepository,
-        private readonly UrlHelper $urlHelper,
+        Context $context,
+        PostHelper $postDataHelper,
+        Resolver $layerResolver,
+        CategoryRepositoryInterface $categoryRepository,
+        UrlHelper $urlHelper,
         private readonly Collection $productCollection,
         private readonly Visibility $productVisibility,
         array $data = []
