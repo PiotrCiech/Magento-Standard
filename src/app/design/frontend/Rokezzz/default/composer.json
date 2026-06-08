@@ -1,0 +1,15 @@
+{
+    "name": "rokezzz/theme-frontend-default",
+    "description": "Rokezzz Default Theme Boilerplate",
+    "require": {
+        "php": "~8.3||~8.4||~8.5",
+        "magento/framework": "*"
+    },
+    "type": "magento2-theme",
+    "version": "1.0.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

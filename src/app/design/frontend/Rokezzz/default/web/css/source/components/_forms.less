@@ -1,0 +1,28 @@
+& when (@media-common = true) {
+    input[type='radio'],
+    input[type='checkbox'] {
+        accent-color: @mainColor;
+    }
+
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='number'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='url'],
+    textarea,
+    select {
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: @mainAccentColor;
+            box-shadow: 0 0 0 3px fade(@mainAccentColor, 20%);
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+@import 'components/_fonts.less';
+@import 'components/_forms.less';
+@import 'components/_reviews.less';
+@import 'components/_minicart.less';
+@import 'components/_container.less';
+@import 'components/_buttons.less';
+@import 'components/_topmenu.less';
+@import 'components/_copyright.less';
+
+& when (@media-common = true) {
+    body {
+        font-size: @fontSizeM;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    .footer-copyright {
+        color: @whiteColor;
+
+        .created-by {
+            display: inline-block;
+        }
+    }
+
+    .cms-index-index {
+        .page-title-wrapper {
+            display: none;
+        }
+    }
+
+    .document {
+        ol li ol li {
+            margin: 0;
+        }
+
+        a {
+            color: @blackColor;
+
+            &:hover {
+                color: @mainAccentColor;
+                text-decoration: none;
+            }
+        }
+    }
+}
