@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="rokezzz_mostpopular_list"
+            class="Rokezzz\MostPopular\Block\Widget\MostPopularList">
+        <label translate="true">Rokezzz Most Popular Products</label>
+        <description translate="true">List of most popular products based on the sales report.</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="products_count" xsi:type="text" required="false" visible="true">
+                <label translate="true">Number of Products</label>
+                <description translate="true">Leave empty to use the default from store configuration.</description>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
