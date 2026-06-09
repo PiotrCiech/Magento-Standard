@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="rokezzz_omnibus_record_prices"
+             instance="Rokezzz\Omnibus\Cron\RecordPrices"
+             method="execute">
+            <schedule>0 2 * * *</schedule>
+        </job>
+        <job name="rokezzz_omnibus_cleanup_history"
+             instance="Rokezzz\Omnibus\Cron\CleanupOldRecords"
+             method="execute">
+            <schedule>0 3 * * 0</schedule>
+        </job>
+    </group>
+</config>

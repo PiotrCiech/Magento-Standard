@@ -1,0 +1,19 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Rokezzz\Omnibus\ViewModel\OmnibusPrice $viewModel */
+$viewModel = $block->getData('view_model');
+$product = $block->getData('product');
+$listingContext = (bool) $block->getData('listing_context');
+?>
+<?php if ($viewModel->shouldRender($product, $listingContext)): ?>
+    <div class="omnibus-price">
+        <span class="omnibus-price__label">
+            <?= $block->escapeHtml(
+                __('Lowest price in the last %1 days:', $viewModel->getPeriodDays($product))
+            ) ?>
+        </span>
+        <span class="omnibus-price__value">
+            <?= $block->escapeHtml($viewModel->getFormattedLowestPrice($product)) ?>
+        </span>
+    </div>
+<?php endif; ?>
