@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Rokezzz_Core::main"
+             title="Rokezzz"
+             module="Rokezzz_Core"
+             sortOrder="12"
+             resource="Rokezzz_Core::main"/>
+
+        <add id="Rokezzz_Core::content"
+             title="Content"
+             module="Rokezzz_Core"
+             parent="Rokezzz_Core::main"
+             sortOrder="10"
+             resource="Rokezzz_Core::content"/>
+
+        <add id="Rokezzz_Core::admin"
+             title="Administracja"
+             module="Rokezzz_Core"
+             parent="Rokezzz_Core::main"
+             sortOrder="100"
+             resource="Rokezzz_Core::admin"/>
+
+        <add id="Rokezzz_Core::settings"
+             title="Ustawienia"
+             module="Rokezzz_Core"
+             parent="Rokezzz_Core::admin"
+             sortOrder="10"
+             action="adminhtml/system_config/edit/section/rokezzz_settings"
+             resource="Rokezzz_Core::settings"/>
+    </menu>
+</config>

@@ -372,6 +372,7 @@ return [
         'Rokezzz_AvailabilityNotification' => 1,
         'Rokezzz_CheckoutAgreements' => 1,
         'Rokezzz_Compare' => 1,
+        'Rokezzz_Core' => 1,
         'Rokezzz_CustomerAccountDeletion' => 1,
         'Rokezzz_CustomerNip' => 1,
         'Rokezzz_DynamicCategories' => 1,
