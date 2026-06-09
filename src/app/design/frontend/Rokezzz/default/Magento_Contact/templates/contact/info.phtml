@@ -1,0 +1,39 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$scopeConfig = $objectManager->get(
+    \Magento\Framework\App\Config\ScopeConfigInterface::class
+);
+
+$name = $scopeConfig->getValue('general/store_information/name');
+$phone = $scopeConfig->getValue('general/store_information/phone');
+$hours = $scopeConfig->getValue('general/store_information/hours');
+$street = $scopeConfig->getValue('general/store_information/street_line1');
+$postcode = $scopeConfig->getValue('general/store_information/postcode');
+$city = $scopeConfig->getValue('general/store_information/city');
+?>
+
+<div class="contact-details">
+    <h2>Dane kontaktowe</h2>
+
+    <?php if ($name || $street || $city): ?>
+    <div class="store-address" style="margin-bottom: 10px;">
+        <p>
+            <strong>Adres:</strong><br>
+            <?php if ($name): ?> <?= $name ?><br><?php endif; ?>
+            <?php if ($street): ?> <?= $street ?><br><?php endif; ?>
+            <?php if ($postcode || $city): ?> <?= $postcode ?> <?= $city ?> <?php endif; ?>
+        </p>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($phone): ?>
+    <p>
+        <strong>Telefon:</strong>
+        <a href="tel:<?= str_replace(' ', '', $phone) ?>"><?= $phone ?></a>
+    </p>
+    <?php endif; ?>
+
+    <?php if ($hours): ?>
+    <p><strong>Godziny pracy:</strong> <?= $hours ?></p>
+    <?php endif; ?>
+</div>
