@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Rokezzz\Omnibus\Api\GrossFinalPriceResolverInterface"
+                type="Rokezzz\Omnibus\Model\GrossFinalPriceResolver"/>
+    <preference for="Rokezzz\Omnibus\Api\OmnibusDisplayDataProviderInterface"
+                type="Rokezzz\Omnibus\Model\OmnibusPriceProvider"/>
+    <preference for="Rokezzz\Omnibus\Api\PriceHistoryRecorderInterface"
+                type="Rokezzz\Omnibus\Model\PriceHistoryRecorder"/>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="rokezzz_omnibus_record_prices" xsi:type="object">Rokezzz\Omnibus\Console\Command\RecordPricesCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
