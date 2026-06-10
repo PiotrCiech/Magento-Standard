@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<carriers>
+
+			<f_inpost>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Inpost</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_inpost>
+
+			<f_ruch>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Paczkawruchu</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_ruch>
+
+			<f_poczta>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Pocztapolska</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_poczta>
+			<f_ups>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Ups</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_ups>
+
+			<f_dpd>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Dpd</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_dpd>
+			<f_dhl>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Dhl</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_dhl>
+			<f_fedex>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Fedex</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_fedex>
+			<f_gls>
+				<active>0</active>
+				<sallowspecific>0</sallowspecific>
+				<model>Furgonetka\Pickups\Model\Carrier\Gls</model>
+				<type>I</type>
+				<sort_order>0</sort_order>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+				</specificerrmsg>
+			</f_gls>
+
+		</carriers>
+	</default>
+</config>

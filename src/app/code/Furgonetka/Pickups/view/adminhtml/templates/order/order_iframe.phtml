@@ -1,0 +1,52 @@
+<div id="popup-modal">
+	<div class="msg"></div>
+	<iframe src="" style="min-height: 650px;width: 100%; display: none"></iframe>
+</div>
+<script>
+	require(
+		[
+			'jquery',
+			'Magento_Ui/js/modal/modal'
+		],
+		function (
+			$,
+			modal,
+			url
+		) {
+			var options = {
+				type: 'popup',
+				responsive: true,
+				innerScroll: false,
+				buttons: []
+			};
+
+			var popup = modal(options, $('#popup-modal'));
+
+			$("body").on('click', '.furgonetkaPackage', function (e) {
+				$('#popup-modal iframe').attr('src', '');
+				$('#popup-modal .msg').text('');
+
+				var customurl = "<?php echo $this->getUrl('furgonetka_admin/package/iframe') ?>order_id/" + $(this).data('oid');
+				$.ajax({
+					url: customurl,
+					type: 'GET',
+					dataType: 'json',
+					complete: function (response) {
+						if (response.responseJSON.link) {
+							$('#popup-modal iframe').attr('src', response.responseJSON.link).show();
+						} else {
+							$('#popup-modal .msg').text('Brak połączonego konta z Furgonetka.pl. Przejdź do konfiguracji modułu i podłącz swoje konto postępując zgodnie z instrukcją dołączoną do modułu.');
+						}
+						$('#popup-modal').modal('openModal');
+					},
+					error: function (xhr, status, errorThrown) {
+						console.log('Error happens. Try again.');
+					}
+				});
+
+			});
+
+
+		}
+	);
+</script>

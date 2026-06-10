@@ -1,0 +1,85 @@
+<?php
+$pickups = $block->getPoints();
+
+?>
+
+<script type="text/javascript" src="https://furgonetka.pl/js/dist/map/map.js"></script>
+
+<script type="text/javascript">
+	require(
+		['jquery', 'Magento_Checkout/js/model/quote', 'Magento_Checkout/js/model/shipping-service'],
+		function ($, quote, shippingService) {
+
+
+			/**
+			 * @function
+			 * @property {object} jQuery plugin which runs handler function once specified element is inserted into the DOM
+			 * @param {function} handler A function to execute at the time when the element is inserted
+			 * @param {bool} shouldRunHandlerOnce Optional: if true, handler is unbound after its first invocation
+			 * @example $(selector).waitUntilExists(function);
+			 */
+
+			$.fn.waitUntilExists = function (handler, shouldRunHandlerOnce, isChild) {
+				var found = 'found';
+				var $this = $(this.selector);
+				var $elements = $this.not(function () {
+					return $(this).data(found);
+				}).each(handler).data(found, true);
+
+				if (!isChild) {
+					(window.waitUntilExists_Intervals = window.waitUntilExists_Intervals || {})[this.selector] =
+						window.setInterval(function () {
+							$this.waitUntilExists(handler, shouldRunHandlerOnce, true);
+						}, 1000)
+					;
+				} else if (shouldRunHandlerOnce && $elements.length) {
+					window.clearInterval(window.waitUntilExists_Intervals[this.selector]);
+				}
+				return $this;
+			};
+
+
+			$('#checkout td.col.col-carrier,input[name="furgonetka_pickup_point"]').waitUntilExists(function () {
+				if (!$('#showMap').length) {
+					addWidgetLink();
+				}
+			});
+
+			$('#checkout').on('click', '.showMap', function () {
+				new window.Furgonetka.Map({
+					courierServices: $(this).data('itemtype'),
+					callback: mapCallback
+				}).show();
+				return false;
+			});
+
+			$('#checkout').on('change', '.table-checkout-shipping-method input.radio', function () {
+				$('.placeDetails').html('');
+				$('[name="furgonetka_pickup_point"]').val('');
+			});
+			$('#checkout').on('click', '.table-checkout-shipping-method tr', function () {
+				$(this).find('input.radio').trigger('change');
+			});
+
+
+			function addWidgetLink() {
+				$('td[id*="label_carrier_furgonetka_f_"]').each(function (index) {
+					if (!$(this).children('.placeDetails').length) {
+						var dataPointType = $(this).attr('id').replace('label_carrier_furgonetka_f_', '');
+						$(this).append(
+							"<br/><span class='placeDetails' data-itemtype='" + dataPointType + "'></span><a href='javascript:void(0)' class='showMap' data-itemtype='" + dataPointType + "'>Wybierz punkt odbioru</a>"
+						);
+					}
+				});
+			}
+
+			function mapCallback(params) {
+				var point = params.point;
+
+				$('.placeDetails').html('');
+				$('.placeDetails[data-itemtype="' + point.type + '"]').html(point.type + ' ' + point.name + '<br/>');
+				$('[name="furgonetka_pickup_point"]').val(JSON.stringify(point));
+			}
+		}
+	);
+</script>
