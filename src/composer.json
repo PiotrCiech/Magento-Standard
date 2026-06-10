@@ -23,7 +23,8 @@
         "magento/composer-root-update-plugin": "^2.0.4",
         "magento/product-community-edition": "2.4.9",
         "magento/theme-frontend-luma": "^100.4",
-        "mageplaza/magento-2-polish-language-pack": "dev-master"
+        "mageplaza/magento-2-polish-language-pack": "dev-master",
+        "przelewy24/magento2-przelewy24": "^1.6"
     },
     "autoload": {
         "exclude-from-classmap": [
