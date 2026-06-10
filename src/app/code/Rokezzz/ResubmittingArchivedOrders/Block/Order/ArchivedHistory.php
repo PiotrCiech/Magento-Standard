@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Rokezzz\ResubmittingArchivedOrders\Block\Order;
 
 use Magento\Customer\Model\Session as CustomerSession;
+use Magento\Framework\Phrase;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Sales\Model\Order\Config as OrderConfig;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory as OrderCollectionFactory;
+use Magento\Theme\Block\Html\Pager;
 use Rokezzz\ResubmittingArchivedOrders\Model\Config;
 
 class ArchivedHistory extends Template
@@ -72,7 +74,7 @@ class ArchivedHistory extends Template
 
         if ($orders) {
             $pager = $this->getLayout()->createBlock(
-                \Magento\Theme\Block\Html\Pager::class,
+                Pager::class,
                 'rokezzz.archived.order.history.pager'
             )->setCollection($orders);
             $this->setChild('pager', $pager);
@@ -97,7 +99,7 @@ class ArchivedHistory extends Template
         return $this->getUrl('sales/order/history');
     }
 
-    public function getEmptyOrdersMessage(): \Magento\Framework\Phrase
+    public function getEmptyOrdersMessage(): Phrase
     {
         return __('You have no archived orders.');
     }
