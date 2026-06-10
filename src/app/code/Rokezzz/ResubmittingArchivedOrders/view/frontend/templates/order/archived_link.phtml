@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Rokezzz\ResubmittingArchivedOrders\ViewModel\ArchivedOrderLink;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ArchivedOrderLink $archivedOrderLink */
+
+$archivedOrderLink = $block->getData('archived_order_actions');
+
+if (!$archivedOrderLink->isVisible()) {
+    return;
+}
+?>
+<p class="archived-orders-link">
+    <a href="<?= $escaper->escapeUrl($archivedOrderLink->getArchivedOrdersUrl()) ?>">
+        <?= $escaper->escapeHtml(__('View archived orders')) ?>
+    </a>
+</p>
