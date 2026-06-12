@@ -1,0 +1,18 @@
+<!--@subject {{trans "New order #%increment_id" increment_id=$order.getIncrementId()}} @-->
+<!--@vars {
+"var order":"Order",
+"var store":"Store",
+"var formatted_grand_total":"Formatted grand total"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "A new order has been placed in your store."}}</p>
+<ul>
+    <li><strong>{{trans "Order number:"}}</strong> {{var order.getIncrementId()}}</li>
+    <li><strong>{{trans "Customer:"}}</strong> {{var order.getCustomerName()}}</li>
+    <li><strong>{{trans "Email:"}}</strong> {{var order.getCustomerEmail()}}</li>
+    <li><strong>{{trans "Grand total:"}}</strong> {{var formatted_grand_total}}</li>
+</ul>
+
+{{template config_path="design/email/footer_template"}}
