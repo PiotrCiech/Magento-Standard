@@ -6,12 +6,12 @@ namespace Rokezzz\OrderOwnerNotification\Model;
 
 use Magento\Sales\Model\Order;
 
-readonly class OrderOwnerNotificationContext
+class OrderOwnerNotificationContext
 {
     public function __construct(
-        public Order $order,
-        public int $storeId,
-        public string $recipientEmail
+        public readonly Order $order,
+        public readonly int $storeId,
+        public readonly string $recipientEmail
     ) {
     }
 }

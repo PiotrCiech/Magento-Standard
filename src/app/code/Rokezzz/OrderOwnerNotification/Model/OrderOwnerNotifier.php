@@ -19,7 +19,7 @@ class OrderOwnerNotifier implements OrderOwnerNotifierInterface
     {
         $context = $this->contextResolver->resolve($order);
 
-        if ($context === null) {
+        if (is_null($context)) {
             return;
         }
 
