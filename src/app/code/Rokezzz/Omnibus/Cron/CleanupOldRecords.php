@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Rokezzz\Omnibus\Cron;
 
+use Magento\Store\Model\StoreManagerInterface;
 use Rokezzz\Omnibus\Model\Config;
 use Rokezzz\Omnibus\Model\ResourceModel\PriceHistory;
-use Magento\Store\Model\StoreManagerInterface;
 
 class CleanupOldRecords
 {

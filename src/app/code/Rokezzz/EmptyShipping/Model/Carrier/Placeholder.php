@@ -17,7 +17,6 @@ use Psr\Log\LoggerInterface;
 class Placeholder extends AbstractCarrier implements CarrierInterface
 {
     protected $_code = 'rokezzz_empty';
-
     protected $_isFixed = true;
 
     public function __construct(
