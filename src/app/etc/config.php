@@ -381,6 +381,7 @@ return [
         'Rokezzz_MostPopular' => 1,
         'Rokezzz_Omnibus' => 1,
         'Rokezzz_Przelewy24' => 1,
+        'Rokezzz_OrderOwnerNotification' => 1,
         'Rokezzz_ReCaptcha' => 1,
         'Rokezzz_ResubmittingArchivedOrders' => 1,
         'Rokezzz_Review' => 1,
