@@ -143,6 +143,20 @@ This module wraps Magento core back-in-stock alerts (`catalog/productalert/allow
 
 Development-only bridge to the Vite server (`vite/`, Docker service `vite`). Injects Vite scripts on the storefront when port `5173` is up; register edited SCSS/LESS in `vite/src/frontend.scss`. Disable in production.
 
+### Rokezzz_InPost
+
+Thin project layer for the official [InPost Magento 2 integration](https://dokumentacja-inpost.atlassian.net/wiki/spaces/PL/pages/296648705/PL+Magento+2) (`Smartmage_Inpost`, package `smartmage/inpost`). After `setup:upgrade`, the integration is **disabled** by default. Toggle it in **Stores → Configuration → General → Rokezzz InPost → Enable InPost integration**. When disabled, InPost Paczkomaty and courier shipping rates are hidden on the storefront.
+
+Install the official module:
+
+```bash
+docker compose exec php composer require smartmage/inpost
+docker compose exec php php bin/magento setup:upgrade
+docker compose exec php php bin/magento cache:flush
+```
+
+Configure ShipX API credentials (Organization ID, Access Token, Geowidget Token) in **Stores → Configuration → Sales → Shipping Settings → InPost**, then enable delivery methods under **Sales → Delivery Methods** (InPost Paczkomat® 24/7, courier, etc.).
+
 ### Rokezzz_GoogleAnalytics
 
 This module injects Google tracking scripts on the storefront based on admin configuration. Configure it in **Stores → Configuration → General → Rokezzz Google Analytics → Tracking**. Choose **GA4** or **Google tag (gtag.js)** for measurement IDs (e.g. `G-XXXXXXXXXX`) — both use the same gtag.js snippet — or **Google Tag Manager** for container IDs (`GTM-XXXXXXX`). Scripts are output only when a method is selected and the ID field is filled. GTM also adds the required `noscript` iframe right after the opening `<body>` tag.
