@@ -143,6 +143,10 @@ This module wraps Magento core back-in-stock alerts (`catalog/productalert/allow
 
 Development-only bridge to the Vite server (`vite/`, Docker service `vite`). Injects Vite scripts on the storefront when port `5173` is up; register edited SCSS/LESS in `vite/src/frontend.scss`. Disable in production.
 
+### Rokezzz_InPost
+
+Configure InPost in **Stores → Configuration → General → Rokezzz InPost → Enable InPost integration** (default: disabled), set ShipX credentials in **Sales → Shipping Settings → InPost**, and enable delivery methods in **Sales → Delivery Methods**.
+
 ### Rokezzz_GoogleAnalytics
 
 This module injects Google tracking scripts on the storefront based on admin configuration. Configure it in **Stores → Configuration → General → Rokezzz Google Analytics → Tracking**. Choose **GA4** or **Google tag (gtag.js)** for measurement IDs (e.g. `G-XXXXXXXXXX`) — both use the same gtag.js snippet — or **Google Tag Manager** for container IDs (`GTM-XXXXXXX`). Scripts are output only when a method is selected and the ID field is filled. GTM also adds the required `noscript` iframe right after the opening `<body>` tag.
