@@ -13,7 +13,7 @@ use Magento\Tax\Model\Config as TaxConfig;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\Omnibus\Model\GrossFinalPriceResolver;
 
-class GrossFinalPriceResolverTest extends TestCase
+final class GrossFinalPriceResolverTest extends TestCase
 {
     public function testResolveRegularReturnsPriceWhenTaxIncluded(): void
     {

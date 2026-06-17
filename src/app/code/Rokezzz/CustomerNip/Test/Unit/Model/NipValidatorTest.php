@@ -7,7 +7,7 @@ namespace Rokezzz\CustomerNip\Test\Unit\Model;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\CustomerNip\Model\NipValidator;
 
-class NipValidatorTest extends TestCase
+final class NipValidatorTest extends TestCase
 {
     private NipValidator $nipValidator;
 

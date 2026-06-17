@@ -9,7 +9,7 @@ use Magento\Catalog\Model\Product\Type;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\Omnibus\Model\SimpleProductEligibility;
 
-class SimpleProductEligibilityTest extends TestCase
+final class SimpleProductEligibilityTest extends TestCase
 {
     private SimpleProductEligibility $simpleProductEligibility;
 

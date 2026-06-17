@@ -15,7 +15,7 @@ use Rokezzz\Gus\Model\NipNormalizer;
 use Rokezzz\Gus\Model\RegonApiClient;
 use Rokezzz\Gus\Model\SearchReportMapper;
 
-class CompanyLookupTest extends TestCase
+final class CompanyLookupTest extends TestCase
 {
     public function testFindByNipThrowsWhenFeatureDisabled(): void
     {

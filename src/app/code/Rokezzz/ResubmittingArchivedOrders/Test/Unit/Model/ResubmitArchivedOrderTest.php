@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Rokezzz\ResubmittingArchivedOrders\Model\ArchivedOrderResubmitValidator;
 use Rokezzz\ResubmittingArchivedOrders\Model\ResubmitArchivedOrder;
 
-class ResubmitArchivedOrderTest extends TestCase
+final class ResubmitArchivedOrderTest extends TestCase
 {
     public function testExecuteReordersArchivedOrderAndSetsQuoteInSession(): void
     {

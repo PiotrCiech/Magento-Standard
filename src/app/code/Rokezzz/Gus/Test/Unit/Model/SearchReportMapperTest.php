@@ -9,7 +9,7 @@ use GusApi\Type\Response\SearchResponseCompanyData;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\Gus\Model\SearchReportMapper;
 
-class SearchReportMapperTest extends TestCase
+final class SearchReportMapperTest extends TestCase
 {
     public function testMapUsesReportNipWhenPresent(): void
     {

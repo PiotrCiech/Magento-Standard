@@ -11,7 +11,7 @@ use Rokezzz\Tax\Model\ProductCollectionProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class AdjustTaxPricesCommandTest extends TestCase
+final class AdjustTaxPricesCommandTest extends TestCase
 {
     public function testExecuteFailsWhenFirstArgumentIsInvalid(): void
     {

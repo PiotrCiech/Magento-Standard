@@ -10,7 +10,7 @@ use Magento\Framework\Exception\LocalizedException;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\Gus\Model\GusApiExceptionMapper;
 
-class GusApiExceptionMapperTest extends TestCase
+final class GusApiExceptionMapperTest extends TestCase
 {
     private GusApiExceptionMapper $mapper;
 

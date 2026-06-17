@@ -15,7 +15,7 @@ use Rokezzz\Omnibus\Model\OmnibusPriceProvider;
 use Rokezzz\Omnibus\Model\ResourceModel\PriceHistory;
 use Rokezzz\Omnibus\Model\SimpleProductEligibility;
 
-class OmnibusPriceProviderTest extends TestCase
+final class OmnibusPriceProviderTest extends TestCase
 {
     public function testGetDisplayDataReturnsNullWhenFeatureDisabled(): void
     {

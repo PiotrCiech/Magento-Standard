@@ -11,7 +11,7 @@ use Rokezzz\OrderOwnerNotification\Model\OrderOwnerNotificationContextResolver;
 use Rokezzz\OrderOwnerNotification\Model\OrderOwnerNotificationEmailSender;
 use Rokezzz\OrderOwnerNotification\Model\OrderOwnerNotifier;
 
-class OrderOwnerNotifierTest extends TestCase
+final class OrderOwnerNotifierTest extends TestCase
 {
     public function testNotifySkipsWhenContextCannotBeResolved(): void
     {

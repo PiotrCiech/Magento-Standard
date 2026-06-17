@@ -16,7 +16,7 @@ use Rokezzz\Omnibus\Model\PriceHistoryRecorder;
 use Rokezzz\Omnibus\Model\ResourceModel\PriceHistory;
 use Rokezzz\Omnibus\Model\SimpleProductEligibility;
 
-class PriceHistoryRecorderTest extends TestCase
+final class PriceHistoryRecorderTest extends TestCase
 {
     public function testRecordForAllStoresSkipsIneligibleProduct(): void
     {

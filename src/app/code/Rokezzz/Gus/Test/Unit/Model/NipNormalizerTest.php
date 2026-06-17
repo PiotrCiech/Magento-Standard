@@ -8,7 +8,7 @@ use Magento\Framework\Exception\LocalizedException;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\Gus\Model\NipNormalizer;
 
-class NipNormalizerTest extends TestCase
+final class NipNormalizerTest extends TestCase
 {
     private NipNormalizer $nipNormalizer;
 

@@ -9,7 +9,7 @@ use Rokezzz\ResubmittingArchivedOrders\Model\ArchiveEligibleOrders;
 use Rokezzz\ResubmittingArchivedOrders\Model\Config;
 use Rokezzz\ResubmittingArchivedOrders\Model\ResourceModel\OrderArchive;
 
-class ArchiveEligibleOrdersTest extends TestCase
+final class ArchiveEligibleOrdersTest extends TestCase
 {
     public function testExecuteReturnsZeroWhenFeatureDisabled(): void
     {

@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 use Rokezzz\OrderOwnerNotification\Model\Config;
 use Rokezzz\OrderOwnerNotification\Model\OrderOwnerNotificationContextResolver;
 
-class OrderOwnerNotificationContextResolverTest extends TestCase
+final class OrderOwnerNotificationContextResolverTest extends TestCase
 {
     public function testResolveReturnsNullWhenFeatureDisabled(): void
     {
