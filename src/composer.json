@@ -18,6 +18,7 @@
     },
     "version": "2.4.9",
     "require": {
+        "gusapi/gusapi": "^6.0",
         "magento/composer": "^1.10.1-beta1",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "^2.0.4",
@@ -25,6 +26,7 @@
         "magento/theme-frontend-luma": "^100.4",
         "mageplaza/magento-2-polish-language-pack": "dev-master",
         "smartmage/inpost": "^1.22"
+        "przelewy24/magento2-przelewy24": "^1.6"
     },
     "autoload": {
         "exclude-from-classmap": [
