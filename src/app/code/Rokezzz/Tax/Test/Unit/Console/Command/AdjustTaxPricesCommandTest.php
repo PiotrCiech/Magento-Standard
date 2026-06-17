@@ -41,8 +41,8 @@ class AdjustTaxPricesCommandTest extends TestCase
     private function createCommand(): AdjustTaxPricesCommand
     {
         return new AdjustTaxPricesCommand(
-            $this->createMock(ProductCollectionProvider::class),
-            $this->createMock(ProductResource::class)
+            $this->createStub(ProductCollectionProvider::class),
+            $this->createStub(ProductResource::class)
         );
     }
 }
