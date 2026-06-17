@@ -145,17 +145,7 @@ Development-only bridge to the Vite server (`vite/`, Docker service `vite`). Inj
 
 ### Rokezzz_InPost
 
-Thin project layer for the official [InPost Magento 2 integration](https://dokumentacja-inpost.atlassian.net/wiki/spaces/PL/pages/296648705/PL+Magento+2) (`Smartmage_Inpost`, package `smartmage/inpost`). After `setup:upgrade`, the integration is **disabled** by default. Toggle it in **Stores → Configuration → General → Rokezzz InPost → Enable InPost integration**. When disabled, InPost Paczkomaty and courier shipping rates are hidden on the storefront.
-
-Install the official module:
-
-```bash
-docker compose exec php composer require smartmage/inpost
-docker compose exec php php bin/magento setup:upgrade
-docker compose exec php php bin/magento cache:flush
-```
-
-Configure ShipX API credentials (Organization ID, Access Token, Geowidget Token) in **Stores → Configuration → Sales → Shipping Settings → InPost**, then enable delivery methods under **Sales → Delivery Methods** (InPost Paczkomat® 24/7, courier, etc.).
+Configure InPost in **Stores → Configuration → General → Rokezzz InPost → Enable InPost integration** (default: disabled), set ShipX credentials in **Sales → Shipping Settings → InPost**, and enable delivery methods in **Sales → Delivery Methods**.
 
 ### Rokezzz_GoogleAnalytics
 
