@@ -8,6 +8,8 @@
                 comment="Rokezzz KSeF Invoice Number"/>
         <column xsi:type="varchar" name="rokezzz_invoice_legal_type" nullable="true" length="16"
                 comment="Rokezzz Invoice Legal Type"/>
+        <column xsi:type="int" name="rokezzz_corrected_invoice_id" unsigned="true" nullable="true"
+                comment="Rokezzz Corrected Invoice Entity ID"/>
         <index referenceId="SALES_INVOICE_ROKEZZZ_KSEF_UPO_STATUS" indexType="btree">
             <column name="rokezzz_ksef_upo_status"/>
         </index>

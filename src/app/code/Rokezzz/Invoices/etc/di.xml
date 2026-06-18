@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Rokezzz\Invoices\Api\InvoiceXmlPathResolverInterface"
+                type="Rokezzz\Invoices\Model\File\InvoiceXmlPathResolver"/>
+    <preference for="Rokezzz\Invoices\Api\InvoiceXmlFileWriterInterface"
+                type="Rokezzz\Invoices\Model\File\InvoiceXmlFileWriter"/>
+    <preference for="Rokezzz\Invoices\Api\UpoFileWriterInterface"
+                type="Rokezzz\Invoices\Model\File\UpoFileWriter"/>
+    <preference for="Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface"
+                type="Rokezzz\Invoices\Model\Xml\InvoiceXmlGenerator"/>
+</config>

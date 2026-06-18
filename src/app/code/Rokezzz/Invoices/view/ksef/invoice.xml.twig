@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Faktura xmlns="http://crd.gov.pl/wzor/2025/06/25/13775/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:etd="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/01/05/eD/DefinicjeTypy/">
+
+    <Naglowek>
+        <KodFormularza kodSystemowy="FA (3)" wersjaSchemy="1-0E">FA</KodFormularza>
+        <WariantFormularza>3</WariantFormularza>
+        <DataWytworzeniaFa>{{ issuedAt|date('Y-m-d\\TH:i:s') }}</DataWytworzeniaFa>
+        <SystemInfo>{{ systemInfo|slice(0, 256) }}</SystemInfo>
+    </Naglowek>
+
+    <Podmiot1>
+        <DaneIdentyfikacyjne>
+            <NIP>{{ sellerNip }}</NIP>
+            <Nazwa>{{ sellerName|slice(0, 512) }}</Nazwa>
+        </DaneIdentyfikacyjne>
+        <Adres>
+            <KodKraju>{{ sellerCountryCode }}</KodKraju>
+            <AdresL1>{{ sellerAddressLine1|slice(0, 240) }}</AdresL1>
+            <AdresL2>{{ sellerAddressLine2|slice(0, 240) }}</AdresL2>
+        </Adres>
+    </Podmiot1>
+
+    <Podmiot2>
+        <DaneIdentyfikacyjne>
+            {% if buyerNip %}
+            <NIP>{{ buyerNip }}</NIP>
+            {% elseif buyerVat %}
+            <KodUE>{{ buyerCountryCode }}</KodUE>
+            <NrVatUE>{{ buyerVat }}</NrVatUE>
+            {% else %}
+            <BrakID>1</BrakID>
+            {% endif %}
+
+            <Nazwa>{{ buyerName|slice(0, 512) }}</Nazwa>
+        </DaneIdentyfikacyjne>
+
+        <Adres>
+            <KodKraju>{{ buyerCountryCode }}</KodKraju>
+            <AdresL1>{{ buyerStreet|slice(0, 240) }}</AdresL1>
+            <AdresL2>{{ buyerPost|slice(0, 240) }}</AdresL2>
+        </Adres>
+
+        <JST>2</JST>
+        <GV>2</GV>
+    </Podmiot2>
+
+    <Fa>
+        <KodWaluty>PLN</KodWaluty>
+
+        <P_1>{{ issuedAt|date('Y-m-d') }}</P_1>
+        <P_1M>{{ placeOfIssue|slice(0, 240) }}</P_1M>
+        <P_2>{{ number }}</P_2>
+        <P_6>{{ soldAt|date('Y-m-d') }}</P_6>
+
+        {% if typeInvoice == InvoiceTypeDictionary.correction %}
+        <P_13_1>{{ (correctedInvoiceTotalNet - totalNetBeforeCorrection)|number_format(2, '.', '') }}</P_13_1>
+        <P_14_1>{{ (correctedInvoiceTotalVat - totalVatBeforeCorrection)|number_format(2, '.', '') }}</P_14_1>
+        <P_15>{{ (correctedInvoiceTotalGross - totalGrossBeforeCorrection)|number_format(2, '.', '') }}</P_15>
+        {% else %}
+        <P_13_1>{{ totalNet|number_format(2, '.', '') }}</P_13_1>
+        <P_14_1>{{ totalVat|number_format(2, '.', '') }}</P_14_1>
+        <P_15>{{ totalGross|number_format(2, '.', '') }}</P_15>
+        {% endif %}
+
+        <Adnotacje>
+            <P_16>2</P_16>
+            <P_17>2</P_17>
+            <P_18>2</P_18>
+            <P_18A>2</P_18A>
+
+            <Zwolnienie>
+                {% if isInvoiceVatExempt %}
+                <P_19>1</P_19>
+                <P_19A>{{ vatExemptionBasis|slice(0, 256) }}</P_19A>
+                {% else %}
+                <P_19N>1</P_19N>
+                {% endif %}
+            </Zwolnienie>
+
+            <NoweSrodkiTransportu>
+                <P_22N>1</P_22N>
+            </NoweSrodkiTransportu>
+
+            <P_23>2</P_23>
+
+            <PMarzy>
+                <P_PMarzyN>1</P_PMarzyN>
+            </PMarzy>
+        </Adnotacje>
+
+        {% if typeInvoice == InvoiceTypeDictionary.correction %}
+        <RodzajFaktury>KOR</RodzajFaktury>
+        <PrzyczynaKorekty>{{ comment|slice(0, 240) }}</PrzyczynaKorekty>
+        <TypKorekty>1</TypKorekty>
+        <DaneFaKorygowanej>
+            <DataWystFaKorygowanej>{{ correctedInvoiceIssuedAt|date('Y-m-d') }}</DataWystFaKorygowanej>
+            <NrFaKorygowanej>{{ correctedInvoiceNumber }}</NrFaKorygowanej>
+            {% if correctedInvoiceKsefNumber %}
+            <NrKSeF>1</NrKSeF>
+            <NrKSeFFaKorygowanej>{{ correctedInvoiceKsefNumber }}</NrKSeFFaKorygowanej>
+            {% else %}
+            <NrKSeFN>1</NrKSeFN>
+            {% endif %}
+        </DaneFaKorygowanej>
+        {% elseif typeInvoice == InvoiceTypeDictionary.advance %}
+        <RodzajFaktury>ZAL</RodzajFaktury>
+        {% else %}
+        <RodzajFaktury>VAT</RodzajFaktury>
+        {% endif %}
+
+        {% if typeInvoice == InvoiceTypeDictionary.correction %}
+            {% for item in correctionItems %}
+        <FaWiersz>
+            <NrWierszaFa>{{ loop.index }}</NrWierszaFa>
+            <P_7>{{ item.name|slice(0, 240) }}</P_7>
+            <P_8A>{{ item.unitLabel }}</P_8A>
+            <P_8B>{{ item.quantity }}</P_8B>
+            <P_9A>{{ item.netAmount }}</P_9A>
+            <P_11>{{ item.vatAmount }}</P_11>
+            <P_12>{{ item.vatCode }}</P_12>
+        </FaWiersz>
+            {% endfor %}
+        {% else %}
+            {% for item in items %}
+        <FaWiersz>
+            <NrWierszaFa>{{ loop.index }}</NrWierszaFa>
+            <P_7>{{ item.name|slice(0, 240) }}</P_7>
+            <P_8A>{{ item.unitLabel }}</P_8A>
+            <P_8B>{{ item.quantity }}</P_8B>
+            <P_9A>{{ item.netAmount }}</P_9A>
+            <P_11>{{ item.vatAmount }}</P_11>
+            <P_12>{{ item.vatCode }}</P_12>
+        </FaWiersz>
+            {% endfor %}
+        {% endif %}
+
+        {% if paymentMethod == InvoicePaymentMethodDictionary.bankTransfer %}
+        <Platnosc>
+            <TerminPlatnosci>
+                <Termin>{{ expiresAt|date('Y-m-d') }}</Termin>
+            </TerminPlatnosci>
+            <FormaPlatnosci>6</FormaPlatnosci>
+            <RachunekBankowy>
+                <NrRB>{{ bankAccountNumber }}</NrRB>
+            </RachunekBankowy>
+        </Platnosc>
+        {% elseif paymentMethod == InvoicePaymentMethodDictionary.cash %}
+        <Platnosc>
+            <TerminPlatnosci>
+                <Termin>{{ expiresAt|date('Y-m-d') }}</Termin>
+            </TerminPlatnosci>
+            <FormaPlatnosci>1</FormaPlatnosci>
+        </Platnosc>
+        {% elseif paymentMethod == InvoicePaymentMethodDictionary.paidInAdvance %}
+        <Platnosc>
+            <TerminPlatnosci>
+                <Termin>{{ issuedAt|date('Y-m-d') }}</Termin>
+            </TerminPlatnosci>
+            <FormaPlatnosci>3</FormaPlatnosci>
+        </Platnosc>
+        {% endif %}
+    </Fa>
+</Faktura>
