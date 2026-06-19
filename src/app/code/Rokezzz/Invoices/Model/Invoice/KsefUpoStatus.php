@@ -18,7 +18,6 @@ enum KsefUpoStatus: string
     {
         return [
             self::Todo->value,
-            self::Error->value,
         ];
     }
 }

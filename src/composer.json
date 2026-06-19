@@ -25,6 +25,7 @@
         "magento/product-community-edition": "2.4.9",
         "magento/theme-frontend-luma": "^100.4",
         "mageplaza/magento-2-polish-language-pack": "dev-master",
+        "phpseclib/phpseclib": "^3.0",
         "przelewy24/magento2-przelewy24": "^1.6",
         "twig/twig": "^3.0"
     },
