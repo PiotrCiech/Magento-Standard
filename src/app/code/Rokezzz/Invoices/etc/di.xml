@@ -9,14 +9,16 @@
                 type="Rokezzz\Invoices\Model\File\UpoFileWriter"/>
     <preference for="Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface"
                 type="Rokezzz\Invoices\Model\Xml\InvoiceXmlGenerator"/>
+    <preference for="Rokezzz\Invoices\Api\InvoicePdfPathResolverInterface"
+                type="Rokezzz\Invoices\Model\File\InvoicePdfPathResolver"/>
+    <preference for="Rokezzz\Invoices\Api\InvoicePdfFileWriterInterface"
+                type="Rokezzz\Invoices\Model\File\InvoicePdfFileWriter"/>
+    <preference for="Rokezzz\Invoices\Api\InvoicePdfGeneratorInterface"
+                type="Rokezzz\Invoices\Model\Pdf\InvoicePdfGenerator"/>
     <preference for="Rokezzz\Invoices\Api\KsefClientInterface"
                 type="Rokezzz\Invoices\Model\Ksef\KsefClient"/>
-    <type name="Rokezzz\Invoices\Model\Ksef\KsefClient">
-        <shared>false</shared>
-    </type>
-    <type name="Rokezzz\Invoices\Model\Ksef\KsefState">
-        <shared>false</shared>
-    </type>
+    <type name="Rokezzz\Invoices\Model\Ksef\KsefClient" shared="false"/>
+    <type name="Rokezzz\Invoices\Model\Ksef\KsefState" shared="false"/>
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">

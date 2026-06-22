@@ -9,13 +9,17 @@ use Magento\Sales\Api\Data\InvoiceInterface;
 use Rokezzz\Invoices\Api\InvoiceXmlFileWriterInterface;
 use Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface;
 use Rokezzz\Invoices\Model\Config;
+use Rokezzz\Invoices\Model\Template\InvoiceTemplateRenderer;
 
 class InvoiceXmlGenerator implements InvoiceXmlGeneratorInterface
 {
+    private const TEMPLATE_NAME = 'invoice.xml.twig';
+    private const TEMPLATE_SUBDIR = 'ksef';
+
     public function __construct(
         private readonly Config $config,
         private readonly InvoiceXmlContextBuilder $contextBuilder,
-        private readonly InvoiceTwigRenderer $twigRenderer,
+        private readonly InvoiceTemplateRenderer $templateRenderer,
         private readonly InvoiceXmlFileWriterInterface $xmlFileWriter
     ) {
     }
@@ -33,8 +37,11 @@ class InvoiceXmlGenerator implements InvoiceXmlGeneratorInterface
             return $this->xmlFileWriter->read($invoiceNumber, $storeId);
         }
 
-        $xmlContent = $this->twigRenderer->render(
-            $this->contextBuilder->build($invoice)
+        $xmlContent = $this->templateRenderer->render(
+            self::TEMPLATE_SUBDIR,
+            self::TEMPLATE_NAME,
+            $this->contextBuilder->build($invoice),
+            false
         );
 
         if (trim($xmlContent) === '') {
