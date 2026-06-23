@@ -377,6 +377,7 @@ return [
         'Rokezzz_DynamicCategories' => 1,
         'Rokezzz_EmptyShipping' => 1,
         'Rokezzz_GoogleAnalytics' => 1,
+        'Rokezzz_InPost' => 1,
         'Rokezzz_Gus' => 1,
         'Rokezzz_IndexerSchedule' => 1,
         'Rokezzz_Settings' => 1,

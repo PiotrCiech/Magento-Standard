@@ -1,0 +1,8 @@
+"Rokezzz InPost","Rokezzz InPost"
+"InPost Paczkomaty","InPost Paczkomaty"
+"Official module status","Status modułu oficjalnego"
+"Enable InPost integration","Włącz integrację InPost"
+"When disabled, InPost Paczkomaty and courier shipping rates are hidden on the storefront. Configure API credentials in Stores → Configuration → Sales → Shipping Settings → InPost.","Po wyłączeniu stawki InPost Paczkomaty i kurier są ukryte na sklepie. Dane API konfigurujesz w Sklepy → Konfiguracja → Sprzedaż → Ustawienia wysyłki → InPost."
+"Official module Smartmage_Inpost is not installed. Run: composer require smartmage/inpost","Moduł oficjalny Smartmage_Inpost nie jest zainstalowany. Uruchom: composer require smartmage/inpost"
+"Official module Smartmage_Inpost is installed but disabled. Enable it with bin/magento module:enable.","Moduł oficjalny Smartmage_Inpost jest zainstalowany, ale wyłączony. Włącz go przez bin/magento module:enable."
+"Official module Smartmage_Inpost is installed and enabled.","Moduł oficjalny Smartmage_Inpost jest zainstalowany i włączony."
