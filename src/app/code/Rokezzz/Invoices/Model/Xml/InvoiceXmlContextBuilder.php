@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Invoices\Model\Xml;
 
+use DateTimeImmutable;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Rokezzz\Invoices\Model\Invoice\LegalType;
 use Rokezzz\Invoices\Model\Invoice\PaymentMethod;
@@ -32,8 +33,8 @@ class InvoiceXmlContextBuilder
         $storeId = (int) $invoice->getStoreId();
         $legalType = $this->legalTypeResolver->resolve($invoice);
         $paymentMethod = $this->paymentMethodResolver->resolve($invoice);
-        $issuedAt = new \DateTimeImmutable((string) $invoice->getCreatedAt());
-        $soldAt = new \DateTimeImmutable((string) $invoice->getOrder()?->getCreatedAt() ?: $invoice->getCreatedAt());
+        $issuedAt = new DateTimeImmutable((string) $invoice->getCreatedAt());
+        $soldAt = new DateTimeImmutable((string) $invoice->getOrder()?->getCreatedAt() ?: $invoice->getCreatedAt());
         $lines = $this->invoiceLineBuilder->build($invoice);
 
         $context = array_merge(

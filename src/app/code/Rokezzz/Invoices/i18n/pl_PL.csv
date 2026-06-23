@@ -13,6 +13,7 @@
 "Invoice PDF generation is disabled.","Generowanie PDF faktury jest wyłączone."
 "Generated invoice HTML is empty.","Wygenerowany HTML faktury jest pusty."
 "Generated invoice PDF is empty.","Wygenerowany PDF faktury jest pusty."
+"Unsupported VAT rate \"%1\" for KSeF invoice line.","Nieobsługiwana stawka VAT \"%1\" dla pozycji faktury KSeF."
 "Download PDF","Pobierz PDF"
 "Invoice PDF is not available for this document.","PDF faktury nie jest dostępny dla tego dokumentu."
 "This invoice no longer exists.","Ta faktura już nie istnieje."

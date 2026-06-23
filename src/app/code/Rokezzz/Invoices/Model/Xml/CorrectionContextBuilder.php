@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Invoices\Model\Xml;
 
+use DateTimeImmutable;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Api\InvoiceRepositoryInterface;
@@ -39,9 +40,9 @@ class CorrectionContextBuilder
 
         return [
             'correctedInvoiceNumber' => (string) $correctedInvoice->getIncrementId(),
-            'correctedInvoiceIssuedAt' => new \DateTimeImmutable((string) $correctedInvoice->getCreatedAt()),
+            'correctedInvoiceIssuedAt' => new DateTimeImmutable((string) $correctedInvoice->getCreatedAt()),
             'correctedInvoiceKsefNumber' => (string) $correctedInvoice->getData('rokezzz_ksef_number'),
-            'correctedInvoiceSoldAt' => new \DateTimeImmutable(
+            'correctedInvoiceSoldAt' => new DateTimeImmutable(
                 (string) ($correctedInvoice->getOrder()?->getCreatedAt() ?: $correctedInvoice->getCreatedAt())
             ),
             'correctedInvoiceTotalNet' => (float) $invoice->getSubtotal(),

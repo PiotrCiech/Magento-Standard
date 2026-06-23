@@ -43,6 +43,11 @@ class KsefClient implements KsefClientInterface
         return $this->upoFetcher->get($ksefNumber, $this->state, $storeId);
     }
 
+    public function tryGetUpo(string $ksefNumber, ?int $storeId = null): ?string
+    {
+        return $this->upoFetcher->tryGet($ksefNumber, $this->state, $storeId);
+    }
+
     public function closeSession(?int $storeId = null): void
     {
         $this->sessionManager->close($this->state, $storeId);

@@ -34,7 +34,7 @@ class KsefStatusPoller
                 $ksefNumber = $this->responseParser->getKsefNumber($status);
                 $upoUrl = $this->responseParser->getUpoDownloadUrl($status);
 
-                if ($ksefNumber !== null || $upoUrl !== null) {
+                if (!is_null($ksefNumber) || !is_null($upoUrl)) {
                     return new KsefProcessingResult(
                         ksefNumber: $ksefNumber,
                         upoDownloadUrl: $upoUrl,
@@ -51,7 +51,7 @@ class KsefStatusPoller
                 );
             }
 
-            if ($statusCode !== null && in_array($statusCode, self::FAILURE_CODES, true)) {
+            if (!is_null($statusCode) && in_array($statusCode, self::FAILURE_CODES, true)) {
                 $details = $status['status']['details'] ?? [];
 
                 throw new KsefApiException(sprintf(

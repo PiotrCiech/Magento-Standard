@@ -52,7 +52,7 @@ class KsefSessionManager
     public function close(KsefState $state, ?int $storeId = null): void
     {
         $sessionReferenceNumber = $state->getSessionReferenceNumber();
-        if ($sessionReferenceNumber === null || $sessionReferenceNumber === '') {
+        if (is_null($sessionReferenceNumber) || $sessionReferenceNumber === '') {
             return;
         }
 

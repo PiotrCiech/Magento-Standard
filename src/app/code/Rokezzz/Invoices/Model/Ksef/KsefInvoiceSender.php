@@ -24,7 +24,12 @@ class KsefInvoiceSender
         $aesKey = $state->getAesKey();
         $aesIv = $state->getAesIv();
 
-        if ($sessionReferenceNumber === null || $accessToken === null || $aesKey === null || $aesIv === null) {
+        if (
+            is_null($sessionReferenceNumber)
+            || is_null($accessToken)
+            || is_null($aesKey)
+            || is_null($aesIv)
+        ) {
             throw new KsefApiException('KSeF state is incomplete for invoice submission.');
         }
 

@@ -27,7 +27,7 @@ class PdfDownloadButton extends Template
     {
         $invoice = $this->getInvoice();
 
-        return $invoice !== null
+        return !is_null($invoice)
             && $this->config->isEnabled((int) $invoice->getStoreId())
             && $this->eligibilityChecker->isKsefEligibleType($invoice);
     }

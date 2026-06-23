@@ -22,6 +22,8 @@ interface KsefClientInterface
 
     public function getUpo(string $ksefNumber, ?int $storeId = null): string;
 
+    public function tryGetUpo(string $ksefNumber, ?int $storeId = null): ?string;
+
     public function closeSession(?int $storeId = null): void;
 
     public function getSessionReferenceNumber(): ?string;

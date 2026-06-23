@@ -9,6 +9,9 @@ use Rokezzz\Invoices\Exception\KsefApiException;
 
 class KsefAuthenticator
 {
+    private const MAX_AUTH_POLL_ATTEMPTS = 60;
+    private const AUTH_POLL_INTERVAL_MICROSECONDS = 500_000;
+
     public function __construct(
         private readonly KsefHttpClient $httpClient,
         private readonly KsefConfigProvider $configProvider,
@@ -59,7 +62,7 @@ class KsefAuthenticator
         $authReferenceNumber = (string) $state->getAuthReferenceNumber();
         $authenticationToken = (string) $state->getAuthenticationToken();
 
-        for ($attempt = 1; $attempt <= 60; $attempt++) {
+        for ($attempt = 1; $attempt <= self::MAX_AUTH_POLL_ATTEMPTS; $attempt++) {
             $response = $this->httpClient->getJson(
                 sprintf(KsefEndpoints::AUTH_STATUS, $authReferenceNumber),
                 ['Authorization' => 'Bearer ' . $authenticationToken],
@@ -79,7 +82,7 @@ class KsefAuthenticator
                 );
             }
 
-            usleep(500000);
+            usleep(self::AUTH_POLL_INTERVAL_MICROSECONDS);
         }
 
         throw new KsefApiException('KSeF authentication timed out.');

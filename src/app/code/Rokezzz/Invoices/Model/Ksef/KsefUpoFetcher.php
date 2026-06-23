@@ -28,4 +28,17 @@ class KsefUpoFetcher
             $storeId
         );
     }
+
+    public function tryGet(string $ksefNumber, KsefState $state, ?int $storeId = null): ?string
+    {
+        try {
+            $upoContent = $this->get($ksefNumber, $state, $storeId);
+        } catch (KsefApiException) {
+            return null;
+        }
+
+        $upoContent = trim($upoContent);
+
+        return $upoContent !== '' ? $upoContent : null;
+    }
 }
