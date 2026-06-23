@@ -8,6 +8,7 @@ use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Sales\Api\Data\InvoiceInterface;
+use Rokezzz\Invoices\Model\AdminRoutePaths;
 use Rokezzz\Invoices\Model\Config;
 use Rokezzz\Invoices\Model\Invoice\InvoiceKsefEligibilityChecker;
 
@@ -36,7 +37,7 @@ class PdfDownloadButton extends Template
     {
         $invoice = $this->getInvoice();
 
-        return $this->getUrl('rokezzz_invoices/invoice/downloadPdf', [
+        return $this->getUrl(AdminRoutePaths::INVOICE_DOWNLOAD_PDF, [
             'invoice_id' => $invoice?->getEntityId(),
         ]);
     }

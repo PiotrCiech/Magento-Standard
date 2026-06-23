@@ -18,7 +18,7 @@ class KsefUpoFetcher
         $sessionReferenceNumber = $state->getSessionReferenceNumber();
         $accessToken = $state->getAccessToken();
 
-        if ($sessionReferenceNumber === null || $accessToken === null) {
+        if (is_null($sessionReferenceNumber) || is_null($accessToken)) {
             throw new KsefApiException('KSeF state is incomplete for UPO download.');
         }
 
