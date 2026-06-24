@@ -381,6 +381,7 @@ return [
         'Rokezzz_LocaleDefaults' => 1,
         'Rokezzz_MostPopular' => 1,
         'Rokezzz_Omnibus' => 1,
+        'Rokezzz_PromotionSlider' => 1,
         'Rokezzz_ReCaptcha' => 1,
         'Rokezzz_Review' => 1,
         'Rokezzz_Tax' => 1,

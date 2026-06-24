@@ -1,26 +1,39 @@
-@transitionProperties: 0.2s ease;
+@btn-primary-color: @mainColor;
+@btn-primary-hover: @mainAccentColor;
+@btn-text-light: @whiteColor;
+@btn-text-dark: @text__color;
 
-& when (@media-common = true) {
+@btn-border-radius: 999px;
+@btn-padding: 12px 24px;
+@btn-transition: 0.25s ease;
+@btn-hover-jump: -2px;
+
+& when (@media-common =true) {
+
     button,
     .action,
     a.action {
         display: inline-flex;
-        justify-content: center;
         align-items: center;
-        padding: 12px 24px;
+        justify-content: center;
+        padding: @btn-padding;
         font-size: @fontSizeM;
         font-weight: 600;
         line-height: 1;
-        text-align: center;
+        border-radius: @btn-border-radius;
         text-decoration: none;
-        border-radius: 4px;
         border: 1px solid transparent;
         cursor: pointer;
-        transition: background-color @transitionProperties, border-color @transitionProperties, color @transitionProperties;
+        transition:
+            transform @btn-transition,
+            background-color @btn-transition,
+            border-color @btn-transition,
+            color @btn-transition,
+            box-shadow @btn-transition;
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 0 2px @whiteColor, 0 0 0 4px @primary__color;
+            box-shadow: 0 0 0 3px fade(@btn-text-light, 60%), 0 0 0 6px fade(@btn-primary-color, 30%);
         }
 
         &:disabled,
@@ -29,38 +42,38 @@
             cursor: not-allowed;
             pointer-events: none;
         }
+
+        &:hover {
+            transform: translateY(@btn-hover-jump);
+        }
     }
 
     .action.primary {
-        background-color: @primary__color;
-        border-color: @primary__color;
-        color: @whiteColor;
+        background: @btn-primary-color;
+        border-color: @btn-primary-color;
+        color: @btn-text-light;
+        box-shadow: 0 10px 20px fade(@btn-primary-color, 20%);
 
         &:hover {
-            background-color: @primary__color__dark;
-            border-color: @primary__color__dark;
-            color: @whiteColor;
+            background: @btn-primary-hover;
+            border-color: @btn-primary-hover;
+            box-shadow: 0 14px 28px fade(@btn-primary-hover, 30%);
         }
 
         &:active {
-            background-color: @primary__color__darker;
-            border-color: @primary__color__darker;
+            transform: translateY(0);
         }
     }
 
     .action.secondary {
-        background-color: transparent;
-        border-color: @primary__color;
-        color: @primary__color;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid fade(@btn-text-light, 20%);
+        color: @btn-text-light;
+        backdrop-filter: blur(12px);
 
         &:hover {
-            background-color: @primary__color;
-            color: @whiteColor;
-        }
-
-        &:active {
-            background-color: @primary__color__dark;
-            border-color: @primary__color__dark;
+            background: fade(@btn-text-light, 10%);
+            border-color: fade(@btn-text-light, 30%);
         }
     }
 
@@ -68,14 +81,10 @@
         background: none;
         border: none;
         padding: 0;
-        color: @text__color;
-        height: auto;
-        min-height: 0;
-        transition: color @transitionProperties;
+        color: @btn-text-dark;
 
         &:hover {
-            color: @primary__color;
-            text-decoration: none;
+            color: @btn-primary-hover;
         }
     }
 }

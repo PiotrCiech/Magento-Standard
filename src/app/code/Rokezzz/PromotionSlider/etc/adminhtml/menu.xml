@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Rokezzz_PromotionSlider::slider"
+             title="Promotion Slider"
+             translate="title"
+             module="Rokezzz_PromotionSlider"
+             parent="Rokezzz_Core::content"
+             sortOrder="50"
+             action="rokezzz_promotionslider/slide/index"
+             resource="Rokezzz_PromotionSlider::slider"/>
+    </menu>
+</config>

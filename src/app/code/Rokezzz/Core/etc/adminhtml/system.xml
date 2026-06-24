@@ -9,27 +9,34 @@
             <label>Ustawienia Główne</label>
             <tab>rokezzz</tab>
             <resource>Rokezzz_Core::settings</resource>
-
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Konfiguracja</label>
                 <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Włącz funkcje Rokezzz</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-            </group>
-
-            <group id="slider" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Slider (Strona Główna)</label>
-
-                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Włącz Slider</label>
+                <field id="enable_promoted_categories" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Włącz Promowane Kategorie na stronie głównej</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enable">1</field></depends>
                 </field>
-
-                <field id="slides" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Zarządzaj Slajdami</label>
-                    <frontend_model>Rokezzz\Core\Block\Adminhtml\Form\Field\SliderRows</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                <field id="show_category_images" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pokaż zdjęcia w promowanych kategoriach</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="enable_promoted_categories">1</field>
+                    </depends>
+                </field>
+                <field id="enable_slider" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Włącz Slider na stronie głównej</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enable">1</field></depends>
+                </field>
+                <field id="enable_bestsellers" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Włącz Bestsellery na stronie głównej</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enable">1</field></depends>
                 </field>
             </group>
         </section>
