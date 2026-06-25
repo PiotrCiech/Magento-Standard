@@ -1,7 +1,10 @@
 <?php
 /** @var $block \Magento\Framework\View\Element\Template */
 /** @var $helper \Magento\Search\Helper\Data */
-$helper = $this->helper(\Magento\Search\Helper\Data::class);
+
+use Magento\Search\Helper\Data;
+
+$helper = $this->helper(Data::class);
 ?>
 <div class="block block-search">
     <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>

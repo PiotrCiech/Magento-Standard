@@ -3,8 +3,10 @@
  * @var \Rokezzz\DynamicCategories\Block\Product\Bestsellers $block
  * @var \Magento\Framework\Escaper $escaper
  */
+use Magento\Catalog\Helper\Output;
+
 $productCollection = $block->getLoadedProductCollection();
-$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_helper = $this->helper(Output::class);
 $imageDisplayArea = 'category_page_grid';
 ?>
 

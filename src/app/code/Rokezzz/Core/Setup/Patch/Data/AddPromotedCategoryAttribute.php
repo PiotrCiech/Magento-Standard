@@ -30,7 +30,6 @@ class AddPromotedCategoryAttribute implements DataPatchInterface
     public function apply(): self
     {
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
-
         $categorySetup->addAttribute(
             Category::ENTITY,
             'is_promoted_on_homepage',
@@ -43,11 +42,10 @@ class AddPromotedCategoryAttribute implements DataPatchInterface
                 'default' => '0',
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_STORE,
-                'group' => 'Display Settings', // Pojawi się w zakładce "Display Settings" podczas edycji kategorii
+                'group' => 'Display Settings',
             ]
         );
 
         return $this;
     }
 }
-

@@ -53,9 +53,7 @@ class CreateHomepageBlocks implements DataPatchInterface
         foreach ($blocks as $blockData) {
             try {
                 $block = $this->blockFactory->create();
-
                 $block->setData($blockData);
-
                 $this->blockRepository->save($block);
             } catch (\Exception $e) {
                 $this->logger->error(

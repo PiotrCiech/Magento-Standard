@@ -30,7 +30,6 @@ class AddCategoryShowImageAttribute implements DataPatchInterface
     public function apply(): self
     {
         $categorySetup = $this->categorySetupFactory->create(['setup' => $this->moduleDataSetup]);
-
         $categorySetup->addAttribute(
             Category::ENTITY,
             'show_image_on_homepage',
@@ -40,7 +39,7 @@ class AddCategoryShowImageAttribute implements DataPatchInterface
                 'input' => 'boolean',
                 'source' => Boolean::class,
                 'visible' => true,
-                'default' => '1', // Domyślnie na Tak
+                'default' => '1',
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_STORE,
                 'group' => 'Display Settings',
