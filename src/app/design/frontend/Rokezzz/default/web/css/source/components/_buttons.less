@@ -48,7 +48,11 @@
         }
     }
 
-    .action.primary {
+    .action.primary,
+    .action.submit,
+    button.action.primary,
+    button.action.submit.primary,
+    .actions-toolbar .action.submit.primary {
         background: @btn-primary-color;
         border-color: @btn-primary-color;
         color: @btn-text-light;
@@ -85,6 +89,38 @@
 
         &:hover {
             color: @btn-primary-hover;
+        }
+    }
+
+    .product-addto-links {
+        .action.towishlist,
+        .action.tocompare {
+            background: @btn-primary-color;
+            border-color: @btn-primary-color;
+            color: @btn-text-light;
+            box-shadow: 0 10px 20px fade(@btn-primary-color, 20%);
+
+            &:hover {
+                background: @btn-primary-hover;
+                border-color: @btn-primary-hover;
+                box-shadow: 0 14px 28px fade(@btn-primary-hover, 30%);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+
+        .action.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid fade(@btn-text-light, 20%);
+            color: @btn-text-light;
+            backdrop-filter: blur(12px);
+
+            &:hover {
+                background: fade(@btn-text-light, 10%);
+                border-color: fade(@btn-text-light, 30%);
+            }
         }
     }
 }
