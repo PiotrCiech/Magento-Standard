@@ -3,7 +3,6 @@
     <body>
         <referenceBlock name="page.main.title" remove="true"/>
         <referenceContainer name="content">
-
             <block class="Magento\Contact\Block\ContactForm"
                    name="contactForm"
                    template="Magento_Contact::form.phtml"
@@ -18,7 +17,6 @@
                    name="rokezzz.contact.map"
                    template="Magento_Contact::contact/map.phtml"
                    after="rokezzz.contact.info"/>
-
         </referenceContainer>
     </body>
 </page>

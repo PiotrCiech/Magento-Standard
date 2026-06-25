@@ -1,9 +1,9 @@
 <?php
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$scopeConfig = $objectManager->get(
-    \Magento\Framework\App\Config\ScopeConfigInterface::class
-);
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\ObjectManager;
 
+$objectManager = ObjectManager::getInstance();
+$scopeConfig = $objectManager->get(ScopeConfigInterface::class);
 $name = $scopeConfig->getValue('general/store_information/name');
 $phone = $scopeConfig->getValue('general/store_information/phone');
 $hours = $scopeConfig->getValue('general/store_information/hours');
