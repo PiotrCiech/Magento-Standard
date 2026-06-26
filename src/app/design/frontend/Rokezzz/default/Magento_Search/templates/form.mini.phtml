@@ -1,16 +1,19 @@
 <?php
 /** @var $block \Magento\Framework\View\Element\Template */
 /** @var $helper \Magento\Search\Helper\Data */
+/** @var \Rokezzz\CatalogListing\ViewModel\HeaderSearchConfig|null $headerSearchConfig */
 
 use Magento\Search\Helper\Data;
 
 $helper = $this->helper(Data::class);
+$headerSearchConfig = $block->getData('catalog_listing_header_search_config');
 ?>
 <div class="block block-search">
     <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
     <div class="block block-content">
-        <form class="form minisearch" id="search_mini_form" action="<?= $block->escapeUrl($helper->getResultUrl()) ?>"
-            method="get">
+        <form class="form minisearch" id="search_mini_form"
+              action="<?= $block->escapeUrl($helper->getResultUrl()) ?>"
+              method="get">
             <div class="field search">
                 <label class="label" for="search" data-role="minisearch-label">
                     <span><?= $block->escapeHtml(__('Search')) ?></span>
@@ -50,3 +53,15 @@ $helper = $this->helper(Data::class);
         </form>
     </div>
 </div>
+<script>
+    (function (config) {
+        window.rokezzzCatalogListingConfig = Object.assign(window.rokezzzCatalogListingConfig || {}, config);
+        require(['rokezzzCatalogListing'], function (catalogListing) {
+            if (catalogListing && typeof catalogListing.bindHeaderSearch === 'function') {
+                catalogListing.bindHeaderSearch(config);
+            }
+        }, function () {
+            // Module failed to load — keep default form submit behaviour.
+        });
+    })(<?= /* @noEscape */ $headerSearchConfig?->getJsonConfig() ?? '{}' ?>);
+</script>
