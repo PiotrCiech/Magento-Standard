@@ -1,0 +1,32 @@
+.admin__menu {
+    #menu-rokezzz-core-main {
+        >a {
+            &:before {
+                content: '' !important;
+                background: url('../Rokezzz_Core/images/logo.webp') no-repeat center center;
+                background-size: contain;
+                width: 28px;
+                height: 28px;
+                display: block;
+                margin: 0 auto 4px auto;
+                transition: opacity 0.2s ease-in-out;
+            }
+        }
+
+        &:hover {
+            >a {
+                &:before {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        &._active {
+            >a {
+                &:before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
