@@ -10,15 +10,20 @@ $hours = $scopeConfig->getValue('general/store_information/hours');
 $street = $scopeConfig->getValue('general/store_information/street_line1');
 $postcode = $scopeConfig->getValue('general/store_information/postcode');
 $city = $scopeConfig->getValue('general/store_information/city');
+
+$contactTitle = __('Dane kontaktowe');
+$addressLabel = __('Adres');
+$phoneLabel = __('Telefon');
+$hoursLabel = __('Godziny pracy');
 ?>
 
 <div class="contact-details">
-    <h2>Dane kontaktowe</h2>
+    <h2><?= $contactTitle ?></h2>
 
     <?php if ($name || $street || $city): ?>
     <div class="store-address" style="margin-bottom: 10px;">
         <p>
-            <strong>Adres:</strong><br>
+            <strong><?= $addressLabel ?></strong><br>
             <?php if ($name): ?> <?= $name ?><br><?php endif; ?>
             <?php if ($street): ?> <?= $street ?><br><?php endif; ?>
             <?php if ($postcode || $city): ?> <?= $postcode ?> <?= $city ?> <?php endif; ?>
@@ -28,12 +33,12 @@ $city = $scopeConfig->getValue('general/store_information/city');
 
     <?php if ($phone): ?>
     <p>
-        <strong>Telefon:</strong>
+        <strong><?= $phoneLabel ?></strong>
         <a href="tel:<?= str_replace(' ', '', $phone) ?>"><?= $phone ?></a>
     </p>
     <?php endif; ?>
 
     <?php if ($hours): ?>
-    <p><strong>Godziny pracy:</strong> <?= $hours ?></p>
+    <p><strong><?= $hoursLabel ?></strong> <?= $hours ?></p>
     <?php endif; ?>
 </div>
