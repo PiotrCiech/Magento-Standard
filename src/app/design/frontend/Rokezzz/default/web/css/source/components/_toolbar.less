@@ -607,3 +607,124 @@
         }
     }
 }
+
+& when (@media-common =true) {
+    .sidebar.sidebar-additional {
+        display: block !important;
+
+        .block-compare,
+        .block-wishlist {
+            background: @whiteColor;
+            border: 1px solid @backgroundColorAlternate;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+            margin-bottom: 24px;
+            box-sizing: border-box;
+
+            .block-title {
+                margin-bottom: 16px;
+
+                strong {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: @textPrimary;
+                }
+
+                .counter {
+                    font-size: @fontSizeXS;
+                    color: @textSecondary;
+                    font-weight: 400;
+                    margin-left: 6px;
+                }
+            }
+
+            .block-content {
+                .items {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 8px 0;
+                    border-bottom: 1px solid fade(@backgroundColorAlternate, 50%);
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    .product-item-name {
+                        font-size: 14px;
+                        color: @textPrimary;
+                        margin: 0;
+
+                        a {
+                            color: @textPrimary;
+                            text-decoration: none;
+
+                            &:hover {
+                                color: @mainAccentColor;
+                            }
+                        }
+                    }
+
+                    .action.delete {
+                        color: @textSecondary;
+                        text-decoration: none;
+                        font-size: 14px;
+
+                        &:hover {
+                            color: @red600;
+                        }
+                    }
+
+                    .actions-toolbar {
+                        margin-top: 16px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        align-items: center;
+
+                        .action.primary,
+                        .action.compare {
+                            width: 100%;
+                            height: 40px;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: @mainAccentColor !important;
+                            color: @whiteColor !important;
+                            border: none !important;
+                            border-radius: 999px;
+                            font-weight: 600;
+                            font-size: 14px;
+                            text-decoration: none;
+                            cursor: pointer;
+                            transition: background-color 0.2s ease;
+
+                            &:hover {
+                                background: @accentHover !important;
+                            }
+                        }
+
+                        .action.clear,
+                        .action.details {
+                            font-size: 14px;
+                            color: @mainSecondColor;
+                            font-weight: 600;
+                            text-decoration: none;
+
+                            &:hover {
+                                color: @mainColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
