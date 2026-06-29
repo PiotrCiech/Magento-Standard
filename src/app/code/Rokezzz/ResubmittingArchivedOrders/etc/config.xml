@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rokezzz_resubmitting_archived_orders>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <archive>
+                <age_days>90</age_days>
+                <statuses>complete,closed</statuses>
+            </archive>
+        </rokezzz_resubmitting_archived_orders>
+        <sales>
+            <reorder>
+                <allow>1</allow>
+            </reorder>
+        </sales>
+    </default>
+</config>

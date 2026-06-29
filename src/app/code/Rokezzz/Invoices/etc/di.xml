@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Rokezzz\Invoices\Api\InvoiceXmlPathResolverInterface"
+                type="Rokezzz\Invoices\Model\File\InvoiceXmlPathResolver"/>
+    <preference for="Rokezzz\Invoices\Api\InvoiceXmlFileWriterInterface"
+                type="Rokezzz\Invoices\Model\File\InvoiceXmlFileWriter"/>
+    <preference for="Rokezzz\Invoices\Api\UpoFileWriterInterface"
+                type="Rokezzz\Invoices\Model\File\UpoFileWriter"/>
+    <preference for="Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface"
+                type="Rokezzz\Invoices\Model\Xml\InvoiceXmlGenerator"/>
+    <preference for="Rokezzz\Invoices\Api\InvoicePdfPathResolverInterface"
+                type="Rokezzz\Invoices\Model\File\InvoicePdfPathResolver"/>
+    <preference for="Rokezzz\Invoices\Api\InvoicePdfFileWriterInterface"
+                type="Rokezzz\Invoices\Model\File\InvoicePdfFileWriter"/>
+    <preference for="Rokezzz\Invoices\Api\InvoicePdfGeneratorInterface"
+                type="Rokezzz\Invoices\Model\Pdf\InvoicePdfGenerator"/>
+    <preference for="Rokezzz\Invoices\Api\KsefClientInterface"
+                type="Rokezzz\Invoices\Model\Ksef\KsefClient"/>
+    <type name="Rokezzz\Invoices\Model\Ksef\KsefClient" shared="false"/>
+    <type name="Rokezzz\Invoices\Model\Ksef\KsefState" shared="false"/>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="rokezzz_invoices_send_ksef"
+                      xsi:type="object">Rokezzz\Invoices\Console\Command\SendInvoicesToKsefCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

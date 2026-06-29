@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_settings" translate="label" sortOrder="960" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Settings</label>
+            <tab>general</tab>
+            <resource>Rokezzz_Settings::config</resource>
+            <group id="company" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Company</label>
+                <field id="company_name" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Company name</label>
+                </field>
+                <field id="nip" translate="label comment" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>NIP</label>
+                    <comment>10-digit tax identification number without spaces.</comment>
+                </field>
+                <field id="regon" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>REGON</label>
+                </field>
+                <field id="street_address" translate="label" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Street address</label>
+                    <comment>Address line 1 for invoices and KSeF XML (e.g. street and building number).</comment>
+                </field>
+                <field id="city_postcode" translate="label" type="text" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Postcode and city</label>
+                    <comment>Address line 2 for invoices and KSeF XML (e.g. 00-000 City).</comment>
+                </field>
+                <field id="country_code" translate="label" type="text" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Country code</label>
+                    <comment>ISO 3166-1 alpha-2 code, usually PL.</comment>
+                </field>
+                <field id="place_of_issue" translate="label comment" type="text" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Place of issue</label>
+                    <comment>City or locality shown on invoices as P_1M in KSeF XML.</comment>
+                </field>
+                <field id="bank_account_number" translate="label" type="text" sortOrder="80"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bank account number</label>
+                </field>
+                <field id="contact_email" translate="label" type="text" sortOrder="90"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Contact email</label>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="contact_phone" translate="label" type="text" sortOrder="100"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Contact phone</label>
+                </field>
+                <field id="website_url" translate="label" type="text" sortOrder="110"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Website URL</label>
+                    <validate>validate-url</validate>
+                </field>
+            </group>
+            <group id="branding" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Branding</label>
+                <field id="logo" translate="label comment" type="image" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Company logo</label>
+                    <comment>Used on invoices and other branded documents.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">rokezzz/settings</upload_dir>
+                    <base_url type="media" scope_info="1">rokezzz/settings</base_url>
+                </field>
+            </group>
+            <group id="invoice" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Invoice</label>
+                <field id="system_info" translate="label comment" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>System info</label>
+                    <comment>Value for SystemInfo in KSeF FA(3) XML header.</comment>
+                </field>
+            </group>
+            <group id="ksef" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>KSeF API</label>
+                <field id="api_url" translate="label comment" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>API URL</label>
+                    <comment>Base URL of the KSeF API environment (test or production).</comment>
+                </field>
+                <field id="token" translate="label comment" type="obscure" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>KSeF token</label>
+                    <comment>Token generated in the KSeF taxpayer portal.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="nip" translate="label comment" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>KSeF NIP</label>
+                    <comment>Leave empty to use the company NIP from settings above.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

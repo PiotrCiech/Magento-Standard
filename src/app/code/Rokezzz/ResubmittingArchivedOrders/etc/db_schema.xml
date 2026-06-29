@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order">
+        <column xsi:type="smallint" name="rokezzz_is_archived" unsigned="true" nullable="false"
+                default="0" comment="Rokezzz Archived Order Flag"/>
+        <index referenceId="SALES_ORDER_ROKEZZZ_IS_ARCHIVED_CUSTOMER_CREATED" indexType="btree">
+            <column name="customer_id"/>
+            <column name="rokezzz_is_archived"/>
+            <column name="created_at"/>
+        </index>
+    </table>
+</schema>
