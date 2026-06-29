@@ -1,0 +1,131 @@
+@cookie-bg: @whiteColor;
+@cookie-border: @grayColor;
+@cookie-title-color: @mainColor;
+@cookie-text-color: lighten(@mainColor, 15%);
+@cookie-link-color: @mainAccentColor;
+@cookie-radius: 16px;
+
+@btn-reject-bg: lighten(@grayColor, 20%);
+@btn-reject-text: @accent__color__dark;
+@btn-accept-bg: @mainAccentColor;
+@btn-accept-text: @whiteColor;
+@accentHover: darken(@mainAccentColor, 10%);
+
+.cookie-banner-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    width: calc(~"100% - 32px");
+    max-width: 680px;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    background-color: @cookie-bg;
+    border: 1px solid @cookie-border;
+    border-radius: @cookie-radius;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    font-family: sans-serif;
+    box-sizing: border-box;
+
+    &.start {
+        opacity: 1;
+        pointer-events: all;
+        transform: translate(-50%, 0);
+    }
+
+    &.accepted {
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, 20px);
+    }
+
+    .cookie-header {
+        color: @cookie-title-color;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+
+    .cookie-content {
+        color: @cookie-text-color;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: @cookie-link-color;
+            text-decoration: underline;
+            white-space: nowrap;
+
+            &:hover {
+                color: @accentHover;
+            }
+        }
+    }
+
+    .cookie-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        .btn-cookie {
+            width: 100%;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            text-align: center;
+            box-sizing: border-box;
+
+            @media (min-width: 768px) {
+                width: auto;
+                min-width: 160px;
+            }
+
+            &.btn-reject {
+                background-color: @btn-reject-bg;
+                color: @btn-reject-text;
+                order: 2;
+
+                @media (min-width: 768px) {
+                    order: 1;
+                }
+
+                &:hover {
+                    background-color: darken(@btn-reject-bg, 5%);
+                }
+            }
+
+            &.btn-accept {
+                background-color: @btn-accept-bg;
+                color: @btn-accept-text;
+                order: 1;
+
+                @media (min-width: 768px) {
+                    order: 2;
+                }
+
+                &:hover {
+                    background-color: @accentHover;
+                }
+            }
+        }
+    }
+}
