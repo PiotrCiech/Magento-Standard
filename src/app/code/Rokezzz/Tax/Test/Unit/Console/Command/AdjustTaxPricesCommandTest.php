@@ -11,7 +11,7 @@ use Rokezzz\Tax\Model\ProductCollectionProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class AdjustTaxPricesCommandTest extends TestCase
+final class AdjustTaxPricesCommandTest extends TestCase
 {
     public function testExecuteFailsWhenFirstArgumentIsInvalid(): void
     {
@@ -41,8 +41,8 @@ class AdjustTaxPricesCommandTest extends TestCase
     private function createCommand(): AdjustTaxPricesCommand
     {
         return new AdjustTaxPricesCommand(
-            $this->createMock(ProductCollectionProvider::class),
-            $this->createMock(ProductResource::class)
+            $this->createStub(ProductCollectionProvider::class),
+            $this->createStub(ProductResource::class)
         );
     }
 }

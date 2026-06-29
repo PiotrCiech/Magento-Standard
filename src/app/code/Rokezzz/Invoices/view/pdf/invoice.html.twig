@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ invoiceTypeLabel }} {{ number }}</title>
+    {% include 'partials/invoice-pdf-styles.html.twig' %}
+</head>
+<body>
+    <table class="header">
+        <tr>
+            <td>
+                {% if sellerLogoUrl %}
+                    <img src="{{ sellerLogoUrl }}" alt="{{ sellerName }}" class="logo">
+                {% endif %}
+            </td>
+            <td class="text-right">
+                <div class="title">{{ invoiceTypeLabel }}</div>
+                <div class="subtitle">Nr {{ number }}</div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="parties">
+        <tr>
+            <td>
+                <div class="box-title">Sprzedawca</div>
+                <strong>{{ sellerName }}</strong><br>
+                NIP: {{ sellerNip }}<br>
+                {{ sellerAddressLine1 }}<br>
+                {{ sellerAddressLine2 }}<br>
+                {% if bankAccountNumber %}
+                    Konto: {{ bankAccountNumber }}<br>
+                {% endif %}
+            </td>
+            <td>
+                <div class="box-title">Nabywca</div>
+                <strong>{{ buyerName }}</strong><br>
+                {% if buyerNip %}
+                    NIP: {{ buyerNip }}<br>
+                {% elseif buyerVat %}
+                    VAT UE: {{ buyerVat }}<br>
+                {% endif %}
+                {{ buyerStreet }}<br>
+                {{ buyerPost }}<br>
+                {{ buyerCountry }}
+            </td>
+        </tr>
+    </table>
+
+    <table class="meta">
+        <tr>
+            <td class="meta-label">Data wystawienia</td>
+            <td>{{ issuedAt|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <td class="meta-label">Data sprzedaży</td>
+            <td>{{ soldAt|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <td class="meta-label">Miejsce wystawienia</td>
+            <td>{{ placeOfIssue }}</td>
+        </tr>
+        <tr>
+            <td class="meta-label">Forma płatności</td>
+            <td>{{ paymentMethodLabel }}</td>
+        </tr>
+        <tr>
+            <td class="meta-label">Termin płatności</td>
+            <td>{{ expiresAt|date('Y-m-d') }}</td>
+        </tr>
+        {% if correctedInvoiceNumber is defined and correctedInvoiceNumber %}
+        <tr>
+            <td class="meta-label">Faktura korygowana</td>
+            <td>{{ correctedInvoiceNumber }}</td>
+        </tr>
+        {% endif %}
+        {% if ksefNumber %}
+        <tr>
+            <td class="meta-label">Numer KSeF</td>
+            <td>{{ ksefNumber }}</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <table class="items">
+        <thead>
+            <tr>
+                <th>Lp.</th>
+                <th>Nazwa</th>
+                <th>J.m.</th>
+                <th class="text-right">Ilość</th>
+                <th class="text-right">Netto</th>
+                <th class="text-right">VAT</th>
+                <th class="text-right">Stawka</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.unitLabel }}</td>
+                <td class="text-right">{{ item.quantity }}</td>
+                <td class="text-right">{{ item.netAmount }}</td>
+                <td class="text-right">{{ item.vatAmount }}</td>
+                <td class="text-right">{{ item.vatCode }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="totals">
+        <tr>
+            <td class="label">Razem netto</td>
+            <td class="value">{{ totalNet|number_format(2, ',', ' ') }} PLN</td>
+        </tr>
+        <tr>
+            <td class="label">Razem VAT</td>
+            <td class="value">{{ totalVat|number_format(2, ',', ' ') }} PLN</td>
+        </tr>
+        <tr>
+            <td class="label">Razem brutto</td>
+            <td class="value">{{ totalGross|number_format(2, ',', ' ') }} PLN</td>
+        </tr>
+    </table>
+
+    {% if comment %}
+        <p><strong>Uwagi:</strong> {{ comment }}</p>
+    {% endif %}
+
+    {% if companySignatureHtml %}
+        <div class="signature">
+            {{ companySignatureHtml|raw }}
+        </div>
+    {% endif %}
+</body>
+</html>

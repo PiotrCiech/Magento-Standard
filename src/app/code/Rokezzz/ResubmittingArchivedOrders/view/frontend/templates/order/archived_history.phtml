@@ -1,0 +1,84 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Framework\Data\Helper\PostHelper;
+use Magento\Framework\Escaper;
+use Rokezzz\ResubmittingArchivedOrders\Block\Order\ArchivedHistory;
+use Rokezzz\ResubmittingArchivedOrders\ViewModel\ArchivedOrderActions;
+
+/** @var ArchivedHistory $block */
+/** @var Escaper $escaper */
+/** @var PostHelper $postHelper */
+/** @var ArchivedOrderActions $archivedOrderActions */
+
+$postHelper = $this->helper(PostHelper::class);
+$archivedOrderActions = $block->getData('archived_order_actions');
+$orders = $block->getOrders();
+?>
+<div class="block block-order-archived-history">
+    <div class="block-title">
+        <strong><?= $escaper->escapeHtml(__('Archived Orders')) ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if ($orders && count($orders)) : ?>
+            <div class="table-wrapper orders-archived">
+                <table class="data table table-order-items archived" id="my-archived-orders-table">
+                    <caption class="table-caption"><?= $escaper->escapeHtml(__('Archived Orders')) ?></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col id"><?= $escaper->escapeHtml(__('Order #')) ?></th>
+                            <th scope="col" class="col date"><?= $escaper->escapeHtml(__('Date')) ?></th>
+                            <th scope="col" class="col total"><?= $escaper->escapeHtml(__('Order Total')) ?></th>
+                            <th scope="col" class="col status"><?= $escaper->escapeHtml(__('Status')) ?></th>
+                            <th scope="col" class="col actions"><?= $escaper->escapeHtml(__('Action')) ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($orders as $order) : ?>
+                            <tr>
+                                <td data-th="<?= $escaper->escapeHtml(__('Order #')) ?>" class="col id">
+                                    <?= $escaper->escapeHtml($order->getRealOrderId()) ?>
+                                </td>
+                                <td data-th="<?= $escaper->escapeHtml(__('Date')) ?>" class="col date">
+                                    <?= $escaper->escapeHtml($block->formatDate($order->getCreatedAt())) ?>
+                                </td>
+                                <td data-th="<?= $escaper->escapeHtml(__('Order Total')) ?>" class="col total">
+                                    <?= /* @noEscape */ $order->formatPrice($order->getGrandTotal()) ?>
+                                </td>
+                                <td data-th="<?= $escaper->escapeHtml(__('Status')) ?>" class="col status">
+                                    <?= $escaper->escapeHtml($order->getStatusLabel()) ?>
+                                </td>
+                                <td data-th="<?= $escaper->escapeHtml(__('Action')) ?>" class="col actions">
+                                    <?php if ($archivedOrderActions->canResubmit($order)) : ?>
+                                        <a href="#"
+                                           data-post='<?= /* @noEscape */ $postHelper->getPostData(
+                                               $block->getResubmitUrl((int) $order->getId())
+                                           ) ?>'
+                                           class="action order">
+                                            <span><?= $escaper->escapeHtml(__('Resubmit Order')) ?></span>
+                                        </a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if ($block->getPagerHtml()) : ?>
+                <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+            <?php endif; ?>
+        <?php else : ?>
+            <div class="message info empty">
+                <span><?= $escaper->escapeHtml($block->getEmptyOrdersMessage()) ?></span>
+            </div>
+        <?php endif; ?>
+        <div class="actions-toolbar">
+            <div class="secondary">
+                <a class="action back" href="<?= $escaper->escapeUrl($block->getBackUrl()) ?>">
+                    <span><?= $escaper->escapeHtml(__('Back to My Orders')) ?></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
