@@ -12,6 +12,8 @@ $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
 ?>
 <a class="mobile-logout-link"
    href="<?= $escaper->escapeUrl($block->getHref()) ?>"
+   title="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
+   aria-label="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
    <?= /* @noEscape */ $dataPostParam ?>>
     <?= $escaper->escapeHtml(__('Sign Out')) ?>
 </a>

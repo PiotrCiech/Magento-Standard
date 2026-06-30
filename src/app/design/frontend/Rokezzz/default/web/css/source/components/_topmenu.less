@@ -182,31 +182,39 @@
         margin-top: auto;
         border-top: 1px solid @navBorder;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
 
-        a {
-            flex: 1 1 50%;
+        .mobile-logout-link {
+            display: block;
+            width: 100%;
             padding: 20px 10px;
             text-align: center;
             color: @navText;
-            font-size: @fontSizeXS;
-            border-right: 1px solid @navBorder;
+            font-size: @fontSizeS;
+            font-weight: 600;
+            border-bottom: 1px solid @navBorder;
+            box-sizing: border-box;
+        }
 
-            &:last-child {
-                border-right: none;
+        .mobile-bottom-links-row {
+            display: flex;
+            border-bottom: 1px solid @navBorder;
+
+            a {
+                flex: 1 1 50%;
+                padding: 20px 10px;
+                text-align: center;
+                color: @navText;
+                font-size: @fontSizeS;
+                font-weight: 600;
+                border-right: 1px solid @navBorder;
+                box-sizing: border-box;
+
+                &:last-child {
+                    border-right: none;
+                }
             }
         }
-
-        .mobile-logout-link {
-            flex-basis: 100%;
-            font-size: @fontSizeS;
-            border-right: none;
-            border-bottom: 1px solid @navBorder;
-        }
-    }
-
-    .header-logout-link {
-        display: none;
     }
 
     body.nav-open {
@@ -362,37 +370,6 @@
         button:focus-visible {
             outline: 2px solid @navAccent;
             outline-offset: 2px;
-        }
-    }
-
-    .header-logout-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        float: right;
-        width: 40px;
-        height: 40px;
-        margin-left: 13px;
-        color: @blackColor;
-        text-decoration: none;
-        border-radius: 50%;
-        transition: color 0.2s ease, background-color 0.2s ease;
-
-        &:hover {
-            color: @navAccent;
-            background: fade(@navAccent, 8%);
-        }
-
-        &:focus-visible {
-            outline: 2px solid @navAccent;
-            outline-offset: 2px;
-        }
-
-        svg {
-            width: 22px;
-            height: 22px;
-            display: block;
-            fill: currentColor;
         }
     }
 }

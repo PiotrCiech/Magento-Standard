@@ -9,14 +9,25 @@
                 <argument name="logo_img_alt" xsi:type="string">Logo Rokezzz</argument>
             </arguments>
         </referenceBlock>
-        <referenceBlock name="navigation.sections" remove="true" />
         <referenceBlock name="catalog.compare.link" remove="true" />
         <referenceBlock name="header.links" remove="true" />
         <referenceBlock name="catalog-search-advanced-link" remove="true" />
         <referenceBlock name="advanced-search-link" remove="true" />
         <referenceContainer name="header.panel" remove="true" />
-        <referenceBlock name="catalog.topnav" template="Magento_Theme::html/topmenu.phtml" />
         <move element="catalog.topnav" destination="page.top" before="-" />
+        <referenceBlock name="navigation.sections" remove="true" />
+        <referenceBlock name="catalog.topnav"
+                        template="Magento_Theme::html/topmenu.phtml">
+            <action method="setData">
+                <argument name="key" xsi:type="string">cache_lifetime</argument>
+                <argument name="value" xsi:type="boolean">false</argument>
+            </action>
+            <block class="Magento\Customer\Block\Account\AuthorizationLink"
+                   name="mobile.logout.link"
+                   as="mobile_logout_link"
+                   cacheable="false"
+                   template="Magento_Customer::account/mobile-logout.phtml" />
+        </referenceBlock>
         <referenceContainer name="header-wrapper">
             <container name="icons-wrapper" label="Icons Wrapper" htmlTag="div" htmlClass="icons-wrapper" after="-">
                 <container name="custom-icons" label="Custom Icons" htmlTag="div" htmlClass="custom-icons">
@@ -25,6 +36,13 @@
             </container>
         </referenceContainer>
         <move element="minicart" destination="icons-wrapper" after="custom-icons" />
+        <referenceContainer name="icons-wrapper">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink"
+                   name="header.logout.link"
+                   after="minicart"
+                   cacheable="false"
+                   template="Magento_Customer::account/header-logout.phtml" />
+        </referenceContainer>
         <referenceBlock name="report.bugs" remove="true" />
         <referenceBlock name="footer_links" remove="true" />
         <move element="form.subscribe" destination="footer-container" before="-" />
