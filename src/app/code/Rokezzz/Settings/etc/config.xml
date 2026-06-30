@@ -19,9 +19,6 @@
             <branding>
                 <logo/>
             </branding>
-            <invoice>
-                <system_info>Magento</system_info>
-            </invoice>
             <ksef>
                 <api_url/>
                 <token/>
