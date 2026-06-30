@@ -27,6 +27,7 @@ class Config
     private const XML_PATH_KSEF_NIP = 'rokezzz_settings/ksef/nip';
 
     private const DEFAULT_COUNTRY_CODE = 'PL';
+    private const DEFAULT_SYSTEM_INFO = 'Magento';
     private const PLATFORM_SIGNATURE = 'System powered by Rokezzz';
     private const LOGO_MEDIA_DIRECTORY = 'rokezzz/settings';
 
