@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Rokezzz\Core\Block\PromotedCategories"
+                   name="rokezzz.homepage.promoted.categories"
+                   template="Rokezzz_Core::category/promoted.phtml"
+                   ifconfig="rokezzz_settings/general/enable_promoted_categories"
+                   before="-"/>
+            <block class="Rokezzz\DynamicCategories\Block\Product\Bestsellers"
+                   name="rokezzz.homepage.bestsellers"
+                   template="Rokezzz_DynamicCategories::product/bestsellers_carousel.phtml"
+                   ifconfig="rokezzz_settings/general/enable_bestsellers"
+                   after="rokezzz.homepage.promoted.categories">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
+                </arguments>
+                <block class="Magento\Framework\View\Element\RendererList" name="rokezzz.homepage.bestsellers.renderers" as="details.renderers">
+                    <block class="Magento\Framework\View\Element\Template" name="rokezzz.homepage.bestsellers.renderers.default" as="default"/>
+                </block>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="rokezzz.homepage.about" after="rokezzz.homepage.bestsellers">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">rokezzz_about</argument>
+                </arguments>
+            </block>
+            </referenceContainer>
+    </body>
+</page>

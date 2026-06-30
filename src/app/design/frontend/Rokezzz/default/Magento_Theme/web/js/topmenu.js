@@ -44,7 +44,7 @@ define([
 
             if (clickX > linkWidth - toggleAreaWidth) {
                 e.preventDefault();
-                
+
                 const isOpen = link.hasClass('is-open');
 
                 link.toggleClass('is-open');

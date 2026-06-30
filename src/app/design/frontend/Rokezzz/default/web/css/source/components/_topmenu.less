@@ -1,9 +1,9 @@
-@navBg: @mainColor;
-@navText: @whiteColor;
+@navBg: @whiteColor;
+@navText: @blackColor;
 @navAccent: @mainAccentColor;
-@navBorder: fade(@whiteColor, 8%);
+@navBorder: fade(@blackColor, 30%);
 
-& when (@media-common = true) {
+& when (@media-common =true) {
     .header.content {
         display: flex;
         align-items: center;
@@ -96,7 +96,7 @@
             transform: translateY(-50%);
             border: 0;
             background: none;
-            color: @whiteColor;
+            color: @navText;
             font-size: @fontSizeXL;
             cursor: pointer;
             padding: 0;
@@ -125,8 +125,8 @@
                 top: 50%;
                 width: 10px;
                 height: 10px;
-                border-right: 2px solid @whiteColor;
-                border-bottom: 2px solid @whiteColor;
+                border-right: 2px solid @navText;
+                border-bottom: 2px solid @navText;
                 transform: translateY(-50%) rotate(45deg);
                 transition: transform 0.3s ease;
             }
@@ -143,36 +143,35 @@
                 display: block;
                 padding: 18px 20px;
                 padding-right: 50px;
-                color: @whiteColor;
+                color: @navText;
                 font-size: @fontSizeM;
                 font-weight: 600;
             }
 
             .submenu {
                 display: none;
-                background: fade(@whiteColor, 5%);
+                background: fade(@navText, 5%);
             }
 
             .level1 {
-
                 >a {
                     display: block;
                     padding: 12px 30px;
                     padding-right: 50px;
-                    color: fade(@whiteColor, 85%);
+                    color: fade(@navText, 85%);
                     font-size: @fontSizeS;
                     font-weight: 600;
                 }
 
                 .submenu {
                     display: none;
-                    background: fade(@whiteColor, 10%);
+                    background: fade(@navText, 10%);
                 }
 
                 .level2 a {
                     display: block;
                     padding: 10px 40px;
-                    color: fade(@whiteColor, 70%);
+                    color: fade(@navText, 70%);
                     font-size: @fontSizeXS;
                 }
             }
@@ -189,7 +188,7 @@
             flex: 1 1 50%;
             padding: 20px 10px;
             text-align: center;
-            color: @whiteColor;
+            color: @navText;
             font-size: @fontSizeXS;
             border-right: 1px solid @navBorder;
 
@@ -209,23 +208,23 @@
     .header-logout-link {
         display: none;
     }
+
+    body.nav-open {
+        overflow: hidden;
+
+        .nav-wrapper {
+            transform: translateX(0);
+            visibility: visible;
+        }
+
+        .mobile-nav-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }
 
-body.nav-open {
-    overflow: hidden;
-
-    .nav-wrapper {
-        transform: translateX(0);
-        visibility: visible;
-    }
-
-    .mobile-nav-overlay {
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
-@media (min-width: 992px) {
+.media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__l) {
     .header.content {
         display: block;
         padding: 20px;
@@ -261,7 +260,7 @@ body.nav-open {
                     display: flex;
                     align-items: center;
                     height: 60px;
-                    color: @whiteColor;
+                    color: @navText;
                     font-size: @fontSizeM;
                     font-weight: 700;
                     letter-spacing: 0.03em;
