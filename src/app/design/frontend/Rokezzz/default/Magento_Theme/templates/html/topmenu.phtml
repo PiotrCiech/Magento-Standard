@@ -17,6 +17,7 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit);
                 <?= /* @noEscape */ $_menuHtml ?>
             </ul>
             <div class="mobile-bottom-links">
+                <?= $block->getChildHtml('mobile_logout_link') ?>
                 <a href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>"><?= $block->escapeHtml(__('My Account')) ?></a>
                 <a href="<?= $block->escapeUrl($block->getUrl('wishlist')) ?>"><?= $block->escapeHtml(__('Wishlist')) ?></a>
             </div>

@@ -3,12 +3,24 @@
     <body>
         <referenceBlock name="navigation.sections" remove="true" />
         <referenceBlock name="catalog.topnav" template="Magento_Theme::html/topmenu.phtml" />
+        <referenceBlock name="catalog.topnav">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink"
+                   name="mobile.logout.link"
+                   as="mobile_logout_link"
+                   template="Magento_Customer::account/mobile-logout.phtml" />
+        </referenceBlock>
         <referenceBlock name="catalog.compare.link" remove="true" />
         <referenceBlock name="header.links" remove="true" />
         <referenceBlock name="catalog-search-advanced-link" remove="true" />
         <referenceBlock name="advanced-search-link" remove="true" />
 
         <referenceContainer name="header.panel" remove="true" />
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink"
+                   name="header.logout.link"
+                   before="minicart"
+                   template="Magento_Customer::account/header-logout.phtml" />
+        </referenceContainer>
 
         <move element="catalog.topnav" destination="page.top" before="-" />
     </body>

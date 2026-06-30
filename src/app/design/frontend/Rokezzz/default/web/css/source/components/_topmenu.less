@@ -181,11 +181,12 @@
 
     .mobile-bottom-links {
         margin-top: auto;
-        display: flex;
         border-top: 1px solid @navBorder;
+        display: flex;
+        flex-wrap: wrap;
 
         a {
-            flex: 1;
+            flex: 1 1 50%;
             padding: 20px 10px;
             text-align: center;
             color: @whiteColor;
@@ -196,6 +197,17 @@
                 border-right: none;
             }
         }
+
+        .mobile-logout-link {
+            flex-basis: 100%;
+            font-size: @fontSizeS;
+            border-right: none;
+            border-bottom: 1px solid @navBorder;
+        }
+    }
+
+    .header-logout-link {
+        display: none;
     }
 }
 
@@ -351,6 +363,37 @@ body.nav-open {
         button:focus-visible {
             outline: 2px solid @navAccent;
             outline-offset: 2px;
+        }
+    }
+
+    .header-logout-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        float: right;
+        width: 40px;
+        height: 40px;
+        margin-left: 13px;
+        color: @blackColor;
+        text-decoration: none;
+        border-radius: 50%;
+        transition: color 0.2s ease, background-color 0.2s ease;
+
+        &:hover {
+            color: @navAccent;
+            background: fade(@navAccent, 8%);
+        }
+
+        &:focus-visible {
+            outline: 2px solid @navAccent;
+            outline-offset: 2px;
+        }
+
+        svg {
+            width: 22px;
+            height: 22px;
+            display: block;
+            fill: currentColor;
         }
     }
 }
