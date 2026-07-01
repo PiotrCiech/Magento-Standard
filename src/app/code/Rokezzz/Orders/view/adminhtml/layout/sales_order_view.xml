@@ -2,15 +2,14 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="order_tab_info">
+        <referenceContainer name="order_additional_info">
             <block class="Rokezzz\Orders\Block\Order\Comment"
                    name="rokezzz.orders.order.comment"
-                   template="Rokezzz_Orders::order/comment.phtml"
-                   after="order_info">
+                   template="Rokezzz_Orders::order/comment.phtml">
                 <arguments>
                     <argument name="view_model" xsi:type="object">Rokezzz\Orders\ViewModel\Order\Comment</argument>
                 </arguments>
             </block>
-        </referenceBlock>
+        </referenceContainer>
     </body>
 </page>

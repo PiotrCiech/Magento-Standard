@@ -15,7 +15,6 @@ class Config
     private const XML_PATH_PLACEHOLDER = 'rokezzz_orders/order_notes/placeholder';
 
     private const DEFAULT_MAX_LENGTH = 1000;
-    private const DEFAULT_LABEL = 'Order notes';
 
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig
@@ -50,7 +49,7 @@ class Config
             $storeId
         ));
 
-        return $label !== '' ? $label : self::DEFAULT_LABEL;
+        return $label !== '' ? $label : (string) __('Order notes');
     }
 
     public function getPlaceholder(?int $storeId = null): string

@@ -9,7 +9,7 @@ use Magento\Checkout\Model\ShippingInformationManagement;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\Orders\Model\Config;
-use Rokezzz\Orders\Model\OrderCommentExtractor;
+use Rokezzz\Orders\Model\OrderCommentRequestReader;
 use Rokezzz\Orders\Model\OrderCommentSaver;
 use Rokezzz\Orders\Plugin\Checkout\ShippingInformationManagementPlugin;
 
@@ -17,14 +17,14 @@ final class ShippingInformationManagementPluginTest extends TestCase
 {
     private Config&MockObject $config;
 
-    private OrderCommentExtractor&MockObject $orderCommentExtractor;
+    private OrderCommentRequestReader&MockObject $orderCommentRequestReader;
 
     private OrderCommentSaver&MockObject $orderCommentSaver;
 
     protected function setUp(): void
     {
         $this->config = $this->createMock(Config::class);
-        $this->orderCommentExtractor = $this->createMock(OrderCommentExtractor::class);
+        $this->orderCommentRequestReader = $this->createMock(OrderCommentRequestReader::class);
         $this->orderCommentSaver = $this->createMock(OrderCommentSaver::class);
     }
 
@@ -35,7 +35,7 @@ final class ShippingInformationManagementPluginTest extends TestCase
 
         $plugin = new ShippingInformationManagementPlugin(
             $this->config,
-            $this->orderCommentExtractor,
+            $this->orderCommentRequestReader,
             $this->orderCommentSaver
         );
         $plugin->beforeSaveAddressInformation(
@@ -50,7 +50,7 @@ final class ShippingInformationManagementPluginTest extends TestCase
         $addressInformation = $this->createMock(ShippingInformationInterface::class);
 
         $this->config->method('isEnabled')->willReturn(true);
-        $this->orderCommentExtractor->method('fromShippingInformation')
+        $this->orderCommentRequestReader->method('fromShippingInformation')
             ->with($addressInformation)
             ->willReturn('Leave at reception');
         $this->orderCommentSaver->expects($this->once())
@@ -59,7 +59,7 @@ final class ShippingInformationManagementPluginTest extends TestCase
 
         $plugin = new ShippingInformationManagementPlugin(
             $this->config,
-            $this->orderCommentExtractor,
+            $this->orderCommentRequestReader,
             $this->orderCommentSaver
         );
         $plugin->beforeSaveAddressInformation(

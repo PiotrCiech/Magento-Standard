@@ -8,14 +8,14 @@ use Magento\Checkout\Model\PaymentInformationManagement;
 use Magento\Quote\Api\Data\AddressInterface as QuoteAddressInterface;
 use Magento\Quote\Api\Data\PaymentInterface;
 use Rokezzz\Orders\Model\Config;
-use Rokezzz\Orders\Model\OrderCommentExtractor;
+use Rokezzz\Orders\Model\OrderCommentRequestReader;
 use Rokezzz\Orders\Model\OrderCommentSaver;
 
 class PaymentInformationManagementPlugin
 {
     public function __construct(
         private readonly Config $config,
-        private readonly OrderCommentExtractor $orderCommentExtractor,
+        private readonly OrderCommentRequestReader $orderCommentRequestReader,
         private readonly OrderCommentSaver $orderCommentSaver
     ) {
     }
@@ -29,16 +29,16 @@ class PaymentInformationManagementPlugin
         PaymentInterface $paymentMethod,
         ?QuoteAddressInterface $billingAddress = null
     ): void {
-        $this->saveOrderComment((int) $cartId, $paymentMethod);
+        $this->persistComment((int) $cartId, $paymentMethod);
     }
 
-    private function saveOrderComment(int $cartId, PaymentInterface $paymentMethod): void
+    private function persistComment(int $cartId, PaymentInterface $paymentMethod): void
     {
         if (!$this->config->isEnabled()) {
             return;
         }
 
-        $comment = $this->orderCommentExtractor->fromPayment($paymentMethod);
+        $comment = $this->orderCommentRequestReader->fromPayment($paymentMethod);
         $this->orderCommentSaver->save($cartId, $comment);
     }
 }
