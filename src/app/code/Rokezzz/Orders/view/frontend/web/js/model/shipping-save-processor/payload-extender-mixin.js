@@ -7,6 +7,10 @@ define([
         return function (payload) {
             payloadExtender(payload);
 
+            if (!(window.checkoutConfig.rokezzzOrderNotes || {}).enabled) {
+                return payload;
+            }
+
             var comment = orderComment.value();
 
             if (!comment) {

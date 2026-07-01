@@ -8,7 +8,25 @@ define([
     return Component.extend({
         defaults: {
             template: 'Rokezzz_Orders/order-comment',
-            step: 'shipping'
+            step: 'shipping',
+            label: '',
+            placeholder: '',
+            maxLength: 1000
+        },
+
+        /**
+         * @inheritdoc
+         */
+        initConfig: function () {
+            this._super();
+
+            var notesConfig = window.checkoutConfig.rokezzzOrderNotes || {};
+
+            this.label = this.label || notesConfig.label || '';
+            this.placeholder = this.placeholder || notesConfig.placeholder || '';
+            this.maxLength = this.maxLength || notesConfig.maxLength || 1000;
+
+            return this;
         },
 
         /**
@@ -34,18 +52,6 @@ define([
             }
 
             return quote.isVirtual();
-        },
-
-        getLabel: function () {
-            return (window.checkoutConfig.rokezzzOrderNotes || {}).label || '';
-        },
-
-        getPlaceholder: function () {
-            return (window.checkoutConfig.rokezzzOrderNotes || {}).placeholder || '';
-        },
-
-        getMaxLength: function () {
-            return (window.checkoutConfig.rokezzzOrderNotes || {}).maxLength || 1000;
         }
     });
 });

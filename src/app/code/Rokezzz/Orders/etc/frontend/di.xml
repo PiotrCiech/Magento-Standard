@@ -13,4 +13,8 @@
         <plugin name="rokezzz_orders_checkout_config"
                 type="Rokezzz\Orders\Plugin\Checkout\DefaultConfigProviderPlugin"/>
     </type>
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="rokezzz_orders_checkout_layout"
+                type="Rokezzz\Orders\Plugin\Checkout\LayoutProcessorPlugin"/>
+    </type>
 </config>

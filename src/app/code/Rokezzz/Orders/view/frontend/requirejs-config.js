@@ -1,4 +1,9 @@
 var config = {
+    map: {
+        '*': {
+            'Magento_Checkout/shipping': 'Rokezzz_Orders/shipping'
+        }
+    },
     config: {
         mixins: {
             'Magento_Checkout/js/model/shipping-save-processor/payload-extender': {

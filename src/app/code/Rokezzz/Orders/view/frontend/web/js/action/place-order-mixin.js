@@ -5,6 +5,10 @@ define([
 
     return function (placeOrderAction) {
         return function (paymentData, messageContainer) {
+            if (!(window.checkoutConfig.rokezzzOrderNotes || {}).enabled) {
+                return placeOrderAction(paymentData, messageContainer);
+            }
+
             var comment = orderComment.value();
 
             if (comment) {
