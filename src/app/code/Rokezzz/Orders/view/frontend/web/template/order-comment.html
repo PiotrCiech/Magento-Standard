@@ -1,0 +1,16 @@
+<div class="field order-comment" data-bind="visible: isVisible()">
+    <label class="label" data-bind="attr: {for: uid}">
+        <span data-bind="text: getLabel()"></span>
+    </label>
+    <div class="control">
+        <textarea class="input-text"
+                  data-bind="value: orderComment,
+                             attr: {
+                                 placeholder: getPlaceholder(),
+                                 maxlength: getMaxLength(),
+                                 id: uid,
+                                 name: 'order_comment'
+                             }"
+                  rows="4"></textarea>
+    </div>
+</div>
