@@ -139,6 +139,11 @@ This module enables Magento core wishlist (schowek) via a data patch (`wishlist/
 ### Rokezzz_AvailabilityNotification
 
 This module wraps Magento core back-in-stock alerts (`catalog/productalert/allow_stock`). After `setup:upgrade`, availability notifications are **disabled** by default. Toggle them in **Stores → Configuration → General → Rokezzz Availability Notification → Product availability alerts → Enable availability notifications**. When disabled, the subscribe form on out-of-stock product pages is hidden and direct subscription requests are blocked on the storefront.
+
+### Rokezzz_OrderOwnerNotification
+
+This module sends an optional email to the store owner after each new order is placed. Toggle it in **Stores → Configuration → General → Rokezzz Order Owner Notification → Store owner order notification** (disabled by default); set the recipient address or leave it empty to use the store general contact email.
+
 ### Rokezzz_ViteDev
 
 Development-only bridge to the Vite server (`vite/`, Docker service `vite`). Injects Vite scripts on the storefront when port `5173` is up; register edited SCSS/LESS in `vite/src/frontend.scss`. Disable in production.
