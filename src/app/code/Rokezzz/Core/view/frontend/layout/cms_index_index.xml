@@ -24,6 +24,6 @@
                     <argument name="block_id" xsi:type="string">rokezzz_about</argument>
                 </arguments>
             </block>
-            </referenceContainer>
+        </referenceContainer>
     </body>
 </page>

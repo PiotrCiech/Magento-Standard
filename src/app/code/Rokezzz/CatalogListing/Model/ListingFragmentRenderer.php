@@ -93,6 +93,7 @@ class ListingFragmentRenderer implements ListingFragmentRendererInterface
         if (!$query instanceof Query) {
             throw new LogicException('Search query is not available.');
         }
+
         $query->setQueryText($queryText);
         $query->setStoreId((int) $this->storeManager->getStore()->getId());
         $this->toolbarMemorizer->memorizeParams();

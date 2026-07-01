@@ -47,6 +47,7 @@ class Bestsellers extends ListProduct
         if (!$this->_scopeConfig->isSetFlag('rokezzz_settings/general/enable', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
             return '';
         }
+
         return parent::_toHtml();
     }
 

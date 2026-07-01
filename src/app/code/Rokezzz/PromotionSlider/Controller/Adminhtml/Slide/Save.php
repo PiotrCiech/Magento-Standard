@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rokezzz\PromotionSlider\Controller\Adminhtml\Slide;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Rokezzz\PromotionSlider\Model\SlideFactory;
 use Rokezzz\PromotionSlider\Model\ResourceModel\Slide as SlideResource;
@@ -17,7 +18,7 @@ class Save extends Action implements HttpPostActionInterface
     private SlideResource $slideResource;
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         SlideFactory $slideFactory,
         SlideResource $slideResource
     ) {
