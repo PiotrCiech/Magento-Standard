@@ -14,7 +14,6 @@ use Rokezzz\CustomerContact\Model\ContactRecipientResolver;
 final class ContactRecipientResolverTest extends TestCase
 {
     private ConfigInterface&MockObject $contactsConfig;
-
     private AssignedAdminProvider&MockObject $assignedAdminProvider;
 
     protected function setUp(): void
@@ -29,9 +28,7 @@ final class ContactRecipientResolverTest extends TestCase
             new AssignedAdmin(7, 'Jan Kowalski', 'jan.kowalski@example.com')
         );
         $this->contactsConfig->expects($this->never())->method('emailRecipient');
-
         $resolver = new ContactRecipientResolver($this->contactsConfig, $this->assignedAdminProvider);
-
         $this->assertSame('jan.kowalski@example.com', $resolver->resolve());
     }
 
@@ -39,9 +36,7 @@ final class ContactRecipientResolverTest extends TestCase
     {
         $this->assignedAdminProvider->method('get')->willReturn(null);
         $this->contactsConfig->method('emailRecipient')->willReturn('contact@example.com');
-
         $resolver = new ContactRecipientResolver($this->contactsConfig, $this->assignedAdminProvider);
-
         $this->assertSame('contact@example.com', $resolver->resolve());
     }
 }
