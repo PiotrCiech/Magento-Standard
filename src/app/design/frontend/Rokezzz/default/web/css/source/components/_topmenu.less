@@ -180,19 +180,39 @@
 
     .mobile-bottom-links {
         margin-top: auto;
-        display: flex;
         border-top: 1px solid @navBorder;
+        display: flex;
+        flex-direction: column;
 
-        a {
-            flex: 1;
+        .mobile-logout-link {
+            display: block;
+            width: 100%;
             padding: 20px 10px;
             text-align: center;
             color: @navText;
-            font-size: @fontSizeXS;
-            border-right: 1px solid @navBorder;
+            font-size: @fontSizeS;
+            font-weight: 600;
+            border-bottom: 1px solid @navBorder;
+            box-sizing: border-box;
+        }
 
-            &:last-child {
-                border-right: none;
+        .mobile-bottom-links-row {
+            display: flex;
+            border-bottom: 1px solid @navBorder;
+
+            a {
+                flex: 1 1 50%;
+                padding: 20px 10px;
+                text-align: center;
+                color: @navText;
+                font-size: @fontSizeS;
+                font-weight: 600;
+                border-right: 1px solid @navBorder;
+                box-sizing: border-box;
+
+                &:last-child {
+                    border-right: none;
+                }
             }
         }
     }
