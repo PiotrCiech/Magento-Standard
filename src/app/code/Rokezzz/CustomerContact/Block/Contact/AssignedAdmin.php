@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Rokezzz\CustomerContact\Block\Contact;
 
 use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
 use Rokezzz\CustomerContact\ViewModel\AssignedAdminDataProvider;
 
 class AssignedAdmin extends Template
 {
     public function __construct(
-        Template\Context $context,
+        Context $context,
         private readonly AssignedAdminDataProvider $viewModel,
         array $data = []
     ) {
