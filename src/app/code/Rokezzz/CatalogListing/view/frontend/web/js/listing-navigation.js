@@ -36,6 +36,7 @@ define([
     function buildToolbarUrl(toolbar, paramName, paramValue, defaultValue) {
         const urlPaths = toolbar.options.url.split('?'),
             baseUrl = urlPaths[0];
+
         let paramData = toolbar.getUrlParams(),
             currentPage = toolbar.getCurrentPage(),
             newPage;
@@ -56,7 +57,7 @@ define([
 
         paramData[paramName] = paramValue;
 
-        if (paramValue == defaultValue) { // eslint-disable-line eqeqeq
+        if (paramValue == defaultValue) {
             delete paramData[paramName];
         }
 

@@ -159,7 +159,9 @@ define(["jquery"], function ($) {
             if (options.showDots) {
                 $dots.on("click", function (e) {
                     e.preventDefault();
+
                     const index = $(this).data("slide-index");
+                    
                     showSlide(index + 1);
                 });
             }
