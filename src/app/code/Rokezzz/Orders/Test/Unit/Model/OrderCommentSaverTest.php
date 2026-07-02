@@ -14,7 +14,6 @@ use Rokezzz\Orders\Model\OrderCommentSaver;
 final class OrderCommentSaverTest extends TestCase
 {
     private CartRepositoryInterface&MockObject $quoteRepository;
-
     private Config&MockObject $config;
 
     protected function setUp(): void

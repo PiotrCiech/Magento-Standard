@@ -15,9 +15,7 @@ use Rokezzz\Orders\Model\OrderCommentRequestReader;
 final class OrderCommentRequestReaderTest extends TestCase
 {
     private HttpRequest&MockObject $request;
-
     private RestRequest&MockObject $restRequest;
-
     private OrderCommentExtractor&MockObject $orderCommentExtractor;
 
     protected function setUp(): void

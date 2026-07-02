@@ -16,9 +16,7 @@ use Rokezzz\Orders\Plugin\Checkout\ShippingInformationManagementPlugin;
 final class ShippingInformationManagementPluginTest extends TestCase
 {
     private Config&MockObject $config;
-
     private OrderCommentRequestReader&MockObject $orderCommentRequestReader;
-
     private OrderCommentSaver&MockObject $orderCommentSaver;
 
     protected function setUp(): void
