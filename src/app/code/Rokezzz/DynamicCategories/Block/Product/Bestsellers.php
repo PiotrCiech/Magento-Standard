@@ -42,6 +42,15 @@ class Bestsellers extends ListProduct
         );
     }
 
+    protected function _toHtml()
+    {
+        if (!$this->_scopeConfig->isSetFlag('rokezzz_settings/general/enable', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
+            return '';
+        }
+
+        return parent::_toHtml();
+    }
+
     protected function _getProductCollection()
     {
         if ($this->_productCollection === null) {

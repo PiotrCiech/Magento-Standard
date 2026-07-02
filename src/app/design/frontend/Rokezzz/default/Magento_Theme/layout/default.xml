@@ -1,15 +1,41 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                <argument name="logo_img_width" xsi:type="number">220</argument>
+                <argument name="logo_img_height" xsi:type="number">80</argument>
+                <argument name="logo_img_alt" xsi:type="string">Logo Rokezzz</argument>
+            </arguments>
+        </referenceBlock>
         <referenceBlock name="navigation.sections" remove="true" />
-        <referenceBlock name="catalog.topnav" template="Magento_Theme::html/topmenu.phtml" />
         <referenceBlock name="catalog.compare.link" remove="true" />
         <referenceBlock name="header.links" remove="true" />
         <referenceBlock name="catalog-search-advanced-link" remove="true" />
         <referenceBlock name="advanced-search-link" remove="true" />
-
         <referenceContainer name="header.panel" remove="true" />
-
+        <referenceBlock name="catalog.topnav" template="Magento_Theme::html/topmenu.phtml" />
         <move element="catalog.topnav" destination="page.top" before="-" />
+        <referenceContainer name="header-wrapper">
+            <container name="icons-wrapper" label="Icons Wrapper" htmlTag="div" htmlClass="icons-wrapper" after="-">
+                <container name="custom-icons" label="Custom Icons" htmlTag="div" htmlClass="custom-icons">
+                    <block class="Magento\Framework\View\Element\Template" name="custom-icons-content" template="Magento_Theme::html/custom-icons.phtml" />
+                </container>
+            </container>
+        </referenceContainer>
+        <move element="minicart" destination="icons-wrapper" after="custom-icons" />
+        <referenceBlock name="report.bugs" remove="true" />
+        <referenceBlock name="footer_links" remove="true" />
+        <move element="form.subscribe" destination="footer-container" before="-" />
+        <referenceContainer name="footer">
+            <block class="Magento\Framework\View\Element\Template" name="custom.footer" template="Magento_Theme::html/footer.phtml" />
+        </referenceContainer>
+        <referenceBlock name="copyright">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Theme::html/copyright.phtml</argument>
+            </action>
+        </referenceBlock>
+        <move element="copyright" destination="footer-container" after="-" />
     </body>
 </page>

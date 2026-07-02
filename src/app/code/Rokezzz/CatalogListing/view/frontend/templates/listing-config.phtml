@@ -1,0 +1,17 @@
+<?php if ($block->shouldRender()): ?>
+<script>
+    window.rokezzzCatalogListingConfig = Object.assign(
+        window.rokezzzCatalogListingConfig || {},
+        <?= /* @noEscape */ $block->getJsonConfig() ?>
+    );
+    require(['rokezzzCatalogListing'], function (catalogListing) {
+        var config = window.rokezzzCatalogListingConfig || {};
+
+        if (catalogListing && typeof catalogListing.init === 'function') {
+            catalogListing.init(config);
+        } else if (typeof catalogListing === 'function') {
+            catalogListing(config);
+        }
+    });
+</script>
+<?php endif; ?>
