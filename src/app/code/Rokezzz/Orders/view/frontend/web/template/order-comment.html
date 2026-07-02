@@ -1,0 +1,17 @@
+<fieldset class="fieldset order-comment-fieldset" data-bind="visible: isVisible()">
+    <div class="field order-comment">
+        <label class="label">
+            <span data-bind="text: label"></span>
+        </label>
+        <div class="control">
+            <textarea class="input-text"
+                      data-bind="value: orderComment,
+                                 attr: {
+                                     placeholder: placeholder,
+                                     maxlength: maxLength,
+                                     name: 'order_comment'
+                                 }"
+                      rows="4"></textarea>
+        </div>
+    </div>
+</fieldset>

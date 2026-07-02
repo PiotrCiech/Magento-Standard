@@ -1,0 +1,16 @@
+<?php
+/** @var \Rokezzz\Orders\Block\Order\Comment $block */
+/** @var \Rokezzz\Orders\ViewModel\Order\Comment $viewModel */
+$viewModel = $block->getData('view_model');
+$order = $block->getOrder();
+?>
+<?php if (!is_null($order) && $viewModel->shouldDisplay($order)) : ?>
+    <div class="block block-order-details-comment">
+        <div class="block-title">
+            <strong><?= $block->escapeHtml(__('Customer checkout notes')) ?></strong>
+        </div>
+        <div class="block-content">
+            <p><?= $block->escapeHtml($viewModel->getCustomerNote($order), ['br']) ?></p>
+        </div>
+    </div>
+<?php endif; ?>
