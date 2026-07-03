@@ -1,0 +1,164 @@
+& when (@media-common = true) {
+    .styleguide-page {
+        padding-top: 40px;
+
+        .styleguide-header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid fade(@blackColor, 10%);
+            padding-bottom: 20px;
+
+            h1 {
+                font-size: @fontSizeTitleDesktop;
+                font-weight: 700;
+                color: @text__color;
+                margin-bottom: 10px;
+            }
+            p {
+                font-size: @fontSizeM;
+                color: fade(@text__color, 60%);
+                margin: 0;
+            }
+        }
+
+        .styleguide-section {
+            margin-bottom: 60px;
+
+            h2 {
+                color: @text__color;
+                font-size: @fontSizeXXL;
+                font-weight: 600;
+                margin-bottom: 20px;
+                border-bottom: 1px dashed fade(@text__color, 20%);
+                padding-bottom: 10px;
+            }
+        }
+
+        .sg-color-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .sg-color-card {
+            width: 160px;
+            text-align: center;
+        }
+        .sg-color-swatch {
+            height: 80px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 1px solid transparent;
+
+            &.sg-color-main { background-color: @mainColor; }
+            &.sg-color-accent { background-color: @mainAccentColor; }
+            &.sg-color-secondary { background-color: @mainSecondColor; }
+            &.sg-color-bg-alt {
+                background-color: @backgroundColorAlternate;
+                border-color: @grayColor;
+            }
+        }
+        .sg-color-name {
+            display: block;
+            font-size: @fontSizeS;
+            color: @text__color;
+        }
+        .sg-color-value {
+            font-size: @fontSizeXS;
+            color: fade(@text__color, 60%);
+        }
+
+        .sg-typography-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+
+            div[class^="sg-font-"] {
+                color: @text__color;
+                line-height: 1.3;
+            }
+        }
+        .sg-type-row {
+            border-bottom: 1px solid fade(@text__color, 5%);
+            padding-bottom: 15px;
+        }
+        .sg-type-meta {
+            display: block;
+            font-size: @fontSizeXS;
+            font-family: monospace;
+            color: fade(@text__color, 40%);
+            margin-bottom: 8px;
+        }
+
+        .sg-font-title         { font-size: @fontSizeTitle; font-weight: 700; }
+        .sg-font-subtitle      { font-size: @fontSizeSubtitle; font-weight: 600; }
+        .sg-font-xxxl          { font-size: @fontSizeXXXL; font-weight: 600; }
+        .sg-font-title-desktop { font-size: @fontSizeTitleDesktop; font-weight: 700; }
+        .sg-font-xxl           { font-size: @fontSizeXXL; font-weight: 600; }
+        .sg-font-xl            { font-size: @fontSizeXL; font-weight: 600; }
+        .sg-font-l             { font-size: @fontSizeL; }
+        .sg-font-m             { font-size: @fontSizeM; }
+        .sg-font-s             { font-size: @fontSizeS; }
+        .sg-font-xs            { font-size: @fontSizeXS; }
+
+        .sg-info-box {
+            background: @backgroundColorAlternate;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: @fontSizeS;
+            color: fade(@text__color, 70%);
+            border: 1px solid @grayColor;
+        }
+        .sg-buttons-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: center;
+        }
+        .sg-label {
+            display: block;
+            font-size: @fontSizeS;
+            color: fade(@text__color, 60%);
+            margin-bottom: 8px;
+        }
+        .sg-dark-section {
+            margin-top: 25px;
+            padding: 25px;
+            background: @mainColor;
+            border-radius: 12px;
+
+            .sg-label-light {
+                color: @whiteColor;
+            }
+        }
+
+        .sg-forms-container {
+            max-width: 500px;
+        }
+        .sg-form-group {
+            margin-bottom: 20px;
+
+            label {
+                font-size: @fontSizeS;
+                font-weight: 600;
+                color: @text__color;
+                display: block;
+                margin-bottom: 8px;
+            }
+        }
+        .sg-form-group-inline {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 24px;
+
+            label {
+                font-size: @fontSizeS;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+            }
+        }
+    }
+}
