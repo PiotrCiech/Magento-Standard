@@ -1,0 +1,44 @@
+<aside id="cookie-popup" role="dialog" aria-labelledby="cookie-dialog-title" class="cookie-banner-wrapper">
+    <section>
+        <h2 id="cookie-dialog-title" class="cookie-header">
+            <?= __('We use "Cookies"') ?>
+        </h2>
+        <div class="cookie-content">
+            <p>
+                <?= __('This website uses cookies to provide services. You can specify the conditions for storing and accessing cookies in your browser. Details can be found in our %1.', '<a href="' . $block->getUrl('privacy-policy') . '">' . __('Privacy Policy') . '</a>') ?>
+            </p>
+        </div>
+        <div class="cookie-actions">
+            <button id="cookie-decline" aria-label="<?= __('Decline') ?>" class="btn-cookie btn-reject" type="button">
+                <?= __('Decline') ?>
+            </button>
+            <button id="cookie-accept" aria-label="<?= __('Accept') ?>" class="btn-cookie btn-accept" type="button">
+                <?= __('Accept') ?>
+            </button>
+        </div>
+    </section>
+</aside>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('cookie-popup');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+    const storageKey = 'cookie-popup';
+
+    if (localStorage.getItem(storageKey) !== 'accepted') {
+        setTimeout(() => {
+            popup.classList.add('start');
+        }, 500);
+    }
+
+    function closePopup() {
+        popup.classList.remove('start');
+        popup.classList.add('accepted');
+        localStorage.setItem(storageKey, 'accepted');
+    }
+
+    acceptBtn.addEventListener('click', closePopup);
+    declineBtn.addEventListener('click', closePopup);
+});
+</script>
