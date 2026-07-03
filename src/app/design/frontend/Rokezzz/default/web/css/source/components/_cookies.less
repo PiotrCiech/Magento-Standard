@@ -4,6 +4,7 @@
 @cookie-text-color: lighten(@mainColor, 15%);
 @cookie-link-color: @mainAccentColor;
 @cookie-radius: 16px;
+@transition-default: 0.2s ease;
 
 @btn-reject-bg: lighten(@grayColor, 20%);
 @btn-reject-text: @accent__color__dark;
@@ -22,7 +23,7 @@
         z-index: 99999;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: opacity @transition-default, transform @transition-default;
         background-color: @cookie-bg;
         border: 1px solid @cookie-border;
         border-radius: @cookie-radius;
@@ -86,7 +87,7 @@
                 font-size: 14px;
                 font-weight: 600;
                 cursor: pointer;
-                transition: background-color 0.2s ease, color 0.2s ease;
+                transition: opacity @transition-default, transform @transition-default;
                 text-align: center;
                 box-sizing: border-box;
 
