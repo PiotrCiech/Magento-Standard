@@ -28,9 +28,8 @@
         "mageplaza/magento-2-polish-language-pack": "dev-master",
         "phpseclib/phpseclib": "^3.0",
         "przelewy24/magento2-przelewy24": "^1.6",
-        "twig/twig": "^3.0",
         "smartmage/inpost": "^1.22",
-        "przelewy24/magento2-przelewy24": "^1.6"
+        "twig/twig": "^3.0"
     },
     "autoload": {
         "exclude-from-classmap": [

@@ -1,9 +1,4 @@
-& when (@media-common = true) {
-    input[type='radio'],
-    input[type='checkbox'] {
-        accent-color: @mainColor;
-    }
-
+& when (@media-common =true) {
     input[type='text'],
     input[type='password'],
     input[type='email'],
@@ -13,16 +8,54 @@
     input[type='url'],
     textarea,
     select {
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        width: 100%;
+        padding: 12px 14px;
+        font-size: @fontSizeM;
+        border-radius: 12px;
+        border: 1px solid fade(@text__color, 15%);
+        background: @whiteColor;
+        color: @text__color;
+        transition:
+            border-color .25s ease,
+            box-shadow .25s ease,
+            transform .25s ease;
 
         &:focus {
             outline: none;
             border-color: @mainAccentColor;
-            box-shadow: 0 0 0 3px fade(@mainAccentColor, 20%);
+            box-shadow: 0 0 0 4px fade(@mainAccentColor, 15%);
         }
 
         &:focus-visible {
             outline: none;
         }
+
+        &:hover {
+            border-color: fade(@mainColor, 25%);
+        }
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+
+    input[type='radio'],
+    input[type='checkbox'] {
+        accent-color: @mainColor;
+        transform: scale(1.05);
+    }
+
+    label {
+        font-size: @fontSizeS;
+        font-weight: 500;
+        color: fade(@text__color, 80%);
+        margin-bottom: 6px;
+        display: inline-block;
     }
 }

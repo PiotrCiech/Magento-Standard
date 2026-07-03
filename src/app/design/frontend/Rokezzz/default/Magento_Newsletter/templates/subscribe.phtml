@@ -1,0 +1,30 @@
+<div class="newsletter-section">
+    <div class="newsletter-content">
+        <h2 class="newsletter-title">Zapisz się do naszego Newslettera!</h2>
+        <p class="newsletter-description">
+            Dołącz do grona naszych subskrybentów i jako pierwszy dowiaduj się o naszych promocjach oraz poradach, które
+            ułatwią Ci zakupy. Wypisanie jest możliwe w każdej chwili – jednym kliknięciem.
+        </p>
+        <form class="newsletter-form form subscribe" novalidate
+            action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>" method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}' id="newsletter-validate-detail">
+
+            <div class="form-group">
+                <div class="control">
+                    <input name="email" type="email" id="newsletter" placeholder="Adres e-mail"
+                        data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}"
+                        class="form-control" />
+                </div>
+                <div class="actions">
+                    <button class="action subscribe primary newsletter-button" title="Subskrybuj" type="submit"
+                        aria-label="Subscribe">
+                        <span>Subskrybuj</span>
+                    </button>
+                </div>
+            </div>
+            <div class="recaptcha-wrapper">
+                <?= $block->getChildHtml('form.additional.info') ?>
+            </div>
+        </form>
+    </div>
+</div>

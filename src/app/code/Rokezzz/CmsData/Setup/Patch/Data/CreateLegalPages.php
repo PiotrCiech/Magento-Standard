@@ -85,7 +85,6 @@ class CreateLegalPages implements DataPatchInterface
                     ->setContent($pageData['content'])
                     ->setPageLayout($pageData['layout'])
                     ->setIsActive(true);
-
                 $this->pageRepository->save($page);
             } catch (\Exception $e) {
                 $this->logger->error(

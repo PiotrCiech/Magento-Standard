@@ -11,14 +11,20 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit);
     <div class="mobile-only-nav">
         <nav class="nav-wrapper" aria-label="<?= $block->escapeHtml(__('Mobile Navigation')) ?>">
             <div class="mobile-nav-header">
-                <button class="nav-close" type="button" aria-label="<?= $block->escapeHtml(__('Close menu')) ?>">✕</button>
+                <button class="nav-close" type="button"
+                    aria-label="<?= $block->escapeHtml(__('Close menu')) ?>">✕</button>
             </div>
             <ul class="mobile-nav-list">
                 <?= /* @noEscape */ $_menuHtml ?>
             </ul>
             <div class="mobile-bottom-links">
-                <a href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>"><?= $block->escapeHtml(__('My Account')) ?></a>
-                <a href="<?= $block->escapeUrl($block->getUrl('wishlist')) ?>"><?= $block->escapeHtml(__('Wishlist')) ?></a>
+                <?= $block->getChildHtml('mobile_logout_link') ?>
+                <div class="mobile-bottom-links-row">
+                    <a class="mobile-account-link"
+                        href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>"><?= $block->escapeHtml(__('My Account')) ?></a>
+                    <a class="mobile-wishlist-link"
+                        href="<?= $block->escapeUrl($block->getUrl('wishlist')) ?>"><?= $block->escapeHtml(__('Wishlist')) ?></a>
+                </div>
             </div>
         </nav>
         <div class="mobile-nav-overlay"></div>
