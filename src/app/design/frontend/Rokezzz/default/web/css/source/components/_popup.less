@@ -1,0 +1,91 @@
+& when (@media-common =true) {
+    .modal-popup.modal-slide {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        left: 0 !important;
+        background-color: rgba(@blackColor, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s ease;
+
+        &._show {
+            opacity: 1;
+            visibility: visible;
+
+            ._inner-scroll .modal-inner-wrap,
+            .modal-inner-wrap {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        &.closing {
+            opacity: 0 !important;
+            visibility: visible;
+
+            ._inner-scroll .modal-inner-wrap,
+            .modal-inner-wrap {
+                transform: translateY(-150px);
+                opacity: 0;
+                transition:
+                    transform .35s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity .35s ease;
+            }
+        }
+
+        ._inner-scroll .modal-inner-wrap,
+        .modal-inner-wrap {
+            position: relative !important;
+            left: auto !important;
+            right: auto !important;
+            top: auto !important;
+            bottom: auto !important;
+            margin: 0 auto !important;
+            width: calc(~"100% - 32px");
+            max-width: 550px;
+            height: auto !important;
+            min-height: 0 !important;
+            border-radius: 16px;
+            background-color: @whiteColor;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform: translateY(-150px);
+            opacity: 0;
+            transition:
+                transform .35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity .35s ease;
+        }
+
+        .modal-header {
+            padding: 20px 20px 0 20px;
+
+            .action-close {
+                padding: 10px;
+                top: 15px;
+                right: 15px;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .modal-content {
+            padding: 10px 24px 24px;
+            color: @text__color;
+            font-size: @fontSizeM;
+        }
+    }
+}
+
+.media-width(@index) when (@index =@screen__m) {
+    .modal-popup.modal-slide {
+
+        ._inner-scroll .modal-inner-wrap,
+        .modal-inner-wrap {
+            width: 100%;
+        }
+    }
+}
