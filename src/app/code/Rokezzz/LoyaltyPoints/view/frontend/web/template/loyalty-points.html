@@ -1,0 +1,38 @@
+<div class="payment-option _collapsible opc-payment-additional rokezzz-loyalty-points"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-rokezzz-loyalty-points-heading" role="heading" aria-level="2">
+            <!-- ko i18n: 'Loyalty Points'--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content" aria-labelledby="block-rokezzz-loyalty-points-heading">
+        <p data-bind="text: balanceMessage"></p>
+        <form class="form form-loyalty-points" id="rokezzz-loyalty-points-form">
+            <div class="field">
+                <label class="label" for="rokezzz-loyalty-points-input">
+                    <span data-bind="i18n: 'Points to use'"></span>
+                </label>
+                <div class="control">
+                    <input class="input-text"
+                           type="number"
+                           min="0"
+                           id="rokezzz-loyalty-points-input"
+                           data-bind="value: pointsToApply, attr: {max: maxRedeemablePoints}"/>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button class="action action-apply" type="button" data-bind="click: applyPoints, enable: canApply">
+                        <span data-bind="i18n: 'Apply Points'"></span>
+                    </button>
+                </div>
+                <div class="secondary">
+                    <button class="action action-cancel" type="button" data-bind="click: cancelPoints, visible: isApplied">
+                        <span data-bind="i18n: 'Cancel'"></span>
+                    </button>
+                </div>
+            </div>
+            <p class="message" data-bind="text: statusMessage, visible: statusMessage"></p>
+        </form>
+    </div>
+</div>
