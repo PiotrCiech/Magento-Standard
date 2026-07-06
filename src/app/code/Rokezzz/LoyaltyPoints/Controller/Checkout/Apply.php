@@ -12,6 +12,7 @@ use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Rokezzz\LoyaltyPoints\Model\Config;
 use Rokezzz\LoyaltyPoints\Model\QuotePointsApplier;
 use Rokezzz\LoyaltyPoints\Model\RedemptionCalculator;
@@ -32,8 +33,10 @@ class Apply implements HttpPostActionInterface, CsrfAwareActionInterface
     public function execute(): Json
     {
         $result = $this->resultJsonFactory->create();
+        $quote = $this->checkoutSession->getQuote();
+        $storeId = (int) $quote->getStoreId();
 
-        if (!$this->config->isEnabled() || !$this->customerSession->isLoggedIn()) {
+        if (!$this->config->isEnabled($storeId) || !$this->customerSession->isLoggedIn()) {
             return $result->setData([
                 'success' => false,
                 'message' => (string) __('Loyalty points are not available.'),
@@ -41,12 +44,17 @@ class Apply implements HttpPostActionInterface, CsrfAwareActionInterface
         }
 
         $requestedPoints = (int) $this->request->getParam('points', 0);
-        $quote = $this->checkoutSession->getQuote();
-        $appliedPoints = $this->quotePointsApplier->apply($quote, $requestedPoints);
-        $discount = $this->redemptionCalculator->getMonetaryDiscount(
-            $appliedPoints,
-            (int) $quote->getStoreId()
-        );
+
+        try {
+            $appliedPoints = $this->quotePointsApplier->apply($quote, $requestedPoints);
+        } catch (LocalizedException $exception) {
+            return $result->setData([
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ]);
+        }
+
+        $discount = $this->redemptionCalculator->getMonetaryDiscount($appliedPoints, $storeId);
 
         return $result->setData([
             'success' => true,

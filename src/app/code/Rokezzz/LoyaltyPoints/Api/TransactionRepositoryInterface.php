@@ -10,6 +10,8 @@ use Rokezzz\LoyaltyPoints\Api\Data\TransactionSearchResultsInterface;
 
 interface TransactionRepositoryInterface
 {
+    public function createNew(): TransactionInterface;
+
     public function save(TransactionInterface $transaction): TransactionInterface;
 
     public function getById(int $transactionId): TransactionInterface;

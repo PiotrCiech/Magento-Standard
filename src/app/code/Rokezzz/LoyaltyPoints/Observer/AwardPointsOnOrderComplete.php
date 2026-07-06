@@ -10,16 +10,17 @@ use Magento\Sales\Model\Order;
 use Rokezzz\LoyaltyPoints\Api\BalanceManagementInterface;
 use Rokezzz\LoyaltyPoints\Api\Data\TransactionInterface;
 use Rokezzz\LoyaltyPoints\Model\Config;
+use Rokezzz\LoyaltyPoints\Model\LoyaltyPointsAttribute;
+use Rokezzz\LoyaltyPoints\Model\OrderAttributeSaver;
 use Rokezzz\LoyaltyPoints\Model\PointsCalculator;
 
 class AwardPointsOnOrderComplete implements ObserverInterface
 {
-    private const EARNED_POINTS_FIELD = 'rokezzz_loyalty_points_earned';
-
     public function __construct(
         private readonly Config $config,
         private readonly PointsCalculator $pointsCalculator,
-        private readonly BalanceManagementInterface $balanceManagement
+        private readonly BalanceManagementInterface $balanceManagement,
+        private readonly OrderAttributeSaver $orderAttributeSaver
     ) {
     }
 
@@ -45,7 +46,7 @@ class AwardPointsOnOrderComplete implements ObserverInterface
             return;
         }
 
-        if ((int) $order->getData(self::EARNED_POINTS_FIELD) > 0) {
+        if ((int) $order->getData(LoyaltyPointsAttribute::POINTS_EARNED) > 0) {
             return;
         }
 
@@ -71,7 +72,7 @@ class AwardPointsOnOrderComplete implements ObserverInterface
             (string) __('Points for order %1', $order->getIncrementId())
         );
 
-        $order->setData(self::EARNED_POINTS_FIELD, $points);
-        $order->getResource()->saveAttribute($order, self::EARNED_POINTS_FIELD);
+        $order->setData(LoyaltyPointsAttribute::POINTS_EARNED, $points);
+        $this->orderAttributeSaver->saveAttribute($order, LoyaltyPointsAttribute::POINTS_EARNED);
     }
 }

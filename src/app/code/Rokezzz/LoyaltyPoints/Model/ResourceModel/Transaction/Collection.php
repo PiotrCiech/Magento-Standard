@@ -8,6 +8,10 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Rokezzz\LoyaltyPoints\Model\ResourceModel\Transaction as TransactionResource;
 use Rokezzz\LoyaltyPoints\Model\Transaction;
 
+/**
+ * @method Transaction getNewEmptyItem()
+ * @method Transaction getFirstItem()
+ */
 class Collection extends AbstractCollection
 {
     protected function _construct(): void

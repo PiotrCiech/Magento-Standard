@@ -10,13 +10,15 @@ use Magento\Sales\Model\Order;
 use Rokezzz\LoyaltyPoints\Api\BalanceManagementInterface;
 use Rokezzz\LoyaltyPoints\Api\Data\TransactionInterface;
 use Rokezzz\LoyaltyPoints\Model\Config;
-use Rokezzz\LoyaltyPoints\Model\QuotePointsApplier;
+use Rokezzz\LoyaltyPoints\Model\LoyaltyPointsAttribute;
+use Rokezzz\LoyaltyPoints\Model\OrderAttributeSaver;
 
 class RefundPointsOnOrderCancel implements ObserverInterface
 {
     public function __construct(
         private readonly Config $config,
-        private readonly BalanceManagementInterface $balanceManagement
+        private readonly BalanceManagementInterface $balanceManagement,
+        private readonly OrderAttributeSaver $orderAttributeSaver
     ) {
     }
 
@@ -40,8 +42,8 @@ class RefundPointsOnOrderCancel implements ObserverInterface
             return;
         }
 
-        $pointsUsed = (int) $order->getData(QuotePointsApplier::QUOTE_POINTS_FIELD);
-        $pointsEarned = (int) $order->getData('rokezzz_loyalty_points_earned');
+        $pointsUsed = (int) $order->getData(LoyaltyPointsAttribute::POINTS_USED);
+        $pointsEarned = (int) $order->getData(LoyaltyPointsAttribute::POINTS_EARNED);
 
         if ($pointsUsed > 0) {
             $this->balanceManagement->addPoints(
@@ -53,8 +55,8 @@ class RefundPointsOnOrderCancel implements ObserverInterface
                 (string) $order->getIncrementId(),
                 (string) __('Refund of redeemed points for cancelled order %1', $order->getIncrementId())
             );
-            $order->setData(QuotePointsApplier::QUOTE_POINTS_FIELD, 0);
-            $order->getResource()->saveAttribute($order, QuotePointsApplier::QUOTE_POINTS_FIELD);
+            $order->setData(LoyaltyPointsAttribute::POINTS_USED, 0);
+            $this->orderAttributeSaver->saveAttribute($order, LoyaltyPointsAttribute::POINTS_USED);
         }
 
         if ($pointsEarned > 0) {
@@ -67,8 +69,8 @@ class RefundPointsOnOrderCancel implements ObserverInterface
                 (string) $order->getIncrementId(),
                 (string) __('Reversal of earned points for cancelled order %1', $order->getIncrementId())
             );
-            $order->setData('rokezzz_loyalty_points_earned', 0);
-            $order->getResource()->saveAttribute($order, 'rokezzz_loyalty_points_earned');
+            $order->setData(LoyaltyPointsAttribute::POINTS_EARNED, 0);
+            $this->orderAttributeSaver->saveAttribute($order, LoyaltyPointsAttribute::POINTS_EARNED);
         }
     }
 }

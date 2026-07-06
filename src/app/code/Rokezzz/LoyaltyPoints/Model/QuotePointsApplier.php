@@ -11,7 +11,7 @@ use Rokezzz\LoyaltyPoints\Api\BalanceManagementInterface;
 
 class QuotePointsApplier
 {
-    public const QUOTE_POINTS_FIELD = 'rokezzz_loyalty_points_used';
+    public const QUOTE_POINTS_FIELD = LoyaltyPointsAttribute::POINTS_USED;
 
     public function __construct(
         private readonly CartRepositoryInterface $quoteRepository,

@@ -3,6 +3,8 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Rokezzz\LoyaltyPoints\Api\BalanceManagementInterface"
                 type="Rokezzz\LoyaltyPoints\Model\BalanceManagement"/>
+    <preference for="Rokezzz\LoyaltyPoints\Api\BalanceRepositoryInterface"
+                type="Rokezzz\LoyaltyPoints\Model\BalanceRepository"/>
     <preference for="Rokezzz\LoyaltyPoints\Api\TransactionRepositoryInterface"
                 type="Rokezzz\LoyaltyPoints\Model\TransactionRepository"/>
     <preference for="Rokezzz\LoyaltyPoints\Api\Data\BalanceInterface"
@@ -11,8 +13,4 @@
                 type="Rokezzz\LoyaltyPoints\Model\Transaction"/>
     <preference for="Rokezzz\LoyaltyPoints\Api\Data\TransactionSearchResultsInterface"
                 type="Rokezzz\LoyaltyPoints\Model\TransactionSearchResults"/>
-    <type name="Magento\Quote\Model\QuoteManagement">
-        <plugin name="rokezzz_loyalty_points_copy_to_order"
-                type="Rokezzz\LoyaltyPoints\Plugin\Quote\QuoteManagementPlugin"/>
-    </type>
 </config>

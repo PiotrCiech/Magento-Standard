@@ -6,6 +6,7 @@ namespace Rokezzz\LoyaltyPoints\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Quote\Model\Quote;
 use Magento\Sales\Model\Order;
 use Rokezzz\LoyaltyPoints\Api\BalanceManagementInterface;
 use Rokezzz\LoyaltyPoints\Api\Data\TransactionInterface;
@@ -16,15 +17,17 @@ class RedeemPointsOnOrderPlace implements ObserverInterface
 {
     public function __construct(
         private readonly Config $config,
-        private readonly BalanceManagementInterface $balanceManagement
+        private readonly BalanceManagementInterface $balanceManagement,
+        private readonly QuotePointsApplier $quotePointsApplier
     ) {
     }
 
     public function execute(Observer $observer): void
     {
         $order = $observer->getEvent()->getOrder();
+        $quote = $observer->getEvent()->getQuote();
 
-        if (!$order instanceof Order) {
+        if (!$order instanceof Order || !$quote instanceof Quote) {
             return;
         }
 
@@ -34,7 +37,7 @@ class RedeemPointsOnOrderPlace implements ObserverInterface
             return;
         }
 
-        $pointsUsed = (int) $order->getData(QuotePointsApplier::QUOTE_POINTS_FIELD);
+        $pointsUsed = $this->quotePointsApplier->getAppliedPoints($quote);
 
         if ($pointsUsed <= 0) {
             return;

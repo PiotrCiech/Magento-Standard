@@ -15,7 +15,6 @@ interface TransactionInterface
     public const ORDER_INCREMENT_ID = 'order_increment_id';
     public const COMMENT = 'comment';
     public const CREATED_AT = 'created_at';
-
     public const ACTION_EARN = 'earn';
     public const ACTION_REDEEM = 'redeem';
     public const ACTION_CANCEL_EARN = 'cancel_earn';

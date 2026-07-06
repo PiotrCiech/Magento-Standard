@@ -16,6 +16,8 @@ use Rokezzz\LoyaltyPoints\Model\Config;
 
 class Points implements ArgumentInterface
 {
+    private const TRANSACTIONS_PAGE_SIZE = 50;
+
     public function __construct(
         private readonly Config $config,
         private readonly CustomerSession $customerSession,
@@ -57,7 +59,7 @@ class Points implements ArgumentInterface
         $searchCriteria = $this->searchCriteriaBuilder
             ->addFilter(TransactionInterface::CUSTOMER_ID, (int) $this->customerSession->getCustomerId())
             ->addSortOrder($sortOrder)
-            ->setPageSize(50)
+            ->setPageSize(self::TRANSACTIONS_PAGE_SIZE)
             ->create();
 
         return $this->transactionRepository->getList($searchCriteria)->getItems();

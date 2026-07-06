@@ -14,7 +14,6 @@ class Config
     private const XML_PATH_POINT_VALUE = 'rokezzz_settings/loyalty_points/point_value';
     private const XML_PATH_MIN_POINTS_TO_REDEEM = 'rokezzz_settings/loyalty_points/min_points_to_redeem';
     private const XML_PATH_MAX_REDEMPTION_PERCENT = 'rokezzz_settings/loyalty_points/max_redemption_percent';
-
     private const DEFAULT_POINTS_PER_CURRENCY = 1.0;
     private const DEFAULT_POINT_VALUE = 0.01;
     private const DEFAULT_MIN_POINTS_TO_REDEEM = 100;

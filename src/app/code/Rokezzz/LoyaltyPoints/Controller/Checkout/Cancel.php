@@ -29,15 +29,16 @@ class Cancel implements HttpPostActionInterface, CsrfAwareActionInterface
     public function execute(): Json
     {
         $result = $this->resultJsonFactory->create();
+        $quote = $this->checkoutSession->getQuote();
+        $storeId = (int) $quote->getStoreId();
 
-        if (!$this->config->isEnabled() || !$this->customerSession->isLoggedIn()) {
+        if (!$this->config->isEnabled($storeId) || !$this->customerSession->isLoggedIn()) {
             return $result->setData([
                 'success' => false,
                 'message' => (string) __('Loyalty points are not available.'),
             ]);
         }
 
-        $quote = $this->checkoutSession->getQuote();
         $this->quotePointsApplier->clear($quote);
 
         return $result->setData([
