@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace Rokezzz\LoyaltyPoints\Test\Unit\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\LoyaltyPoints\Model\Config;
 
 final class ConfigTest extends TestCase
 {
-    private ScopeConfigInterface&MockObject $scopeConfig;
+    private ScopeConfigInterface $scopeConfig;
 
     protected function setUp(): void
     {
-        $this->scopeConfig = $this->createMock(ScopeConfigInterface::class);
+        $this->scopeConfig = $this->createStub(ScopeConfigInterface::class);
     }
 
     public function testIsEnabledReadsFlag(): void

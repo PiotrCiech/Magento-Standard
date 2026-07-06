@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Rokezzz\LoyaltyPoints\Test\Unit\Model;
 
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\LoyaltyPoints\Model\Config;
 use Rokezzz\LoyaltyPoints\Model\RedemptionCalculator;
 
 final class RedemptionCalculatorTest extends TestCase
 {
-    private Config&MockObject $config;
+    private Config $config;
 
     protected function setUp(): void
     {
-        $this->config = $this->createMock(Config::class);
+        $this->config = $this->createStub(Config::class);
         $this->config->method('getPointValue')->willReturn(0.1);
         $this->config->method('getMinPointsToRedeem')->willReturn(100);
         $this->config->method('getMaxRedemptionPercent')->willReturn(50.0);
