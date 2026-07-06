@@ -8,16 +8,27 @@
                     <item name="components" xsi:type="array">
                         <item name="checkout" xsi:type="array">
                             <item name="children" xsi:type="array">
-                                <item name="steps" xsi:type="array">
+                                <item name="sidebar" xsi:type="array">
                                     <item name="children" xsi:type="array">
-                                        <item name="billing-step" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
                                             <item name="children" xsi:type="array">
-                                                <item name="payment" xsi:type="array">
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="before_grandtotal" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="rokezzz-loyalty-points-discount" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Rokezzz_LoyaltyPoints/js/view/summary/loyalty-points-discount</item>
+                                                                    <item name="sortOrder" xsi:type="string">10</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="itemsBefore" xsi:type="array">
                                                     <item name="children" xsi:type="array">
                                                         <item name="rokezzz-loyalty-points" xsi:type="array">
                                                             <item name="component" xsi:type="string">Rokezzz_LoyaltyPoints/js/view/loyalty-points</item>
-                                                            <item name="displayArea" xsi:type="string">beforeMethods</item>
-                                                            <item name="sortOrder" xsi:type="string">5</item>
+                                                            <item name="sortOrder" xsi:type="string">10</item>
                                                         </item>
                                                     </item>
                                                 </item>

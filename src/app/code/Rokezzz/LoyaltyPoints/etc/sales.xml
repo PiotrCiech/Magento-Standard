@@ -4,7 +4,7 @@
     <section name="quote">
         <group name="totals">
             <item name="rokezzz_loyalty_points" instance="Rokezzz\LoyaltyPoints\Model\Quote\Total\LoyaltyPoints"
-                  sort_order="550"/>
+                  sort_order="520"/>
         </group>
     </section>
 </config>

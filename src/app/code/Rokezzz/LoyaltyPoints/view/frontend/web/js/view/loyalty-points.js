@@ -11,11 +11,15 @@ define([
 
     return Component.extend({
         defaults: {
-            template: 'Rokezzz_LoyaltyPoints/loyalty-points'
+            template: 'Rokezzz_LoyaltyPoints/loyalty-points',
+            showComponent: false,
+            balanceLabel: '',
+            maxRedeemablePoints: 0
         },
 
         initialize: function () {
             this._super();
+
             this.config = window.checkoutConfig.rokezzzLoyaltyPoints || {};
             this.pointsToApply = loyaltyPointsModel.pointsToApply;
             this.appliedPoints = loyaltyPointsModel.appliedPoints;
@@ -26,19 +30,12 @@ define([
             this.isApplied((this.config.appliedPoints || 0) > 0);
             this.pointsToApply(this.config.appliedPoints || 0);
 
+            this.showComponent = !!this.config.enabled && (this.config.balance || 0) > 0;
+            this.balanceLabel = $.mage.__('Available balance: %1 points.')
+                .replace('%1', String(this.config.balance || 0));
+            this.maxRedeemablePoints = this.config.maxRedeemablePoints || 0;
+
             return this;
-        },
-
-        isVisible: function () {
-            return !!this.config.enabled && (this.config.balance || 0) > 0;
-        },
-
-        balanceMessage: function () {
-            return $.mage.__('Available balance: %1 points.').replace('%1', this.config.balance || 0);
-        },
-
-        maxRedeemablePoints: function () {
-            return this.config.maxRedeemablePoints || 0;
         },
 
         canApply: function () {
