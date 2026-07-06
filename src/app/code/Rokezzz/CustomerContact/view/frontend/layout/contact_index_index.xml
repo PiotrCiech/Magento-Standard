@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="contactForm">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Rokezzz_CustomerContact::contact/form.phtml</argument>
+            </action>
+            <block class="Rokezzz\CustomerContact\Block\Contact\AssignedAdmin"
+                   name="rokezzz.customer.contact.assigned.admin"
+                   template="Rokezzz_CustomerContact::contact/assigned_admin.phtml"
+                   cacheable="false"/>
+        </referenceBlock>
+    </body>
+</page>

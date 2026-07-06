@@ -23,6 +23,7 @@ The local environment is defined in `compose.yaml` and contains:
 - `opensearch` - OpenSearch service used by Magento search.
 - `valkey` - Redis-compatible cache backend.
 - `rabbitmq` - message queue with management panel.
+- `mailhog` - local SMTP catcher for testing outgoing emails.
 - `vite` - Node.js dev server for frontend HMR (Hot Module Replacement), port `5173`.
 
 Docker configuration files are located in:
@@ -49,6 +50,19 @@ Enter the PHP container:
 
 ```bash
 docker compose exec php bash
+```
+
+## Mailhog
+
+Outgoing emails from Magento are routed through Mailhog via `msmtp` in the PHP container. No extra Magento SMTP configuration is required for local development.
+
+- Web UI: `http://localhost:8025` (override with `MAILHOG_UI_PORT` in `.env`)
+- SMTP port: `1025` (override with `MAILHOG_SMTP_PORT` in `.env`)
+
+After adding Mailhog, rebuild the PHP image so `msmtp` is installed:
+
+```bash
+docker compose up -d --build
 ```
 
 ## First Install
