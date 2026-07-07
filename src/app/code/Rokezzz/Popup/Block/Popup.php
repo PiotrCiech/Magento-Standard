@@ -39,7 +39,6 @@ class Popup extends Template
      */
     public function getDelayTime(): int
     {
-
         $delay = $this->scopeConfig->getValue(self::XML_PATH_POPUP_DELAY, ScopeInterface::SCOPE_STORE);
         return $delay ? (int) $delay : 0;
     }
