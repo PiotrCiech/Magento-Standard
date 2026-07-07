@@ -1,0 +1,61 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Rokezzz\LoyaltyPoints\ViewModel\Account\Points $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+<div class="block block-loyalty-points">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Your balance')) ?></strong>
+    </div>
+    <div class="block-content">
+        <p class="loyalty-points-balance">
+            <span class="balance-value"><?= (int) $viewModel->getBalance() ?></span>
+            <span class="balance-label"><?= $block->escapeHtml(__('points')) ?></span>
+        </p>
+    </div>
+</div>
+
+<div class="block block-loyalty-points-history">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Points history')) ?></strong>
+    </div>
+    <div class="block-content">
+        <?php $transactions = $viewModel->getTransactions(); ?>
+        <?php if ($transactions === []): ?>
+            <p><?= $block->escapeHtml(__('No loyalty points transactions yet.')) ?></p>
+        <?php else: ?>
+            <table class="data table table-loyalty-points-history" id="loyalty-points-history">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col date"><?= $block->escapeHtml(__('Date')) ?></th>
+                        <th scope="col" class="col action"><?= $block->escapeHtml(__('Action')) ?></th>
+                        <th scope="col" class="col points"><?= $block->escapeHtml(__('Points')) ?></th>
+                        <th scope="col" class="col order"><?= $block->escapeHtml(__('Order')) ?></th>
+                        <th scope="col" class="col comment"><?= $block->escapeHtml(__('Comment')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($transactions as $transaction): ?>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Date')) ?>">
+                                <?= $block->escapeHtml($transaction->getCreatedAt()) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Action')) ?>">
+                                <?= $block->escapeHtml($viewModel->getActionLabel($transaction->getAction())) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Points')) ?>">
+                                <?= (int) $transaction->getPoints() ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Order')) ?>">
+                                <?= $block->escapeHtml((string) $transaction->getOrderIncrementId()) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Comment')) ?>">
+                                <?= $block->escapeHtml((string) $transaction->getComment()) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>

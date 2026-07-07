@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="before_grandtotal" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="rokezzz-loyalty-points-discount" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Rokezzz_LoyaltyPoints/js/view/summary/loyalty-points-discount</item>
+                                                                    <item name="sortOrder" xsi:type="string">10</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="itemsBefore" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="rokezzz-loyalty-points" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Rokezzz_LoyaltyPoints/js/view/loyalty-points</item>
+                                                            <item name="sortOrder" xsi:type="string">10</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
