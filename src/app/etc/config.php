@@ -376,6 +376,7 @@ return [
         'Rokezzz_Compare' => 1,
         'Rokezzz_Cookies' => 1,
         'Rokezzz_Core' => 1,
+        'Rokezzz_ContractWithdrawal' => 1,
         'Rokezzz_CustomerAccountDeletion' => 1,
         'Rokezzz_CustomerContact' => 1,
         'Rokezzz_CustomerNip' => 1,

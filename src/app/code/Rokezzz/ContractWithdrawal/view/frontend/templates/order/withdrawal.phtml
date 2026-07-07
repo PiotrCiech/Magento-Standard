@@ -1,0 +1,63 @@
+<?php
+/** @var \Rokezzz\ContractWithdrawal\Block\Order\Withdrawal $block */
+/** @var \Rokezzz\ContractWithdrawal\ViewModel\Order\Withdrawal $withdrawalViewModel */
+$withdrawalViewModel = $block->getData('withdrawal_view_model');
+$order = $block->getOrder();
+
+if (is_null($order) || !$withdrawalViewModel->shouldDisplay($order)) {
+    return;
+}
+?>
+<section class="block block-order-contract-withdrawal">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Contract withdrawal')) ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if ($withdrawalViewModel->hasWithdrawalRequest($order)) : ?>
+            <p>
+                <?= $block->escapeHtml(__('Withdrawal request submitted on %1.', $withdrawalViewModel->getFormattedCreatedAt($order))) ?>
+            </p>
+            <p>
+                <strong><?= $block->escapeHtml(__('Status:')) ?></strong>
+                <?= $block->escapeHtml($withdrawalViewModel->getStatusLabel($order)) ?>
+            </p>
+            <?php if ($withdrawalViewModel->getStatementText($order) !== '') : ?>
+                <p>
+                    <strong><?= $block->escapeHtml(__('Statement details:')) ?></strong><br>
+                    <?= $block->escapeHtml($withdrawalViewModel->getStatementText($order), ['br']) ?>
+                </p>
+            <?php endif; ?>
+        <?php elseif ($withdrawalViewModel->canSubmit($order)) : ?>
+            <p>
+                <?= $block->escapeHtml(
+                    __(
+                        'You can submit a withdrawal request for this order within %1 days from the order date. Deadline: %2.',
+                        $withdrawalViewModel->getPeriodDays($order),
+                        $withdrawalViewModel->getFormattedDeadline($order)
+                    )
+                ) ?>
+            </p>
+            <form method="post" action="<?= $block->escapeUrl($withdrawalViewModel->getSubmitUrl()) ?>">
+                <?= $block->getBlockHtml('formkey') ?>
+                <input type="hidden" name="order_id" value="<?= (int) $order->getEntityId() ?>">
+                <div class="field">
+                    <label class="label" for="rokezzz-contract-withdrawal-statement-details">
+                        <span><?= $block->escapeHtml(__('Statement details (optional)')) ?></span>
+                    </label>
+                    <div class="control">
+                        <textarea id="rokezzz-contract-withdrawal-statement-details"
+                                  name="statement_details"
+                                  rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <button type="submit" class="action primary">
+                        <span><?= $block->escapeHtml(__('Submit withdrawal request')) ?></span>
+                    </button>
+                </div>
+            </form>
+        <?php else : ?>
+            <p><?= $block->escapeHtml($withdrawalViewModel->getUnavailableReason($order)) ?></p>
+        <?php endif; ?>
+    </div>
+</section>

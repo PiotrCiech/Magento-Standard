@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="order_additional_info">
+            <block class="Rokezzz\ContractWithdrawal\Block\Order\Withdrawal"
+                   name="rokezzz.admin.order.contract.withdrawal"
+                   template="Rokezzz_ContractWithdrawal::order/withdrawal.phtml"
+                   before="-">
+                <arguments>
+                    <argument name="withdrawal_view_model" xsi:type="object">Rokezzz\ContractWithdrawal\ViewModel\Order\Withdrawal</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
