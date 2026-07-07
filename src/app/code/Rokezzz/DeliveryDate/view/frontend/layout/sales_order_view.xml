@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="order.info.main">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="rokezzz.order.delivery.date"
+                   template="Rokezzz_DeliveryDate::order/delivery-date.phtml"
+                   after="order.status">
+                <arguments>
+                    <argument name="delivery_date_view_model" xsi:type="object">Rokezzz\DeliveryDate\ViewModel\Order\DeliveryDate</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
