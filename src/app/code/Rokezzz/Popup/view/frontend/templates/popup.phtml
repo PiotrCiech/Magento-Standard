@@ -19,8 +19,8 @@ require([
 ], function($, modal) {
     'use strict';
 
-    const popupKey = 'rokezzz_popup_shown';
-    const popup = $('#rokezzz-promo-modal');
+    const popupKey = 'rokezzz_popup_shown',
+          popup = $('#rokezzz-promo-modal');
 
     if (localStorage.getItem(popupKey)) {
         return;
@@ -74,6 +74,7 @@ require([
 
     const delayTime = <?= $block->getDelayTime() ?>;
     setTimeout(function() {
+        
         popup.modal('openModal');
     }, delayTime);
 });
