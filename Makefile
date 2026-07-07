@@ -3,9 +3,13 @@ PHP_CS_FIXER := vendor/bin/php-cs-fixer
 PHP_CS_FIXER_CONFIG := .php-cs-fixer.dist.php
 
 LOCALE ?= en_US
-ADMIN_STATIC_LOCALES ?= pl_PL en_US de_DE
+STATIC_LOCALES ?= pl_PL en_US de_DE
+ADMIN_STATIC_LOCALES ?= $(STATIC_LOCALES)
 
-.PHONY: cs-check cs-fix static-deploy cache-flush static-refresh admin-static-fix setup-upgrade setup-refresh static-clean static-fresh
+.PHONY: fix cs-check cs-fix static-deploy cache-flush static-refresh admin-static-fix setup-upgrade setup-refresh static-clean static-fresh
+
+fix:
+	docker compose exec php sh -lc "rm -rf pub/static/adminhtml/* pub/static/frontend/* var/view_preprocessed/* && php bin/magento setup:static-content:deploy $(STATIC_LOCALES) -f && php bin/magento cache:flush"
 
 static-deploy:
 	docker compose exec php sh -lc "rm -rf pub/static/frontend/Rokezzz/default/$(LOCALE)/Rokezzz_CatalogListing var/view_preprocessed/pub/static/frontend/Rokezzz/default/$(LOCALE)/Rokezzz_CatalogListing && php bin/magento setup:static-content:deploy $(LOCALE) -f --theme Rokezzz/default"
@@ -23,8 +27,7 @@ setup-upgrade:
 
 static-refresh: static-deploy cache-flush
 
-admin-static-fix:
-	docker compose exec php sh -lc "rm -rf pub/static/adminhtml/* var/view_preprocessed/* && php bin/magento setup:static-content:deploy $(ADMIN_STATIC_LOCALES) -f && php bin/magento cache:flush"
+admin-static-fix: fix
 
 admin-setup-refresh: cache-flush setup-upgrade admin-static-fix
 

@@ -19,11 +19,13 @@
             <branding>
                 <logo/>
             </branding>
-            <ksef>
-                <api_url/>
-                <token/>
-                <nip/>
-            </ksef>
+            <loyalty_points>
+                <enabled>0</enabled>
+                <points_per_currency>1</points_per_currency>
+                <point_value>0.01</point_value>
+                <min_points_to_redeem>100</min_points_to_redeem>
+                <max_redemption_percent>50</max_redemption_percent>
+            </loyalty_points>
         </rokezzz_settings>
     </default>
 </config>
