@@ -1,0 +1,12 @@
+{
+    "quote": {
+        "column": {
+            "rokezzz_preferred_delivery_date": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "rokezzz_preferred_delivery_date": true
+        }
+    }
+}
