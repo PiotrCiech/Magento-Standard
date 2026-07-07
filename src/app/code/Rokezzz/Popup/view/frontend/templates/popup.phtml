@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Rokezzz\Popup\Block\Popup;
+use Magento\Cms\Block\Block;
 
 /** @var Popup $block */
 if (!$block->isEnabled() || !$block->getCmsBlockId()) {
@@ -9,7 +10,7 @@ if (!$block->isEnabled() || !$block->getCmsBlockId()) {
 }
 ?>
 <div id="rokezzz-promo-modal" style="display:none;">
-    <?= $block->getLayout()->createBlock(\Magento\Cms\Block\Block::class)->setBlockId($block->getCmsBlockId())->toHtml(); ?>
+    <?= $block->getLayout()->createBlock(Block::class)->setBlockId($block->getCmsBlockId())->toHtml(); ?>
 </div>
 
 <script>
@@ -35,6 +36,7 @@ require([
         keyEventHandlers: {
             escapeKey: function(e) {
                 const modalEl = popup.closest('.modal-popup');
+                
                 if (modalEl.hasClass('_show') && !modalEl.hasClass('closing')) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -44,6 +46,7 @@ require([
         },
         opened: function() {
             const modalEl = popup.closest('.modal-popup');
+            
             modalEl.off('click.modal');
             modalEl.on('click.rokezzzPopup', function(e) {
                 if ($(e.target).hasClass('modal-popup') || $(e.target).closest('.action-close')
@@ -73,8 +76,8 @@ require([
     modal(options, popup);
 
     const delayTime = <?= $block->getDelayTime() ?>;
+    
     setTimeout(function() {
-        
         popup.modal('openModal');
     }, delayTime);
 });
