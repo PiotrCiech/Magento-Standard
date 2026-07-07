@@ -1,0 +1,161 @@
+<?php
+declare(strict_types=1);
+
+namespace Rokezzz\Styleguide\Block;
+
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+?>
+
+<div class="container section-spacing styleguide-page">
+    <div class="styleguide-header">
+        <h1>Rokezzz Design System & Styleguide</h1>
+        <p>Pełen przegląd globalnych komponentów UI, zmiennych systemowych, typografii, przycisków oraz elementów formularzy.</p>
+    </div>
+
+    <section class="styleguide-section">
+        <h2>1. Paleta Kolorów (Zmienne systemowe)</h2>
+        <div class="sg-color-grid">
+            <div class="sg-color-card">
+                <div class="sg-color-swatch sg-color-main"></div>
+                <strong class="sg-color-name">@mainColor</strong>
+                <span class="sg-color-value">Slate 800</span>
+            </div>
+            <div class="sg-color-card">
+                <div class="sg-color-swatch sg-color-accent"></div>
+                <strong class="sg-color-name">@mainAccentColor</strong>
+                <span class="sg-color-value">Blue 500</span>
+            </div>
+            <div class="sg-color-card">
+                <div class="sg-color-swatch sg-color-secondary"></div>
+                <strong class="sg-color-name">@mainSecondColor</strong>
+                <span class="sg-color-value">Blue 600</span>
+            </div>
+            <div class="sg-color-card">
+                <div class="sg-color-swatch sg-color-bg-alt"></div>
+                <strong class="sg-color-name">@backgroundColorAlternate</strong>
+                <span class="sg-color-value">Gray 50</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>2. Typografia (Zmienne wielkości fontów)</h2>
+        <div class="sg-typography-flex">
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeTitle (72px)</span>
+                <div class="sg-font-title">AaBbGg - Banner Title</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeSubtitle (40px)</span>
+                <div class="sg-font-subtitle">Nagłówek podstrony / Subtitle</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeXXXL (36px)</span>
+                <div class="sg-font-xxxl">Duży tytuł sekcji H2</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeTitleDesktop (36px)</span>
+                <div class="sg-font-title-desktop">Tytuł strony główny (Desktop)</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeXXL (28px)</span>
+                <div class="sg-font-xxl">Tytuł bloku / widgetu CMS</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeXL (24px)</span>
+                <div class="sg-font-xl">Cena produktu grid / Nagłówek H3</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeL (20px)</span>
+                <div class="sg-font-l">Tekst wyróżniony (Lead) / Nazwa w liście</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeM (16px)</span>
+                <div class="sg-font-m">Standardowy tekst akapitu, opisu produktu oraz interfejsu (Domyślny)</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeS (14px)</span>
+                <div class="sg-font-s">Etykiety formularzy (labels), okruszki chleba, małe elementy</div>
+            </div>
+
+            <div class="sg-type-row">
+                <span class="sg-type-meta">@fontSizeXS (12px)</span>
+                <div class="sg-font-xs">Teksty pomocnicze, daty recenzji, dopiski podatków pod ceną</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>3. Przyciski (.action)</h2>
+        <div class="sg-info-box">
+            Klasy automatycznie dziedziczą style z pliku _buttons.less (promień koła, padding, hover).
+        </div>
+        <div class="sg-buttons-flex">
+            <div>
+                <span class="sg-label">Primary (.action.primary)</span>
+                <button class="action primary"><span>Kup teraz</span></button>
+            </div>
+            <div>
+                <span class="sg-label">Text (.action.btn-text)</span>
+                <button class="action btn-text"><span>Zobacz więcej</span></button>
+            </div>
+            <div>
+                <span class="sg-label">Disabled (:disabled)</span>
+                <button class="action primary" disabled><span>Niedostępny</span></button>
+            </div>
+        </div>
+        <div class="sg-dark-section">
+            <span class="sg-label sg-label-light">Secondary (.action.secondary - dedykowany na ciemne tła)</span>
+            <button class="action secondary"><span>Przycisk poboczny</span></button>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>4. Elementy Formularzy</h2>
+        <div class="sg-forms-container">
+            <div class="sg-form-group">
+                <label for="input-text-example">Standardowe pole tekstowe</label>
+                <input type="text" id="input-text-example" placeholder="Wpisz szukaną frazę...">
+            </div>
+            <div class="sg-form-group">
+                <label for="textarea-example">Obszar tekstowy (Textarea)</label>
+                <textarea id="textarea-example" placeholder="Wpisz treść wiadomości..."></textarea>
+            </div>
+            <div class="sg-form-group-inline">
+                <label><input type="checkbox" checked> <span>Checkbox akceptacji</span></label>
+                <label><input type="radio" name="sg-radio" checked> <span>Radio box aktywny</span></label>
+            </div>
+            <div class="sg-form-group">
+                <label for="select-example">Pole wyboru (Select z wbudowaną strzałką)</label>
+                <select id="select-example">
+                    <option value="">Wybierz formę dostawy...</option>
+                    <option value="1">Paczkomat InPost 24/7</option>
+                    <option value="2">Kurier DHL</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>5. Nawigacja Okruszkowa (.breadcrumbs)</h2>
+        <div class="breadcrumbs">
+            <ul class="items">
+                <li class="item home"><a href="#">Sklep</a></li>
+                <li class="item category"><a href="#">Elektronika</a></li>
+                <li class="item product"><strong>Smartfony i Telefony</strong></li>
+            </ul>
+        </div>
+    </section>
+</div>
