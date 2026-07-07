@@ -13,6 +13,13 @@ $config->setFinder($finder)
     ->setRules([
         '@PSR12' => true,
         'array_syntax' => ['syntax' => 'short'],
+        'class_attributes_separation' => [
+            'elements' => [
+                'const' => 'none',
+                'method' => 'one',
+                'property' => 'one',
+            ],
+        ],
         'concat_space' => ['spacing' => 'one'],
         'include' => true,
         'new_with_braces' => true,
