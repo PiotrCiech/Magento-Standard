@@ -1,5 +1,8 @@
 .env
 *.log
+.cursor/
+magento.mdc
+Ogólne.pdf
 
 /vite/node_modules/
 /vite/dist/
