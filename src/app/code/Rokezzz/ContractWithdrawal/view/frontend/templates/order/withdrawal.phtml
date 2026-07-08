@@ -37,7 +37,7 @@ if (is_null($order) || !$withdrawalViewModel->shouldDisplay($order)) {
                     )
                 ) ?>
             </p>
-            <form method="post" action="<?= $block->escapeUrl($withdrawalViewModel->getSubmitUrl()) ?>">
+            <form class="contract-withdrawal-form" method="post" action="<?= $block->escapeUrl($withdrawalViewModel->getSubmitUrl()) ?>">
                 <?= $block->getBlockHtml('formkey') ?>
                 <input type="hidden" name="order_id" value="<?= (int) $order->getEntityId() ?>">
                 <div class="field">
@@ -50,8 +50,8 @@ if (is_null($order) || !$withdrawalViewModel->shouldDisplay($order)) {
                                   rows="5"></textarea>
                     </div>
                 </div>
-                <div class="actions-toolbar">
-                    <button type="submit" class="action primary">
+                <div class="contract-withdrawal-actions" style="display:flex;justify-content:flex-end;margin-top:16px;width:100%;">
+                    <button type="submit" class="action primary" style="margin:0 0 0 auto;">
                         <span><?= $block->escapeHtml(__('Submit withdrawal request')) ?></span>
                     </button>
                 </div>
