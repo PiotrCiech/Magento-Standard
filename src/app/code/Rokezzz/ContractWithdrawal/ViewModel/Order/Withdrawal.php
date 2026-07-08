@@ -43,7 +43,7 @@ class Withdrawal implements ArgumentInterface
 
     public function hasWithdrawalRequest(OrderInterface $order): bool
     {
-        return $this->getWithdrawalRequest($order) !== null;
+        return !is_null($this->getWithdrawalRequest($order));
     }
 
     public function canSubmit(OrderInterface $order): bool
@@ -88,7 +88,7 @@ class Withdrawal implements ArgumentInterface
     {
         $deadline = $this->withdrawalEligibilityChecker->getDeadline($order);
 
-        if ($deadline === null) {
+        if (is_null($deadline)) {
             return '';
         }
 
@@ -103,7 +103,7 @@ class Withdrawal implements ArgumentInterface
     {
         $withdrawalRequest = $this->getWithdrawalRequest($order);
 
-        if ($withdrawalRequest === null) {
+        if (is_null($withdrawalRequest)) {
             return '';
         }
 

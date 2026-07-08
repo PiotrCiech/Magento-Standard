@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Rokezzz\ContractWithdrawal\Model;
 
+use Throwable;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\OrderInterface;
 use Rokezzz\ContractWithdrawal\Api\Data\WithdrawalRequestInterface;
-use Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequest as WithdrawalRequestResource;
+use Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequestResource;
 
 class WithdrawalRequestManagement
 {
@@ -35,7 +36,7 @@ class WithdrawalRequestManagement
 
         try {
             $this->withdrawalRequestResource->save($withdrawalRequest);
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             throw new CouldNotSaveException(
                 __('The withdrawal request could not be saved right now. Please try again later.'),
                 $throwable

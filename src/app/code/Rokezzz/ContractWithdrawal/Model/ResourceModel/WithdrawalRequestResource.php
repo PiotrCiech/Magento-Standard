@@ -6,7 +6,7 @@ namespace Rokezzz\ContractWithdrawal\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
-class WithdrawalRequest extends AbstractDb
+class WithdrawalRequestResource extends AbstractDb
 {
     protected function _construct(): void
     {

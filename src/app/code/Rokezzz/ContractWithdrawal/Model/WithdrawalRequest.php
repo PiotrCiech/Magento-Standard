@@ -6,19 +6,20 @@ namespace Rokezzz\ContractWithdrawal\Model;
 
 use Magento\Framework\Model\AbstractModel;
 use Rokezzz\ContractWithdrawal\Api\Data\WithdrawalRequestInterface;
+use Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequestResource;
 
 class WithdrawalRequest extends AbstractModel implements WithdrawalRequestInterface
 {
     protected function _construct(): void
     {
-        $this->_init(\Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequest::class);
+        $this->_init(WithdrawalRequestResource::class);
     }
 
     public function getEntityId(): ?int
     {
         $entityId = $this->getData(self::ENTITY_ID);
 
-        return $entityId === null ? null : (int) $entityId;
+        return is_null($entityId) ? null : (int) $entityId;
     }
 
     public function getOrderId(): int

@@ -12,6 +12,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Rokezzz\ContractWithdrawal\Model\Config;
 use Rokezzz\ContractWithdrawal\Model\WithdrawalEligibilityChecker;
+use Rokezzz\ContractWithdrawal\Model\WithdrawalRequest;
 use Rokezzz\ContractWithdrawal\Model\WithdrawalRequestProvider;
 
 final class WithdrawalEligibilityCheckerTest extends TestCase
@@ -38,7 +39,7 @@ final class WithdrawalEligibilityCheckerTest extends TestCase
         $order = $this->createOrderMock();
 
         $this->config->method('isEnabled')->willReturn(true);
-        $this->withdrawalRequestProvider->method('getByOrderId')->willReturn($this->createStub(\Rokezzz\ContractWithdrawal\Model\WithdrawalRequest::class));
+        $this->withdrawalRequestProvider->method('getByOrderId')->willReturn($this->createStub(WithdrawalRequest::class));
 
         $this->expectException(LocalizedException::class);
 

@@ -46,7 +46,7 @@ class WithdrawalEligibilityChecker
             throw new LocalizedException(__('A withdrawal request cannot be created for a cancelled order.'));
         }
 
-        if ($this->withdrawalRequestProvider->getByOrderId((int) $order->getEntityId()) !== null) {
+        if (!is_null($this->withdrawalRequestProvider->getByOrderId((int) $order->getEntityId()))) {
             throw new LocalizedException(__('A withdrawal request has already been submitted for this order.'));
         }
 
@@ -75,7 +75,7 @@ class WithdrawalEligibilityChecker
     {
         $deadline = $this->getDeadline($order);
 
-        if ($deadline === null) {
+        if (is_null($deadline)) {
             return false;
         }
 

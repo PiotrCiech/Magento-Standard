@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\ContractWithdrawal\Model;
 
-use Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequest as WithdrawalRequestResource;
+use Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequestResource;
 
 class WithdrawalRequestProvider
 {
@@ -19,7 +19,7 @@ class WithdrawalRequestProvider
         $withdrawalRequest = $this->withdrawalRequestCreator->create();
         $this->withdrawalRequestResource->load($withdrawalRequest, $orderId, 'order_id');
 
-        if ($withdrawalRequest->getEntityId() === null) {
+        if (is_null($withdrawalRequest->getEntityId())) {
             return null;
         }
 
