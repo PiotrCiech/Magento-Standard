@@ -13,7 +13,6 @@ interface WithdrawalRequestInterface
     public const STATEMENT_TEXT = 'statement_text';
     public const CREATED_AT = 'created_at';
     public const UPDATED_AT = 'updated_at';
-
     public const STATUS_REQUESTED = 'requested';
     public const STATUS_ACCEPTED = 'accepted';
     public const STATUS_REJECTED = 'rejected';
