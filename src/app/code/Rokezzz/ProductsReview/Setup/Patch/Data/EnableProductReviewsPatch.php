@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Review\Setup\Patch\Data;
+namespace Rokezzz\ProductsReview\Setup\Patch\Data;
 
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;

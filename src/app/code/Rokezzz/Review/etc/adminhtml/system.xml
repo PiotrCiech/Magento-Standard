@@ -3,22 +3,43 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="rokezzz_review" translate="label" sortOrder="920" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Rokezzz Reviews</label>
+            <label>Rokezzz Review</label>
             <tab>general</tab>
             <resource>Magento_Config::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Opinie produktowe</label>
+                <label>Google reviews</label>
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable product reviews</label>
-                    <comment>When disabled, review forms, lists, and ratings are hidden on the storefront.</comment>
+                    <label>Enable Google reviews integration</label>
+                    <comment>When disabled, the module serves an empty payload and skips refresh jobs.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <config_path>catalog/review/active</config_path>
                 </field>
-                <field id="allow_guest" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Allow guests to write reviews</label>
-                    <comment>Only applies when product reviews are enabled.</comment>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <config_path>catalog/review/allow_guest</config_path>
+                <field id="google_api_key" translate="label comment" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google API key</label>
+                    <comment>API key used to call Google Places Place Details.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="google_place_id" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google place ID</label>
+                    <comment>Place identifier of the business whose reviews should be cached.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="cache_ttl_hours" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cache TTL (hours)</label>
+                    <comment>How long the cached payload remains fresh before a new Google request is attempted.</comment>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="max_reviews" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum reviews</label>
+                    <comment>Upper limit of reviews returned by the provider and stored in cache.</comment>
+                    <validate>validate-number validate-greater-than-zero</validate>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
