@@ -171,7 +171,7 @@ class ReviewProvider implements ReviewProviderInterface
 
     private function resolveStoreId(?int $storeId): int
     {
-        if ($storeId !== null) {
+        if (!is_null($storeId)) {
             return $storeId;
         }
 
