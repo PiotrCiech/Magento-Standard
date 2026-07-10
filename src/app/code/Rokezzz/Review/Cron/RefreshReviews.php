@@ -8,6 +8,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 use Rokezzz\Review\Api\ReviewProviderInterface;
 use Rokezzz\Review\Model\Config\ReviewConfig;
+use Throwable;
 
 class RefreshReviews
 {
@@ -29,7 +30,7 @@ class RefreshReviews
 
             try {
                 $this->reviewProvider->refresh($storeId);
-            } catch (\Throwable $throwable) {
+            } catch (Throwable $throwable) {
                 $this->logger->warning(
                     sprintf(
                         'Google reviews refresh failed for store %d: %s',
