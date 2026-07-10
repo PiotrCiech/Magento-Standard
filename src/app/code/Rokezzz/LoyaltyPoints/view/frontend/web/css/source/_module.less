@@ -15,8 +15,8 @@
                 flex: 1 1 0;
                 min-width: 0;
                 margin: 0;
-                padding: @btn-padding;
-                font-size: @fontSizeM;
+                padding: @button__padding;
+                font-size: @button__font-size;
                 font-weight: 600;
                 line-height: 1;
                 box-sizing: border-box;
@@ -25,15 +25,15 @@
             }
 
             .action.secondary {
-                background: @gray200;
-                border: 1px solid @gray200;
-                color: @text__color;
+                background: @button__background;
+                border: @button__border;
+                color: @button__color;
                 box-shadow: none;
                 backdrop-filter: none;
 
                 &:hover {
-                    background: darken(@gray200, 5%);
-                    border-color: darken(@gray200, 5%);
+                    background: @button__hover__background;
+                    border: @button__hover__border;
                     box-shadow: none;
                 }
             }
