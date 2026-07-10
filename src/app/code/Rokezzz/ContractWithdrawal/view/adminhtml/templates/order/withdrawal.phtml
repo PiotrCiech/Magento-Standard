@@ -1,0 +1,31 @@
+<?php
+/** @var \Rokezzz\ContractWithdrawal\Block\Order\Withdrawal $block */
+/** @var \Rokezzz\ContractWithdrawal\ViewModel\Order\Withdrawal $withdrawalViewModel */
+$withdrawalViewModel = $block->getData('withdrawal_view_model');
+$order = $block->getOrder();
+
+if (is_null($order) || !$withdrawalViewModel->hasWithdrawalRequest($order)) {
+    return;
+}
+?>
+<section class="admin__page-section order-contract-withdrawal">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Contract withdrawal')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <p>
+            <strong><?= $block->escapeHtml(__('Status:')) ?></strong>
+            <?= $block->escapeHtml($withdrawalViewModel->getStatusLabel($order)) ?>
+        </p>
+        <p>
+            <strong><?= $block->escapeHtml(__('Submitted at:')) ?></strong>
+            <?= $block->escapeHtml($withdrawalViewModel->getFormattedCreatedAt($order)) ?>
+        </p>
+        <?php if ($withdrawalViewModel->getStatementText($order) !== '') : ?>
+            <p>
+                <strong><?= $block->escapeHtml(__('Statement details:')) ?></strong><br>
+                <?= $block->escapeHtml($withdrawalViewModel->getStatementText($order), ['br']) ?>
+            </p>
+        <?php endif; ?>
+    </div>
+</section>

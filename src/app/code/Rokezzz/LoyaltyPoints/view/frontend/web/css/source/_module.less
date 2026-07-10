@@ -16,7 +16,7 @@
                 min-width: 0;
                 margin: 0;
                 padding: @button__padding;
-                font-size: @button__font-size;
+                font-size: 1.4rem;
                 font-weight: 600;
                 line-height: 1;
                 box-sizing: border-box;
@@ -25,15 +25,15 @@
             }
 
             .action.secondary {
-                background: @button__background;
-                border: @button__border;
-                color: @button__color;
+                background: #e0e0e0;
+                border: 1px solid #e0e0e0;
+                color: #222;
                 box-shadow: none;
                 backdrop-filter: none;
 
                 &:hover {
-                    background: @button__hover__background;
-                    border: @button__hover__border;
+                    background: darken(#e0e0e0, 5%);
+                    border-color: darken(#e0e0e0, 5%);
                     box-shadow: none;
                 }
             }
