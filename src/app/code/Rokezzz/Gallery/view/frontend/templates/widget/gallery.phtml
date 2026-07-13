@@ -1,0 +1,80 @@
+<?php
+declare(strict_types=1);
+
+use Rokezzz\Gallery\Block\Widget\Gallery;
+
+/** @var Gallery $block */
+
+$images = $block->getGalleryImages();
+$title = $block->getData('title');
+$uniqueId = 'rokezzz-gallery-' . uniqid();
+?>
+
+<?php if (!empty($images)): ?>
+<div class="rokezzz-gallery-wrapper" id="<?= $uniqueId ?>">
+    <?php if ($title): ?>
+    <h2 class="gallery-title"><?= $block->escapeHtml($title) ?></h2>
+    <?php endif; ?>
+
+    <div class="gallery-main-viewport">
+        <button class="gallery-nav-btn prev-btn">&#10094;</button>
+        <div class="gallery-main-stage">
+            <?php foreach ($images as $index => $image): ?>
+            <div class="gallery-slide <?= $index === 0 ? 'active' : '' ?>">
+                <img src="<?= $block->escapeUrl($image['img']) ?>"
+                    alt="<?= $block->escapeHtmlAttr($image['caption']) ?>" />
+                <?php if (!empty($image['caption'])): ?>
+                <div class="slide-caption"><?= $block->escapeHtml($image['caption']) ?></div>
+                <?php endif; ?>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <button class="gallery-nav-btn next-btn">&#10095;</button>
+    </div>
+
+    <div class="gallery-thumbnails">
+        <?php foreach ($images as $index => $image): ?>
+        <div class="thumb-item <?= $index === 0 ? 'active' : '' ?>" data-slide-index="<?= $index ?>">
+            <img src="<?= $block->escapeUrl($image['thumb']) ?>" alt="thumbnail" />
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script>
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        const $gallery = $('#<?= $uniqueId ?>'),
+            $slides = $gallery.find('.gallery-slide'),
+            $thumbs = $gallery.find('.thumb-item');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            if (index >= $slides.length) {
+                index = 0;
+            }
+            if (index < 0) {
+                index = $slides.length - 1;
+            }
+
+            currentIndex = index;
+            $slides.removeClass('active').eq(currentIndex).addClass('active');
+            $thumbs.removeClass('active').eq(currentIndex).addClass('active');
+        }
+
+        $gallery.find('.next-btn').on('click', function() {
+            showSlide(currentIndex + 1);
+        });
+
+        $gallery.find('.prev-btn').on('click', function() {
+            showSlide(currentIndex - 1);
+        });
+
+        $thumbs.on('click', function() {
+            const targetIndex = $(this).data('slide-index');
+            showSlide(targetIndex);
+        });
+    });
+});
+</script>
+<?php endif; ?>
