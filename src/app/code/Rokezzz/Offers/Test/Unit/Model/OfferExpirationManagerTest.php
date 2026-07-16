@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Test\Unit\Model;
 
+use ArrayIterator;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -52,7 +53,7 @@ final class OfferExpirationManagerTest extends TestCase
     public function testExpireDueOffersSkipsOffersWithoutExpirationDate(): void
     {
         $collection = $this->createMock(Collection::class);
-        $collection->method('getIterator')->willReturn(new \ArrayIterator([]));
+        $collection->method('getIterator')->willReturn(new ArrayIterator([]));
 
         $this->dateTime->method('gmtDate')->willReturn('2026-07-01 00:00:00');
         $this->offerCollectionCreator->method('create')->willReturn($collection);
@@ -75,7 +76,7 @@ final class OfferExpirationManagerTest extends TestCase
         ]);
 
         $collection = $this->createMock(Collection::class);
-        $collection->method('getIterator')->willReturn(new \ArrayIterator([$offer]));
+        $collection->method('getIterator')->willReturn(new ArrayIterator([$offer]));
 
         $this->dateTime->method('gmtDate')->willReturn('2026-07-01 00:00:00');
         $this->offerCollectionCreator->method('create')->willReturn($collection);

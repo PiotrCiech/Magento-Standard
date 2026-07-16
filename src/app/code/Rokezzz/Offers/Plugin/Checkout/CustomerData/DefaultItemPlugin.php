@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rokezzz\Offers\Plugin\Checkout\CustomerData;
 
 use Magento\Checkout\CustomerData\DefaultItem;
+use Magento\Quote\Model\Quote\Item;
 use Magento\Quote\Model\Quote\Item\AbstractItem;
 use Rokezzz\Offers\Model\Quote\OfferQuoteItemManager;
 use Rokezzz\Offers\Model\Quote\QuoteRequestQuoteItemManager;
@@ -17,7 +18,7 @@ class DefaultItemPlugin
     ) {
     }
 
-    public function afterGetItemData(DefaultItem $subject, array $result, \Magento\Quote\Model\Quote\Item $item): array
+    public function afterGetItemData(DefaultItem $subject, array $result, Item $item): array
     {
         if (!$item instanceof AbstractItem) {
             return $result;

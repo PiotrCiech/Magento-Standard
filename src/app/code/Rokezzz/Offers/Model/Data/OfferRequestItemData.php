@@ -9,7 +9,6 @@ use Rokezzz\Offers\Api\Data\OfferRequestItemDataInterface;
 class OfferRequestItemData implements OfferRequestItemDataInterface
 {
     private int $productId = 0;
-
     private float $qty = 0.0;
 
     private string $customerNote = '';

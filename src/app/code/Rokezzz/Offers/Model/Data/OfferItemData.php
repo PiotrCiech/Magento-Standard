@@ -9,11 +9,8 @@ use Rokezzz\Offers\Api\Data\OfferItemDataInterface;
 class OfferItemData implements OfferItemDataInterface
 {
     private ?int $requestItemId = null;
-
     private int $productId = 0;
-
     private float $offeredQty = 0.0;
-
     private float $offeredPrice = 0.0;
 
     public function getRequestItemId(): ?int
