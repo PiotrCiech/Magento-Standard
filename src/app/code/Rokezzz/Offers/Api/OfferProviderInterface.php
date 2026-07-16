@@ -12,6 +12,8 @@ interface OfferProviderInterface
 {
     public function getById(int $offerId): ?OfferInterface;
 
+    public function getByRequestId(int $requestId): ?OfferInterface;
+
     /**
      * @throws NoSuchEntityException
      */

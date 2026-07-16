@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Model;
 
-use Throwable;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Rokezzz\Offers\Api\Data\OfferInterface;
 use Rokezzz\Offers\Api\Data\OfferItemDataInterface;
 use Rokezzz\Offers\Api\Data\OfferRequestInterface;
 use Rokezzz\Offers\Api\Data\OfferRequestItemInterface;
-use Rokezzz\Offers\Api\Data\OfferRequestItemInterface;
 use Rokezzz\Offers\Api\OfferManagementInterface;
+use Rokezzz\Offers\Api\OfferNotificationSenderInterface;
 use Rokezzz\Offers\Api\OfferProviderInterface;
 use Rokezzz\Offers\Api\OfferRequestProviderInterface;
 use Rokezzz\Offers\Model\ResourceModel\OfferItemResource;
@@ -26,6 +24,7 @@ class OfferManagement implements OfferManagementInterface
     public function __construct(
         private readonly OfferCreator $offerCreator,
         private readonly OfferItemCreator $offerItemCreator,
+        private readonly OfferRequestCreator $offerRequestCreator,
         private readonly OfferResource $offerResource,
         private readonly OfferItemResource $offerItemResource,
         private readonly OfferRequestResource $offerRequestResource,
@@ -34,7 +33,8 @@ class OfferManagement implements OfferManagementInterface
         private readonly ProductRepositoryInterface $productRepository,
         private readonly OfferStatusValidator $offerStatusValidator,
         private readonly OfferIncrementIdGenerator $offerIncrementIdGenerator,
-        private readonly OfferAccessTokenGenerator $offerAccessTokenGenerator
+        private readonly OfferAccessTokenGenerator $offerAccessTokenGenerator,
+        private readonly OfferNotificationSenderInterface $offerNotificationSender
     ) {
     }
 
@@ -47,7 +47,7 @@ class OfferManagement implements OfferManagementInterface
         ?string $expiresAt,
         array $items
     ): OfferInterface {
-        $offerRequest = $this->getRequestOrThrow($requestId);
+        $offerRequest = $this->loadOfferRequestOrThrow($requestId);
         $this->offerStatusValidator->assertCanTransitionRequest(
             $offerRequest->getStatus(),
             OfferRequestInterface::STATUS_IN_REVIEW
@@ -64,18 +64,9 @@ class OfferManagement implements OfferManagementInterface
         $offer->setAdminNote($adminNote);
         $offer->setExpiresAt($expiresAt);
 
-        try {
-            $this->offerResource->save($offer);
-            $this->replaceOfferItems($offer, $items, $offerRequest);
-            $this->updateRequestStatus($offerRequest, OfferRequestInterface::STATUS_IN_REVIEW);
-        } catch (LocalizedException $localizedException) {
-            throw $localizedException;
-        } catch (Throwable $throwable) {
-            throw new CouldNotSaveException(
-                __('The offer could not be saved right now. Please try again later.'),
-                $throwable
-            );
-        }
+        $this->offerResource->save($offer);
+        $this->replaceOfferItems($offer, $items, $offerRequest);
+        $this->updateRequestStatus($offerRequest, OfferRequestInterface::STATUS_IN_REVIEW);
 
         return $offer;
     }
@@ -89,86 +80,50 @@ class OfferManagement implements OfferManagementInterface
         ?string $expiresAt,
         array $items
     ): OfferInterface {
-        $offer = $this->getOfferOrThrow($offerId);
+        $offer = $this->loadOfferOrThrow($offerId);
 
         if ($offer->getStatus() !== OfferInterface::STATUS_IN_REVIEW) {
             throw new LocalizedException(__('Only offers in review can be updated.'));
         }
 
-        $offerRequest = $this->getRequestOrThrow($offer->getRequestId());
+        $offerRequest = $this->loadOfferRequestOrThrow($offer->getRequestId());
         $this->assertOfferItemsAreValid($items);
 
         $offer->setAdminNote($adminNote);
         $offer->setExpiresAt($expiresAt);
 
-        try {
-            $this->offerResource->save($offer);
-            $this->deleteExistingOfferItems($offerId);
-            $this->replaceOfferItems($offer, $items, $offerRequest);
-        } catch (LocalizedException $localizedException) {
-            throw $localizedException;
-        } catch (Throwable $throwable) {
-            throw new CouldNotSaveException(
-                __('The offer could not be saved right now. Please try again later.'),
-                $throwable
-            );
-        }
+        $this->offerResource->save($offer);
+        $this->deleteExistingOfferItems($offerId);
+        $this->replaceOfferItems($offer, $items, $offerRequest);
 
         return $offer;
     }
 
     public function markAsOffered(int $offerId): OfferInterface
     {
-        $offer = $this->getOfferOrThrow($offerId);
-        $offerRequest = $this->getRequestOrThrow($offer->getRequestId());
+        $offer = $this->loadOfferOrThrow($offerId);
+        $offerRequest = $this->loadOfferRequestOrThrow($offer->getRequestId());
 
         $this->offerStatusValidator->assertCanTransitionOffer(
             $offer->getStatus(),
             OfferInterface::STATUS_OFFERED
         );
-
-        if (is_null($offer->getExpiresAt()) || trim((string) $offer->getExpiresAt()) === '') {
-            throw new LocalizedException(__('Please set an expiration date before sending the offer.'));
-        }
-
-        $offerItems = $this->offerProvider->getItemsByOfferId($offerId);
-
-        if ($offerItems === []) {
-            throw new LocalizedException(__('The offer must contain at least one item.'));
-        }
-
-        foreach ($offerItems as $offerItem) {
-            if ($offerItem->getOfferedQty() <= 0) {
-                throw new LocalizedException(__('Each offer item must include a quantity greater than zero.'));
-            }
-
-            if ($offerItem->getOfferedPrice() < 0) {
-                throw new LocalizedException(__('Each offer item must include a valid price.'));
-            }
-        }
+        $this->assertOfferHasValidItems($offerId);
 
         $offer->setStatus(OfferInterface::STATUS_OFFERED);
         $offer->setSentAt(date('Y-m-d H:i:s'));
 
-        try {
-            $this->offerResource->save($offer);
-            $this->updateRequestStatus($offerRequest, OfferRequestInterface::STATUS_OFFERED);
-        } catch (LocalizedException $localizedException) {
-            throw $localizedException;
-        } catch (Throwable $throwable) {
-            throw new CouldNotSaveException(
-                __('The offer could not be sent right now. Please try again later.'),
-                $throwable
-            );
-        }
+        $this->offerResource->save($offer);
+        $this->updateRequestStatus($offerRequest, OfferRequestInterface::STATUS_OFFERED);
+        $this->offerNotificationSender->sendOfferSentNotification($offer);
 
         return $offer;
     }
 
     public function reject(int $offerId): OfferInterface
     {
-        $offer = $this->getOfferOrThrow($offerId);
-        $offerRequest = $this->getRequestOrThrow($offer->getRequestId());
+        $offer = $this->loadOfferOrThrow($offerId);
+        $offerRequest = $this->loadOfferRequestOrThrow($offer->getRequestId());
 
         $this->offerStatusValidator->assertCanTransitionOffer(
             $offer->getStatus(),
@@ -177,17 +132,8 @@ class OfferManagement implements OfferManagementInterface
 
         $offer->setStatus(OfferInterface::STATUS_REJECTED);
 
-        try {
-            $this->offerResource->save($offer);
-            $this->updateRequestStatus($offerRequest, OfferRequestInterface::STATUS_REJECTED);
-        } catch (LocalizedException $localizedException) {
-            throw $localizedException;
-        } catch (Throwable $throwable) {
-            throw new CouldNotSaveException(
-                __('The offer could not be rejected right now. Please try again later.'),
-                $throwable
-            );
-        }
+        $this->offerResource->save($offer);
+        $this->updateRequestStatus($offerRequest, OfferRequestInterface::STATUS_REJECTED);
 
         return $offer;
     }
@@ -223,15 +169,36 @@ class OfferManagement implements OfferManagementInterface
     }
 
     /**
+     * @throws LocalizedException
+     */
+    private function assertOfferHasValidItems(int $offerId): void
+    {
+        $offerItems = $this->offerProvider->getItemsByOfferId($offerId);
+
+        if ($offerItems === []) {
+            throw new LocalizedException(__('The offer must contain at least one item.'));
+        }
+
+        foreach ($offerItems as $offerItem) {
+            if ($offerItem->getOfferedQty() <= 0) {
+                throw new LocalizedException(__('Each offer item must include a quantity greater than zero.'));
+            }
+
+            if ($offerItem->getOfferedPrice() < 0) {
+                throw new LocalizedException(__('Each offer item must include a valid price.'));
+            }
+        }
+    }
+
+    /**
      * @param OfferItemDataInterface[] $items
      *
-     * @throws CouldNotSaveException
      * @throws NoSuchEntityException
      */
     private function replaceOfferItems(
-        OfferInterface $offer,
+        Offer $offer,
         array $items,
-        OfferRequestInterface $offerRequest
+        OfferRequest $offerRequest
     ): void {
         $requestItemsById = $this->getRequestItemsIndexedById($offerRequest);
 
@@ -250,21 +217,14 @@ class OfferManagement implements OfferManagementInterface
             $offerItem->setBasePrice((float) $product->getPrice());
             $offerItem->setOfferedPrice($itemData->getOfferedPrice());
 
-            try {
-                $this->offerItemResource->save($offerItem);
-            } catch (Throwable $throwable) {
-                throw new CouldNotSaveException(
-                    __('The offer could not be saved right now. Please try again later.'),
-                    $throwable
-                );
-            }
+            $this->offerItemResource->save($offerItem);
         }
     }
 
     /**
      * @return array<int, OfferRequestItemInterface>
      */
-    private function getRequestItemsIndexedById(OfferRequestInterface $offerRequest): array
+    private function getRequestItemsIndexedById(OfferRequest $offerRequest): array
     {
         $indexedItems = [];
 
@@ -304,18 +264,15 @@ class OfferManagement implements OfferManagementInterface
     private function deleteExistingOfferItems(int $offerId): void
     {
         foreach ($this->offerProvider->getItemsByOfferId($offerId) as $offerItem) {
-            $entityId = $offerItem->getEntityId();
-
-            if (!is_null($entityId)) {
-                $this->offerItemResource->delete($offerItem);
+            if (!$offerItem instanceof OfferItem || is_null($offerItem->getEntityId())) {
+                continue;
             }
+
+            $this->offerItemResource->delete($offerItem);
         }
     }
 
-    /**
-     * @throws CouldNotSaveException
-     */
-    private function updateRequestStatus(OfferRequestInterface $offerRequest, string $status): void
+    private function updateRequestStatus(OfferRequest $offerRequest, string $status): void
     {
         if ($offerRequest->getStatus() === $status) {
             return;
@@ -323,25 +280,18 @@ class OfferManagement implements OfferManagementInterface
 
         $this->offerStatusValidator->assertCanTransitionRequest($offerRequest->getStatus(), $status);
         $offerRequest->setStatus($status);
-
-        try {
-            $this->offerRequestResource->save($offerRequest);
-        } catch (Throwable $throwable) {
-            throw new CouldNotSaveException(
-                __('The offer request could not be updated right now. Please try again later.'),
-                $throwable
-            );
-        }
+        $this->offerRequestResource->save($offerRequest);
     }
 
     /**
      * @throws NoSuchEntityException
      */
-    private function getRequestOrThrow(int $requestId): OfferRequestInterface
+    private function loadOfferRequestOrThrow(int $requestId): OfferRequest
     {
-        $offerRequest = $this->offerRequestProvider->getById($requestId);
+        $offerRequest = $this->offerRequestCreator->create();
+        $this->offerRequestResource->load($offerRequest, $requestId);
 
-        if (is_null($offerRequest)) {
+        if (is_null($offerRequest->getEntityId())) {
             throw new NoSuchEntityException(__('The offer request no longer exists.'));
         }
 
@@ -351,11 +301,12 @@ class OfferManagement implements OfferManagementInterface
     /**
      * @throws NoSuchEntityException
      */
-    private function getOfferOrThrow(int $offerId): OfferInterface
+    private function loadOfferOrThrow(int $offerId): Offer
     {
-        $offer = $this->offerProvider->getById($offerId);
+        $offer = $this->offerCreator->create();
+        $this->offerResource->load($offer, $offerId);
 
-        if (is_null($offer)) {
+        if (is_null($offer->getEntityId())) {
             throw new NoSuchEntityException(__('The offer no longer exists.'));
         }
 

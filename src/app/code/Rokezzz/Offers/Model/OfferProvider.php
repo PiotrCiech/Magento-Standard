@@ -8,8 +8,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Rokezzz\Offers\Api\Data\OfferInterface;
 use Rokezzz\Offers\Api\Data\OfferItemInterface;
 use Rokezzz\Offers\Api\OfferProviderInterface;
-use Rokezzz\Offers\Model\ResourceModel\Offer\CollectionFactory as OfferCollectionFactory;
-use Rokezzz\Offers\Model\ResourceModel\OfferItem\CollectionFactory as OfferItemCollectionFactory;
 use Rokezzz\Offers\Model\ResourceModel\OfferResource;
 
 class OfferProvider implements OfferProviderInterface
@@ -17,8 +15,8 @@ class OfferProvider implements OfferProviderInterface
     public function __construct(
         private readonly OfferCreator $offerCreator,
         private readonly OfferResource $offerResource,
-        private readonly OfferCollectionFactory $offerCollectionFactory,
-        private readonly OfferItemCollectionFactory $offerItemCollectionFactory
+        private readonly OfferCollectionCreator $offerCollectionCreator,
+        private readonly OfferItemCollectionCreator $offerItemCollectionCreator
     ) {
     }
 
@@ -28,6 +26,21 @@ class OfferProvider implements OfferProviderInterface
         $this->offerResource->load($offer, $offerId);
 
         if (is_null($offer->getEntityId())) {
+            return null;
+        }
+
+        return $offer;
+    }
+
+    public function getByRequestId(int $requestId): ?OfferInterface
+    {
+        $collection = $this->offerCollectionCreator->create();
+        $collection->addFieldToFilter(OfferInterface::REQUEST_ID, $requestId);
+        $collection->setPageSize(1);
+
+        $offer = $collection->getFirstItem();
+
+        if (!$offer instanceof OfferInterface || is_null($offer->getEntityId())) {
             return null;
         }
 
@@ -51,7 +64,7 @@ class OfferProvider implements OfferProviderInterface
 
     public function getListByCustomerId(int $customerId): array
     {
-        $collection = $this->offerCollectionFactory->create();
+        $collection = $this->offerCollectionCreator->create();
         $collection->addFieldToFilter(OfferInterface::CUSTOMER_ID, $customerId);
         $collection->setOrder(OfferInterface::CREATED_AT, 'DESC');
 
@@ -60,7 +73,7 @@ class OfferProvider implements OfferProviderInterface
 
     public function getItemsByOfferId(int $offerId): array
     {
-        $collection = $this->offerItemCollectionFactory->create();
+        $collection = $this->offerItemCollectionCreator->create();
         $collection->addFieldToFilter(OfferItemInterface::OFFER_ID, $offerId);
 
         return array_values($collection->getItems());

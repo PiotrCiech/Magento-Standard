@@ -8,7 +8,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Rokezzz\Offers\Api\Data\OfferRequestInterface;
 use Rokezzz\Offers\Api\Data\OfferRequestItemInterface;
 use Rokezzz\Offers\Api\OfferRequestProviderInterface;
-use Rokezzz\Offers\Model\ResourceModel\OfferRequestItem\CollectionFactory as OfferRequestItemCollectionFactory;
 use Rokezzz\Offers\Model\ResourceModel\OfferRequestResource;
 
 class OfferRequestProvider implements OfferRequestProviderInterface
@@ -16,7 +15,8 @@ class OfferRequestProvider implements OfferRequestProviderInterface
     public function __construct(
         private readonly OfferRequestCreator $offerRequestCreator,
         private readonly OfferRequestResource $offerRequestResource,
-        private readonly OfferRequestItemCollectionFactory $offerRequestItemCollectionFactory
+        private readonly OfferRequestItemCollectionCreator $offerRequestItemCollectionCreator,
+        private readonly OfferRequestCollectionCreator $offerRequestCollectionCreator
     ) {
     }
 
@@ -49,8 +49,17 @@ class OfferRequestProvider implements OfferRequestProviderInterface
 
     public function getItemsByRequestId(int $requestId): array
     {
-        $collection = $this->offerRequestItemCollectionFactory->create();
+        $collection = $this->offerRequestItemCollectionCreator->create();
         $collection->addFieldToFilter(OfferRequestItemInterface::REQUEST_ID, $requestId);
+
+        return array_values($collection->getItems());
+    }
+
+    public function getListByCustomerId(int $customerId): array
+    {
+        $collection = $this->offerRequestCollectionCreator->create();
+        $collection->addFieldToFilter(OfferRequestInterface::CUSTOMER_ID, $customerId);
+        $collection->setOrder(OfferRequestInterface::CREATED_AT, 'DESC');
 
         return array_values($collection->getItems());
     }

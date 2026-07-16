@@ -21,4 +21,9 @@ interface OfferRequestProviderInterface
      * @return OfferRequestItemInterface[]
      */
     public function getItemsByRequestId(int $requestId): array;
+
+    /**
+     * @return OfferRequestInterface[]
+     */
+    public function getListByCustomerId(int $customerId): array;
 }
