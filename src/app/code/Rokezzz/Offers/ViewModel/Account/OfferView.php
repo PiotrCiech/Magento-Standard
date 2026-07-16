@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\ViewModel\Account;
 
+use Throwable;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -82,7 +83,7 @@ class OfferView implements ArgumentInterface
 
         try {
             $this->offerStatusValidator->assertOfferIsUsable($offer);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return false;
         }
 

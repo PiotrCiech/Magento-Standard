@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\ViewModel\Account;
 
+use Throwable;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\UrlInterface;
@@ -87,7 +88,7 @@ class OfferList implements ArgumentInterface
     {
         try {
             $this->offerStatusValidator->assertOfferIsUsable($offer);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return false;
         }
 

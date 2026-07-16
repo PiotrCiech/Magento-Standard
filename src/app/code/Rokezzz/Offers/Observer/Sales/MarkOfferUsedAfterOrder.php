@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Observer\Sales;
 
+use Throwable;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
@@ -35,7 +36,7 @@ class MarkOfferUsedAfterOrder implements ObserverInterface
         foreach ($offerIds as $offerId) {
             try {
                 $this->offerUsageManager->markAsUsed($offerId);
-            } catch (\Throwable $throwable) {
+            } catch (Throwable $throwable) {
                 $this->logger->error(
                     'Failed to mark offer as used after order placement.',
                     [
@@ -63,7 +64,7 @@ class MarkOfferUsedAfterOrder implements ObserverInterface
             $quote = $this->cartRepository->get($quoteId);
 
             return $this->offerQuoteItemManager->getOfferIdsFromQuote($quote);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return [];
         }
     }

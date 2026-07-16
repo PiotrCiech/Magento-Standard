@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Controller\Cart;
 
+use Throwable;
 use Magento\Customer\Controller\AbstractAccount;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Action\Context;
@@ -47,7 +48,7 @@ class AddQuoteRequest extends AbstractAccount implements HttpPostActionInterface
             $this->messageManager->addSuccessMessage(__('The product has been added to your quote request cart.'));
         } catch (LocalizedException $localizedException) {
             $this->messageManager->addErrorMessage($localizedException->getMessage());
-        } catch (\Throwable) {
+        } catch (Throwable) {
             $this->messageManager->addErrorMessage(
                 __('The product could not be added to your quote request cart right now.')
             );

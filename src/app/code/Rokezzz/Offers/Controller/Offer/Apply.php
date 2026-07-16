@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Controller\Offer;
 
+use Throwable;
 use Magento\Customer\Controller\AbstractAccount;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Action\Context;
@@ -47,7 +48,7 @@ class Apply extends AbstractAccount implements HttpPostActionInterface
             return $resultRedirect->setPath('checkout/cart');
         } catch (LocalizedException $localizedException) {
             $this->messageManager->addErrorMessage($localizedException->getMessage());
-        } catch (\Throwable) {
+        } catch (Throwable) {
             $this->messageManager->addErrorMessage(
                 __('The offer could not be applied to your cart right now. Please try again later.')
             );

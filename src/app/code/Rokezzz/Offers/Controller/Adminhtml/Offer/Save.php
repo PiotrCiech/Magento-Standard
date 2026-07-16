@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Controller\Adminhtml\Offer;
 
+use Exception;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\Http as HttpRequest;
@@ -68,7 +69,7 @@ class Save extends OfferAction implements HttpPostActionInterface
             return $resultRedirect->setPath('*/*/');
         } catch (LocalizedException $localizedException) {
             $this->messageManager->addErrorMessage($localizedException->getMessage());
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->messageManager->addExceptionMessage(
                 $exception,
                 __('The offer could not be saved right now. Please try again later.')

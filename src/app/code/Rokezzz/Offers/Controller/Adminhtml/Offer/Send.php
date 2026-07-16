@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Controller\Adminhtml\Offer;
 
+use Exception;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
@@ -32,7 +33,7 @@ class Send extends OfferAction implements HttpPostActionInterface
         } catch (LocalizedException $localizedException) {
             $this->messageManager->addErrorMessage($localizedException->getMessage());
             $resultRedirect->setPath('*/*/edit', ['entity_id' => $offerId]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->messageManager->addExceptionMessage(
                 $exception,
                 __('The offer could not be sent right now. Please try again later.')

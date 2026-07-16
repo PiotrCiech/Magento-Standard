@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Offers\Controller\Request;
 
+use Throwable;
 use Magento\Customer\Controller\AbstractAccount;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Action\Context;
@@ -46,7 +47,7 @@ class SubmitFromCart extends AbstractAccount implements HttpPostActionInterface
             $this->messageManager->addSuccessMessage(__('Your quote request has been submitted.'));
         } catch (LocalizedException $localizedException) {
             $this->messageManager->addErrorMessage($localizedException->getMessage());
-        } catch (\Throwable) {
+        } catch (Throwable) {
             $this->messageManager->addErrorMessage(
                 __('Your quote request could not be submitted right now. Please try again later.')
             );

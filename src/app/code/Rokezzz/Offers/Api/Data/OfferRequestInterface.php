@@ -12,7 +12,6 @@ interface OfferRequestInterface
     public const CUSTOMER_NOTE = 'customer_note';
     public const CREATED_AT = 'created_at';
     public const UPDATED_AT = 'updated_at';
-
     public const STATUS_NEW = 'new';
     public const STATUS_IN_REVIEW = 'in_review';
     public const STATUS_OFFERED = 'offered';
