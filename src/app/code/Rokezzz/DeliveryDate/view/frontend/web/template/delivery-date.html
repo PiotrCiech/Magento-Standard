@@ -1,0 +1,20 @@
+<fieldset class="fieldset delivery-date-fieldset" data-bind="visible: isVisible()">
+    <div class="field delivery-date" data-bind="css: {'required': required}">
+        <label class="label">
+            <span data-bind="text: label"></span>
+        </label>
+        <div class="control">
+            <input class="input-text"
+                   type="date"
+                   data-bind="value: deliveryDate,
+                              attr: {
+                                  min: minDate,
+                                  max: maxDate,
+                                  name: 'preferred_delivery_date',
+                                  required: required
+                              },
+                              event: {change: onDateChange}" />
+            <div class="mage-error" data-bind="visible: validationMessage, text: validationMessage"></div>
+        </div>
+    </div>
+</fieldset>
