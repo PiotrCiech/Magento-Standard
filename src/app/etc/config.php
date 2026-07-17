@@ -371,6 +371,7 @@ return [
         'PayPro_Przelewy24' => 1,
         'Rokezzz_AvailabilityNotification' => 1,
         'Rokezzz_CatalogListing' => 1,
+        'Rokezzz_ChatBot' => 1,
         'Rokezzz_CheckoutAgreements' => 1,
         'Rokezzz_CmsData' => 1,
         'Rokezzz_Compare' => 1,
@@ -400,8 +401,8 @@ return [
         'Rokezzz_ReCaptcha' => 1,
         'Rokezzz_ResubmittingArchivedOrders' => 1,
         'Rokezzz_Review' => 1,
-        'Rokezzz_Styleguide' => 1,
         'Rokezzz_Settings' => 1,
+        'Rokezzz_Styleguide' => 1,
         'Rokezzz_Tax' => 1,
         'Rokezzz_ViteDev' => 1,
         'Rokezzz_Wishlist' => 1
