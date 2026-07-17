@@ -1,0 +1,29 @@
+<div class="opc-block-loyalty-points" data-bind="visible: showComponent">
+    <span class="title" data-bind="i18n: 'Loyalty Points'"></span>
+    <div class="block-content">
+        <p class="loyalty-points-balance" data-bind="text: balanceLabel"></p>
+        <form class="form form-loyalty-points" id="rokezzz-loyalty-points-form">
+            <div class="field">
+                <label class="label" for="rokezzz-loyalty-points-input">
+                    <span data-bind="i18n: 'Points to use'"></span>
+                </label>
+                <div class="control">
+                    <input class="input-text"
+                           type="number"
+                           min="0"
+                           id="rokezzz-loyalty-points-input"
+                           data-bind="value: pointsToApply, attr: {max: maxRedeemablePoints}"/>
+                </div>
+            </div>
+            <div class="loyalty-points-buttons">
+                <button class="action primary action-apply" type="button" data-bind="click: applyPoints, enable: canApply">
+                    <span data-bind="i18n: 'Apply Points'"></span>
+                </button>
+                <button class="action secondary action-cancel" type="button" data-bind="click: cancelPoints, visible: isApplied">
+                    <span data-bind="i18n: 'Cancel'"></span>
+                </button>
+            </div>
+            <p class="message" data-bind="text: statusMessage, visible: statusMessage"></p>
+        </form>
+    </div>
+</div>

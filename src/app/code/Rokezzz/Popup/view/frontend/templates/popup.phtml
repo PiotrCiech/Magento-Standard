@@ -1,0 +1,84 @@
+<?php
+declare(strict_types=1);
+
+use Rokezzz\Popup\Block\Popup;
+use Magento\Cms\Block\Block;
+
+/** @var Popup $block */
+if (!$block->isEnabled() || !$block->getCmsBlockId()) {
+    return;
+}
+?>
+<div id="rokezzz-promo-modal" style="display:none;">
+    <?= $block->getLayout()->createBlock(Block::class)->setBlockId($block->getCmsBlockId())->toHtml(); ?>
+</div>
+
+<script>
+require([
+    'jquery',
+    'Magento_Ui/js/modal/modal'
+], function($, modal) {
+    'use strict';
+
+    const popupKey = 'rokezzz_popup_shown',
+          popup = $('#rokezzz-promo-modal');
+
+    if (localStorage.getItem(popupKey)) {
+        return;
+    }
+
+    const options = {
+        type: 'popup',
+        responsive: true,
+        innerScroll: true,
+        title: '',
+        buttons: [],
+        keyEventHandlers: {
+            escapeKey: function(e) {
+                const modalEl = popup.closest('.modal-popup');
+                
+                if (modalEl.hasClass('_show') && !modalEl.hasClass('closing')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    triggerPopupClose(modalEl);
+                }
+            }
+        },
+        opened: function() {
+            const modalEl = popup.closest('.modal-popup');
+            
+            modalEl.off('click.modal');
+            modalEl.on('click.rokezzzPopup', function(e) {
+                if ($(e.target).hasClass('modal-popup') || $(e.target).closest('.action-close')
+                    .length) {
+                    e.preventDefault();
+                    triggerPopupClose(modalEl);
+                }
+            });
+        },
+        closed: function() {
+            localStorage.setItem(popupKey, 'true');
+        }
+    };
+
+    function triggerPopupClose(modalEl) {
+        if (modalEl.hasClass('closing')) {
+            return;
+        }
+        
+        modalEl.addClass('closing');
+        setTimeout(function() {
+            popup.modal('closeModal');
+            modalEl.removeClass('closing');
+        }, 350);
+    }
+
+    modal(options, popup);
+
+    const delayTime = <?= $block->getDelayTime() ?>;
+    
+    setTimeout(function() {
+        popup.modal('openModal');
+    }, delayTime);
+});
+</script>
