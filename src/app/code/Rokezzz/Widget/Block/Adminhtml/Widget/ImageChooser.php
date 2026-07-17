@@ -55,7 +55,6 @@ class ImageChooser extends Template
         $jsScript = "
         <script>
             require(['jquery', 'mage/adminhtml/browser'], function($) {
-                // Wymuszenie załadowania zależności przed kliknięciem
             });
         </script>";
 
