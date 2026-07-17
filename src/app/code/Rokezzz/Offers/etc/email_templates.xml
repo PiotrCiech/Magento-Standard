@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/email_templates.xsd">
+    <template id="rokezzz_offers_offer_sent"
+              label="Rokezzz Offer Sent"
+              file="offer_sent.html"
+              type="html"
+              module="Rokezzz_Offers"
+              area="frontend"/>
+</config>

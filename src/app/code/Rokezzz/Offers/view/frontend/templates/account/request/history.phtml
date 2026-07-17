@@ -1,0 +1,59 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Rokezzz\Offers\ViewModel\Account\RequestHistory $viewModel */
+$viewModel = $block->getData('view_model');
+$requests = $viewModel->getRequests();
+?>
+<div class="block block-rokezzz-offer-requests">
+    <div class="block-title">
+        <strong><?= $escaper->escapeHtml(__('Quote Requests')) ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if ($requests === []): ?>
+            <p><?= $escaper->escapeHtml(__('You have not submitted any quote requests yet.')) ?></p>
+        <?php else: ?>
+            <table class="data table table-rokezzz-offer-requests" id="rokezzz-offer-request-list">
+                <thead>
+                    <tr>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Request ID')) ?></th>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Status')) ?></th>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Items')) ?></th>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Created At')) ?></th>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Actions')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($requests as $request): ?>
+                        <?php $offerViewUrl = $viewModel->getOfferViewUrl($request); ?>
+                        <tr>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Request ID')) ?>">
+                                <?= $escaper->escapeHtml((string) $request->getEntityId()) ?>
+                            </td>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Status')) ?>">
+                                <span class="rokezzz-status <?= $escaper->escapeHtmlAttr($viewModel->getStatusClass($request)) ?>">
+                                    <?= $escaper->escapeHtml($viewModel->getStatusLabel($request)) ?>
+                                </span>
+                            </td>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Items')) ?>">
+                                <?= $escaper->escapeHtml((string) $viewModel->getItemCount($request)) ?>
+                            </td>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Created At')) ?>">
+                                <?= $escaper->escapeHtml($viewModel->formatDate($request->getCreatedAt())) ?>
+                            </td>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Actions')) ?>">
+                                <?php if (!is_null($offerViewUrl)): ?>
+                                    <a href="<?= $escaper->escapeUrl($offerViewUrl) ?>">
+                                        <?= $escaper->escapeHtml(__('View Offer')) ?>
+                                    </a>
+                                <?php else: ?>
+                                    <span><?= $escaper->escapeHtml(__('Pending')) ?></span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>

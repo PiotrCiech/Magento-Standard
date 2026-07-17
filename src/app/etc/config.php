@@ -392,6 +392,7 @@ return [
         'Rokezzz_LocaleDefaults' => 1,
         'Rokezzz_LoyaltyPoints' => 1,
         'Rokezzz_MostPopular' => 1,
+        'Rokezzz_Offers' => 1,
         'Rokezzz_Omnibus' => 1,
         'Rokezzz_OrderOwnerNotification' => 1,
         'Rokezzz_Orders' => 1,

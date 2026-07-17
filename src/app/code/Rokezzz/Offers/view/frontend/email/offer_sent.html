@@ -1,0 +1,35 @@
+<!--@subject {{trans "Your offer %offer_number is ready" offer_number=$offer_number}} @-->
+<!--@vars {
+"var customer_name":"Customer Name",
+"var offer_number":"Offer Number",
+"var offer_view_url":"Offer View URL",
+"var expires_at":"Expiration Date",
+"var store_name":"Store Name"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "Hello %name," name=$customer_name}}</p>
+
+<p>
+    {{trans "Your offer %offer_number from %store_name is ready." offer_number=$offer_number store_name=$store_name}}
+</p>
+
+<p>
+    {{trans "The offer PDF is attached to this email."}}
+</p>
+
+{{if expires_at}}
+    <p>
+        {{trans "This offer is valid until %expires_at." expires_at=$expires_at}}
+    </p>
+{{else}}
+    <p>
+        {{trans "This offer remains available until you use it."}}
+    </p>
+{{/if}}
+
+<p>
+    <a href="{{var offer_view_url}}">{{trans "View offer in your account"}}</a>
+</p>
+
+{{template config_path="design/email/footer_template"}}
