@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="rokezzz_offer_request" resource="default" engine="innodb"
+           comment="Rokezzz Offer Request">
+        <column xsi:type="int" name="entity_id" identity="true" unsigned="true" nullable="false"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="false"
+                comment="Customer ID"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="32" default="new"
+                comment="Request Status"/>
+        <column xsi:type="text" name="customer_note" nullable="true"
+                comment="Customer Note"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP"
+                on_update="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP"
+                on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_REQUEST_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="rokezzz_offer_request" column="customer_id"
+                    referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="ROKEZZZ_OFFER_REQUEST_CUSTOMER_ID_STATUS" indexType="btree">
+            <column name="customer_id"/>
+            <column name="status"/>
+        </index>
+    </table>
+
+    <table name="rokezzz_offer_request_item" resource="default" engine="innodb"
+           comment="Rokezzz Offer Request Item">
+        <column xsi:type="int" name="entity_id" identity="true" unsigned="true" nullable="false"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="request_id" unsigned="true" nullable="false"
+                comment="Request ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false"
+                comment="Product ID"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="64"
+                comment="Product SKU"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"
+                comment="Product Name"/>
+        <column xsi:type="decimal" name="qty" nullable="false" scale="4" precision="12"
+                default="0.0000" comment="Requested Quantity"/>
+        <column xsi:type="text" name="customer_note" nullable="true"
+                comment="Customer Note"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_REQUEST_ITEM_REQUEST_ID_ROKEZZZ_OFFER_REQUEST_ENTITY_ID"
+                    table="rokezzz_offer_request_item" column="request_id"
+                    referenceTable="rokezzz_offer_request" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_REQUEST_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="rokezzz_offer_request_item" column="product_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="ROKEZZZ_OFFER_REQUEST_ITEM_REQUEST_ID" indexType="btree">
+            <column name="request_id"/>
+        </index>
+    </table>
+
+    <table name="rokezzz_offer" resource="default" engine="innodb"
+           comment="Rokezzz Offer">
+        <column xsi:type="int" name="entity_id" identity="true" unsigned="true" nullable="false"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="request_id" unsigned="true" nullable="false"
+                comment="Request ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="false"
+                comment="Customer ID"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="32" default="in_review"
+                comment="Offer Status"/>
+        <column xsi:type="varchar" name="increment_id" nullable="false" length="32"
+                comment="Offer Increment ID"/>
+        <column xsi:type="varchar" name="access_token" nullable="false" length="64"
+                comment="Access Token"/>
+        <column xsi:type="text" name="customer_note" nullable="true"
+                comment="Customer Note"/>
+        <column xsi:type="text" name="admin_note" nullable="true"
+                comment="Admin Note"/>
+        <column xsi:type="timestamp" name="expires_at" nullable="true" on_update="false"
+                comment="Expires At"/>
+        <column xsi:type="timestamp" name="sent_at" nullable="true" on_update="false"
+                comment="Sent At"/>
+        <column xsi:type="timestamp" name="accepted_at" nullable="true" on_update="false"
+                comment="Accepted At"/>
+        <column xsi:type="timestamp" name="used_at" nullable="true" on_update="false"
+                comment="Used At"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP"
+                on_update="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP"
+                on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_REQUEST_ID_ROKEZZZ_OFFER_REQUEST_ENTITY_ID"
+                    table="rokezzz_offer" column="request_id"
+                    referenceTable="rokezzz_offer_request" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="rokezzz_offer" column="customer_id"
+                    referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="ROKEZZZ_OFFER_INCREMENT_ID">
+            <column name="increment_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="ROKEZZZ_OFFER_ACCESS_TOKEN">
+            <column name="access_token"/>
+        </constraint>
+        <index referenceId="ROKEZZZ_OFFER_CUSTOMER_ID_STATUS" indexType="btree">
+            <column name="customer_id"/>
+            <column name="status"/>
+        </index>
+        <index referenceId="ROKEZZZ_OFFER_EXPIRES_AT_STATUS" indexType="btree">
+            <column name="expires_at"/>
+            <column name="status"/>
+        </index>
+    </table>
+
+    <table name="rokezzz_offer_item" resource="default" engine="innodb"
+           comment="Rokezzz Offer Item">
+        <column xsi:type="int" name="entity_id" identity="true" unsigned="true" nullable="false"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="offer_id" unsigned="true" nullable="false"
+                comment="Offer ID"/>
+        <column xsi:type="int" name="request_item_id" unsigned="true" nullable="true"
+                comment="Request Item ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false"
+                comment="Product ID"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="64"
+                comment="Product SKU"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"
+                comment="Product Name"/>
+        <column xsi:type="decimal" name="requested_qty" nullable="false" scale="4" precision="12"
+                default="0.0000" comment="Requested Quantity"/>
+        <column xsi:type="decimal" name="offered_qty" nullable="false" scale="4" precision="12"
+                default="0.0000" comment="Offered Quantity"/>
+        <column xsi:type="decimal" name="base_price" nullable="false" scale="4" precision="12"
+                default="0.0000" comment="Base Price"/>
+        <column xsi:type="decimal" name="offered_price" nullable="false" scale="4" precision="12"
+                default="0.0000" comment="Offered Price"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_ITEM_OFFER_ID_ROKEZZZ_OFFER_ENTITY_ID"
+                    table="rokezzz_offer_item" column="offer_id"
+                    referenceTable="rokezzz_offer" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_ITEM_REQUEST_ITEM_ID_ROKEZZZ_OFFER_REQUEST_ITEM_ENTITY_ID"
+                    table="rokezzz_offer_item" column="request_item_id"
+                    referenceTable="rokezzz_offer_request_item" referenceColumn="entity_id" onDelete="SET NULL"/>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_OFFER_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="rokezzz_offer_item" column="product_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="ROKEZZZ_OFFER_ITEM_OFFER_ID" indexType="btree">
+            <column name="offer_id"/>
+        </index>
+    </table>
+</schema>
