@@ -11,7 +11,7 @@ use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 
-final class Index implements AccountInterface, HttpGetActionInterface
+class Index implements AccountInterface, HttpGetActionInterface
 {
     public function __construct(
         private readonly Session $customerSession,

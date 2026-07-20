@@ -17,11 +17,11 @@
         <plugin name="rokezzz_order_advance_save_order_number_on_place_order"
                 type="Rokezzz\OrderAdvance\Plugin\Quote\QuoteManagementPlugin"/>
     </type>
-    <type name="Magento\Sales\Model\ResourceModel\Order\Grid">
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
         <arguments>
             <argument name="columns" xsi:type="array">
                 <item name="rokezzz_customer_order_number" xsi:type="string">sales_order.rokezzz_customer_order_number</item>
             </argument>
         </arguments>
-    </type>
+    </virtualType>
 </config>

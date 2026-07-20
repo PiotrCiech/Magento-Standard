@@ -10,7 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class RecordPricesCommand extends Command
+class RecordPricesCommand extends Command
 {
     private const COMMAND_NAME = 'rokezzz:omnibus:record-prices';
 

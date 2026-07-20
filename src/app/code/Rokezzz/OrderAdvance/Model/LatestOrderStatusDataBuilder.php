@@ -22,7 +22,7 @@ final class LatestOrderStatusDataBuilder
      */
     public function build(?Order $order): array
     {
-        if (is_null($order) || !$this->isWithinVisibleDays($order)) {
+        if (is_null($order) || !$this->isWithinVisibleDays($order) || $this->isTerminalState($order)) {
             return ['visible' => false];
         }
 
@@ -54,5 +54,18 @@ final class LatestOrderStatusDataBuilder
         );
 
         return $createdDate >= $threshold;
+    }
+
+    private function isTerminalState(Order $order): bool
+    {
+        return in_array(
+            (string) $order->getState(),
+            [
+                Order::STATE_COMPLETE,
+                Order::STATE_CLOSED,
+                Order::STATE_CANCELED,
+            ],
+            true
+        );
     }
 }

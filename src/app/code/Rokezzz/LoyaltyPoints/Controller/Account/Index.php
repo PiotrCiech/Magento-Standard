@@ -12,7 +12,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Rokezzz\LoyaltyPoints\Model\Config;
 
-final class Index implements AccountInterface, HttpGetActionInterface
+class Index implements AccountInterface, HttpGetActionInterface
 {
     public function __construct(
         private readonly CustomerSession $customerSession,

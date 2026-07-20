@@ -11,7 +11,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Rokezzz\ResubmittingArchivedOrders\Model\Config;
 
-final class History implements HttpGetActionInterface
+class History implements HttpGetActionInterface
 {
     public function __construct(
         private readonly ResultFactory $resultFactory,

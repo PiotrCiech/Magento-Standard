@@ -15,7 +15,7 @@ use Magento\Framework\Message\ManagerInterface as MessageManager;
 use Magento\Sales\Model\Reorder\Data\Error;
 use Rokezzz\ResubmittingArchivedOrders\Api\ResubmitArchivedOrderInterface;
 
-final class Resubmit implements HttpPostActionInterface
+class Resubmit implements HttpPostActionInterface
 {
     public function __construct(
         private readonly RequestInterface $request,

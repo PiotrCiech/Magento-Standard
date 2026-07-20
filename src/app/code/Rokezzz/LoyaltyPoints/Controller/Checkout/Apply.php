@@ -17,7 +17,7 @@ use Rokezzz\LoyaltyPoints\Model\Config;
 use Rokezzz\LoyaltyPoints\Model\QuotePointsApplier;
 use Rokezzz\LoyaltyPoints\Model\RedemptionCalculator;
 
-final class Apply implements HttpPostActionInterface, CsrfAwareActionInterface
+class Apply implements HttpPostActionInterface, CsrfAwareActionInterface
 {
     public function __construct(
         private readonly JsonFactory $resultJsonFactory,

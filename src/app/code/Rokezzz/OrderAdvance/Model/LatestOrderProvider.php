@@ -12,6 +12,15 @@ use Magento\Sales\Model\Order;
 
 final class LatestOrderProvider
 {
+    /**
+     * @var list<string>
+     */
+    private const HIDDEN_STATES = [
+        Order::STATE_COMPLETE,
+        Order::STATE_CLOSED,
+        Order::STATE_CANCELED,
+    ];
+
     public function __construct(
         private readonly OrderRepositoryInterface $orderRepository,
         private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
@@ -32,6 +41,7 @@ final class LatestOrderProvider
 
         $searchCriteria = $this->searchCriteriaBuilder
             ->addFilter(OrderInterface::CUSTOMER_ID, $customerId)
+            ->addFilter(OrderInterface::STATE, self::HIDDEN_STATES, 'nin')
             ->addSortOrder($sortOrder)
             ->setPageSize(1)
             ->setCurrentPage(1)

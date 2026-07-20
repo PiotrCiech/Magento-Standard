@@ -9,6 +9,7 @@ define([
             this._super();
 
             this.latestOrderStatus = customerData.get('rokezzz-latest-order-status');
+            customerData.reload(['rokezzz-latest-order-status'], true);
 
             return this;
         },

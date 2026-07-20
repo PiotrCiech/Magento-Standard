@@ -8,7 +8,7 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 
-final class Index implements HttpGetActionInterface
+class Index implements HttpGetActionInterface
 {
     public function __construct(
         private readonly PageFactory $pageFactory
