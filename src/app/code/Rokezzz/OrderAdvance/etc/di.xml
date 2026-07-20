@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="rokezzz_order_advance_save_order_number_on_shipping"
+                type="Rokezzz\OrderAdvance\Plugin\Checkout\ShippingInformationManagementPlugin"/>
+    </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+        <plugin name="rokezzz_order_advance_save_order_number_on_payment"
+                type="Rokezzz\OrderAdvance\Plugin\Checkout\PaymentInformationManagementPlugin"/>
+    </type>
+    <type name="Magento\Checkout\Model\GuestPaymentInformationManagement">
+        <plugin name="rokezzz_order_advance_save_order_number_on_guest_payment"
+                type="Rokezzz\OrderAdvance\Plugin\Checkout\GuestPaymentInformationManagementPlugin"/>
+    </type>
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="rokezzz_order_advance_save_order_number_on_place_order"
+                type="Rokezzz\OrderAdvance\Plugin\Quote\QuoteManagementPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="rokezzz_customer_order_number" xsi:type="string">sales_order.rokezzz_customer_order_number</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
