@@ -8,7 +8,7 @@ use Magento\Checkout\Model\DefaultConfigProvider;
 use Magento\Store\Model\StoreManagerInterface;
 use Rokezzz\DeliveryDate\Model\Config;
 
-class DefaultConfigProviderPlugin
+final class DefaultConfigProviderPlugin
 {
     public function __construct(
         private readonly Config $config,

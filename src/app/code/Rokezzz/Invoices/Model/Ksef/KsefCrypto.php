@@ -8,7 +8,7 @@ use phpseclib3\Crypt\PublicKeyLoader;
 use phpseclib3\Crypt\RSA;
 use Rokezzz\Invoices\Exception\KsefApiException;
 
-class KsefCrypto
+final class KsefCrypto
 {
     public function encryptRsaOaepSha256Base64(string $data, string $publicKeyPem): string
     {

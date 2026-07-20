@@ -9,7 +9,7 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Rokezzz\CustomerAccountDeletion\Model\DeleteCustomerAccountPostHandler;
 
-class DeletePost implements AccountInterface, HttpPostActionInterface
+final class DeletePost implements AccountInterface, HttpPostActionInterface
 {
     public function __construct(
         private readonly DeleteCustomerAccountPostHandler $postHandler

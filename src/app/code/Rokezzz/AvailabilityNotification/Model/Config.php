@@ -7,7 +7,7 @@ namespace Rokezzz\AvailabilityNotification\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_STOCK_ALERT_ENABLED = 'catalog/productalert/allow_stock';
 

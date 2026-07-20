@@ -6,7 +6,7 @@ namespace Rokezzz\ContractWithdrawal\Model;
 
 use Magento\Framework\ObjectManagerInterface;
 
-class WithdrawalRequestCreator
+final class WithdrawalRequestCreator
 {
     public function __construct(
         private readonly ObjectManagerInterface $objectManager

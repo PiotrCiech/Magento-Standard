@@ -8,7 +8,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Search\Model\QueryFactory;
 
-class ListingParamsSanitizer
+final class ListingParamsSanitizer
 {
     public function __construct(
         private readonly RequestInterface $request,

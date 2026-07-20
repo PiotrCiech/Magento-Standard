@@ -12,7 +12,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Message\ManagerInterface as MessageManager;
 use Rokezzz\AvailabilityNotification\Model\Config;
 
-class BlockStockAlertActionsWhenDisabledPlugin
+final class BlockStockAlertActionsWhenDisabledPlugin
 {
     public function __construct(
         private readonly Config $config,

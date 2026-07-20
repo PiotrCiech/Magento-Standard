@@ -7,7 +7,7 @@ namespace Rokezzz\Wishlist\Plugin\Wishlist\Block;
 use Magento\Wishlist\Block\Customer\Wishlist\Button;
 use Rokezzz\Wishlist\Model\Config;
 
-class HideWishlistShareButtonPlugin
+final class HideWishlistShareButtonPlugin
 {
     private const SHARE_BUTTON_BLOCK_NAME = 'customer.wishlist.button.share';
 

@@ -6,7 +6,7 @@ namespace Rokezzz\Gus\Model;
 
 use Magento\Framework\Exception\LocalizedException;
 
-class NipNormalizer
+final class NipNormalizer
 {
     public function normalize(string $nip): string
     {

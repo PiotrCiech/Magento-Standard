@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AdjustTaxPricesCommand extends Command
+final class AdjustTaxPricesCommand extends Command
 {
     private const PRICE_ATTRIBUTE = 'price';
 

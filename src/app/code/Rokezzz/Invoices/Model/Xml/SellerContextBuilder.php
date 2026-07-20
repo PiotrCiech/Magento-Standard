@@ -6,7 +6,7 @@ namespace Rokezzz\Invoices\Model\Xml;
 
 use Rokezzz\Settings\Api\SellerDataProviderInterface;
 
-class SellerContextBuilder
+final class SellerContextBuilder
 {
     public function __construct(
         private readonly SellerDataProviderInterface $sellerDataProvider

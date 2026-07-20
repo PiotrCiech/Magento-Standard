@@ -16,7 +16,7 @@ use Rokezzz\Invoices\Model\Invoice\InvoiceKsefStatusWriter;
 use Rokezzz\Invoices\Model\Invoice\KsefUpoStatus;
 use Rokezzz\Invoices\Model\Invoice\LegalType;
 
-class QueueInvoiceForKsefSubmission implements ObserverInterface
+final class QueueInvoiceForKsefSubmission implements ObserverInterface
 {
     public function __construct(
         private readonly Config $config,

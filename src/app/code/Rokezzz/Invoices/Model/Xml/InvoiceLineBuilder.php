@@ -10,7 +10,7 @@ use Magento\Sales\Model\Order\Invoice\Item as InvoiceItem;
 use Rokezzz\Invoices\Model\Data\InvoiceLine;
 use Rokezzz\Invoices\Model\Invoice\Unit;
 
-class InvoiceLineBuilder
+final class InvoiceLineBuilder
 {
     /**
      * @return InvoiceLine[]

@@ -8,7 +8,7 @@ use Magento\Sales\Api\Data\InvoiceInterface;
 use Rokezzz\Invoices\Model\Config;
 use Rokezzz\Invoices\Model\Xml\LegalTypeResolver;
 
-class InvoiceKsefEligibilityChecker
+final class InvoiceKsefEligibilityChecker
 {
     public function __construct(
         private readonly Config $config,

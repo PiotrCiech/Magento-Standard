@@ -10,7 +10,7 @@ use Rokezzz\Invoices\Api\KsefClientInterface;
 use Rokezzz\Invoices\Exception\KsefApiException;
 use Rokezzz\Invoices\Model\Ksef\KsefStatusPoller;
 
-class KsefInvoiceProcessor
+final class KsefInvoiceProcessor
 {
     public function __construct(
         private readonly InvoiceXmlGeneratorInterface $invoiceXmlGenerator,

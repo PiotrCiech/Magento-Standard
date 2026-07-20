@@ -13,7 +13,7 @@ use Magento\Tax\Model\Calculation\Rate;
 use Magento\Tax\Model\Calculation\RateFactory;
 use Magento\Tax\Model\Calculation\RuleFactory;
 
-class AddTaxRulePatch implements DataPatchInterface
+final class AddTaxRulePatch implements DataPatchInterface
 {
     private const COUNTRY_ID = 'PL';
     private const REGION_NAME = 'Wielkopolskie';

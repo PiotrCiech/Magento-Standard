@@ -8,7 +8,7 @@ use Magento\Checkout\Block\Checkout\LayoutProcessor;
 use Magento\Store\Model\StoreManagerInterface;
 use Rokezzz\Orders\Model\Config;
 
-class LayoutProcessorPlugin
+final class LayoutProcessorPlugin
 {
     private const SHIPPING_COMPONENT_PATH = [
         'components',

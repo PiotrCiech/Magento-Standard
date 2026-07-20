@@ -14,7 +14,7 @@ use Rokezzz\LoyaltyPoints\Model\LoyaltyPointsAttribute;
 use Rokezzz\LoyaltyPoints\Model\OrderAttributeSaver;
 use Rokezzz\LoyaltyPoints\Model\PointsCalculator;
 
-class AwardPointsOnOrderComplete implements ObserverInterface
+final class AwardPointsOnOrderComplete implements ObserverInterface
 {
     public function __construct(
         private readonly Config $config,

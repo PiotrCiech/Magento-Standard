@@ -16,7 +16,7 @@ use Magento\Framework\Message\ManagerInterface as MessageManager;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Rokezzz\ContractWithdrawal\Model\WithdrawalRequestManagement;
 
-class Submit implements HttpPostActionInterface
+final class Submit implements HttpPostActionInterface
 {
     public function __construct(
         private readonly RequestInterface $request,

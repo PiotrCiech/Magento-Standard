@@ -6,7 +6,7 @@ namespace Rokezzz\CustomerContact\Model;
 
 use Magento\User\Model\ResourceModel\User\CollectionFactory;
 
-class AdminUserProvider
+final class AdminUserProvider
 {
     public function __construct(
         private readonly CollectionFactory $userCollectionFactory

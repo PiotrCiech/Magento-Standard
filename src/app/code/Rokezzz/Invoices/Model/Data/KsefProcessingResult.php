@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Invoices\Model\Data;
 
-class KsefProcessingResult
+final class KsefProcessingResult
 {
     public function __construct(
         private readonly ?string $ksefNumber,

@@ -9,7 +9,7 @@ use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Rokezzz\CatalogListing\Api\ListingFragmentRendererInterface;
 
-class Fragment implements HttpGetActionInterface
+final class Fragment implements HttpGetActionInterface
 {
     public function __construct(
         private readonly JsonFactory $jsonFactory,

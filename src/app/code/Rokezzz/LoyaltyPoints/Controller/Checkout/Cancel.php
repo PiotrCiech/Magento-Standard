@@ -15,7 +15,7 @@ use Magento\Framework\Controller\Result\JsonFactory;
 use Rokezzz\LoyaltyPoints\Model\Config;
 use Rokezzz\LoyaltyPoints\Model\QuotePointsApplier;
 
-class Cancel implements HttpPostActionInterface, CsrfAwareActionInterface
+final class Cancel implements HttpPostActionInterface, CsrfAwareActionInterface
 {
     public function __construct(
         private readonly JsonFactory $resultJsonFactory,

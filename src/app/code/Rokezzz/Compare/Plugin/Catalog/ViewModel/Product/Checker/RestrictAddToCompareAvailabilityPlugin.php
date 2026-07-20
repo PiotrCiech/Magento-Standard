@@ -8,7 +8,7 @@ use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\ViewModel\Product\Checker\AddToCompareAvailability;
 use Rokezzz\Compare\Model\Config;
 
-class RestrictAddToCompareAvailabilityPlugin
+final class RestrictAddToCompareAvailabilityPlugin
 {
     public function __construct(
         private readonly Config $config

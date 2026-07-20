@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Invoices\Model\Data;
 
-class KsefSubmissionResult
+final class KsefSubmissionResult
 {
     /**
      * @param string[] $errors

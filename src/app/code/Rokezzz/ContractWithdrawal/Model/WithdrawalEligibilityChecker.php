@@ -12,7 +12,7 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Model\Order;
 
-class WithdrawalEligibilityChecker
+final class WithdrawalEligibilityChecker
 {
     public function __construct(
         private readonly Config $config,

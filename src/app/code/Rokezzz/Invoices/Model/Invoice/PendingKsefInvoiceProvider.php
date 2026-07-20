@@ -8,7 +8,7 @@ use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Model\ResourceModel\Order\Invoice\Collection;
 use Magento\Sales\Model\ResourceModel\Order\Invoice\CollectionFactory;
 
-class PendingKsefInvoiceProvider
+final class PendingKsefInvoiceProvider
 {
     public function __construct(
         private readonly CollectionFactory $invoiceCollectionFactory,

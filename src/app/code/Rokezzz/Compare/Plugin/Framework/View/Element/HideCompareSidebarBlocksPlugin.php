@@ -7,7 +7,7 @@ namespace Rokezzz\Compare\Plugin\Framework\View\Element;
 use Magento\Framework\View\Element\Template;
 use Rokezzz\Compare\Model\Config;
 
-class HideCompareSidebarBlocksPlugin
+final class HideCompareSidebarBlocksPlugin
 {
     private const BLOCK_NAMES = [
         'catalog.compare.sidebar',

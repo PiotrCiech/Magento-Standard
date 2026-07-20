@@ -7,7 +7,7 @@ namespace Rokezzz\LoyaltyPoints\Model;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\ResourceModel\Order as OrderResource;
 
-class OrderAttributeSaver
+final class OrderAttributeSaver
 {
     public function __construct(
         private readonly OrderResource $orderResource

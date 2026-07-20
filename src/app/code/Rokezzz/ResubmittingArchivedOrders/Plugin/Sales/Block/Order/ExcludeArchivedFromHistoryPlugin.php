@@ -8,7 +8,7 @@ use Magento\Sales\Block\Order\History;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Rokezzz\ResubmittingArchivedOrders\Model\Config;
 
-class ExcludeArchivedFromHistoryPlugin
+final class ExcludeArchivedFromHistoryPlugin
 {
     public function __construct(
         private readonly Config $config

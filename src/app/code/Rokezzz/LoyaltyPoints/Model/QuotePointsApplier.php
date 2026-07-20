@@ -9,7 +9,7 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote;
 use Rokezzz\LoyaltyPoints\Api\BalanceManagementInterface;
 
-class QuotePointsApplier
+final class QuotePointsApplier
 {
     public const QUOTE_POINTS_FIELD = LoyaltyPointsAttribute::POINTS_USED;
 

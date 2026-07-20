@@ -8,7 +8,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\WriteInterface;
 
-class VarDirectoryWriter
+final class VarDirectoryWriter
 {
     public function __construct(
         private readonly Filesystem $filesystem

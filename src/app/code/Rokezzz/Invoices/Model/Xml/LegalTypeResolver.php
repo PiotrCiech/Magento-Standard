@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Xml;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Rokezzz\Invoices\Model\Invoice\LegalType;
 
-class LegalTypeResolver
+final class LegalTypeResolver
 {
     public function resolve(InvoiceInterface $invoice): LegalType
     {

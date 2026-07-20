@@ -7,7 +7,7 @@ namespace Rokezzz\DeliveryDate\Model;
 use Magento\Checkout\Api\Data\ShippingInformationInterface;
 use Magento\Quote\Api\Data\PaymentInterface;
 
-class DeliveryDateExtractor
+final class DeliveryDateExtractor
 {
     public function fromPayment(PaymentInterface $payment): ?string
     {
