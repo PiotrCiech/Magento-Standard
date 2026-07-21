@@ -6,7 +6,7 @@ namespace Rokezzz\MostPopular\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-class Period implements OptionSourceInterface
+final class Period implements OptionSourceInterface
 {
     public function toOptionArray(): array
     {

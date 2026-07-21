@@ -7,7 +7,7 @@ namespace Rokezzz\AvailabilityNotification\Plugin\ProductAlert\Block\Product\Vie
 use Magento\ProductAlert\Block\Product\View\Stock;
 use Rokezzz\AvailabilityNotification\Model\Config;
 
-class HideStockAlertBlockWhenDisabledPlugin
+final class HideStockAlertBlockWhenDisabledPlugin
 {
     public function __construct(
         private readonly Config $config

@@ -12,7 +12,7 @@ use Rokezzz\Invoices\Model\Xml\InvoiceXmlContextBuilder;
 use Rokezzz\Settings\Api\CompanySignatureProviderInterface;
 use Rokezzz\Settings\Api\SellerDataProviderInterface;
 
-class InvoicePdfContextBuilder
+final class InvoicePdfContextBuilder
 {
     private const PLATFORM_SIGNATURE = 'System powered by Rokezzz';
 

@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Rokezzz\GoogleAnalytics\Model\Config\Source\TrackingType;
 
-class Config
+final class Config
 {
     private const XML_PATH_TRACKING_TYPE = 'rokezzz_google_analytics/general/tracking_type';
     private const XML_PATH_TRACKING_ID = 'rokezzz_google_analytics/general/tracking_id';

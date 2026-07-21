@@ -7,7 +7,7 @@ namespace Rokezzz\ResubmittingArchivedOrders\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLED = 'rokezzz_resubmitting_archived_orders/general/enabled';
     private const XML_PATH_ARCHIVE_AGE_DAYS = 'rokezzz_resubmitting_archived_orders/archive/age_days';

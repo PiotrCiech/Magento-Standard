@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class EnableCustomerTaxvatField implements DataPatchInterface
+final class EnableCustomerTaxvatField implements DataPatchInterface
 {
     private const CONFIG_TO_INSTALL = [
         'customer/create_account/vat_frontend_visibility' => 1

@@ -11,7 +11,7 @@ use Rokezzz\Invoices\Model\Data\KsefSubmissionBatchResult;
 use Rokezzz\Invoices\Model\Ksef\KsefClientFactory;
 use Throwable;
 
-class KsefStoreBatchSubmitter
+final class KsefStoreBatchSubmitter
 {
     public function __construct(
         private readonly KsefClientFactory $ksefClientFactory,

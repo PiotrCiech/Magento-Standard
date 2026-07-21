@@ -8,7 +8,7 @@ use Magento\Framework\HTTP\Client\CurlFactory;
 use Magento\Framework\Serialize\Serializer\Json;
 use Rokezzz\Invoices\Exception\KsefApiException;
 
-class KsefHttpClient
+final class KsefHttpClient
 {
     public function __construct(
         private readonly CurlFactory $curlFactory,

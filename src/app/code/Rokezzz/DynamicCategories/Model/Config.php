@@ -7,7 +7,7 @@ namespace Rokezzz\DynamicCategories\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLE_NEW = 'rokezzz_dynamiccategories/general/enable_new';
     private const XML_PATH_ENABLE_BESTSELLERS = 'rokezzz_dynamiccategories/general/enable_bestsellers';

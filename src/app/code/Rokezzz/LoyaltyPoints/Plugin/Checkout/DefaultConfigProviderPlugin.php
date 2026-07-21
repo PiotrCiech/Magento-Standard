@@ -13,7 +13,7 @@ use Rokezzz\LoyaltyPoints\Model\Config;
 use Rokezzz\LoyaltyPoints\Model\QuotePointsApplier;
 use Rokezzz\LoyaltyPoints\Model\RedemptionCalculator;
 
-class DefaultConfigProviderPlugin
+final class DefaultConfigProviderPlugin
 {
     public function __construct(
         private readonly Config $config,

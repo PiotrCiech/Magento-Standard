@@ -11,7 +11,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Rokezzz\ContractWithdrawal\Api\Data\WithdrawalRequestInterface;
 use Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequestResource;
 
-class WithdrawalRequestManagement
+final class WithdrawalRequestManagement
 {
     public function __construct(
         private readonly WithdrawalEligibilityChecker $withdrawalEligibilityChecker,

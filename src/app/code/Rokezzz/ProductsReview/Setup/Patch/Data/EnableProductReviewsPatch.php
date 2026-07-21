@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class EnableProductReviewsPatch implements DataPatchInterface
+final class EnableProductReviewsPatch implements DataPatchInterface
 {
     private const CONFIG_TO_INSTALL = [
         'catalog/review/active' => '1',

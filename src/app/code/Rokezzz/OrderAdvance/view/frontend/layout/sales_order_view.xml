@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="order.info.main">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="rokezzz.order.customer.order.number"
+                   template="Rokezzz_OrderAdvance::order/order-number.phtml"
+                   after="order.status">
+                <arguments>
+                    <argument name="order_number_view_model" xsi:type="object">Rokezzz\OrderAdvance\ViewModel\Order\OrderNumber</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -8,7 +8,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Model\Order;
 use Psr\Log\LoggerInterface;
 
-class OrderOwnerNotificationContextResolver
+final class OrderOwnerNotificationContextResolver
 {
     public function __construct(
         private readonly Config $config,

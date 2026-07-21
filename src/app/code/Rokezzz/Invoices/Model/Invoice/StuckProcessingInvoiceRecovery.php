@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Invoice;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Model\ResourceModel\Order\Invoice\CollectionFactory;
 
-class StuckProcessingInvoiceRecovery
+final class StuckProcessingInvoiceRecovery
 {
     public function __construct(
         private readonly CollectionFactory $invoiceCollectionFactory,

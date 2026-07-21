@@ -8,7 +8,7 @@ use Magento\Customer\Model\AuthenticationInterface;
 use Magento\Customer\Model\CustomerRegistry;
 use Magento\Framework\Encryption\EncryptorInterface;
 
-class ValidateCustomerPassword
+final class ValidateCustomerPassword
 {
     public function __construct(
         private readonly AuthenticationInterface $authentication,

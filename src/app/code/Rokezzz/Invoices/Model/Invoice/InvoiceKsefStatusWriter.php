@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Invoice;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Api\InvoiceRepositoryInterface;
 
-class InvoiceKsefStatusWriter
+final class InvoiceKsefStatusWriter
 {
     public function __construct(
         private readonly InvoiceRepositoryInterface $invoiceRepository

@@ -9,7 +9,7 @@ use Magento\Cms\Model\BlockRepository;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Psr\Log\LoggerInterface;
 
-class CreateHomepageBlocks implements DataPatchInterface
+final class CreateHomepageBlocks implements DataPatchInterface
 {
     private BlockFactory $blockFactory;
     private BlockRepository $blockRepository;

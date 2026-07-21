@@ -8,7 +8,7 @@ use Magento\Cms\Model\PageFactory;
 use Magento\Cms\Model\PageRepository;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class CreateLegalPages implements DataPatchInterface
+final class CreateLegalPages implements DataPatchInterface
 {
     private PageFactory $pageFactory;
     private PageRepository $pageRepository;

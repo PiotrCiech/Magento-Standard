@@ -7,7 +7,7 @@ namespace Rokezzz\CustomerContact\Model;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 
-class AssignedAdminProvider
+final class AssignedAdminProvider
 {
     public function __construct(
         private readonly CustomerSession $customerSession,

@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use IntlDateFormatter;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 
-class DeliveryDateFormatter
+final class DeliveryDateFormatter
 {
     public function __construct(
         private readonly TimezoneInterface $timezone

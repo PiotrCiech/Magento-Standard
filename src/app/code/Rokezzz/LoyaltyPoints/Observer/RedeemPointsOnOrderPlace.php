@@ -13,7 +13,7 @@ use Rokezzz\LoyaltyPoints\Api\Data\TransactionInterface;
 use Rokezzz\LoyaltyPoints\Model\Config;
 use Rokezzz\LoyaltyPoints\Model\QuotePointsApplier;
 
-class RedeemPointsOnOrderPlace implements ObserverInterface
+final class RedeemPointsOnOrderPlace implements ObserverInterface
 {
     public function __construct(
         private readonly Config $config,

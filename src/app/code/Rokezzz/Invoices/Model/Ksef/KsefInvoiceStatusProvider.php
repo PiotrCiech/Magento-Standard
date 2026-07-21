@@ -6,7 +6,7 @@ namespace Rokezzz\Invoices\Model\Ksef;
 
 use Rokezzz\Invoices\Exception\KsefApiException;
 
-class KsefInvoiceStatusProvider
+final class KsefInvoiceStatusProvider
 {
     public function __construct(
         private readonly KsefHttpClient $httpClient

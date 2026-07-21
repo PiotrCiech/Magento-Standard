@@ -7,7 +7,7 @@ namespace Rokezzz\DeliveryDate\Model;
 use DateTimeImmutable;
 use Magento\Framework\Exception\LocalizedException;
 
-class DeliveryDateValidator
+final class DeliveryDateValidator
 {
     public function __construct(
         private readonly Config $config

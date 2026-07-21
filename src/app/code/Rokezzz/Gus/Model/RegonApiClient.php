@@ -10,7 +10,7 @@ use GusApi\GusApi;
 use GusApi\SearchReport;
 use Magento\Framework\Exception\LocalizedException;
 
-class RegonApiClient
+final class RegonApiClient
 {
     public function __construct(
         private readonly GusApiFactory $gusApiFactory,

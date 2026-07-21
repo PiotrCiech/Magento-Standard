@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Invoice;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Rokezzz\Invoices\Model\Data\KsefSubmissionResult;
 
-class KsefInvoiceSubmissionService
+final class KsefInvoiceSubmissionService
 {
     public function __construct(
         private readonly PendingKsefInvoiceProvider $pendingInvoiceProvider,

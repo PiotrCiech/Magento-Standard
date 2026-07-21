@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\CatalogListing\Model;
 
-class FragmentUrlRewriter
+final class FragmentUrlRewriter
 {
     public function rewrite(string $html, string $listingUrl, string $fragmentRoute): string
     {

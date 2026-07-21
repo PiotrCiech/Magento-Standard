@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_COMPANY_NAME = 'rokezzz_settings/company/company_name';
     private const XML_PATH_NIP = 'rokezzz_settings/company/nip';

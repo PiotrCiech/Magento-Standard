@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Ksef;
 use Rokezzz\Invoices\Exception\KsefApiException;
 use Rokezzz\Settings\Model\Config as SettingsConfig;
 
-class KsefConfigProvider
+final class KsefConfigProvider
 {
     public function __construct(
         private readonly SettingsConfig $settingsConfig

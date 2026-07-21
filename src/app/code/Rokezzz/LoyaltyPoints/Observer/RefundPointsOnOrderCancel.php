@@ -13,7 +13,7 @@ use Rokezzz\LoyaltyPoints\Model\Config;
 use Rokezzz\LoyaltyPoints\Model\LoyaltyPointsAttribute;
 use Rokezzz\LoyaltyPoints\Model\OrderAttributeSaver;
 
-class RefundPointsOnOrderCancel implements ObserverInterface
+final class RefundPointsOnOrderCancel implements ObserverInterface
 {
     public function __construct(
         private readonly Config $config,

@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLED = 'rokezzz_invoices/general/enabled';
     private const XML_PATH_KSEF_ENABLED = 'rokezzz_invoices/ksef/enabled';

@@ -9,7 +9,7 @@ use Magento\Shipping\Model\Rate\Result;
 use Rokezzz\InPost\Model\CarrierCodeMatcher;
 use Rokezzz\InPost\Model\Config;
 
-class FilterInpostRatesWhenDisabledPlugin
+final class FilterInpostRatesWhenDisabledPlugin
 {
     public function __construct(
         private readonly Config $config,

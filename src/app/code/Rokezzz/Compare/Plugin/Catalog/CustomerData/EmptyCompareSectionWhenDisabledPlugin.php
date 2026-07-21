@@ -7,7 +7,7 @@ namespace Rokezzz\Compare\Plugin\Catalog\CustomerData;
 use Magento\Catalog\CustomerData\CompareProducts;
 use Rokezzz\Compare\Model\Config;
 
-class EmptyCompareSectionWhenDisabledPlugin
+final class EmptyCompareSectionWhenDisabledPlugin
 {
     public function __construct(
         private readonly Config $config

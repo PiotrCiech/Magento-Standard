@@ -7,7 +7,7 @@ namespace Rokezzz\Tax\Model;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\ObjectManagerInterface;
 
-class ProductCollectionProvider
+final class ProductCollectionProvider
 {
     public function __construct(
         private readonly ObjectManagerInterface $objectManager

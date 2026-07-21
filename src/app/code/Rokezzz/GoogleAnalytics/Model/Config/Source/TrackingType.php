@@ -6,7 +6,7 @@ namespace Rokezzz\GoogleAnalytics\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-class TrackingType implements OptionSourceInterface
+final class TrackingType implements OptionSourceInterface
 {
     public const TYPE_NONE = '';
     public const TYPE_GA4 = 'ga4';
