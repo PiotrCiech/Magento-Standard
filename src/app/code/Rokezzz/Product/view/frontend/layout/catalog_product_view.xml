@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View\Attributes" 
+                   name="rokelzzz.product.attributes.table" 
+                   template="Rokezzz_Product::product/view/attributes_table.phtml" 
+                   after="product.info.overview" />
+        </referenceContainer>
+        <referenceContainer name="additional" remove="true" />
+    </body>
+</page>
