@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="rokezzz_remember_me_customer_login_post"
+                type="Rokezzz\RememberMe\Plugin\Customer\Controller\Account\ApplyRememberMeOnLoginPostPlugin"/>
+    </type>
+    <type name="Magento\Customer\Controller\Ajax\Login">
+        <plugin name="rokezzz_remember_me_customer_ajax_login"
+                type="Rokezzz\RememberMe\Plugin\Customer\Controller\Ajax\ApplyRememberMeOnAjaxLoginPlugin"/>
+    </type>
+    <type name="Magento\Customer\Model\Session">
+        <plugin name="rokezzz_remember_me_renew_customer_session_cookie"
+                type="Rokezzz\RememberMe\Plugin\Customer\Model\RenewCustomerSessionCookiePlugin"/>
+    </type>
+</config>

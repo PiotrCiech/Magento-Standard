@@ -1,0 +1,21 @@
+.rokezzz-remember-me {
+    margin-top: 0.5rem;
+}
+
+.rokezzz-remember-me .label span,
+.rokezzz-remember-me .admin__field-label span {
+    font-weight: 400;
+}
+
+.admin__field.field-remember-me .admin__field-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin__field.field-remember-me .admin__field-label {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    float: none;
+}
