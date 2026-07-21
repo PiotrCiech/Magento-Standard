@@ -407,6 +407,7 @@ return [
         'Rokezzz_Styleguide' => 1,
         'Rokezzz_Tax' => 1,
         'Rokezzz_ViteDev' => 1,
+        'Rokezzz_Widget' => 1,
         'Rokezzz_Wishlist' => 1
     ]
 ];
