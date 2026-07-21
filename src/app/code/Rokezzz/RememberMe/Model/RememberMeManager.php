@@ -31,7 +31,6 @@ final class RememberMeManager
 
     public function isRememberMeCheckedForAdmin(RequestInterface $request): bool
     {
-        // Prefer flag captured before Magento clears login POST in Authentication plugin.
         if ($this->adminRememberMeFlag->isChecked()) {
             return true;
         }
