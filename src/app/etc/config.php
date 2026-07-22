@@ -401,6 +401,7 @@ return [
         'Rokezzz_ProductsReview' => 1,
         'Rokezzz_PromotionSlider' => 1,
         'Rokezzz_ReCaptcha' => 1,
+        'Rokezzz_RememberMe' => 1,
         'Rokezzz_ResubmittingArchivedOrders' => 1,
         'Rokezzz_Review' => 1,
         'Rokezzz_ContractWithdrawal' => 1,
