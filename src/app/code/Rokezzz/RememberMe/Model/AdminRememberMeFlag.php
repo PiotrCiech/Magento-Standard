@@ -6,9 +6,6 @@ namespace Rokezzz\RememberMe\Model;
 
 use Magento\Framework\App\RequestInterface;
 
-/**
- * Stores admin Remember Me checkbox before Magento clears login POST data.
- */
 final class AdminRememberMeFlag
 {
     private bool $checked = false;

@@ -8,10 +8,6 @@ use Magento\Backend\App\AbstractAction;
 use Magento\Framework\App\RequestInterface;
 use Rokezzz\RememberMe\Model\AdminRememberMeFlag;
 
-/**
- * Magento clears login POST inside Authentication plugin before login success event.
- * Capture Remember Me in an outer around plugin, before Authentication runs.
- */
 final class CaptureAdminRememberMePlugin
 {
     public function __construct(

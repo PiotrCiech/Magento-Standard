@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\RememberMe\Plugin\Customer\Controller\Ajax;
 
+use Exception;
 use Magento\Customer\Controller\Ajax\Login;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Request\Http as HttpRequest;
@@ -56,7 +57,7 @@ final class ApplyRememberMeOnAjaxLoginPlugin
 
         try {
             $credentials = $this->jsonHelper->jsonDecode($content);
-        } catch (\Exception) {
+        } catch (Exception) {
             return false;
         }
 
