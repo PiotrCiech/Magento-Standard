@@ -5,6 +5,7 @@
         <sequence>
             <module name="Magento_Catalog"/>
             <module name="Magento_ConfigurableProduct"/>
+            <module name="Rokezzz_CatalogListing"/>
         </sequence>
     </module>
 </config>

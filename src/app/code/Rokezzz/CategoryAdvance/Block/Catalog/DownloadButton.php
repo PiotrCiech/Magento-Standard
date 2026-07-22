@@ -10,7 +10,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Rokezzz\CategoryAdvance\Model\Config;
 
-final class DownloadButton extends Template
+class DownloadButton extends Template
 {
     public function __construct(
         Context $context,

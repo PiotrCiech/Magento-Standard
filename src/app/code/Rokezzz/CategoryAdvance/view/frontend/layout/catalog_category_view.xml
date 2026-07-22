@@ -5,8 +5,10 @@
         <referenceContainer name="content">
             <block class="Rokezzz\CategoryAdvance\Block\Catalog\DownloadButton"
                    name="rokezzz.categoryadvance.pdf.download"
-                   template="Rokezzz_CategoryAdvance::catalog/download-button.phtml"
-                   before="category.products"/>
+                   template="Rokezzz_CategoryAdvance::catalog/download-button.phtml"/>
         </referenceContainer>
+        <move element="rokezzz.categoryadvance.pdf.download"
+              destination="rokezzz.listing.root"
+              before="category.products"/>
     </body>
 </page>
