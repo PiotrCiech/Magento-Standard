@@ -1,0 +1,15 @@
+<?php
+
+/** @var \Rokezzz\CategoryAdvance\Block\Catalog\DownloadButton $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+if (!$block->isVisible()) {
+    return;
+}
+?>
+<div class="rokezzz-category-pdf">
+    <a class="action primary rokezzz-category-pdf__link"
+       href="<?= $escaper->escapeUrl($block->getDownloadUrl()) ?>">
+        <?= $escaper->escapeHtml(__('Download PDF catalog')) ?>
+    </a>
+</div>
