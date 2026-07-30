@@ -47,6 +47,7 @@ require(['jquery'], function($) {
         const $gallery = $('#<?= $uniqueId ?>'),
             $slides = $gallery.find('.gallery-slide'),
             $thumbs = $gallery.find('.thumb-item');
+
         let currentIndex = 0;
 
         function showSlide(index) {
@@ -72,6 +73,7 @@ require(['jquery'], function($) {
 
         $thumbs.on('click', function() {
             const targetIndex = $(this).data('slide-index');
+
             showSlide(targetIndex);
         });
     });

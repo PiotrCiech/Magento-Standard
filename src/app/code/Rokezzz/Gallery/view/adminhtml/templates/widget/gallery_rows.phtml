@@ -49,8 +49,10 @@ require(['jquery', 'mage/adminhtml/browser'], function($) {
         .hide();
 
     let currentData = [];
+
     try {
         const rawValue = hiddenInput.val();
+
         if (rawValue) {
             currentData = JSON.parse(rawValue);
         }
@@ -74,6 +76,7 @@ require(['jquery', 'mage/adminhtml/browser'], function($) {
                 });
             }
         });
+
         hiddenInput.val(JSON.stringify(data)).trigger('change');
     };
 
