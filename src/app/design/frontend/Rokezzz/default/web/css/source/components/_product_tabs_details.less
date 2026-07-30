@@ -282,30 +282,8 @@
             margin-top: 14px;
 
             .action.submit.primary {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                height: 44px;
-                padding: 0 28px;
-                border: 0;
-                border-radius: @reviews-btn-radius;
-                background: @reviews-btn-bg;
-                color: @reviews-btn-color;
-                font-size: @fontSizeS;
-                font-weight: 700;
-                box-shadow: @reviews-btn-shadow;
-                cursor: pointer;
-                transition: transform @btn-transition, box-shadow @btn-transition, filter @btn-transition;
-
-                &:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 18px 32px fade(@accent__color, 34%);
-                    filter: brightness(1.03);
-                }
-
-                &:active {
-                    transform: translateY(0);
-                }
+                .btn-accent();
+                .btn-hover-lift();
             }
         }
     }

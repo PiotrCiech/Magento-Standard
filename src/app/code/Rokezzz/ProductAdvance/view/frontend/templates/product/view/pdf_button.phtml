@@ -15,26 +15,26 @@ $_pdfUrl = $block->getUrl('productadvance/pdf/download', ['id' => $_product->get
 </div>
 
 <script>
-    require(['jquery'], function (jQuery) {
-        'use strict';
+require(['jquery'], function(jQuery) {
+    'use strict';
 
-        jQuery('.download-pdf-btn').on('click', function (e) {
-            e.preventDefault();
-            const url = jQuery(this).attr('href'),
-                iframeId = 'hidden-print-iframe';
+    jQuery('.download-pdf-btn').on('click', function(e) {
+        e.preventDefault();
+        const url = jQuery(this).attr('href'),
+            iframeId = 'hidden-print-iframe';
 
-            jQuery('#' + iframeId).remove();
-            const iframe = jQuery('<iframe>', {
-                id: iframeId,
-                src: url,
-                style: 'visibility: hidden; position: absolute; width: 0; height: 0; border: none;'
-            });
+        jQuery('#' + iframeId).remove();
+        const iframe = jQuery('<iframe>', {
+            id: iframeId,
+            src: url,
+            style: 'visibility: hidden; position: absolute; width: 0; height: 0; border: none;'
+        });
 
-            jQuery('body').append(iframe);
-            iframe.on('load', function () {
-                this.contentWindow.focus();
-                this.contentWindow.print();
-            });
+        jQuery('body').append(iframe);
+        iframe.on('load', function() {
+            this.contentWindow.focus();
+            this.contentWindow.print();
         });
     });
+});
 </script>
