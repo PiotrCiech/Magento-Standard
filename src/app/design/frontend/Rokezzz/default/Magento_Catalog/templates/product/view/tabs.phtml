@@ -1,0 +1,74 @@
+<div class="product-tabs-wrapper">
+    <div class="product-tabs-nav">
+        <button type="button" class="tab-nav-btn active" data-tab="description">
+            <span><?= $block->escapeHtml(__('Opis')) ?></span>
+        </button>
+        <button type="button" class="tab-nav-btn tab-spec-btn" data-tab="specification" style="display: none;">
+            <span><?= $block->escapeHtml(__('Specyfikacja techniczna')) ?></span>
+        </button>
+        <button type="button" class="tab-nav-btn" data-tab="reviews">
+            <span><?= $block->escapeHtml(__('Opinie')) ?></span>
+        </button>
+    </div>
+</div>
+
+<script>
+    require(['jquery'], function (jQuery) {
+        'use strict';
+        jQuery(document).ready(function () {
+            const tabBtns = jQuery('.product-tabs-nav .tab-nav-btn'),
+                specBtn = jQuery('.product-tabs-nav .tab-spec-btn'),
+                descSection = jQuery('.product-tabs-main-wrapper .product.attribute.description, #description'),
+                reviewsParentContainer = jQuery('.page-main-details, .product-tabs-main-wrapper .page-main-details'),
+                reviewsInnerContent = jQuery('#reviews, .block.review-list, .block.review-add, #customer-reviews'),
+                shortDesc = jQuery('.product-info-main .product.attribute.overview, .product-info-main .description'),
+                specTable = jQuery('.product-info-main .product-attributes-wrapper, .product-info-main .attributes, .product-info-main .additional-attributes-wrapper'),
+                pdfBtn = jQuery('.product-info-main .product-pdf-download-wrapper');
+
+            let specSection = null;
+
+            if (shortDesc.length && jQuery.trim(shortDesc.text()).length > 0) {
+                if (specTable.length || pdfBtn.length) {
+                    specSection = jQuery('<div class="product-tab-content tab-specification-content"></div>');
+                    specTable.find('.product-section-title, h2, h3, .title').hide();
+                    specSection.append(specTable).append(pdfBtn);
+                    jQuery('.product-tabs-main-wrapper .product-tabs-wrapper').after(specSection);
+                    specBtn.show();
+                }
+            }
+
+            descSection.show();
+            reviewsParentContainer.hide();
+            reviewsInnerContent.hide();
+
+            if (specSection) {
+                specSection.hide();
+            }
+
+            tabBtns.on('click', function () {
+                const targetTab = jQuery(this).data('tab');
+
+                tabBtns.removeClass('active');
+                jQuery(this).addClass('active');
+                descSection.hide();
+                reviewsParentContainer.hide();
+                reviewsInnerContent.hide();
+
+                if (specSection) {
+                    specSection.hide();
+                }
+
+                if (targetTab === 'description') {
+                    descSection.fadeIn(200);
+                } else if (targetTab === 'specification') {
+                    if (specSection) {
+                        specSection.fadeIn(200);
+                    }
+                } else if (targetTab === 'reviews') {
+                    reviewsParentContainer.show();
+                    reviewsInnerContent.fadeIn(200);
+                }
+            });
+        });
+    });
+</script>

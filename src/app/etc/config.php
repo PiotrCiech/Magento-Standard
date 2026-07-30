@@ -397,6 +397,7 @@ return [
         'Rokezzz_Orders' => 1,
         'Rokezzz_Popup' => 1,
         'Rokezzz_Product' => 1,
+        'Rokezzz_ProductAdvance' => 1,
         'Rokezzz_ProductsReview' => 1,
         'Rokezzz_PromotionSlider' => 1,
         'Rokezzz_ReCaptcha' => 1,

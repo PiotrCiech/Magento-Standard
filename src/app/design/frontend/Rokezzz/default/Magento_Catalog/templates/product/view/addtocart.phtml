@@ -1,0 +1,59 @@
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="field qty">
+            <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+            <div class="control">
+                <button type="button" class="qty-btn qty-minus" id="qty-minus"
+                    aria-label="<?= $block->escapeHtmlAttr(__('Zmniejsz ilość')) ?>">-</button>
+                <input type="number" name="qty" id="qty" min="1" value="<?= $block->getProductDefaultQty() * 1 ?>"
+                    title="<?= $block->escapeHtmlAttr(__('Qty')) ?>" class="input-text qty"
+                    data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>" />
+                <button type="button" class="qty-btn qty-plus" id="qty-plus"
+                    aria-label="<?= $block->escapeHtmlAttr(__('Zwiększ ilość')) ?>">+</button>
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="actions">
+            <button type="submit" title="<?= $block->escapeHtmlAttr($buttonTitle) ?>" class="action primary tocart"
+                id="product-addtocart-button">
+                <span><?= $block->escapeHtml($buttonTitle) ?></span>
+            </button>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+
+<script>
+require(['jquery'], function(jQuery) {
+    'use strict';
+
+    jQuery(document).on('click', '#qty-minus', function() {
+        const qtyInput = jQuery('#qty'),
+            currentVal = parseInt(qtyInput.val(), 10) || 1;
+
+        if (currentVal > 1) {
+            qtyInput.val(currentVal - 1).trigger('change');
+        }
+    });
+
+    jQuery(document).on('click', '#qty-plus', function() {
+        const qtyInput = jQuery('#qty'),
+            currentVal = parseInt(qtyInput.val(), 10) || 1;
+
+        qtyInput.val(currentVal + 1).trigger('change');
+    });
+});
+</script>
