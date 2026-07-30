@@ -15,6 +15,7 @@ class AccordionRows extends Template
     {
         $this->_element = $element;
         $element->setData('after_element_html', $this->toHtml());
+
         return $element;
     }
 

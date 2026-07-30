@@ -48,8 +48,10 @@ require(['jquery'], function($) {
         .hide();
 
     let currentData = [];
+
     try {
         const rawValue = hiddenInput.val();
+
         if (rawValue) {
             currentData = JSON.parse(rawValue);
         }
@@ -61,6 +63,7 @@ require(['jquery'], function($) {
 
     const updateMasterJson = () => {
         const data = [];
+
         tbody.find('tr.accordion-row').each(function() {
             const row = $(this),
                 titleVal = row.find('.row-title-input').val(),
@@ -73,6 +76,7 @@ require(['jquery'], function($) {
                 });
             }
         });
+
         hiddenInput.val(JSON.stringify(data)).trigger('change');
     };
 

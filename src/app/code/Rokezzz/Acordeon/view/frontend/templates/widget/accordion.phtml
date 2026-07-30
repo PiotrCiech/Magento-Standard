@@ -34,9 +34,11 @@ $uniqueId = 'rokezzz-accordion-' . uniqid();
 require(['jquery'], function($) {
     $(document).ready(function() {
         const $accordion = $('#<?= $uniqueId ?>');
+
         $accordion.find('.accordion-header').on('click', function() {
             const $item = $(this).closest('.accordion-item'),
                 $content = $item.find('.accordion-content');
+
             if ($item.hasClass('active')) {
                 $content.slideUp(250);
                 $item.removeClass('active');
