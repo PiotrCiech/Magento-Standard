@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="rokezzz_gallery_carousel" class="Rokezzz\Gallery\Block\Widget\Gallery">
+        <label translate="true">Rokezzz Gallery - Dynamic Carousel</label>
+        <description translate="true">Dynamiczna galeria zdjęć z możliwością wyboru plików z biblioteki mediów.</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true" sort_order="10">
+                <label translate="true">Tytuł sekcji (opcjonalnie)</label>
+            </parameter>
+            <parameter name="gallery_data" xsi:type="block" required="true" visible="true" sort_order="20">
+                <label translate="true">Zarządzanie zdjęciami galerii</label>
+                <block class="Rokezzz\Gallery\Block\Adminhtml\Widget\GalleryRows"/>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
