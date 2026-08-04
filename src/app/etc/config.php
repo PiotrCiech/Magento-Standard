@@ -389,6 +389,7 @@ return [
         'Rokezzz_InPost' => 1,
         'Rokezzz_IndexerSchedule' => 1,
         'Rokezzz_Invoices' => 1,
+        'Rokezzz_Language' => 1,
         'Rokezzz_LocaleDefaults' => 1,
         'Rokezzz_LoyaltyPoints' => 1,
         'Rokezzz_MostPopular' => 1,
