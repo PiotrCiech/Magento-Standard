@@ -50,6 +50,7 @@ final class DictionaryPlugin
                 if (!is_array($row) || count($row) < 2) {
                     continue;
                 }
+                
                 $result[(string) $row[0]] = (string) $row[1];
             }
         }

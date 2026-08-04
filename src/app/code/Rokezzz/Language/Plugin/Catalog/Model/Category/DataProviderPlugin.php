@@ -47,6 +47,7 @@ final class DataProviderPlugin
                         }
                     }
                 }
+                
                 unset($fieldConfig);
             }
 

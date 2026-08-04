@@ -22,6 +22,7 @@ final class OptionsPlugin
                 $item['label'] = __($item['label']);
             }
         }
+        
         unset($item);
 
         return $result;
