@@ -1,0 +1,207 @@
+"Privacy Policy","Polityka prywatności",module,Magento_Backend
+"Last Logged in","Ostatnio zalogowany",module,Magento_User
+"Search","Szukaj",module,Magento_Backend
+"User Type","Typ użytkownika",module,Magento_AsynchronousOperations
+"Sources","Źródła",module,Magento_InventoryAdminUi
+"Stocks","Magazyny",module,Magento_InventoryAdminUi
+"Sales Channels","Kanały sprzedaży",module,Magento_InventorySalesAdminUi
+"Assigned Sources","Przydzielone źródła",module,Magento_InventoryAdminUi
+"Add New Stock","Dodaj nowy magazyn",module,Magento_InventoryAdminUi
+"Manage Sources","Zarządzaj źródłami",module,Magento_InventoryAdminUi
+"Add New Source","Dodaj nowe źródło",module,Magento_InventoryAdminUi
+"Code","Kod",module,Magento_InventoryAdminUi
+"Is Enabled","Włączone",module,Magento_InventoryAdminUi
+"Pickup Location","Lokalizacja odbioru",module,Magento_InventoryInStorePickupAdminUi
+"We couldn't find any records.","Nie mogliśmy znaleźć żadnych rekordów.",module,Magento_Ui
+"We couldn't find any records.","Nie mogliśmy znaleźć żadnych rekordów.",module,Magento_Backend
+"We couldn't find any records.","Nie mogliśmy znaleźć żadnych rekordów.",module,Magento_B2b
+"We couldn't find any records.","Nie mogliśmy znaleźć żadnych rekordów.",module,Magento_Staging
+"Apply Filters","Zastosuj filtry",module,Magento_Ui
+"Columns","Kolumny",module,Magento_Ui
+"Promotion Slider","Slider promocji",module,Rokezzz_PromotionSlider
+"Add New Slide","Dodaj nowy slajd",module,Rokezzz_PromotionSlider
+"Offer Requests","Zapytania ofertowe",module,Rokezzz_Offers
+"Offers","Oferty",module,Rokezzz_Offers
+"Edit Offer","Edytuj ofertę",module,Rokezzz_Offers
+"Edit Offer %1","Edytuj ofertę %1",module,Rokezzz_Offers
+"Reject Offer","Odrzuć ofertę",module,Rokezzz_Offers
+"Send Offer","Wyślij ofertę",module,Rokezzz_Offers
+"Save Offer","Zapisz ofertę",module,Rokezzz_Offers
+"Customer Note","Notatka klienta",module,Rokezzz_Offers
+"Admin Note","Notatka admina",module,Rokezzz_Offers
+"Offered Qty","Oferowana ilość",module,Rokezzz_Offers
+"Offered Price","Oferowana cena",module,Rokezzz_Offers
+"Allocated sources","Przydzielone źródła",module,Magento_InventoryShippingAdminUi
+"Braintree Transaction Source","Źródło transakcji Braintree",module,PayPal_Braintree
+"Dispute State","Stan sporu",module,PayPal_Braintree
+"View Shipment #%1","Podgląd przesyłki #%1",module,Magento_Shipping
+"Source:","Źródło:",module,Magento_InventoryShippingAdminUi
+"There is no tracking available for this shipment.","Brak śledzenia dla tej przesyłki.",module,Magento_Shipping
+"There is no tracking available.","Brak śledzenia.",module,Magento_Shipping
+"View Invoice #%1","Podgląd faktury #%1",module,Magento_Sales
+"Invoice Information","Informacje o fakturze",module,Magento_Sales
+"Invoice # %1","Faktura # %1",module,Magento_Sales
+"The invoice confirmation email is not sent","E-mail z potwierdzeniem faktury nie został wysłany",module,Magento_Sales
+"The invoice confirmation email was sent","E-mail z potwierdzeniem faktury został wysłany",module,Magento_Sales
+"Login as Customer","Zaloguj jako klient",module,Magento_LoginAsCustomerAdminUi
+"Tax/VAT Number","Numer NIP/VAT",module,Magento_Customer
+"TAX/VAT Number","Numer NIP/VAT",module,Magento_Customer
+"VAT Number","Numer NIP",module,Magento_Customer
+"Please configure your Braintree Payments account in order to use the virtual terminal.","Skonfiguruj konto Braintree Payments, aby korzystać z terminala wirtualnego.",module,PayPal_Braintree
+"size","Rozmiar",module,Magento_Catalog
+"Short Description","Krótki opis",module,Magento_Catalog
+"Show / Hide Editor","Pokaż / ukryj edytor",module,Magento_Backend
+"Edit with Page Builder","Edytuj w Page Builder",module,Magento_PageBuilder
+"Drag Row, Columns, Tabs, Block, Dynamic Block or HTML Code here","Przeciągnij tutaj wiersz, kolumny, zakładki, blok, dynamiczny blok lub kod HTML",module,Magento_PageBuilder
+"Browse to find or drag image here","Przeglądaj lub przeciągnij obraz tutaj",module,Magento_Ui
+"Maximum 255 chars. Meta Description should optimally be between 150-160 characters","Maksymalnie 255 znaków. Optymalna długość meta opisu to 150–160 znaków",module,Magento_Catalog
+"Display Product Options In","Wyświetlaj opcje produktu w",module,Magento_Catalog
+"Custom Layout Update","Aktualizacja niestandardowego layoutu",module,Magento_Catalog
+"Block after Info Column","Blok po kolumnie informacji",module,Magento_Catalog
+"No update","Bez aktualizacji",module,Magento_Catalog
+"Product -- Full Width","Produkt — pełna szerokość",module,Magento_Catalog
+"Associate to Website","Przypisz do witryny",module,Magento_Customer
+"Name Prefix","Przedrostek",module,Magento_Customer
+"Name Suffix","Przyrostek",module,Magento_Customer
+"Allow remote shopping assistance","Zezwól na zdalne wsparcie zakupów",module,Magento_LoginAsCustomerAssistance
+"Assigned Admin User","Przypisany administrator",module,Rokezzz_CustomerContact
+"Login as Customer Log","Dziennik logowania jako klient",module,Magento_LoginAsCustomerLog
+"Admin ID","ID administratora",module,Magento_LoginAsCustomerLog
+"Admin Name","Nazwa administratora",module,Magento_LoginAsCustomerLog
+"Logged In","Zalogowano",module,Magento_LoginAsCustomerLog
+"Excluded Website(s)","Wykluczone witryny",module,Magento_Customer
+"Select websites you want to exclude from this customer group.","Wybierz witryny, które chcesz wykluczyć z tej grupy klientów.",module,Magento_Customer
+"Wholesale","Hurt",module,Magento_Customer
+"Retailer","Detalista",module,Magento_Customer
+"General","Ogólne",module,Magento_Customer
+"Retail Customer","Klient detaliczny",module,Magento_Tax
+"of","z",module,Magento_Ui
+"Manage Gallery","Zarządzaj galerią",module,Magento_MediaGalleryUi
+"Delete Images...","Usuń obrazy...",module,Magento_MediaGalleryUi
+"Search Adobe Stock","Szukaj w Adobe Stock",module,Magento_AdobeStockImageAdminUi
+"Sort by","Sortuj według",module,Magento_Ui
+"Newest first","Najpierw najnowsze",module,Magento_MediaGalleryUi
+"Themes","Motywy",module,Magento_Theme
+"Last updated: %1. To refresh last day's <a href=""%2"">statistics</a>, click <a href=""#2"" data-post=""%3"">here</a>.","Ostatnia aktualizacja: %1. Aby odświeżyć <a href=""%2"">statystyki</a> z ostatniego dnia, kliknij <a href=""#2"" data-post=""%3"">tutaj</a>.",module,Magento_Reports
+"Web","Sieć",module,Magento_Backend
+"<strong class=""colorRed"">Warning!</strong> When using Store Code in URLs, in some cases system may not work properly if URLs without Store Codes are specified in the third-party services (e.g. PayPal etc.).","<strong class=""colorRed"">Uwaga!</strong> Przy korzystaniu z kodu sklepu w URL-ach system w niektórych przypadkach może nie działać poprawnie, jeśli w usługach zewnętrznych (np. PayPal itp.) skonfigurowano adresy URL bez kodów sklepu.",module,Magento_Backend
+"I.e. redirect from http://example.com/store/ to http://www.example.com/store/","Np. przekierowanie z http://example.com/store/ na http://www.example.com/store/",module,Magento_Backend
+"Catalog media URL format","Format URL mediów katalogu",module,Magento_Catalog
+"Images should be optimized based on query parameters by your CDN or web server. Use the legacy mode for backward compatibility. <a href=""https://experienceleague.adobe.com/docs/commerce-admin/config/general/web.html"">Learn more</a> about catalog URL formats.<br/><br/><strong style=""color:red"">Warning!</strong> If you switch back to legacy mode, you must <a href=""https://developer.adobe.com/commerce/frontend-core/guide/themes/configure/#resize-catalog-images"">use the CLI to regenerate images</a>.","Obrazy powinny być optymalizowane na podstawie parametrów zapytania przez Twój CDN lub serwer WWW. Aby zachować zgodność wsteczną, użyj trybu legacy. <a href=""https://experienceleague.adobe.com/docs/commerce-admin/config/general/web.html"">Dowiedz się więcej</a> o formatach URL katalogu.<br/><br/><strong style=""color:red"">Uwaga!</strong> Jeśli wrócisz do trybu legacy, musisz <a href=""https://developer.adobe.com/commerce/frontend-core/guide/themes/configure/#resize-catalog-images"">użyć CLI do ponownego wygenerowania obrazów</a>.",module,Magento_Catalog
+"Any of the fields allow fully qualified URLs that end with '/' (slash) e.g. http://example.com/magento/","Każde z pól przyjmuje pełny adres URL zakończony znakiem '/' (ukośnik), np. http://example.com/magento/",module,Magento_Backend
+"Any of the fields allow fully qualified URLs that end with '/' (slash) e.g. https://example.com/magento/","Każde z pól przyjmuje pełny adres URL zakończony znakiem '/' (ukośnik), np. https://example.com/magento/",module,Magento_Backend
+"Base URL","Bazowy URL",module,Magento_Backend
+"May start with {{unsecure_base_url}} placeholder.","Może zaczynać się od symbolu zastępczego {{unsecure_base_url}}.",module,Magento_Backend
+"Secure Base URL","Bezpieczny bazowy URL",module,Magento_Backend
+"Specify URL or {{base_url}}, or {{unsecure_base_url}} placeholder.","Podaj URL albo symbol zastępczy {{base_url}} lub {{unsecure_base_url}}.",module,Magento_Backend
+"May start with {{secure_base_url}} or {{unsecure_base_url}} placeholder.","Może zaczynać się od symbolu zastępczego {{secure_base_url}} lub {{unsecure_base_url}}.",module,Magento_Backend
+"May be empty or start with {{secure_base_url}}, or {{unsecure_base_url}} placeholder.","Może być puste albo zaczynać się od symbolu zastępczego {{secure_base_url}} lub {{unsecure_base_url}}.",module,Magento_Backend
+"Enter https protocol to use Secure URLs on Storefront.","Aby używać bezpiecznych URL na storefrontcie, podaj protokół https.",module,Magento_Backend
+"Enter https protocol to use Secure URLs in Admin.","Aby używać bezpiecznych URL w panelu admina, podaj protokół https.",module,Magento_Backend
+"Default Layouts","Domyślne układy",module,Magento_Catalog
+"Default Product Layout","Domyślny układ produktu",module,Magento_Catalog
+"Default Category Layout","Domyślny układ kategorii",module,Magento_Catalog
+"Category -- Full Width","Kategoria — pełna szerokość",module,Magento_Catalog
+"Page -- Full Width","Strona — pełna szerokość",module,Magento_Cms
+"When disabled, wishlist links, customer account section, and add-to-wishlist actions are hidden on the storefront.","Po wyłączeniu linki schowka, sekcja konta klienta oraz akcje dodawania do schowka są ukryte na storefrontcie.",module,Rokezzz_Wishlist
+"When disabled, customers cannot open the share form, send shared wishlist emails, or open shared wishlist links.","Po wyłączeniu klienci nie mogą otworzyć formularza udostępniania, wysyłać e-maili z udostępnionym schowkiem ani otwierać linków do udostępnionego schowka.",module,Rokezzz_Wishlist
+"Google reviews","Opinie Google",module,Rokezzz_Review
+"Enable Google reviews integration","Włącz integrację z opiniami Google",module,Rokezzz_Review
+"When disabled, the module serves an empty payload and skips refresh jobs.","Po wyłączeniu moduł zwraca pusty payload i pomija zadania odświeżania.",module,Rokezzz_Review
+"Omnibus pricing","Ceny Omnibus",module,Rokezzz_Omnibus
+"Enable Omnibus pricing","Włącz ceny Omnibus",module,Rokezzz_Omnibus
+"Tracks gross final prices for simple products and shows the lowest price from the configured period when a promotion is active.","Śledzi końcowe ceny brutto dla produktów prostych i pokazuje najniższą cenę z skonfigurowanego okresu, gdy promocja jest aktywna.",module,Rokezzz_Omnibus
+"Lowest price period (days)","Okres najniższej ceny (dni)",module,Rokezzz_Omnibus
+"Number of days used to calculate the lowest gross price. Default is 30.","Liczba dni używana do obliczenia najniższej ceny brutto. Domyślnie 30.",module,Rokezzz_Omnibus
+"Show on product page","Pokazuj na stronie produktu",module,Rokezzz_Omnibus
+"Show on category listings","Pokazuj na listach kategorii",module,Rokezzz_Omnibus
+"Rokezzz Availability Notification","Rokezzz Powiadomienia o dostępności",module,Rokezzz_AvailabilityNotification
+"Rokezzz ChatBot (tawk.to)","Rokezzz ChatBot (tawk.to)",module,Rokezzz_ChatBot
+"Rokezzz Compare","Rokezzz Porównywarka",module,Rokezzz_Compare
+"Rokezzz Dynamic Categories","Rokezzz Dynamic Categories",module,Rokezzz_DynamicCategories
+"Rokezzz GUS","Rokezzz GUS",module,Rokezzz_GUS
+"Rokezzz Google Analytics","Rokezzz Google Analytics",module,Rokezzz_GoogleAnalytics
+"Rokezzz InPost","Rokezzz InPost",module,Rokezzz_InPost
+"Rokezzz Invoices","Rokezzz Faktury",module,Rokezzz_Invoices
+"Rokezzz Most Popular","Rokezzz Najpopularniejsze produkty",module,Rokezzz_MostPopular
+"Rokezzz Omnibus","Rokezzz Omnibus",module,Rokezzz_Omnibus
+"Rokezzz Order Advance","Rokezzz Rozszerzenia zamówień",module,Rokezzz_OrderAdvance
+"Rokezzz Order Owner Notification","Rokezzz Powiadomienia właściciela zamówień",module,Rokezzz_OrderOwnerNotification
+"Rokezzz Orders","Rokezzz Zamówienia",module,Rokezzz_Orders
+"Rokezzz Product Reviews","Rokezzz Opinie o produktach",module,Rokezzz_ProductsReview
+"Rokezzz Resubmitting Archived Orders","Rokezzz Ponowne składanie zarchiwizowanych zamówień",module,Rokezzz_ResubmittingArchivedOrders
+"Rokezzz Review","Rokezzz Opinie",module,Rokezzz_Review
+"Rokezzz Settings","Rokezzz Ustawienia",module,Rokezzz_Settings
+"Rokezzz Wishlist","Rokezzz Schowek",module,Rokezzz_Wishlist
+"Product availability alerts","Powiadomienia o dostępności produktu",module,Rokezzz_AvailabilityNotification
+"Enable availability notifications","Włącz powiadomienia o dostępności",module,Rokezzz_AvailabilityNotification
+"When disabled, customers cannot subscribe to back-in-stock alerts on the storefront.","Po wyłączeniu klienci nie mogą zapisywać się na powiadomienia o ponownej dostępności produktu na storefrontcie.",module,Rokezzz_AvailabilityNotification
+"Product reviews","Opinie o produktach",module,Rokezzz_ProductsReview
+"Enable product reviews","Włącz opinie o produktach",module,Rokezzz_ProductsReview
+"When disabled, review forms, lists, and ratings are hidden on the storefront.","Po wyłączeniu formularze opinii, listy opinii i oceny są ukryte na storefrontcie.",module,Rokezzz_ProductsReview
+"Allow guests to write reviews","Zezwól gościom na pisanie opinii",module,Rokezzz_ProductsReview
+"Only applies when product reviews are enabled.","Dotyczy tylko sytuacji, gdy opinie o produktach są włączone.",module,Rokezzz_ProductsReview
+"Store owner order notification","Powiadomienie o zamówieniu dla właściciela sklepu",module,Rokezzz_OrderOwnerNotification
+"Enable notification email","Włącz e-mail powiadomienia",module,Rokezzz_OrderOwnerNotification
+"When enabled, the store owner receives an email after each new order is placed.","Po włączeniu właściciel sklepu otrzymuje e-mail po złożeniu każdego nowego zamówienia.",module,Rokezzz_OrderOwnerNotification
+"Recipient email","Adres e-mail odbiorcy",module,Rokezzz_OrderOwnerNotification
+"Leave empty to use the store general contact email (Stores → Configuration → General → Store Email Addresses → General Contact).","Pozostaw puste, aby użyć e-maila ogólnego kontaktu sklepu (Sklepy → Konfiguracja → Ogólne → Adresy e-mail sklepu → Kontakt ogólny).",module,Rokezzz_OrderOwnerNotification
+"This service provides a dynamic suite of reports with rich insights about your business.                 Your reports can be accessed securely on a personalized dashboard outside of the admin panel by clicking on the                 ""Go to Advanced Reporting"" link. </br> For more information, see our <a target=""_blank"" href=""https://magento.com/legal/terms/cloud-terms"">                 terms and conditions</a>.","Ta usługa udostępnia dynamiczny zestaw raportów z pogłębioną analizą Twojego biznesu. Raporty są dostępne bezpiecznie na spersonalizowanym pulpicie poza panelem administracyjnym po kliknięciu linku „Przejdź do Zaawansowanego Raportowania”. </br> Więcej informacji znajdziesz w naszych <a target=""_blank"" href=""https://magento.com/legal/terms/cloud-terms"">warunkach i zasadach</a>.",module,Magento_Analytics
+"Advanced Reporting Service","Zaawansowane Usługi Raportowania",module,Magento_Analytics
+"Time of day to send data","Pora dnia do wysyłania danych",module,Magento_Analytics
+"Industry","Branża",module,Magento_Analytics
+"In order to personalize your Advanced Reporting experience, please select your industry.","Aby spersonalizować środowisko Zaawansowanego Raportowania, wybierz branżę.",module,Magento_Analytics
+"<strong>Get more insights from Magento Business Intelligence</strong>","<strong>Uzyskaj więcej statystyk z Magento Business Intelligence</strong>",module,Magento_Analytics
+"Magento Business Intelligence provides you with a simple and clear path to                     becoming more data driven.</br> Learn more about <a target=""_blank""                     href=""https://dashboard.rjmetrics.com/v2/magento/signup/"">Magento BI Essentials and BI Pro</a> tiers.","Magento Business Intelligence zapewnia prostą i przejrzystą drogę do podejmowania decyzji w oparciu o dane.</br> Dowiedz się więcej o pakietach <a target=""_blank""                     href=""https://dashboard.rjmetrics.com/v2/magento/signup/"">Magento BI Essentials i BI Pro</a>.",module,Magento_Analytics
+"Pending","Oczekujące",module,Magento_Analytics
+"Content Security Policy (CSP)","Polityka Bezpieczeństwa Treści (CSP)",module,Magento_Csp
+"Mode","Tryb",module,Magento_Csp
+"Storefront Default","Domyślny storefront",module,Magento_Csp
+"Admin Default","Domyślny panel administracyjny",module,Magento_Csp
+"Report URI","URI raportowania",module,Magento_Csp
+"URI to report CSP violations on storefront. Used for all storefront pages that don't have own URI configured above.","URI do raportowania naruszeń CSP na storefrontcie. Używane dla wszystkich stron storefrontu, które nie mają własnego URI skonfigurowanego powyżej.",module,Magento_Csp
+"URI to report CSP violations in admin area. Used for all admin pages that don't have own URI configured above.","URI do raportowania naruszeń CSP w obszarze administracyjnym. Używane dla wszystkich stron panelu admina, które nie mają własnego URI skonfigurowanego powyżej.",module,Magento_Csp
+"Admin > Create Order","Admin > Utwórz zamówienie",module,Magento_Sales
+"If empty, Default Report URI for admin area will be used.","Jeśli puste, zostanie użyte domyślne URI raportowania dla obszaru administracyjnego.",module,Magento_Sales
+"Storefront > One Page Checkout","Storefront > One Page Checkout",module,Magento_Checkout
+"If empty, Default Report URI for storefront will be used.","Jeśli puste, zostanie użyte domyślne URI raportowania dla storefrontu.",module,Magento_Checkout
+"Security.txt","Security.txt",module,Magento_Securitytxt
+"Google reCAPTCHA Admin Panel","Google reCAPTCHA — panel administracyjny",module,Magento_ReCaptchaAdminUi
+"Google reCAPTCHA Storefront","Google reCAPTCHA — storefront",module,Magento_ReCaptchaAdminUi
+"Magento Web API","Magento Web API",module,Magento_Webapi
+"Web API Security","Zabezpieczenia Web API",module,Magento_WebapiSecurity
+"OAuth","OAuth",module,Magento_Integration
+"Instant Purchase","Zakup błyskawiczny",module,Magento_InstantPurchase
+"Comma-separated.","Oddzielone przecinkami.",module,Magento_Catalog
+"Must be in the allowed values list.","Musi znajdować się na liście dozwolonych wartości.",module,Magento_Catalog
+"Product Listing Sort by Order","Kolejność sortowania listy produktów",module,Magento_Catalog
+"Applies to category pages.","Dotyczy stron kategorii.",module,Magento_Catalog
+"Ascending","Rosnąco",module,Magento_Catalog
+"Descending","Malejąco",module,Magento_Catalog
+"Whether to show ""All"" option in the ""Show X Per Page"" dropdown.","Czy pokazywać opcję „Wszystkie” w liście „Pokaż X na stronę”.",module,Magento_Catalog
+"Remember Category Pagination","Zapamiętaj paginację kategorii",module,Magento_Catalog
+"Changing may affect SEO and cache storage consumption.","Zmiana może wpływać na SEO i zużycie pamięci cache.",module,Magento_Catalog
+"Show Swatch Tooltip","Pokaż podpowiedź próbki",module,Magento_Swatches
+"Advanced","Zaawansowane",module,Magento_Config
+"Display Category Filter","Pokaż filtr kategorii",module,Magento_Catalog
+"Generate ""category/product"" URL Rewrites","Generuj przepisywanie URL ""kategoria/produkt""",module,Magento_CatalogUrlRewrite
+"<strong class=""colorRed"">Warning!</strong> Turning this option off will result in permanent removal of category/product URL rewrites without an ability to restore them.","<strong class=""colorRed"">Uwaga!</strong> Wyłączenie tej opcji spowoduje trwałe usunięcie przepisywań URL kategoria/produkt bez możliwości ich przywrócenia.",module,Magento_CatalogUrlRewrite
+"Apply transliteration for product URL","Zastosuj transliterację do URL produktu",module,Magento_Catalog
+"Product URL Rewrite Scope","Zakres przepisywania URL produktu",module,Magento_CatalogUrlRewrite
+"When editing a product URL rewrites can be generated in website or in view scope.","Podczas edycji produktu przepisywania URL mogą być generowane w zakresie witryny lub widoku.",module,Magento_CatalogUrlRewrite
+"This value must be compatible with the corresponding setting in the configured search engine. Be aware: a low query length limit may cause the performance impact.","Ta wartość musi być zgodna z odpowiadającym ustawieniem w skonfigurowanej wyszukiwarce. Uwaga: niski limit długości zapytania może wpłynąć na wydajność.",module,Magento_CatalogSearch
+"This value must be compatible with the corresponding setting in the configured search engine.","Ta wartość musi być zgodna z odpowiadającym ustawieniem w skonfigurowanej wyszukiwarce.",module,Magento_CatalogSearch
+"Number of top search results to cache","Liczba najczęściej wyszukiwanych wyników do cache",module,Magento_CatalogSearch
+"Number of popular search terms to be cached for faster response. Use “0” to cache all results after a term is searched for the second time.","Liczba popularnych fraz wyszukiwania cache’owanych dla szybszej odpowiedzi. Użyj „0”, aby cache’ować wszystkie wyniki po drugim wyszukaniu frazy.",module,Magento_CatalogSearch
+"Autocomplete Limit","Limit autouzupełniania",module,Magento_CatalogSearch
+"Enable EAV Indexer","Włącz indeksator EAV",module,Magento_CatalogSearch
+"Enable/Disable Product EAV indexer to improve indexation speed. Make sure that indexer is not used by 3rd party extensions.","Włącz/wyłącz indeksator EAV produktów, aby przyspieszyć indeksację. Upewnij się, że indeksator nie jest używany przez rozszerzenia zewnętrzne.",module,Magento_CatalogSearch
+"If not specified, Default Search Engine will be used.","Jeśli nie określono, zostanie użyta domyślna wyszukiwarka.",module,Magento_CatalogSearch
+"OpenSearch Server Hostname","Nazwa hosta serwera OpenSearch",module,Magento_OpenSearch
+"OpenSearch Server Port","Port serwera OpenSearch",module,Magento_OpenSearch
+"OpenSearch Index Prefix","Prefiks indeksu OpenSearch",module,Magento_OpenSearch
+"Enable OpenSearch HTTP Auth","Włącz autoryzację HTTP OpenSearch",module,Magento_OpenSearch
+"OpenSearch Server Timeout","Limit czasu serwera OpenSearch",module,Magento_OpenSearch
+"Minimum Terms to Match","Minimalna liczba pasujących terminów",module,Magento_OpenSearch
+"<a href=""https://experienceleague.adobe.com/en/docs/commerce-admin/catalog/catalog/search/search-configuration"">Learn more</a> about valid syntax.","<a href=""https://experienceleague.adobe.com/en/docs/commerce-admin/catalog/catalog/search/search-configuration"">Dowiedz się więcej</a> o poprawnej składni.",module,Magento_OpenSearch
+"We strongly recommend to enable a <a href=""https://experienceleague.adobe.com/docs/commerce-admin/systems/security/captcha/security-google-recaptcha.html"" target=""_blank"">CAPTCHA solution</a> alongside enabling ""Email to a Friend"" to ensure abuse of this feature does not occur.","Zdecydowanie zalecamy włączenie <a href=""https://experienceleague.adobe.com/docs/commerce-admin/systems/security/captcha/security-google-recaptcha.html"" target=""_blank"">rozwiązania CAPTCHA</a> wraz z funkcją ""Wyślij znajomemu"", aby zapobiec nadużyciom.",module,Magento_SendFriend
