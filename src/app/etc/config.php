@@ -370,6 +370,7 @@ return [
         'PayPal_BraintreeReward' => 1,
         'Rokezzz_AvailabilityNotification' => 1,
         'Rokezzz_CatalogListing' => 1,
+        'Rokezzz_CategoryAdvance' => 1,
         'Rokezzz_ChatBot' => 1,
         'Rokezzz_CheckoutAgreements' => 1,
         'Rokezzz_CmsData' => 1,
