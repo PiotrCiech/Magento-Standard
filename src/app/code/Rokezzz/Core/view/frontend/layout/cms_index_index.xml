@@ -14,6 +14,7 @@
                    after="rokezzz.homepage.promoted.categories">
                 <arguments>
                     <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
+                    <argument name="newLabelViewModel" xsi:type="object">Rokezzz\DynamicCategories\ViewModel\Product\NewLabel</argument>
                 </arguments>
                 <block class="Magento\Framework\View\Element\RendererList" name="rokezzz.homepage.bestsellers.renderers" as="details.renderers">
                     <block class="Magento\Framework\View\Element\Template" name="rokezzz.homepage.bestsellers.renderers.default" as="default"/>
