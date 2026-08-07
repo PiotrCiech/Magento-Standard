@@ -13,9 +13,6 @@ use Magento\Framework\View\Element\Template\Context;
 use Rokezzz\DynamicCategories\Model\Bestsellers\CollectionApplier;
 use Rokezzz\DynamicCategories\Model\ProductCollectionInitializer;
 
-/**
- * Homepage bestsellers carousel — own catalog collection, not category/search layer.
- */
 class Bestsellers extends ListProduct
 {
     public function __construct(
