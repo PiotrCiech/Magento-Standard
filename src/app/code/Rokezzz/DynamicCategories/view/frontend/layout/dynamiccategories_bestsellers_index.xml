@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
-      layout="1column">
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="dynamiccategories_listing"/>
     <body>
         <referenceContainer name="content">
-            <block class="Rokezzz\DynamicCategories\Block\Product\Bestsellers"
+            <block class="Magento\Catalog\Block\Product\ListProduct"
                    name="dynamiccategories.bestsellers.list"
                    template="Magento_Catalog::product/list.phtml">
                 <arguments>
-                    <argument name="page_title" xsi:type="string">Bestsellers</argument>
                     <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
+                    <argument name="newLabelViewModel" xsi:type="object">Rokezzz\DynamicCategories\ViewModel\Product\NewLabel</argument>
                 </arguments>
                 <container name="dynamiccategories.bestsellers.product.list.additional" as="additional"/>
                 <block class="Magento\Framework\View\Element\RendererList"
@@ -28,17 +28,16 @@
                            template="Magento_Catalog::product/list/addto/compare.phtml"/>
                 </block>
                 <block class="Magento\Catalog\Block\Product\ProductList\Toolbar"
-                       name="dynamiccategories.bestsellers.product.list.toolbar"
+                       name="product_list_toolbar"
                        as="toolbar"
                        template="Magento_Catalog::product/list/toolbar.phtml">
                     <block class="Magento\Theme\Block\Html\Pager"
-                           name="dynamiccategories.bestsellers.product.list.toolbar.pager"/>
+                           name="product_list_toolbar_pager"/>
                 </block>
                 <action method="setToolbarBlockName">
-                    <argument name="name" xsi:type="string">dynamiccategories.bestsellers.product.list.toolbar</argument>
+                    <argument name="name" xsi:type="string">product_list_toolbar</argument>
                 </action>
             </block>
         </referenceContainer>
     </body>
 </page>
-

@@ -7,7 +7,7 @@ namespace Rokezzz\LoyaltyPoints\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLED = 'rokezzz_settings/loyalty_points/enabled';
     private const XML_PATH_POINTS_PER_CURRENCY = 'rokezzz_settings/loyalty_points/points_per_currency';

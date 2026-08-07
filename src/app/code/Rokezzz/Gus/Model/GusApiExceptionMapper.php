@@ -8,7 +8,7 @@ use GusApi\Exception\InvalidUserKeyException;
 use GusApi\Exception\NotFoundException;
 use Magento\Framework\Exception\LocalizedException;
 
-class GusApiExceptionMapper
+final class GusApiExceptionMapper
 {
     public function toLocalizedException(InvalidUserKeyException|NotFoundException $exception): LocalizedException
     {

@@ -1,0 +1,17 @@
+<fieldset class="fieldset customer-order-number-fieldset" data-bind="visible: isVisible()">
+    <div class="field customer-order-number">
+        <label class="label">
+            <span data-bind="text: label"></span>
+        </label>
+        <div class="control">
+            <input class="input-text"
+                   type="text"
+                   data-bind="value: orderNumber,
+                              attr: {
+                                  placeholder: placeholder,
+                                  maxlength: maxLength,
+                                  name: 'customer_order_number'
+                              }" />
+        </div>
+    </div>
+</fieldset>

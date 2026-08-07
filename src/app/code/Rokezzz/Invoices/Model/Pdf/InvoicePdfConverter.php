@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Pdf;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-class InvoicePdfConverter
+final class InvoicePdfConverter
 {
     public function convert(string $html): string
     {

@@ -6,7 +6,7 @@ namespace Rokezzz\Orders\Model;
 
 use Magento\Quote\Api\CartRepositoryInterface;
 
-class OrderCommentSaver
+final class OrderCommentSaver
 {
     public function __construct(
         private readonly CartRepositoryInterface $quoteRepository,

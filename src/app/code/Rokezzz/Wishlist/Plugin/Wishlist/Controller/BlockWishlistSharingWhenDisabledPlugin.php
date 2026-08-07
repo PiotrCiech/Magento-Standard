@@ -11,7 +11,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Message\ManagerInterface as MessageManager;
 use Rokezzz\Wishlist\Model\Config;
 
-class BlockWishlistSharingWhenDisabledPlugin
+final class BlockWishlistSharingWhenDisabledPlugin
 {
     public function __construct(
         private readonly Config $config,

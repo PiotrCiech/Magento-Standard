@@ -9,7 +9,7 @@ use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
-class CategoryLoader
+final class CategoryLoader
 {
     public function __construct(
         private readonly CategoryCollectionFactory $categoryCollectionFactory,

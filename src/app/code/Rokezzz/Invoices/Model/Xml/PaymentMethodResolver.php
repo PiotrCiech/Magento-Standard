@@ -9,7 +9,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Rokezzz\Invoices\Model\Invoice\LegalType;
 use Rokezzz\Invoices\Model\Invoice\PaymentMethod;
 
-class PaymentMethodResolver
+final class PaymentMethodResolver
 {
     public function resolve(InvoiceInterface $invoice): PaymentMethod
     {

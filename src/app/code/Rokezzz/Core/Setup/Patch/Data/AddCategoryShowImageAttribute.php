@@ -10,7 +10,7 @@ use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class AddCategoryShowImageAttribute implements DataPatchInterface
+final class AddCategoryShowImageAttribute implements DataPatchInterface
 {
     public function __construct(
         private readonly ModuleDataSetupInterface $moduleDataSetup,

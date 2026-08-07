@@ -7,7 +7,7 @@ namespace Rokezzz\Review\Model\Config;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class ReviewConfig
+final class ReviewConfig
 {
     private const XML_PATH_ENABLED = 'rokezzz_review/general/enabled';
     private const XML_PATH_GOOGLE_API_KEY = 'rokezzz_review/general/google_api_key';

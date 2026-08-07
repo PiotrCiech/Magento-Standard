@@ -8,7 +8,7 @@ use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Exception\LocalizedException;
 
-class DeleteCustomerAccount
+final class DeleteCustomerAccount
 {
     public function __construct(
         private readonly CustomerRepositoryInterface $customerRepository,

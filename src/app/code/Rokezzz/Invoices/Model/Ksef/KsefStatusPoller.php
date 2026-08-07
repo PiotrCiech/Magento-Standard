@@ -8,7 +8,7 @@ use Rokezzz\Invoices\Api\KsefClientInterface;
 use Rokezzz\Invoices\Exception\KsefApiException;
 use Rokezzz\Invoices\Model\Data\KsefProcessingResult;
 
-class KsefStatusPoller
+final class KsefStatusPoller
 {
     private const MAX_ATTEMPTS = 120;
     private const SLEEP_SECONDS = 5;

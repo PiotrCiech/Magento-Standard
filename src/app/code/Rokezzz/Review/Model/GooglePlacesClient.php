@@ -9,7 +9,7 @@ use Magento\Framework\HTTP\Client\CurlFactory;
 use Magento\Framework\Serialize\Serializer\Json;
 use Rokezzz\Review\Model\Config\ReviewConfig;
 
-class GooglePlacesClient
+final class GooglePlacesClient
 {
     private const API_URL = 'https://maps.googleapis.com/maps/api/place/details/json';
 

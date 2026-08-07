@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\CustomerAccountDeletion\Service;
 
-class CustomerDeletePermission
+final class CustomerDeletePermission
 {
     private bool $allowed = false;
 

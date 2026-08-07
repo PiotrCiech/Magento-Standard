@@ -7,7 +7,7 @@ namespace Rokezzz\MostPopular\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLED = 'rokezzz_mostpopular/general/enabled';
     private const XML_PATH_PRODUCTS_COUNT = 'rokezzz_mostpopular/general/products_count';

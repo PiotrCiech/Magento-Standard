@@ -7,7 +7,7 @@ namespace Rokezzz\OrderOwnerNotification\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLED = 'rokezzz_order_owner_notification/general/enabled';
     private const XML_PATH_RECIPIENT_EMAIL = 'rokezzz_order_owner_notification/general/recipient_email';

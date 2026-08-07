@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Invoices\Model\Data;
 
-class InvoiceLine
+final class InvoiceLine
 {
     public function __construct(
         private readonly string $name,

@@ -6,7 +6,7 @@ namespace Rokezzz\LoyaltyPoints\Model;
 
 use Rokezzz\LoyaltyPoints\Api\TransactionRepositoryInterface;
 
-class TransactionRecorder
+final class TransactionRecorder
 {
     public function __construct(
         private readonly TransactionRepositoryInterface $transactionRepository

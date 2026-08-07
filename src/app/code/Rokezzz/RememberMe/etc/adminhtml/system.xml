@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_settings">
+            <group id="remember_me" translate="label" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Remember Me</label>
+                <field id="customer_lifetime_without" translate="label comment" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer session lifetime without Remember Me (seconds)</label>
+                    <comment>Default: 1800 (30 minutes).</comment>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="customer_lifetime_with" translate="label comment" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer session lifetime with Remember Me (seconds)</label>
+                    <comment>Default: 1209600 (14 days).</comment>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="admin_lifetime_without" translate="label comment" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Admin session lifetime without Remember Me (seconds)</label>
+                    <comment>Default: 1800 (30 minutes).</comment>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="admin_lifetime_with" translate="label comment" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Admin session lifetime with Remember Me (seconds)</label>
+                    <comment>Default: 1209600 (14 days).</comment>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

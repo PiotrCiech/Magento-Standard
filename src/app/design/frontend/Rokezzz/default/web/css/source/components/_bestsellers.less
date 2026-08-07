@@ -66,6 +66,30 @@
                 padding: 0 !important;
                 overflow: hidden;
 
+                .product-label {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    z-index: 2;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 22px;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.04em;
+                    text-transform: uppercase;
+                    line-height: 1;
+                    pointer-events: none;
+                }
+
+                .product-label--new {
+                    background: @mainAccentColor;
+                    color: @whiteColor;
+                }
+
                 .product-image-container,
                 .product-image-wrapper {
                     width: 100% !important;

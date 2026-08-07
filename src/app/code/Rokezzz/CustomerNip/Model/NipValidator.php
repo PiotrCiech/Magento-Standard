@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\CustomerNip\Model;
 
-class NipValidator
+final class NipValidator
 {
     public function isValid(string $nip): bool
     {

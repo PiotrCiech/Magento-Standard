@@ -12,7 +12,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\Store;
 
-class InstallCheckoutAgreement implements DataPatchInterface
+final class InstallCheckoutAgreement implements DataPatchInterface
 {
     private const AGREEMENT_NAME = 'Store terms and conditions';
     private const AGREEMENT_CONTENT = 'I accept the store terms and conditions.';

@@ -8,7 +8,7 @@ use Magento\Framework\Exception\LocalizedException;
 use Rokezzz\Invoices\Model\Data\InvoiceLine;
 use Rokezzz\Invoices\Model\Invoice\Unit;
 
-class VatLineFormatter
+final class VatLineFormatter
 {
     private const VAT_EXEMPT_CODE = 'zw';
     private const ZERO_VAT_CODE = '0';

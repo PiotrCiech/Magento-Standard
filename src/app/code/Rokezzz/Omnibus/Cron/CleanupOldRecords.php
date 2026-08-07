@@ -8,7 +8,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Rokezzz\Omnibus\Model\Config;
 use Rokezzz\Omnibus\Model\ResourceModel\PriceHistory;
 
-class CleanupOldRecords
+final class CleanupOldRecords
 {
     private const RETENTION_BUFFER_DAYS = 60;
 

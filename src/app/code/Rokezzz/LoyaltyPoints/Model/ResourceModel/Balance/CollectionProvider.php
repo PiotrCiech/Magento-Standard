@@ -10,7 +10,7 @@ use Magento\Framework\Event\ManagerInterface;
 use Psr\Log\LoggerInterface;
 use Rokezzz\LoyaltyPoints\Model\ResourceModel\Balance as BalanceResource;
 
-class CollectionProvider
+final class CollectionProvider
 {
     public function __construct(
         private readonly EntityFactoryInterface $entityFactory,

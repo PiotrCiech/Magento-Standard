@@ -7,7 +7,7 @@ namespace Rokezzz\Orders\Model;
 use Magento\Checkout\Api\Data\ShippingInformationInterface;
 use Magento\Quote\Api\Data\PaymentInterface;
 
-class OrderCommentExtractor
+final class OrderCommentExtractor
 {
     public function fromPayment(PaymentInterface $payment): ?string
     {

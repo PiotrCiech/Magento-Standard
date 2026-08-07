@@ -8,7 +8,7 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Sales\Model\Order;
 
-class DeliveryDateSaver
+final class DeliveryDateSaver
 {
     public const QUOTE_FIELD = 'rokezzz_preferred_delivery_date';
 

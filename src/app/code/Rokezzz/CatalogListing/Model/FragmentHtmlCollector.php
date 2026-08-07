@@ -12,7 +12,7 @@ use Magento\Framework\View\Page\Config as PageConfig;
 use Magento\Framework\View\Result\Page;
 use LogicException;
 
-class FragmentHtmlCollector
+final class FragmentHtmlCollector
 {
     public function __construct(
         private readonly ListingParamsSanitizer $paramsSanitizer,

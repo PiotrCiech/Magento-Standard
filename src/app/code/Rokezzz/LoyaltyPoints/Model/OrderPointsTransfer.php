@@ -7,7 +7,7 @@ namespace Rokezzz\LoyaltyPoints\Model;
 use Magento\Quote\Model\Quote;
 use Magento\Sales\Model\Order;
 
-class OrderPointsTransfer
+final class OrderPointsTransfer
 {
     public function __construct(
         private readonly Config $config,

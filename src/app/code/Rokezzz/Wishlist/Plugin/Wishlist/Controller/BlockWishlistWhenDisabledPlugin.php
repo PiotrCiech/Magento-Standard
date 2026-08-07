@@ -11,7 +11,7 @@ use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Wishlist\Helper\Data as WishlistHelper;
 
-class BlockWishlistWhenDisabledPlugin
+final class BlockWishlistWhenDisabledPlugin
 {
     public function __construct(
         private readonly WishlistHelper $wishlistHelper,
