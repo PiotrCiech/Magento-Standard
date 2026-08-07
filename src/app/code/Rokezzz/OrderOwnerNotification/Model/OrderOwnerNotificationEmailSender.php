@@ -11,7 +11,7 @@ use Magento\Store\Api\Data\StoreInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 
-class OrderOwnerNotificationEmailSender
+final class OrderOwnerNotificationEmailSender
 {
     public function __construct(
         private readonly Config $config,

@@ -7,7 +7,7 @@ namespace Rokezzz\Compare\Plugin\Catalog\Block\Product\ProductList\Item\AddTo;
 use Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare;
 use Rokezzz\Compare\Model\Config;
 
-class HideListCompareLinkPlugin
+final class HideListCompareLinkPlugin
 {
     public function __construct(
         private readonly Config $config

@@ -10,7 +10,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Rokezzz\CustomerContact\Model\AssignedAdminAttribute;
 
-class AddAssignedAdminUserAttributeToAttributeSet implements DataPatchInterface
+final class AddAssignedAdminUserAttributeToAttributeSet implements DataPatchInterface
 {
     private const ATTRIBUTE_GROUP = 'General';
     private const SORT_ORDER = 999;

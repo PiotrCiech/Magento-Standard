@@ -1,0 +1,8 @@
+<!-- ko if: isBlocked() -->
+<div class="message message-error error rokezzz-checkout-quote-request-guard">
+    <div data-bind="text: getMessage()"></div>
+    <p>
+        <a data-bind="attr: { href: getCartUrl() }, text: getCartLinkLabel()"></a>
+    </p>
+</div>
+<!-- /ko -->

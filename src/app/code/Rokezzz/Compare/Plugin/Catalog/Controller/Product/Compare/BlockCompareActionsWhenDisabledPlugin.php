@@ -11,7 +11,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Message\ManagerInterface as MessageManager;
 use Rokezzz\Compare\Model\Config;
 
-class BlockCompareActionsWhenDisabledPlugin
+final class BlockCompareActionsWhenDisabledPlugin
 {
     public function __construct(
         private readonly Config $config,

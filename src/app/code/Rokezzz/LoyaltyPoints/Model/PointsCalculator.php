@@ -6,7 +6,7 @@ namespace Rokezzz\LoyaltyPoints\Model;
 
 use Magento\Sales\Api\Data\OrderInterface;
 
-class PointsCalculator
+final class PointsCalculator
 {
     public function __construct(
         private readonly Config $config

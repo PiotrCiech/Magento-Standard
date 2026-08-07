@@ -11,7 +11,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Rokezzz\CustomerContact\Model\AssignedAdminAttribute;
 use Rokezzz\CustomerContact\Model\CustomerAttribute\AssignedAdminSource;
 
-class AddAssignedAdminUserAttribute implements DataPatchInterface
+final class AddAssignedAdminUserAttribute implements DataPatchInterface
 {
     private const USED_IN_FORMS = [
         'adminhtml_customer',

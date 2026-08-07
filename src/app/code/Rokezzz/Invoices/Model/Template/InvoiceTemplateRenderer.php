@@ -9,7 +9,7 @@ use Magento\Framework\Module\Dir\Reader as ModuleDirReader;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class InvoiceTemplateRenderer
+final class InvoiceTemplateRenderer
 {
     public function __construct(
         private readonly ModuleDirReader $moduleDirReader

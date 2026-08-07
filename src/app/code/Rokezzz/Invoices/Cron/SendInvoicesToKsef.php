@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Cron;
 use Psr\Log\LoggerInterface;
 use Rokezzz\Invoices\Model\Invoice\KsefInvoiceSubmissionService;
 
-class SendInvoicesToKsef
+final class SendInvoicesToKsef
 {
     public function __construct(
         private readonly KsefInvoiceSubmissionService $submissionService,

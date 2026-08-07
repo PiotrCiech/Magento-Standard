@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Rokezzz\Offers\Api\Data\OfferRequestInterface"
+                type="Rokezzz\Offers\Model\OfferRequest"/>
+    <preference for="Rokezzz\Offers\Api\Data\OfferRequestItemInterface"
+                type="Rokezzz\Offers\Model\OfferRequestItem"/>
+    <preference for="Rokezzz\Offers\Api\Data\OfferInterface"
+                type="Rokezzz\Offers\Model\Offer"/>
+    <preference for="Rokezzz\Offers\Api\Data\OfferItemInterface"
+                type="Rokezzz\Offers\Model\OfferItem"/>
+    <preference for="Rokezzz\Offers\Api\Data\OfferRequestItemDataInterface"
+                type="Rokezzz\Offers\Model\Data\OfferRequestItemData"/>
+    <preference for="Rokezzz\Offers\Api\Data\OfferItemDataInterface"
+                type="Rokezzz\Offers\Model\Data\OfferItemData"/>
+    <preference for="Rokezzz\Offers\Api\OfferRequestManagementInterface"
+                type="Rokezzz\Offers\Model\OfferRequestManagement"/>
+    <preference for="Rokezzz\Offers\Api\OfferManagementInterface"
+                type="Rokezzz\Offers\Model\OfferManagement"/>
+    <preference for="Rokezzz\Offers\Api\OfferRequestProviderInterface"
+                type="Rokezzz\Offers\Model\OfferRequestProvider"/>
+    <preference for="Rokezzz\Offers\Api\OfferProviderInterface"
+                type="Rokezzz\Offers\Model\OfferProvider"/>
+    <preference for="Rokezzz\Offers\Api\OfferApplicatorInterface"
+                type="Rokezzz\Offers\Model\OfferApplicator"/>
+    <preference for="Rokezzz\Offers\Api\QuoteRequestCartManagementInterface"
+                type="Rokezzz\Offers\Model\QuoteRequestCartManagement"/>
+    <preference for="Rokezzz\Offers\Api\QuoteRequestSubmissionManagementInterface"
+                type="Rokezzz\Offers\Model\QuoteRequestSubmissionManagement"/>
+    <preference for="Rokezzz\Offers\Api\OfferPdfGeneratorInterface"
+                type="Rokezzz\Offers\Model\Pdf\OfferPdfGenerator"/>
+    <preference for="Rokezzz\Offers\Api\OfferNotificationSenderInterface"
+                type="Rokezzz\Offers\Model\Email\OfferNotificationSender"/>
+    <type name="Rokezzz\Offers\Model\Email\OfferNotificationSender">
+        <arguments>
+            <argument name="transportBuilder" xsi:type="object">Rokezzz\Offers\Model\Mail\Template\TransportBuilder</argument>
+            <argument name="frontendUrlBuilder" xsi:type="object">Magento\Framework\Url</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rokezzz_offers_request_listing_data_source" xsi:type="string">Rokezzz\Offers\Model\ResourceModel\OfferRequest\Grid\Collection</item>
+                <item name="rokezzz_offers_offer_listing_data_source" xsi:type="string">Rokezzz\Offers\Model\ResourceModel\Offer\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Rokezzz\Offers\Model\ResourceModel\OfferRequest\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_offer_request</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Offers\Model\ResourceModel\OfferRequestResource</argument>
+        </arguments>
+    </type>
+    <type name="Rokezzz\Offers\Model\ResourceModel\Offer\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_offer</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Offers\Model\ResourceModel\OfferResource</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="rokezzz_offers_enforce_offer_prices"
+                type="Rokezzz\Offers\Plugin\Quote\EnforceOfferPricesPlugin"/>
+        <plugin name="rokezzz_offers_block_oos_without_quote_request"
+                type="Rokezzz\Offers\Plugin\Quote\BlockOutOfStockWithoutQuoteRequestPlugin"/>
+    </type>
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="rokezzz_offers_block_checkout_with_quote_request_items"
+                type="Rokezzz\Offers\Plugin\Checkout\BlockCheckoutWithQuoteRequestItemsPlugin"/>
+    </type>
+    <type name="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator">
+        <plugin name="rokezzz_offers_skip_stock_validation_for_quote_request"
+                type="Rokezzz\Offers\Plugin\CatalogInventory\Quote\Item\SkipStockValidationForQuoteRequestPlugin"/>
+    </type>
+</config>

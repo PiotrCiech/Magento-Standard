@@ -6,7 +6,7 @@ namespace Rokezzz\Omnibus\Cron;
 
 use Rokezzz\Omnibus\Model\RecordAllProductPrices;
 
-class RecordPrices
+final class RecordPrices
 {
     public function __construct(
         private readonly RecordAllProductPrices $recordAllProductPrices

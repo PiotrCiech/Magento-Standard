@@ -9,7 +9,7 @@ use Magento\Framework\App\Request\Http as HttpRequest;
 use Magento\Framework\Webapi\Rest\Request as RestRequest;
 use Magento\Quote\Api\Data\PaymentInterface;
 
-class OrderCommentRequestReader
+final class OrderCommentRequestReader
 {
     /**
      * @var list<string>

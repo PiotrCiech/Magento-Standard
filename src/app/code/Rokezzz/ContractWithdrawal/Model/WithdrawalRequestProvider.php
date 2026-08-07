@@ -6,7 +6,7 @@ namespace Rokezzz\ContractWithdrawal\Model;
 
 use Rokezzz\ContractWithdrawal\Model\ResourceModel\WithdrawalRequestResource;
 
-class WithdrawalRequestProvider
+final class WithdrawalRequestProvider
 {
     public function __construct(
         private readonly WithdrawalRequestCreator $withdrawalRequestCreator,

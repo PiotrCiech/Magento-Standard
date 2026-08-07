@@ -11,7 +11,7 @@ use Magento\Quote\Model\Quote;
 use Magento\Sales\Model\Order;
 use Rokezzz\DeliveryDate\Model\Config;
 
-class CopyDeliveryDateToOrder implements ObserverInterface
+final class CopyDeliveryDateToOrder implements ObserverInterface
 {
     public function __construct(
         private readonly Config $config,

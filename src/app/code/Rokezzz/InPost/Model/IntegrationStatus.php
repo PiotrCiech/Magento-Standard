@@ -7,7 +7,7 @@ namespace Rokezzz\InPost\Model;
 use Magento\Framework\Module\Manager as ModuleManager;
 use Magento\Framework\Module\ModuleListInterface;
 
-class IntegrationStatus
+final class IntegrationStatus
 {
     private const OFFICIAL_MODULE_NAME = 'Smartmage_Inpost';
 

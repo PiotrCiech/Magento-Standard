@@ -12,7 +12,7 @@ use Rokezzz\DeliveryDate\Model\DeliveryDateRequestReader;
 use Rokezzz\DeliveryDate\Model\DeliveryDateSaver;
 use Rokezzz\DeliveryDate\Model\DeliveryDateValidator;
 
-class QuoteManagementPlugin
+final class QuoteManagementPlugin
 {
     public function __construct(
         private readonly Config $config,

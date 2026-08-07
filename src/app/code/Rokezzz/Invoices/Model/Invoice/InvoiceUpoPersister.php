@@ -11,7 +11,7 @@ use Rokezzz\Invoices\Model\Data\KsefProcessingResult;
 use Rokezzz\Invoices\Model\Ksef\KsefUpoDownloader;
 use Rokezzz\Invoices\Model\Ksef\KsefUpoRetryFetcher;
 
-class InvoiceUpoPersister
+final class InvoiceUpoPersister
 {
     public function __construct(
         private readonly UpoFileWriterInterface $upoFileWriter,

@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class EnableResubmittingArchivedOrdersPatch implements DataPatchInterface
+final class EnableResubmittingArchivedOrdersPatch implements DataPatchInterface
 {
     private const CONFIG_TO_INSTALL = [
         'rokezzz_resubmitting_archived_orders/general/enabled' => '1',

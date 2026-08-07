@@ -8,7 +8,7 @@ use Magento\Config\Model\ResourceModel\Config as ConfigResource;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class SetPolishDefaults implements DataPatchInterface
+final class SetPolishDefaults implements DataPatchInterface
 {
     private const DEFAULT_SCOPE = 'default';
     private const DEFAULT_SCOPE_ID = 0;

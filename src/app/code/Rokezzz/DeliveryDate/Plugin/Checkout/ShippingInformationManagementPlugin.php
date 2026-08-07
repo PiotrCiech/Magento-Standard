@@ -11,7 +11,7 @@ use Rokezzz\DeliveryDate\Model\Config;
 use Rokezzz\DeliveryDate\Model\DeliveryDateRequestReader;
 use Rokezzz\DeliveryDate\Model\DeliveryDateSaver;
 
-class ShippingInformationManagementPlugin
+final class ShippingInformationManagementPlugin
 {
     public function __construct(
         private readonly Config $config,

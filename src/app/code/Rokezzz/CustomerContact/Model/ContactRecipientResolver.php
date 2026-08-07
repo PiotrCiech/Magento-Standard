@@ -6,7 +6,7 @@ namespace Rokezzz\CustomerContact\Model;
 
 use Magento\Contact\Model\ConfigInterface;
 
-class ContactRecipientResolver
+final class ContactRecipientResolver
 {
     public function __construct(
         private readonly ConfigInterface $contactsConfig,

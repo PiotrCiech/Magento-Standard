@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class EnableProductComparePatch implements DataPatchInterface
+final class EnableProductComparePatch implements DataPatchInterface
 {
     private const CONFIG_TO_INSTALL = [
         'rokezzz_compare/general/enabled' => '1',

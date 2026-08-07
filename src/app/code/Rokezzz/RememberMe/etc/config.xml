@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rokezzz_settings>
+            <remember_me>
+                <customer_lifetime_without>1800</customer_lifetime_without>
+                <customer_lifetime_with>1209600</customer_lifetime_with>
+                <admin_lifetime_without>1800</admin_lifetime_without>
+                <admin_lifetime_with>1209600</admin_lifetime_with>
+            </remember_me>
+        </rokezzz_settings>
+    </default>
+</config>

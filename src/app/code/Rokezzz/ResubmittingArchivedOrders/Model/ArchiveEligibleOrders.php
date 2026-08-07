@@ -9,7 +9,7 @@ use DateTimeZone;
 use Magento\Framework\Stdlib\DateTime;
 use Rokezzz\ResubmittingArchivedOrders\Model\ResourceModel\OrderArchive;
 
-class ArchiveEligibleOrders
+final class ArchiveEligibleOrders
 {
     public function __construct(
         private readonly Config $config,

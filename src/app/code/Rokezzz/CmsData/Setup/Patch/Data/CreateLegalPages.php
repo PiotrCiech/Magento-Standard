@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Rokezzz\CmsData\Setup\Patch\Data;
 
+use Exception;
 use Magento\Cms\Model\PageFactory;
 use Magento\Cms\Model\PageRepository;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class CreateLegalPages implements DataPatchInterface
+final class CreateLegalPages implements DataPatchInterface
 {
     private PageFactory $pageFactory;
     private PageRepository $pageRepository;
@@ -86,7 +87,7 @@ class CreateLegalPages implements DataPatchInterface
                     ->setPageLayout($pageData['layout'])
                     ->setIsActive(true);
                 $this->pageRepository->save($page);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->logger->error(
                     sprintf('Error creating CMS page %s: %s', $pageData['identifier'], $e->getMessage())
                 );

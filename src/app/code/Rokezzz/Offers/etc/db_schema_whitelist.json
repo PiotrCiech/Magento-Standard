@@ -1,0 +1,90 @@
+{
+    "rokezzz_offer_request": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "status": true,
+            "customer_note": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_OFFER_REQUEST_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        },
+        "index": {
+            "ROKEZZZ_OFFER_REQUEST_CUSTOMER_ID_STATUS": true
+        }
+    },
+    "rokezzz_offer_request_item": {
+        "column": {
+            "entity_id": true,
+            "request_id": true,
+            "product_id": true,
+            "sku": true,
+            "name": true,
+            "qty": true,
+            "customer_note": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_OFFER_REQUEST_ITEM_REQUEST_ID_ROKEZZZ_OFFER_REQUEST_ENTITY_ID": true,
+            "ROKEZZZ_OFFER_REQUEST_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        },
+        "index": {
+            "ROKEZZZ_OFFER_REQUEST_ITEM_REQUEST_ID": true
+        }
+    },
+    "rokezzz_offer": {
+        "column": {
+            "entity_id": true,
+            "request_id": true,
+            "customer_id": true,
+            "status": true,
+            "increment_id": true,
+            "access_token": true,
+            "customer_note": true,
+            "admin_note": true,
+            "expires_at": true,
+            "sent_at": true,
+            "accepted_at": true,
+            "used_at": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_OFFER_REQUEST_ID_ROKEZZZ_OFFER_REQUEST_ENTITY_ID": true,
+            "ROKEZZZ_OFFER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true,
+            "ROKEZZZ_OFFER_INCREMENT_ID": true,
+            "ROKEZZZ_OFFER_ACCESS_TOKEN": true
+        },
+        "index": {
+            "ROKEZZZ_OFFER_CUSTOMER_ID_STATUS": true,
+            "ROKEZZZ_OFFER_EXPIRES_AT_STATUS": true
+        }
+    },
+    "rokezzz_offer_item": {
+        "column": {
+            "entity_id": true,
+            "offer_id": true,
+            "request_item_id": true,
+            "product_id": true,
+            "sku": true,
+            "name": true,
+            "requested_qty": true,
+            "offered_qty": true,
+            "base_price": true,
+            "offered_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_OFFER_ITEM_OFFER_ID_ROKEZZZ_OFFER_ENTITY_ID": true,
+            "ROKEZZZ_OFFER_ITEM_REQUEST_ITEM_ID_ROKEZZZ_OFFER_REQUEST_ITEM_ENTITY_ID": true,
+            "ROKEZZZ_OFFER_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        },
+        "index": {
+            "ROKEZZZ_OFFER_ITEM_OFFER_ID": true
+        }
+    }
+}

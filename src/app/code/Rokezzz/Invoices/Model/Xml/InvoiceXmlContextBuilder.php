@@ -10,7 +10,7 @@ use Rokezzz\Invoices\Model\Invoice\LegalType;
 use Rokezzz\Invoices\Model\Invoice\PaymentMethod;
 use Rokezzz\Invoices\Model\Invoice\Unit;
 
-class InvoiceXmlContextBuilder
+final class InvoiceXmlContextBuilder
 {
     private const PAYMENT_TERM_DAYS = 14;
 

@@ -7,7 +7,7 @@ namespace Rokezzz\Review\Model;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Serialize\Serializer\Json;
 
-class ReviewCacheManager
+final class ReviewCacheManager
 {
     private const CACHE_KEY_PREFIX = 'rokezzz_review_google_reviews_';
     private const CACHE_TAG = 'ROKEZZZ_REVIEW_GOOGLE_REVIEWS';

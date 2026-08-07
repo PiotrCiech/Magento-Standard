@@ -7,7 +7,7 @@ namespace Rokezzz\Orders\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLED = 'rokezzz_orders/order_notes/enabled';
     private const XML_PATH_MAX_LENGTH = 'rokezzz_orders/order_notes/max_length';

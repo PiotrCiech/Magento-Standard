@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\LoyaltyPoints\Model;
 
-class RedemptionCalculator
+final class RedemptionCalculator
 {
     public function __construct(
         private readonly Config $config

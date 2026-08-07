@@ -7,7 +7,7 @@ namespace Rokezzz\Omnibus\Model;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Product\Type;
 
-class SimpleProductEligibility
+final class SimpleProductEligibility
 {
     public function isEligible(ProductInterface $product): bool
     {

@@ -10,7 +10,7 @@ use Magento\Quote\Model\Quote;
 use Magento\Sales\Model\Order;
 use Rokezzz\LoyaltyPoints\Model\OrderPointsTransfer;
 
-class CopyPointsToOrderOnSubmit implements ObserverInterface
+final class CopyPointsToOrderOnSubmit implements ObserverInterface
 {
     public function __construct(
         private readonly OrderPointsTransfer $orderPointsTransfer

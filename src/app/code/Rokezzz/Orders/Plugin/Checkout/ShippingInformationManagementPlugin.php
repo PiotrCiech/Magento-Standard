@@ -11,7 +11,7 @@ use Rokezzz\Orders\Model\Config;
 use Rokezzz\Orders\Model\OrderCommentRequestReader;
 use Rokezzz\Orders\Model\OrderCommentSaver;
 
-class ShippingInformationManagementPlugin
+final class ShippingInformationManagementPlugin
 {
     public function __construct(
         private readonly Config $config,

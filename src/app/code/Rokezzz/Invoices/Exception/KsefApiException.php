@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Exception;
 use RuntimeException;
 use Throwable;
 
-class KsefApiException extends RuntimeException
+final class KsefApiException extends RuntimeException
 {
     public function __construct(
         string $message,

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\InPost\Model;
 
-class CarrierCodeMatcher
+final class CarrierCodeMatcher
 {
     private const INPOST_CARRIER_PREFIX = 'inpost';
 

@@ -6,7 +6,7 @@ namespace Rokezzz\OrderOwnerNotification\Model;
 
 use Magento\Sales\Model\Order;
 
-class OrderOwnerNotificationContext
+final class OrderOwnerNotificationContext
 {
     public function __construct(
         public readonly Order $order,

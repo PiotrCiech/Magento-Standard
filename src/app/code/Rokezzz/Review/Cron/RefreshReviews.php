@@ -10,7 +10,7 @@ use Rokezzz\Review\Api\ReviewProviderInterface;
 use Rokezzz\Review\Model\Config\ReviewConfig;
 use Throwable;
 
-class RefreshReviews
+final class RefreshReviews
 {
     public function __construct(
         private readonly StoreManagerInterface $storeManager,
