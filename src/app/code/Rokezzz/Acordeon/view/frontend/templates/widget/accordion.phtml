@@ -1,0 +1,57 @@
+<?php
+declare(strict_types=1);
+
+use Rokezzz\Acordeon\Block\Widget\Accordion;
+
+/** @var Accordion $block */
+
+$items = $block->getAccordionItems();
+$title = $block->getData('title');
+$uniqueId = 'rokezzz-accordion-' . uniqid();
+?>
+<?php if (!empty($items)): ?>
+<div class="rokezzz-accordion-wrapper" id="<?= $uniqueId ?>">
+    <?php if ($title): ?>
+    <h2 class="accordion-main-title"><?= $block->escapeHtml($title) ?></h2>
+    <?php endif; ?>
+    <div class="accordion-items">
+        <?php foreach ($items as $item): ?>
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <span class="accordion-item-title"><?= $item['title'] ?></span>
+                <span class="accordion-icon"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-content-inner">
+                    <?= $item['content'] ?>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<script>
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        const $accordion = $('#<?= $uniqueId ?>');
+
+        $accordion.find('.accordion-header').on('click', function() {
+            const $item = $(this).closest('.accordion-item'),
+                $content = $item.find('.accordion-content');
+
+            if ($item.hasClass('active')) {
+                $content.slideUp(250);
+                $item.removeClass('active');
+            } else {
+                $accordion.find('.accordion-item.active').each(function() {
+                    $(this).find('.accordion-content').slideUp(250);
+                    $(this).removeClass('active');
+                });
+                $content.slideDown(250);
+                $item.addClass('active');
+            }
+        });
+    });
+});
+</script>
+<?php endif; ?>

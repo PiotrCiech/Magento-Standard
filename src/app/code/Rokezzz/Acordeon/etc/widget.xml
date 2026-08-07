@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="rokezzz_acordeon" class="Rokezzz\Acordeon\Block\Widget\Accordion">
+        <label translate="true">Rokezzz Accordion FAQ</label>
+        <description translate="true">Dynamiczny akordeon FAQ z edytowalnymi wierszami.</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true" sort_order="10">
+                <label translate="true">Tytuł sekcji (opcjonalnie)</label>
+            </parameter>
+            <parameter name="accordion_data" xsi:type="block" required="true" visible="true" sort_order="20">
+                <label translate="true">Pytania i Odpowiedzi</label>
+                <block class="Rokezzz\Acordeon\Block\Adminhtml\Widget\AccordionRows"/>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
