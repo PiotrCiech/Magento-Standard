@@ -10,7 +10,7 @@ use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Rokezzz\Omnibus\Api\PriceHistoryRecorderInterface;
 
-class RecordAllProductPrices
+final class RecordAllProductPrices
 {
     private const BATCH_SIZE = 500;
 

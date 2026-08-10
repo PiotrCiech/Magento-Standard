@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Ksef;
 use Magento\Framework\HTTP\Client\CurlFactory;
 use Rokezzz\Invoices\Exception\KsefApiException;
 
-class KsefUpoDownloader
+final class KsefUpoDownloader
 {
     public function __construct(
         private readonly CurlFactory $curlFactory

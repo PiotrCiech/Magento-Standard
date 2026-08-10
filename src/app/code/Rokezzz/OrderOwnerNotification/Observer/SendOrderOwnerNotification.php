@@ -9,7 +9,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\OrderInterface;
 use Rokezzz\OrderOwnerNotification\Api\OrderOwnerNotifierInterface;
 
-class SendOrderOwnerNotification implements ObserverInterface
+final class SendOrderOwnerNotification implements ObserverInterface
 {
     public function __construct(
         private readonly OrderOwnerNotifierInterface $orderOwnerNotifier

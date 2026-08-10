@@ -11,7 +11,7 @@ use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Rokezzz\Invoices\Model\Data\InvoiceLine;
 use Rokezzz\Invoices\Model\Invoice\LegalType;
 
-class CorrectionContextBuilder
+final class CorrectionContextBuilder
 {
     public function __construct(
         private readonly InvoiceRepositoryInterface $invoiceRepository,

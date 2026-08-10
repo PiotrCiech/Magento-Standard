@@ -5,8 +5,20 @@
         <plugin name="rokezzz_wishlist_block_when_disabled"
                 type="Rokezzz\Wishlist\Plugin\Wishlist\Controller\BlockWishlistWhenDisabledPlugin"/>
     </type>
-    <type name="Magento\Wishlist\Controller\Shared\Wishlist">
-        <plugin name="rokezzz_wishlist_block_when_disabled"
-                type="Rokezzz\Wishlist\Plugin\Wishlist\Controller\BlockWishlistWhenDisabledPlugin"/>
+    <type name="Magento\Wishlist\Controller\Index\Share">
+        <plugin name="rokezzz_wishlist_block_sharing_when_disabled"
+                type="Rokezzz\Wishlist\Plugin\Wishlist\Controller\BlockWishlistSharingWhenDisabledPlugin"/>
+    </type>
+    <type name="Magento\Wishlist\Controller\Index\Send">
+        <plugin name="rokezzz_wishlist_block_sharing_send_when_disabled"
+                type="Rokezzz\Wishlist\Plugin\Wishlist\Controller\BlockWishlistSharingWhenDisabledPlugin"/>
+    </type>
+    <type name="Magento\Wishlist\Controller\Shared\Index">
+        <plugin name="rokezzz_wishlist_block_shared_view_when_disabled"
+                type="Rokezzz\Wishlist\Plugin\Wishlist\Controller\BlockWishlistSharingWhenDisabledPlugin"/>
+    </type>
+    <type name="Magento\Wishlist\Block\Customer\Wishlist\Button">
+        <plugin name="rokezzz_wishlist_hide_share_button"
+                type="Rokezzz\Wishlist\Plugin\Wishlist\Block\HideWishlistShareButtonPlugin"/>
     </type>
 </config>

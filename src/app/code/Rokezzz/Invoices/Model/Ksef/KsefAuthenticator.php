@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Ksef;
 use Magento\Framework\Serialize\Serializer\Json;
 use Rokezzz\Invoices\Exception\KsefApiException;
 
-class KsefAuthenticator
+final class KsefAuthenticator
 {
     private const MAX_AUTH_POLL_ATTEMPTS = 60;
     private const AUTH_POLL_INTERVAL_MICROSECONDS = 500_000;

@@ -1,0 +1,17 @@
+{
+    "quote": {
+        "column": {
+            "rokezzz_customer_order_number": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "rokezzz_customer_order_number": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "rokezzz_customer_order_number": true
+        }
+    }
+}

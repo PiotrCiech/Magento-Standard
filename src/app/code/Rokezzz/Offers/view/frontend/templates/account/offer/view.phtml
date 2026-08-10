@@ -1,0 +1,90 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Rokezzz\Offers\ViewModel\Account\OfferView $viewModel */
+$viewModel = $block->getData('view_model');
+$offer = $viewModel->getOffer();
+?>
+<div class="block block-rokezzz-offer-view">
+    <?php if (is_null($offer)): ?>
+        <p><?= $escaper->escapeHtml(__('This offer no longer exists.')) ?></p>
+        <p>
+            <a class="action back" href="<?= $escaper->escapeUrl($viewModel->getBackUrl()) ?>">
+                <span><?= $escaper->escapeHtml(__('Back to My Offers')) ?></span>
+            </a>
+        </p>
+    <?php else: ?>
+        <div class="block-title">
+            <strong><?= $escaper->escapeHtml(__('Offer %1', $offer->getIncrementId())) ?></strong>
+        </div>
+        <div class="block-content">
+            <dl class="offer-details">
+                <dt><?= $escaper->escapeHtml(__('Status')) ?></dt>
+                <dd>
+                    <span class="rokezzz-status <?= $escaper->escapeHtmlAttr($viewModel->getStatusClass()) ?>">
+                        <?= $escaper->escapeHtml($viewModel->getStatusLabel()) ?>
+                    </span>
+                </dd>
+                <dt><?= $escaper->escapeHtml(__('Valid Until')) ?></dt>
+                <dd><?= $escaper->escapeHtml($viewModel->getExpirationLabel()) ?></dd>
+                <?php if ($offer->getCustomerNote() !== ''): ?>
+                    <dt><?= $escaper->escapeHtml(__('Your Note')) ?></dt>
+                    <dd><?= $escaper->escapeHtml($offer->getCustomerNote()) ?></dd>
+                <?php endif; ?>
+                <?php if ($offer->getAdminNote() !== ''): ?>
+                    <dt><?= $escaper->escapeHtml(__('Store Note')) ?></dt>
+                    <dd><?= $escaper->escapeHtml($offer->getAdminNote()) ?></dd>
+                <?php endif; ?>
+            </dl>
+
+            <table class="data table table-rokezzz-offer-items">
+                <thead>
+                    <tr>
+                        <th scope="col"><?= $escaper->escapeHtml(__('SKU')) ?></th>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Product')) ?></th>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Qty')) ?></th>
+                        <th scope="col"><?= $escaper->escapeHtml(__('Price')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($viewModel->getItems() as $item): ?>
+                        <tr>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('SKU')) ?>">
+                                <?= $escaper->escapeHtml($item->getSku()) ?>
+                            </td>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Product')) ?>">
+                                <?= $escaper->escapeHtml($item->getName()) ?>
+                            </td>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Qty')) ?>">
+                                <?= $escaper->escapeHtml((string) $item->getOfferedQty()) ?>
+                            </td>
+                            <td data-th="<?= $escaper->escapeHtmlAttr(__('Price')) ?>">
+                                <?= $escaper->escapeHtml($viewModel->formatPrice($item->getOfferedPrice())) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <?php if ($viewModel->canApply()): ?>
+                        <form action="<?= $escaper->escapeUrl($viewModel->getApplyUrl()) ?>"
+                              method="post"
+                              class="form offer-apply-form">
+                            <?= $block->getBlockHtml('formkey') ?>
+                            <button type="submit" class="action primary">
+                                <span><?= $escaper->escapeHtml(__('Use Offer')) ?></span>
+                            </button>
+                        </form>
+                    <?php endif; ?>
+                </div>
+                <div class="secondary">
+                    <a class="action back" href="<?= $escaper->escapeUrl($viewModel->getBackUrl()) ?>">
+                        <span><?= $escaper->escapeHtml(__('Back to My Offers')) ?></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

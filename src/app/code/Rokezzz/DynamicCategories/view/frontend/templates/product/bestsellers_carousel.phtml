@@ -4,10 +4,13 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 use Magento\Catalog\Helper\Output;
+use Rokezzz\DynamicCategories\ViewModel\Product\NewLabel;
 
 $productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper(Output::class);
 $imageDisplayArea = 'category_page_grid';
+/** @var NewLabel|null $newLabelViewModel */
+$newLabelViewModel = $block->getData('newLabelViewModel');
 ?>
 
 <?php if ($productCollection && $productCollection->getSize()): ?>
@@ -23,6 +26,9 @@ $imageDisplayArea = 'category_page_grid';
             <div class="product-item-info">
 
                 <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>" class="product-item-photo">
+                    <?php if ($newLabelViewModel instanceof NewLabel && $newLabelViewModel->isNew($_product)): ?>
+                        <span class="product-label product-label--new"><?= $escaper->escapeHtml(__('New')) ?></span>
+                    <?php endif; ?>
                     <?php $productImage = $block->getImage($_product, $imageDisplayArea); ?>
                     <?= $productImage->toHtml() ?>
                 </a>
@@ -65,9 +71,9 @@ $imageDisplayArea = 'category_page_grid';
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const carouselContainer = document.getElementById('bestsellers-carousel');
-    const buttonPrev = document.getElementById('bestsellers-prev');
-    const buttonNext = document.getElementById('bestsellers-next');
+    const carouselContainer = document.getElementById('bestsellers-carousel'),
+        buttonPrev = document.getElementById('bestsellers-prev'),
+        buttonNext = document.getElementById('bestsellers-next');
 
     if (carouselContainer && buttonPrev && buttonNext) {
         const scrollAmount = 304;

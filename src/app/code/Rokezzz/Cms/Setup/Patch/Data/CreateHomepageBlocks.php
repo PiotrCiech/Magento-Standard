@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Rokezzz\Cms\Setup\Patch\Data;
 
+use Exception;
 use Magento\Cms\Model\BlockFactory;
 use Magento\Cms\Model\BlockRepository;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Psr\Log\LoggerInterface;
 
-class CreateHomepageBlocks implements DataPatchInterface
+final class CreateHomepageBlocks implements DataPatchInterface
 {
     private BlockFactory $blockFactory;
     private BlockRepository $blockRepository;
@@ -55,7 +56,7 @@ class CreateHomepageBlocks implements DataPatchInterface
                 $block = $this->blockFactory->create();
                 $block->setData($blockData);
                 $this->blockRepository->save($block);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->logger->error(
                     sprintf('Error creating CMS block %s: %s', $blockData['identifier'], $e->getMessage())
                 );

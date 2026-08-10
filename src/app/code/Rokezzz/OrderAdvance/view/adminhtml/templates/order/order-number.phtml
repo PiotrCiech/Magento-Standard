@@ -1,0 +1,19 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Rokezzz\OrderAdvance\ViewModel\Order\OrderNumber $orderNumberViewModel */
+$orderNumberViewModel = $block->getData('order_number_view_model');
+
+if (!$orderNumberViewModel->shouldDisplay()) {
+    return;
+}
+?>
+<section class="admin__page-section order-customer-number">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Your order number')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="order-customer-number-value">
+            <?= $block->escapeHtml($orderNumberViewModel->getOrderNumber()) ?>
+        </div>
+    </div>
+</section>

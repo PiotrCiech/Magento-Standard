@@ -7,7 +7,7 @@ namespace Rokezzz\Invoices\Model\Ksef;
 use Rokezzz\Invoices\Api\KsefClientInterface;
 use Rokezzz\Invoices\Exception\KsefApiException;
 
-class KsefUpoRetryFetcher
+final class KsefUpoRetryFetcher
 {
     private const MAX_ATTEMPTS = 12;
     private const SLEEP_SECONDS = 5;

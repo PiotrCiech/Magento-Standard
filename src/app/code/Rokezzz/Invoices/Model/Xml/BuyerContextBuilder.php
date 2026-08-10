@@ -8,7 +8,7 @@ use Magento\Directory\Model\CountryFactory;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Api\Data\OrderAddressInterface;
 
-class BuyerContextBuilder
+final class BuyerContextBuilder
 {
     public function __construct(
         private readonly CountryFactory $countryFactory

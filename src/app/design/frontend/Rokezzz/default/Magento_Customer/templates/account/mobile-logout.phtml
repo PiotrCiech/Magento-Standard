@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var \Magento\Customer\Block\Account\AuthorizationLink $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+if (!$block->isLoggedIn()) {
+    return;
+}
+
+$dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+?>
+<a class="mobile-logout-link"
+   href="<?= $escaper->escapeUrl($block->getHref()) ?>"
+   title="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
+   aria-label="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
+   <?= /* @noEscape */ $dataPostParam ?>>
+    <?= $escaper->escapeHtml(__('Sign Out')) ?>
+</a>

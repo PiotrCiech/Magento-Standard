@@ -6,7 +6,7 @@ namespace Rokezzz\ResubmittingArchivedOrders\Cron;
 
 use Rokezzz\ResubmittingArchivedOrders\Model\ArchiveEligibleOrders;
 
-class ArchiveOrders
+final class ArchiveOrders
 {
     public function __construct(
         private readonly ArchiveEligibleOrders $archiveEligibleOrders

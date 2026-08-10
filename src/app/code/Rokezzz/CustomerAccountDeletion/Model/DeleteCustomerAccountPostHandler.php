@@ -13,7 +13,7 @@ use Magento\Framework\Phrase;
 use Rokezzz\CustomerAccountDeletion\Service\DeleteCustomerAccount;
 use Rokezzz\CustomerAccountDeletion\Service\ValidateCustomerPassword;
 
-class DeleteCustomerAccountPostHandler
+final class DeleteCustomerAccountPostHandler
 {
     private const DELETE_ACCOUNT_PATH = 'customerdelete/account';
 

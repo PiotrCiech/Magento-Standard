@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_quote_product_add_after">
+        <observer name="rokezzz_offers_apply_offer_item_price"
+                  instance="Rokezzz\Offers\Observer\Quote\ApplyOfferItemPrice"/>
+        <observer name="rokezzz_offers_mark_quote_request_item"
+                  instance="Rokezzz\Offers\Observer\Quote\MarkQuoteRequestItem"/>
+    </event>
+    <event name="sales_order_place_after">
+        <observer name="rokezzz_offers_mark_offer_used_after_order"
+                  instance="Rokezzz\Offers\Observer\Sales\MarkOfferUsedAfterOrder"/>
+    </event>
+</config>

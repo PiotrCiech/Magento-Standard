@@ -19,6 +19,7 @@
             <branding>
                 <logo/>
             </branding>
+<<<<<<< HEAD
             <invoice>
                 <system_info>Magento</system_info>
             </invoice>
@@ -27,6 +28,15 @@
                 <token/>
                 <nip/>
             </ksef>
+=======
+            <loyalty_points>
+                <enabled>0</enabled>
+                <points_per_currency>1</points_per_currency>
+                <point_value>0.01</point_value>
+                <min_points_to_redeem>100</min_points_to_redeem>
+                <max_redemption_percent>50</max_redemption_percent>
+            </loyalty_points>
+>>>>>>> develop
         </rokezzz_settings>
     </default>
 </config>

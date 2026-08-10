@@ -10,7 +10,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Helper\Reorder as ReorderHelper;
 use Magento\Sales\Model\Order;
 
-class ArchivedOrderResubmitValidator
+final class ArchivedOrderResubmitValidator
 {
     private const ARCHIVED_FLAG = 'rokezzz_is_archived';
 

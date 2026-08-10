@@ -1,0 +1,17 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Rokezzz\DeliveryDate\ViewModel\Order\DeliveryDate $deliveryDateViewModel */
+$deliveryDateViewModel = $block->getData('delivery_date_view_model');
+
+if (!$deliveryDateViewModel->shouldDisplay()) {
+    return;
+}
+?>
+<div class="box box-order-delivery-date">
+    <strong class="box-title">
+        <span><?= $block->escapeHtml(__('Preferred delivery date')) ?></span>
+    </strong>
+    <div class="box-content">
+        <span><?= $block->escapeHtml($deliveryDateViewModel->getFormattedDeliveryDate()) ?></span>
+    </div>
+</div>

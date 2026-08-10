@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Invoices\Model\Ksef;
 
-class KsefResponseParser
+final class KsefResponseParser
 {
     /**
      * @param array<string, mixed> $response

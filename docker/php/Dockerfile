@@ -9,6 +9,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     gosu \
+    msmtp \
+    msmtp-mta \
     libfreetype6-dev \
     libicu-dev \
     libonig-dev \
@@ -41,11 +43,14 @@ RUN pecl install redis \
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+COPY docker/php/msmtprc /etc/msmtprc
+
 RUN { \
         echo 'memory_limit=4G'; \
         echo 'max_execution_time=1800'; \
         echo 'realpath_cache_size=10M'; \
         echo 'realpath_cache_ttl=7200'; \
+        echo 'sendmail_path = "/usr/bin/msmtp -t -i"'; \
     } > /usr/local/etc/php/conf.d/zz-magento.ini
 
 RUN groupmod -o -g "${HOST_GID}" www-data \

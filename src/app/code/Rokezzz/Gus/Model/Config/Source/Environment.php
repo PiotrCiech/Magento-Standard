@@ -6,7 +6,7 @@ namespace Rokezzz\Gus\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-class Environment implements OptionSourceInterface
+final class Environment implements OptionSourceInterface
 {
     public const ENV_PROD = 'prod';
     public const ENV_DEV = 'dev';

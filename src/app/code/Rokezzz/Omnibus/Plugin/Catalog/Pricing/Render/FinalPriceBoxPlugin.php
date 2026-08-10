@@ -12,7 +12,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Rokezzz\Omnibus\Model\Config;
 use Rokezzz\Omnibus\ViewModel\OmnibusPrice;
 
-class FinalPriceBoxPlugin
+final class FinalPriceBoxPlugin
 {
     private const LISTING_ZONES = ['item_list', 'item_grid', 'category_list'];
 

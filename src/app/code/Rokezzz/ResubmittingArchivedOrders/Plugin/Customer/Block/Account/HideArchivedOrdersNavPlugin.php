@@ -7,7 +7,7 @@ namespace Rokezzz\ResubmittingArchivedOrders\Plugin\Customer\Block\Account;
 use Magento\Customer\Block\Account\Navigation;
 use Rokezzz\ResubmittingArchivedOrders\Model\Config;
 
-class HideArchivedOrdersNavPlugin
+final class HideArchivedOrdersNavPlugin
 {
     private const NAV_BLOCK_NAME = 'customer-account-navigation-archived-orders-link';
 

@@ -12,7 +12,7 @@ use Magento\Framework\View\Page\Config as PageConfig;
 use Magento\Framework\View\Result\Page;
 use LogicException;
 
-class FragmentHtmlCollector
+final class FragmentHtmlCollector
 {
     public function __construct(
         private readonly ListingParamsSanitizer $paramsSanitizer,
@@ -36,12 +36,14 @@ class FragmentHtmlCollector
         if (!$pageConfig instanceof PageConfig) {
             throw new LogicException('Page configuration is not available.');
         }
+
         $pageConfig->publicBuild();
 
         $layout = $page->getLayout();
         if (!$layout instanceof Layout) {
             throw new LogicException('Page layout is not available.');
         }
+        
         $layout->publicBuild();
 
         $productsBlock = $layout->getBlock($productsBlockName);

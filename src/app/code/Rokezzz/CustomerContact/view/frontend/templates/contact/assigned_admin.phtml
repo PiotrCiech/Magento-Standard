@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Rokezzz\CustomerContact\Block\Contact\AssignedAdmin;
+
+/** @var Escaper $escaper */
+/** @var AssignedAdmin $block */
+
+$viewModel = $block->getAssignedAdminViewModel();
+?>
+<?php if ($viewModel->hasAssignedAdmin()): ?>
+    <div class="field note no-label">
+        <strong><?= $escaper->escapeHtml(__('Your account manager')) ?>:</strong>
+        <?= $escaper->escapeHtml($viewModel->getName()) ?>
+    </div>
+<?php endif; ?>

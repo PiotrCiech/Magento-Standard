@@ -10,9 +10,22 @@
                 <label>Wishlist</label>
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable wishlist (schowek)</label>
-                    <comment>When disabled, wishlist links, customer account section, and add-to-wishlist actions are hidden on the storefront.</comment>
+                    <comment>
+                        When disabled, wishlist links, customer account section, and add-to-wishlist actions are hidden on the storefront.
+                    </comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>wishlist/general/active</config_path>
+                </field>
+                <field id="sharing_enabled" translate="label comment" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable wishlist sharing</label>
+                    <comment>
+                        When disabled, customers cannot open the share form, send shared wishlist emails, or open shared wishlist links.
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
                 </field>
             </group>
         </section>

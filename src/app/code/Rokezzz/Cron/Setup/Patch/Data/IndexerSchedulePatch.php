@@ -9,7 +9,7 @@ use Magento\Framework\Indexer\IndexerRegistry;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\NonTransactionableInterface;
 
-class IndexerSchedulePatch implements DataPatchInterface, NonTransactionableInterface
+final class IndexerSchedulePatch implements DataPatchInterface, NonTransactionableInterface
 {
     public function __construct(
         private readonly ConfigInterface $indexerConfig,

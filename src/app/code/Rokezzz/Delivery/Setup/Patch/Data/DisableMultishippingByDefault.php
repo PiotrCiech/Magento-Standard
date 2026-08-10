@@ -8,7 +8,7 @@ use Magento\Config\Model\ResourceModel\Config as ConfigResource;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class DisableMultishippingByDefault implements DataPatchInterface
+final class DisableMultishippingByDefault implements DataPatchInterface
 {
     private const MULTISHIPPING_ENABLED_CONFIG_PATH = 'multishipping/options/checkout_multiple';
 

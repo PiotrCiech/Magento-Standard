@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Rokezzz\Review\Api\ReviewProviderInterface"
+                type="Rokezzz\Review\Model\ReviewProvider"/>
+    <preference for="Rokezzz\Review\Api\Data\GoogleReviewInterface"
+                type="Rokezzz\Review\Model\Data\GoogleReview"/>
+    <preference for="Rokezzz\Review\Api\Data\GoogleReviewsInterface"
+                type="Rokezzz\Review\Model\Data\GoogleReviews"/>
+</config>

@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class EnableMostPopularPatch implements DataPatchInterface
+final class EnableMostPopularPatch implements DataPatchInterface
 {
     private const CONFIG_TO_INSTALL = [
         'rokezzz_mostpopular/general/enabled' => '1',

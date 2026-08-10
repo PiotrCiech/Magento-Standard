@@ -9,7 +9,7 @@ use Psr\Log\LoggerInterface;
 use Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface;
 use Throwable;
 
-class KsefInvoiceFailureHandler
+final class KsefInvoiceFailureHandler
 {
     public function __construct(
         private readonly InvoiceXmlGeneratorInterface $invoiceXmlGenerator,

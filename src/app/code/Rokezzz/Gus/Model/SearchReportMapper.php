@@ -8,7 +8,7 @@ use GusApi\SearchReport;
 use Rokezzz\Gus\Api\Data\CompanyDataInterface;
 use Rokezzz\Gus\Model\Data\CompanyData;
 
-class SearchReportMapper
+final class SearchReportMapper
 {
     public function map(SearchReport $report, string $fallbackNip): CompanyDataInterface
     {

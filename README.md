@@ -23,6 +23,7 @@ The local environment is defined in `compose.yaml` and contains:
 - `opensearch` - OpenSearch service used by Magento search.
 - `valkey` - Redis-compatible cache backend.
 - `rabbitmq` - message queue with management panel.
+- `mailhog` - local SMTP catcher for testing outgoing emails.
 - `vite` - Node.js dev server for frontend HMR (Hot Module Replacement), port `5173`.
 
 Docker configuration files are located in:
@@ -49,6 +50,19 @@ Enter the PHP container:
 
 ```bash
 docker compose exec php bash
+```
+
+## Mailhog
+
+Outgoing emails from Magento are routed through Mailhog via `msmtp` in the PHP container. No extra Magento SMTP configuration is required for local development.
+
+- Web UI: `http://localhost:8025` (override with `MAILHOG_UI_PORT` in `.env`)
+- SMTP port: `1025` (override with `MAILHOG_SMTP_PORT` in `.env`)
+
+After adding Mailhog, rebuild the PHP image so `msmtp` is installed:
+
+```bash
+docker compose up -d --build
 ```
 
 ## First Install
@@ -139,6 +153,11 @@ This module enables Magento core wishlist (schowek) via a data patch (`wishlist/
 ### Rokezzz_AvailabilityNotification
 
 This module wraps Magento core back-in-stock alerts (`catalog/productalert/allow_stock`). After `setup:upgrade`, availability notifications are **disabled** by default. Toggle them in **Stores → Configuration → General → Rokezzz Availability Notification → Product availability alerts → Enable availability notifications**. When disabled, the subscribe form on out-of-stock product pages is hidden and direct subscription requests are blocked on the storefront.
+
+### Rokezzz_OrderOwnerNotification
+
+This module sends an optional email to the store owner after each new order is placed. Toggle it in **Stores → Configuration → General → Rokezzz Order Owner Notification → Store owner order notification** (disabled by default); set the recipient address or leave it empty to use the store general contact email.
+
 ### Rokezzz_ViteDev
 
 Development-only bridge to the Vite server (`vite/`, Docker service `vite`). Injects Vite scripts on the storefront when port `5173` is up; register edited SCSS/LESS in `vite/src/frontend.scss`. Disable in production.

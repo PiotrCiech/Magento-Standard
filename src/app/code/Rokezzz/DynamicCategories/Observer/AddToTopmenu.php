@@ -10,7 +10,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\UrlInterface;
 use Rokezzz\DynamicCategories\Model\Config;
 
-class AddToTopmenu implements ObserverInterface
+final class AddToTopmenu implements ObserverInterface
 {
     public function __construct(
         private readonly NodeFactory $nodeFactory,

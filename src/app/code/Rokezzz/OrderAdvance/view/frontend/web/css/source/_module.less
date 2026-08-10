@@ -1,0 +1,42 @@
+& when (@media-common = true) {
+    .latest-order-status-bar {
+        background: @color-gray94;
+        border-bottom: 1px solid @color-gray80;
+        color: @color-gray20;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        width: 100%;
+
+        &__content {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: @indent__s @indent__base;
+            justify-content: space-between;
+            margin: 0 auto;
+            max-width: @layout__max-width;
+            padding: @indent__s @layout-indent__width;
+        }
+
+        &__message {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+        }
+
+        &__link {
+            font-weight: @font-weight__bold;
+            text-decoration: underline;
+        }
+
+        &__status-label {
+            background: @color-white;
+            border: 1px solid @color-gray80;
+            border-radius: 2px;
+            display: inline-block;
+            font-weight: @font-weight__semibold;
+            padding: .2rem .8rem;
+            text-transform: none;
+        }
+    }
+}

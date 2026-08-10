@@ -71,6 +71,7 @@
                     <base_url type="media" scope_info="1">rokezzz/settings</base_url>
                 </field>
             </group>
+<<<<<<< HEAD
             <group id="invoice" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>Invoice</label>
                 <field id="system_info" translate="label comment" type="text" sortOrder="10"
@@ -79,6 +80,8 @@
                     <comment>Value for SystemInfo in KSeF FA(3) XML header.</comment>
                 </field>
             </group>
+=======
+>>>>>>> develop
             <group id="ksef" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>KSeF API</label>
                 <field id="api_url" translate="label comment" type="text" sortOrder="10"

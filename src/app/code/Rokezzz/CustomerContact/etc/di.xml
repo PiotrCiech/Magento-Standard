@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Contact\Model\MailInterface"
+                type="Rokezzz\CustomerContact\Model\Mail"/>
+
+    <type name="Rokezzz\CustomerContact\Model\Mail">
+        <arguments>
+            <argument name="transportBuilder" xsi:type="object" shared="false">
+                Magento\Framework\Mail\Template\TransportBuilder
+            </argument>
+        </arguments>
+    </type>
+</config>

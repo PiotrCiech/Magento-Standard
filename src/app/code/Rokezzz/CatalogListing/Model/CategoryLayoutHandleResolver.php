@@ -7,7 +7,7 @@ namespace Rokezzz\CatalogListing\Model;
 use Magento\Catalog\Model\Category;
 use Magento\Framework\View\Result\Page;
 
-class CategoryLayoutHandleResolver
+final class CategoryLayoutHandleResolver
 {
     public function apply(Page $page, Category $category): void
     {

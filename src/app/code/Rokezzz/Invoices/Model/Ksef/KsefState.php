@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rokezzz\Invoices\Model\Ksef;
 
-class KsefState
+final class KsefState
 {
     private ?string $sessionReferenceNumber = null;
     private ?string $authenticationToken = null;

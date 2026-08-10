@@ -43,8 +43,9 @@ define([
     }
 
     function insertCategoryProducts($productsHtml) {
-        let $target = $('.column.main .page-title-wrapper').last();
         const $categoryView = $('.column.main .category-view');
+        
+        let $target = $('.column.main .page-title-wrapper').last();
 
         if ($categoryView.length) {
             $target = $categoryView.last();
