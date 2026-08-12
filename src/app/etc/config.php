@@ -368,20 +368,13 @@ return [
         'PayPal_BraintreeGiftWrapping' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'PayPal_BraintreeReward' => 1,
-<<<<<<< HEAD
-        'Rokezzz_AvailabilityNotification' => 1,
-        'Rokezzz_CatalogListing' => 1,
-        'Rokezzz_Cms' => 1,
-=======
         'PayPro_Przelewy24' => 1,
         'Rokezzz_Acordeon' => 1,
         'Rokezzz_AvailabilityNotification' => 1,
         'Rokezzz_CatalogListing' => 1,
         'Rokezzz_CategoryAdvance' => 1,
         'Rokezzz_ChatBot' => 1,
-        'Rokezzz_CheckoutAgreements' => 1,
-        'Rokezzz_CmsData' => 1,
->>>>>>> develop
+        'Rokezzz_Cms' => 1,
         'Rokezzz_Compare' => 1,
         'Rokezzz_Settings' => 1,
         'Rokezzz_Cookies' => 1,
@@ -390,11 +383,8 @@ return [
         'Rokezzz_CustomerAccountDeletion' => 1,
         'Rokezzz_CustomerContact' => 1,
         'Rokezzz_CustomerNip' => 1,
-<<<<<<< HEAD
         'Rokezzz_Delivery' => 1,
-=======
         'Rokezzz_DeliveryDate' => 1,
->>>>>>> develop
         'Rokezzz_DynamicCategories' => 1,
         'Rokezzz_Email' => 1,
         'Rokezzz_EmptyShipping' => 1,
@@ -402,27 +392,13 @@ return [
         'Rokezzz_GoogleAnalytics' => 1,
         'Rokezzz_Gus' => 1,
         'Rokezzz_InPost' => 1,
-<<<<<<< HEAD
-        'Rokezzz_Settings' => 1,
-        'Rokezzz_Legal' => 1,
-=======
-        'Rokezzz_IndexerSchedule' => 1,
         'Rokezzz_Invoices' => 1,
         'Rokezzz_Language' => 1,
->>>>>>> develop
-        'Rokezzz_LocaleDefaults' => 1,
+        'Rokezzz_Legal' => 1,
         'Rokezzz_LoyaltyPoints' => 1,
         'Rokezzz_MostPopular' => 1,
         'Rokezzz_Offers' => 1,
         'Rokezzz_Omnibus' => 1,
-<<<<<<< HEAD
-        'Rokezzz_OrderOwnerNotification' => 1,
-        'Rokezzz_PromotionSlider' => 1,
-        'Rokezzz_ReCaptcha' => 1,
-        'Rokezzz_ResubmittingArchivedOrders' => 1,
-        'Rokezzz_Review' => 1,
-        'Rokezzz_Invoices' => 1,
-=======
         'Rokezzz_OrderAdvance' => 1,
         'Rokezzz_OrderOwnerNotification' => 1,
         'Rokezzz_Orders' => 1,
@@ -435,7 +411,6 @@ return [
         'Rokezzz_Review' => 1,
         'Rokezzz_ContractWithdrawal' => 1,
         'Rokezzz_Styleguide' => 1,
->>>>>>> develop
         'Rokezzz_Tax' => 1,
         'Rokezzz_ViteDev' => 1,
         'Rokezzz_Widget' => 1,

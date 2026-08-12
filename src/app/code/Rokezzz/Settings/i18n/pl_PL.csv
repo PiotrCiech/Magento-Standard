@@ -19,13 +19,10 @@
 "Branding","Identyfikacja wizualna"
 "Company logo","Logo firmy"
 "Used on invoices and other branded documents.","Używane na fakturach i innych dokumentach firmowych."
-<<<<<<< HEAD
 "Invoice","Faktura"
 "System info","Informacja o systemie"
 "Value for SystemInfo in KSeF FA(3) XML header.","Wartość pola SystemInfo w nagłówku XML FA(3) KSeF."
-=======
 "System powered by Rokezzz","System wspierany przez Rokezzz"
->>>>>>> develop
 "KSeF API","API KSeF"
 "API URL","Adres URL API"
 "Base URL of the KSeF API environment (test or production).","Bazowy adres URL środowiska API KSeF (testowe lub produkcyjne)."
@@ -33,7 +30,4 @@
 "Token generated in the KSeF taxpayer portal.","Token wygenerowany w portalu podatnika KSeF."
 "KSeF NIP","NIP KSeF"
 "Leave empty to use the company NIP from settings above.","Pozostaw puste, aby użyć NIP firmy z ustawień powyżej."
-<<<<<<< HEAD
-=======
 "Delivery date","Data dostawy"
->>>>>>> develop

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\LocaleDefaults\Setup\Patch\Data;
+namespace Rokezzz\Language\Setup\Patch\Data;
 
 use Magento\Config\Model\ResourceModel\Config as ConfigResource;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -53,6 +53,9 @@ final class SetPolishDefaults implements DataPatchInterface
 
     public function getAliases(): array
     {
-        return [];
+        return [
+            // Legacy class from removed Rokezzz_LocaleDefaults module.
+            'Rokezzz\LocaleDefaults\Setup\Patch\Data\SetPolishDefaults',
+        ];
     }
 }
