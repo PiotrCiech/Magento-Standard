@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Controller\Adminhtml\Slide;
+namespace Rokezzz\Slider\Controller\Adminhtml\Slide;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -10,7 +10,7 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action implements HttpGetActionInterface
 {
-    const ADMIN_RESOURCE = 'Rokezzz_PromotionSlider::slide';
+    const ADMIN_RESOURCE = 'Rokezzz_Slider::slide';
 
     private PageFactory $resultPageFactory;
 
@@ -25,7 +25,7 @@ class Index extends Action implements HttpGetActionInterface
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Rokezzz_PromotionSlider::slide');
+        $resultPage->setActiveMenu('Rokezzz_Slider::slide');
         $resultPage->getConfig()->getTitle()->prepend(__('Promotion Slider'));
 
         return $resultPage;

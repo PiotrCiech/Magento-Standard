@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Ksef;
+namespace Rokezzz\Invoice\Model\Ksef;
 
-use Rokezzz\Invoices\Exception\KsefApiException;
+use Rokezzz\Invoice\Exception\KsefApiException;
 use Rokezzz\Settings\Model\Config as SettingsConfig;
 
 final class KsefConfigProvider

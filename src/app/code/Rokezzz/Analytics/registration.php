@@ -6,6 +6,6 @@ use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'Rokezzz_GoogleAnalytics',
+    'Rokezzz_Analytics',
     __DIR__
 );

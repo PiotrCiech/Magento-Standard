@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Model\ResourceModel\Slide\Grid;
+namespace Rokezzz\Slider\Model\ResourceModel\Slide\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 

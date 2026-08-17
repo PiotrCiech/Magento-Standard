@@ -4,7 +4,7 @@
     <body>
         <referenceBlock name="category.products.list">
             <arguments>
-                <argument name="newLabelViewModel" xsi:type="object">Rokezzz\DynamicCategories\ViewModel\Product\NewLabel</argument>
+                <argument name="newLabelViewModel" xsi:type="object">Rokezzz\Category\ViewModel\Product\NewLabel</argument>
             </arguments>
         </referenceBlock>
     </body>

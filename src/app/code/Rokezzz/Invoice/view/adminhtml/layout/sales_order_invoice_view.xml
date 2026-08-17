@@ -3,9 +3,9 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="page.main.actions">
-            <block class="Rokezzz\Invoices\Block\Adminhtml\Invoice\PdfDownloadButton"
+            <block class="Rokezzz\Invoice\Block\Adminhtml\Invoice\PdfDownloadButton"
                    name="rokezzz.invoices.pdf_download_button"
-                   template="Rokezzz_Invoices::invoice/pdf_download_button.phtml"/>
+                   template="Rokezzz_Invoice::invoice/pdf_download_button.phtml"/>
         </referenceContainer>
     </body>
 </page>

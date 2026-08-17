@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Model\Slide;
+namespace Rokezzz\Slider\Model\Slide;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Rokezzz\PromotionSlider\Model\ResourceModel\Slide\CollectionFactory;
+use Rokezzz\Slider\Model\ResourceModel\Slide\CollectionFactory;
 
 class DataProvider extends AbstractDataProvider
 {
@@ -57,12 +57,12 @@ class DataProvider extends AbstractDataProvider
             $this->loadedData[$slide->getId()] = $data;
         }
 
-        $data = $this->dataPersistor->get('rokezzz_promotionslider_slide');
+        $data = $this->dataPersistor->get('rokezzz_slider_slide');
         if (!empty($data)) {
             $slide = $this->collection->getNewEmptyItem();
             $slide->setData($data);
             $this->loadedData[$slide->getId()] = $slide->getData();
-            $this->dataPersistor->clear('rokezzz_promotionslider_slide');
+            $this->dataPersistor->clear('rokezzz_slider_slide');
         }
 
         return $this->loadedData;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Ui\Component\Listing\Column;
+namespace Rokezzz\Slider\Ui\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Cron;
+namespace Rokezzz\Invoice\Cron;
 
 use Psr\Log\LoggerInterface;
-use Rokezzz\Invoices\Model\Invoice\KsefInvoiceSubmissionService;
+use Rokezzz\Invoice\Model\Invoice\KsefInvoiceSubmissionService;
 
 final class SendInvoicesToKsef
 {

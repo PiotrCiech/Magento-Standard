@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\GoogleAnalytics\Model;
+namespace Rokezzz\Analytics\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
-use Rokezzz\GoogleAnalytics\Model\Config\Source\TrackingType;
+use Rokezzz\Analytics\Model\Config\Source\TrackingType;
 
 final class Config
 {
-    private const XML_PATH_TRACKING_TYPE = 'rokezzz_google_analytics/general/tracking_type';
-    private const XML_PATH_TRACKING_ID = 'rokezzz_google_analytics/general/tracking_id';
+    private const XML_PATH_TRACKING_TYPE = 'rokezzz_analytics/general/tracking_type';
+    private const XML_PATH_TRACKING_ID = 'rokezzz_analytics/general/tracking_id';
     private const TRACKING_ID_PATTERN = '/^[A-Za-z0-9_-]+$/';
 
     public function __construct(

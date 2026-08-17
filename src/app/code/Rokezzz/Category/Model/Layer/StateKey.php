@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Model\Layer;
+namespace Rokezzz\Category\Model\Layer;
 
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Layer\StateKeyInterface;

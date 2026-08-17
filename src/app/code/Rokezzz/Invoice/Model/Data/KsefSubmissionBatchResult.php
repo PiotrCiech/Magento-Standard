@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Data;
+namespace Rokezzz\Invoice\Model\Data;
 
 final class KsefSubmissionBatchResult
 {

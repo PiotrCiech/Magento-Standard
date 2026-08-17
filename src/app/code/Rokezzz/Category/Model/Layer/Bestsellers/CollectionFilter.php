@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Model\Layer\Bestsellers;
+namespace Rokezzz\Category\Model\Layer\Bestsellers;
 
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Layer\CollectionFilterInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
-use Rokezzz\DynamicCategories\Model\Bestsellers\CollectionApplier;
-use Rokezzz\DynamicCategories\Model\ProductCollectionInitializer;
+use Rokezzz\Category\Model\Bestsellers\CollectionApplier;
+use Rokezzz\Category\Model\ProductCollectionInitializer;
 
 final class CollectionFilter implements CollectionFilterInterface
 {

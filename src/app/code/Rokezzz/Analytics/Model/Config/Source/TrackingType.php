@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\GoogleAnalytics\Model\Config\Source;
+namespace Rokezzz\Analytics\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 

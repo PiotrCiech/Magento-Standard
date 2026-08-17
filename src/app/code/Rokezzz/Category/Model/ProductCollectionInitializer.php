@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Model;
+namespace Rokezzz\Category\Model;
 
 use Magento\Catalog\Model\Config;
 use Magento\Catalog\Model\Product\Visibility;

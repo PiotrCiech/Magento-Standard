@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Plugin\Catalog\Model\Layer;
+namespace Rokezzz\Category\Plugin\Catalog\Model\Layer;
 
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Layer\CollectionFilterInterface;

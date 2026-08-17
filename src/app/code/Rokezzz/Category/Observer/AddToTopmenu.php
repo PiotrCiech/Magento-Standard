@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Observer;
+namespace Rokezzz\Category\Observer;
 
 use Magento\Framework\Data\Tree\NodeFactory;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\UrlInterface;
-use Rokezzz\DynamicCategories\Model\Config;
+use Rokezzz\Category\Model\Config;
 
 final class AddToTopmenu implements ObserverInterface
 {

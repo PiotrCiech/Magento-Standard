@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Model\ResourceModel;
+namespace Rokezzz\Slider\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-use Rokezzz\PromotionSlider\Api\Data\SlideInterface;
+use Rokezzz\Slider\Api\Data\SlideInterface;
 
 class Slide extends AbstractDb
 {

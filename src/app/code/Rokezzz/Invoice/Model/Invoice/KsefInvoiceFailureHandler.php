@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Invoice;
+namespace Rokezzz\Invoice\Model\Invoice;
 
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Psr\Log\LoggerInterface;
-use Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface;
+use Rokezzz\Invoice\Api\InvoiceXmlGeneratorInterface;
 use Throwable;
 
 final class KsefInvoiceFailureHandler

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Controller\Adminhtml\Invoice;
+namespace Rokezzz\Invoice\Controller\Adminhtml\Invoice;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -11,9 +11,9 @@ use Magento\Framework\App\Response\Http\FileFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Api\InvoiceRepositoryInterface;
-use Rokezzz\Invoices\Api\InvoicePdfGeneratorInterface;
-use Rokezzz\Invoices\Model\Config;
-use Rokezzz\Invoices\Model\Invoice\InvoiceKsefEligibilityChecker;
+use Rokezzz\Invoice\Api\InvoicePdfGeneratorInterface;
+use Rokezzz\Invoice\Model\Config;
+use Rokezzz\Invoice\Model\Invoice\InvoiceKsefEligibilityChecker;
 
 class DownloadPdf extends Action
 {

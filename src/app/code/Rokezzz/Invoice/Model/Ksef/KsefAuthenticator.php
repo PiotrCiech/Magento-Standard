@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Ksef;
+namespace Rokezzz\Invoice\Model\Ksef;
 
 use Magento\Framework\Serialize\Serializer\Json;
-use Rokezzz\Invoices\Exception\KsefApiException;
+use Rokezzz\Invoice\Exception\KsefApiException;
 
 final class KsefAuthenticator
 {

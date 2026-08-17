@@ -2,29 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Controller\Adminhtml\Slide;
+namespace Rokezzz\Slider\Controller\Adminhtml\Slide;
 
+use Exception;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Filesystem;
-use Magento\MediaStorage\Model\File\UploaderFactory;
+use Magento\Framework\UrlInterface;
+use Rokezzz\Slider\Model\UploaderCreator;
 
 class Upload extends Action implements HttpPostActionInterface
 {
-    const ADMIN_RESOURCE = 'Rokezzz_PromotionSlider::slide';
+    const ADMIN_RESOURCE = 'Rokezzz_Slider::slide';
 
-    private UploaderFactory $uploaderFactory;
+    private UploaderCreator $uploaderCreator;
     private Filesystem $filesystem;
 
     public function __construct(
         Action\Context $context,
-        UploaderFactory $uploaderFactory,
+        UploaderCreator $uploaderCreator,
         Filesystem $filesystem
     ) {
         parent::__construct($context);
-        $this->uploaderFactory = $uploaderFactory;
+        $this->uploaderCreator = $uploaderCreator;
         $this->filesystem = $filesystem;
     }
 
@@ -33,7 +36,7 @@ class Upload extends Action implements HttpPostActionInterface
         $result = [];
 
         try {
-            $uploader = $this->uploaderFactory->create(['fileId' => 'image']);
+            $uploader = $this->uploaderCreator->create(['fileId' => 'image']);
             $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png', 'webp']);
             $uploader->setAllowRenameFiles(true);
             $uploader->setFilesDispersion(false);
@@ -43,12 +46,15 @@ class Upload extends Action implements HttpPostActionInterface
 
             $result = $uploader->save($targetPath);
 
-            $result['url'] = $this->_url->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA])
+            $result['url'] = $this->_url->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA])
                 . 'rokezzz/promotionslider/' . ltrim(str_replace('\\', '/', $result['file']), '/');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];
         }
 
-        return $this->resultFactory->create(ResultFactory::TYPE_JSON)->setData($result);
+        /** @var Json $resultJson */
+        $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+
+        return $resultJson->setData($result);
     }
 }

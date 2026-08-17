@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Invoice;
+namespace Rokezzz\Invoice\Model\Invoice;
 
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Psr\Log\LoggerInterface;
-use Rokezzz\Invoices\Api\KsefClientInterface;
-use Rokezzz\Invoices\Model\Data\KsefSubmissionBatchResult;
-use Rokezzz\Invoices\Model\Ksef\KsefClientFactory;
+use Rokezzz\Invoice\Api\KsefClientInterface;
+use Rokezzz\Invoice\Model\Data\KsefSubmissionBatchResult;
+use Rokezzz\Invoice\Model\Ksef\KsefClientFactory;
 use Throwable;
 
 final class KsefStoreBatchSubmitter

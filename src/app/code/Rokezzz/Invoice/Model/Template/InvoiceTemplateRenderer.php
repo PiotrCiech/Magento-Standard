@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Template;
+namespace Rokezzz\Invoice\Model\Template;
 
 use Magento\Framework\Module\Dir;
 use Magento\Framework\Module\Dir\Reader as ModuleDirReader;
@@ -23,7 +23,7 @@ final class InvoiceTemplateRenderer
     {
         $templateDirectory = $this->moduleDirReader->getModuleDir(
             Dir::MODULE_VIEW_DIR,
-            'Rokezzz_Invoices'
+            'Rokezzz_Invoice'
         ) . '/' . $templateSubdir;
 
         $loader = new FilesystemLoader($templateDirectory);

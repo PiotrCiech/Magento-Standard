@@ -4,8 +4,8 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Rokezzz_Invoices::config"
-                          title="Rokezzz Invoices Configuration"
+                <resource id="Rokezzz_Invoice::config"
+                          title="Rokezzz Invoice Configuration"
                           sortOrder="990"/>
             </resource>
         </resources>

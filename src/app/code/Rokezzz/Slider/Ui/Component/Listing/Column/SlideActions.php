@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Ui\Component\Listing\Column;
+namespace Rokezzz\Slider\Ui\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -32,14 +32,14 @@ class SlideActions extends Column
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
-                                'rokezzz_promotionslider/slide/edit',
+                                'rokezzz_slider/slide/edit',
                                 ['slide_id' => $item['slide_id']]
                             ),
                             'label' => __('Edit'),
                         ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
-                                'rokezzz_promotionslider/slide/delete',
+                                'rokezzz_slider/slide/delete',
                                 ['slide_id' => $item['slide_id']]
                             ),
                             'label' => __('Delete'),

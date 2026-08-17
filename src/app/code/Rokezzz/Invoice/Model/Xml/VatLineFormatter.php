@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Xml;
+namespace Rokezzz\Invoice\Model\Xml;
 
 use Magento\Framework\Exception\LocalizedException;
-use Rokezzz\Invoices\Model\Data\InvoiceLine;
-use Rokezzz\Invoices\Model\Invoice\Unit;
+use Rokezzz\Invoice\Model\Data\InvoiceLine;
+use Rokezzz\Invoice\Model\Invoice\Unit;
 
 final class VatLineFormatter
 {

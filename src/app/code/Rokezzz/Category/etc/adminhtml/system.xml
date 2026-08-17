@@ -2,10 +2,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="rokezzz_dynamiccategories" translate="label" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Rokezzz Dynamic Categories</label>
+        <section id="rokezzz_category" translate="label" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Category</label>
             <tab>general</tab>
-            <resource>Rokezzz_DynamicCategories::config</resource>
+            <resource>Rokezzz_Category::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Settings</label>
                 <field id="enable_new" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">

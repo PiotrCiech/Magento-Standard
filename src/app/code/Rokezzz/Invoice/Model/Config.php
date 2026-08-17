@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model;
+namespace Rokezzz\Invoice\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
 final class Config
 {
-    private const XML_PATH_ENABLED = 'rokezzz_invoices/general/enabled';
-    private const XML_PATH_KSEF_ENABLED = 'rokezzz_invoices/ksef/enabled';
-    private const XML_PATH_KSEF_START_DATE = 'rokezzz_invoices/ksef/start_date';
-    private const XML_PATH_INVOICES_DIRECTORY = 'rokezzz_invoices/files/invoices_directory';
+    private const XML_PATH_ENABLED = 'rokezzz_invoice/general/enabled';
+    private const XML_PATH_KSEF_ENABLED = 'rokezzz_invoice/ksef/enabled';
+    private const XML_PATH_KSEF_START_DATE = 'rokezzz_invoice/ksef/start_date';
+    private const XML_PATH_INVOICES_DIRECTORY = 'rokezzz_invoice/files/invoices_directory';
 
     private const DEFAULT_KSEF_START_DATE = '2026-01-01';
     private const DEFAULT_INVOICES_DIRECTORY = 'rokezzz/invoices';

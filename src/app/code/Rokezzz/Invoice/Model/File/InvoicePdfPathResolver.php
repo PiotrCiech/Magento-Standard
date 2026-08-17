@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\File;
+namespace Rokezzz\Invoice\Model\File;
 
-use Rokezzz\Invoices\Api\InvoicePdfPathResolverInterface;
-use Rokezzz\Invoices\Api\InvoiceXmlPathResolverInterface;
-use Rokezzz\Invoices\Model\Config;
+use Rokezzz\Invoice\Api\InvoicePdfPathResolverInterface;
+use Rokezzz\Invoice\Api\InvoiceXmlPathResolverInterface;
+use Rokezzz\Invoice\Model\Config;
 
 class InvoicePdfPathResolver implements InvoicePdfPathResolverInterface
 {

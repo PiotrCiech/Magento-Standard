@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Block\Adminhtml\Invoice;
+namespace Rokezzz\Invoice\Block\Adminhtml\Invoice;
 
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Rokezzz\Invoices\Model\AdminRoutePaths;
-use Rokezzz\Invoices\Model\Config;
-use Rokezzz\Invoices\Model\Invoice\InvoiceKsefEligibilityChecker;
+use Rokezzz\Invoice\Model\AdminRoutePaths;
+use Rokezzz\Invoice\Model\Config;
+use Rokezzz\Invoice\Model\Invoice\InvoiceKsefEligibilityChecker;
 
 class PdfDownloadButton extends Template
 {

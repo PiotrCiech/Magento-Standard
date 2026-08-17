@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Block;
+namespace Rokezzz\Slider\Block;
 
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Template;
-use Rokezzz\PromotionSlider\Model\ResourceModel\Slide\CollectionFactory;
+use Rokezzz\Slider\Model\ResourceModel\Slide\CollectionFactory;
 use Magento\Store\Model\ScopeInterface;
 
 class Slider extends Template
 {
-    protected $_template = 'Rokezzz_PromotionSlider::slider.phtml';
+    protected $_template = 'Rokezzz_Slider::slider.phtml';
 
     private CollectionFactory $collectionFactory;
     private ?array $slides = null;

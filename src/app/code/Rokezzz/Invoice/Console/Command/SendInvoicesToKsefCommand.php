@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Console\Command;
+namespace Rokezzz\Invoice\Console\Command;
 
 use Magento\Framework\Console\Cli;
-use Rokezzz\Invoices\Model\Invoice\KsefInvoiceSubmissionService;
+use Rokezzz\Invoice\Model\Invoice\KsefInvoiceSubmissionService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="sales_order_invoice_save_after">
-        <observer name="rokezzz_invoices_queue_invoice_for_ksef"
-                  instance="Rokezzz\Invoices\Observer\QueueInvoiceForKsefSubmission"/>
+        <observer name="rokezzz_invoice_queue_invoice_for_ksef"
+                  instance="Rokezzz\Invoice\Observer\QueueInvoiceForKsefSubmission"/>
     </event>
 </config>

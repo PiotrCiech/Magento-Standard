@@ -5,7 +5,7 @@
     <body>
         <attribute name="class" value="page-with-filter"/>
         <referenceContainer name="sidebar.main">
-            <block class="Rokezzz\DynamicCategories\Block\Navigation"
+            <block class="Rokezzz\Category\Block\Navigation"
                    name="catalog.leftnav"
                    before="-"
                    template="Magento_LayeredNavigation::layer/view.phtml">

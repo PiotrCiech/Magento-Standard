@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Api\Data;
+namespace Rokezzz\Slider\Api\Data;
 
 interface SlideInterface
 {

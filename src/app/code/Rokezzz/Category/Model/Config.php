@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Model;
+namespace Rokezzz\Category\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
 final class Config
 {
-    private const XML_PATH_ENABLE_NEW = 'rokezzz_dynamiccategories/general/enable_new';
-    private const XML_PATH_ENABLE_BESTSELLERS = 'rokezzz_dynamiccategories/general/enable_bestsellers';
+    private const XML_PATH_ENABLE_NEW = 'rokezzz_category/general/enable_new';
+    private const XML_PATH_ENABLE_BESTSELLERS = 'rokezzz_category/general/enable_bestsellers';
 
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig

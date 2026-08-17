@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Xml;
+namespace Rokezzz\Invoice\Model\Xml;
 
 use Rokezzz\Settings\Api\SellerDataProviderInterface;
 

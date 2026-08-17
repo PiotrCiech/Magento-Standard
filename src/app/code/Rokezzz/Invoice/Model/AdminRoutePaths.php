@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model;
+namespace Rokezzz\Invoice\Model;
 
 final class AdminRoutePaths
 {
-    public const INVOICE_DOWNLOAD_PDF = 'rokezzz_invoices/invoice/downloadPdf';
+    public const INVOICE_DOWNLOAD_PDF = 'rokezzz_invoice/invoice/downloadPdf';
 }

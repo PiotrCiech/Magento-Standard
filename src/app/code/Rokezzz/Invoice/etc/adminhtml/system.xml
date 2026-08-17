@@ -2,10 +2,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="rokezzz_invoices" translate="label" sortOrder="990" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Rokezzz Invoices</label>
+        <section id="rokezzz_invoice" translate="label" sortOrder="990" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Invoice</label>
             <tab>general</tab>
-            <resource>Rokezzz_Invoices::config</resource>
+            <resource>Rokezzz_Invoice::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
                 <field id="enabled" translate="label comment" type="select" sortOrder="10"
@@ -23,7 +23,7 @@
                     <comment>When enabled, eligible invoices are sent to the National e-Invoice System (KSeF).</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
-                        <field id="rokezzz_invoices/general/enabled">1</field>
+                        <field id="rokezzz_invoice/general/enabled">1</field>
                     </depends>
                 </field>
                 <field id="start_date" translate="label comment" type="text" sortOrder="20"
@@ -43,7 +43,7 @@
                     <label>Invoices directory</label>
                     <comment>Relative path inside var/ where invoice XML, PDF and UPO files are stored.</comment>
                     <depends>
-                        <field id="rokezzz_invoices/general/enabled">1</field>
+                        <field id="rokezzz_invoice/general/enabled">1</field>
                     </depends>
                 </field>
             </group>

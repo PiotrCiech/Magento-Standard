@@ -3,14 +3,14 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="rokezzz_promotionslider_slide_listing_data_source" xsi:type="string">Rokezzz\PromotionSlider\Model\ResourceModel\Slide\Grid\Collection</item>
+                <item name="rokezzz_slider_slide_listing_data_source" xsi:type="string">Rokezzz\Slider\Model\ResourceModel\Slide\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
-    <type name="Rokezzz\PromotionSlider\Model\ResourceModel\Slide\Grid\Collection">
+    <type name="Rokezzz\Slider\Model\ResourceModel\Slide\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">rokezzz_promotion_slide</argument>
-            <argument name="resourceModel" xsi:type="string">Rokezzz\PromotionSlider\Model\ResourceModel\Slide</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Slider\Model\ResourceModel\Slide</argument>
         </arguments>
     </type>
 </config>

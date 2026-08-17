@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Invoice;
+namespace Rokezzz\Invoice\Model\Invoice;
 
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Rokezzz\Invoices\Model\Data\KsefSubmissionResult;
+use Rokezzz\Invoice\Model\Data\KsefSubmissionResult;
 
 final class KsefInvoiceSubmissionService
 {

@@ -6,6 +6,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Rokezzz_PromotionSlider',
+    'Rokezzz_Slider',
     __DIR__
 );

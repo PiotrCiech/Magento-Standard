@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <rokezzz_invoices>
+        <rokezzz_invoice>
             <general>
                 <enabled>0</enabled>
             </general>
@@ -13,6 +13,6 @@
             <files>
                 <invoices_directory>rokezzz/invoices</invoices_directory>
             </files>
-        </rokezzz_invoices>
+        </rokezzz_invoice>
     </default>
 </config>

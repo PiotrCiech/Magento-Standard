@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Pdf;
+namespace Rokezzz\Invoice\Model\Pdf;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Rokezzz\Invoices\Api\InvoicePdfFileWriterInterface;
-use Rokezzz\Invoices\Api\InvoicePdfGeneratorInterface;
-use Rokezzz\Invoices\Model\Config;
-use Rokezzz\Invoices\Model\Template\InvoiceTemplateRenderer;
+use Rokezzz\Invoice\Api\InvoicePdfFileWriterInterface;
+use Rokezzz\Invoice\Api\InvoicePdfGeneratorInterface;
+use Rokezzz\Invoice\Model\Config;
+use Rokezzz\Invoice\Model\Template\InvoiceTemplateRenderer;
 
 class InvoicePdfGenerator implements InvoicePdfGeneratorInterface
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Invoice;
+namespace Rokezzz\Invoice\Model\Invoice;
 
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Rokezzz\Invoices\Model\Config;
-use Rokezzz\Invoices\Model\Xml\LegalTypeResolver;
+use Rokezzz\Invoice\Model\Config;
+use Rokezzz\Invoice\Model\Xml\LegalTypeResolver;
 
 final class InvoiceKsefEligibilityChecker
 {

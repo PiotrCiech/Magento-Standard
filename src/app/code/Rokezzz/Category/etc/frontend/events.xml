@@ -2,8 +2,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="page_block_html_topmenu_gethtml_before">
-        <observer name="rokezzz_dynamiccategories_add_to_topmenu"
-                  instance="Rokezzz\DynamicCategories\Observer\AddToTopmenu"/>
+        <observer name="rokezzz_category_add_to_topmenu"
+                  instance="Rokezzz\Category\Observer\AddToTopmenu"/>
     </event>
 </config>
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\ViewModel\Product;
+namespace Rokezzz\Category\ViewModel\Product;
 
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Rokezzz\DynamicCategories\Model\Newest\NewsDateFilter;
+use Rokezzz\Category\Model\Newest\NewsDateFilter;
 
 final class NewLabel implements ArgumentInterface
 {

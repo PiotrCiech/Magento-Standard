@@ -2,8 +2,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
-        <job name="rokezzz_invoices_send_ksef"
-             instance="Rokezzz\Invoices\Cron\SendInvoicesToKsef"
+        <job name="rokezzz_invoice_send_ksef"
+             instance="Rokezzz\Invoice\Cron\SendInvoicesToKsef"
              method="execute">
             <schedule>*/5 * * * *</schedule>
         </job>

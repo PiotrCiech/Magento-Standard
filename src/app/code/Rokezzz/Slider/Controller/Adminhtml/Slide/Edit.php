@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Controller\Adminhtml\Slide;
+namespace Rokezzz\Slider\Controller\Adminhtml\Slide;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
-use Rokezzz\PromotionSlider\Model\SlideFactory;
+use Rokezzz\Slider\Model\SlideFactory;
 
 class Edit extends Action implements HttpGetActionInterface
 {
-    const ADMIN_RESOURCE = 'Rokezzz_PromotionSlider::slide';
+    const ADMIN_RESOURCE = 'Rokezzz_Slider::slide';
 
     private PageFactory $resultPageFactory;
     private SlideFactory $slideFactory;
@@ -41,7 +41,7 @@ class Edit extends Action implements HttpGetActionInterface
         }
 
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Rokezzz_PromotionSlider::slide');
+        $resultPage->setActiveMenu('Rokezzz_Slider::slide');
         $resultPage->getConfig()->getTitle()->prepend(
             $slide->getId() ? __('Edit Slide: %1', $slide->getTitle()) : __('New Slide')
         );

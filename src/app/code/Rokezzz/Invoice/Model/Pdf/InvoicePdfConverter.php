@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Pdf;
+namespace Rokezzz\Invoice\Model\Pdf;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Xml;
+namespace Rokezzz\Invoice\Model\Xml;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Rokezzz\Invoices\Api\InvoiceXmlFileWriterInterface;
-use Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface;
-use Rokezzz\Invoices\Model\Config;
-use Rokezzz\Invoices\Model\Template\InvoiceTemplateRenderer;
+use Rokezzz\Invoice\Api\InvoiceXmlFileWriterInterface;
+use Rokezzz\Invoice\Api\InvoiceXmlGeneratorInterface;
+use Rokezzz\Invoice\Model\Config;
+use Rokezzz\Invoice\Model\Template\InvoiceTemplateRenderer;
 
 class InvoiceXmlGenerator implements InvoiceXmlGeneratorInterface
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Xml;
+namespace Rokezzz\Invoice\Model\Xml;
 
 use DateTimeImmutable;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Api\InvoiceRepositoryInterface;
-use Rokezzz\Invoices\Model\Data\InvoiceLine;
-use Rokezzz\Invoices\Model\Invoice\LegalType;
+use Rokezzz\Invoice\Model\Data\InvoiceLine;
+use Rokezzz\Invoice\Model\Invoice\LegalType;
 
 final class CorrectionContextBuilder
 {
@@ -56,8 +56,8 @@ final class CorrectionContextBuilder
     }
 
     /**
-     * @param \Rokezzz\Invoices\Model\Data\InvoiceLine[] $itemsAfter
-     * @param \Rokezzz\Invoices\Model\Data\InvoiceLine[] $itemsBefore
+     * @param \Rokezzz\Invoice\Model\Data\InvoiceLine[] $itemsAfter
+     * @param \Rokezzz\Invoice\Model\Data\InvoiceLine[] $itemsBefore
      * @return array<int, array<string, string>>
      */
     private function buildCorrectionItems(array $itemsAfter, array $itemsBefore): array

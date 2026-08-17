@@ -82,8 +82,14 @@ final class CreateLegalPages implements DataPatchInterface
         ];
 
         foreach ($pages as $pageData) {
+            $page = $this->pageFactory->create();
+            $page->load($pageData['identifier'], 'identifier');
+
+            if ($page->getId()) {
+                continue;
+            }
+
             try {
-                $page = $this->pageFactory->create();
                 $page->setStoreId([0])
                     ->setTitle($pageData['title'])
                     ->setIdentifier($pageData['identifier'])

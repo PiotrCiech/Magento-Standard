@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Xml;
+namespace Rokezzz\Invoice\Model\Xml;
 
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Api\Data\InvoiceItemInterface;
 use Magento\Sales\Model\Order\Invoice\Item as InvoiceItem;
-use Rokezzz\Invoices\Model\Data\InvoiceLine;
-use Rokezzz\Invoices\Model\Invoice\Unit;
+use Rokezzz\Invoice\Model\Data\InvoiceLine;
+use Rokezzz\Invoice\Model\Invoice\Unit;
 
 final class InvoiceLineBuilder
 {

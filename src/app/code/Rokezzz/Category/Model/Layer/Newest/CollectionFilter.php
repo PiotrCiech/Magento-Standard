@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Model\Layer\Newest;
+namespace Rokezzz\Category\Model\Layer\Newest;
 
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Layer\CollectionFilterInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
-use Rokezzz\DynamicCategories\Model\Newest\NewsDateFilter;
-use Rokezzz\DynamicCategories\Model\ProductCollectionInitializer;
+use Rokezzz\Category\Model\Newest\NewsDateFilter;
+use Rokezzz\Category\Model\ProductCollectionInitializer;
 
 final class CollectionFilter implements CollectionFilterInterface
 {

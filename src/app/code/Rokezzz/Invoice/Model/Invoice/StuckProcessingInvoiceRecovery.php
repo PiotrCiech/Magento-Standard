@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Invoice;
+namespace Rokezzz\Invoice\Model\Invoice;
 
+use Rokezzz\Invoice\Model\InvoiceCollectionCreator;
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Magento\Sales\Model\ResourceModel\Order\Invoice\CollectionFactory;
 
 final class StuckProcessingInvoiceRecovery
 {
     public function __construct(
-        private readonly CollectionFactory $invoiceCollectionFactory,
+        private readonly InvoiceCollectionCreator $invoiceCollectionCreator,
         private readonly InvoiceKsefStatusWriter $statusWriter
     ) {
     }
@@ -29,7 +29,7 @@ final class StuckProcessingInvoiceRecovery
             return 0;
         }
 
-        $collection = $this->invoiceCollectionFactory->create();
+        $collection = $this->invoiceCollectionCreator->create();
         $collection->addFieldToFilter('entity_id', ['in' => $invoiceIds]);
         $collection->addFieldToFilter('rokezzz_ksef_upo_status', ['eq' => KsefUpoStatus::Processing->value]);
 

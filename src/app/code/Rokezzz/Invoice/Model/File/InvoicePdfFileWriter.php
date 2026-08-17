@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\File;
+namespace Rokezzz\Invoice\Model\File;
 
-use Rokezzz\Invoices\Api\InvoicePdfFileWriterInterface;
-use Rokezzz\Invoices\Api\InvoicePdfPathResolverInterface;
+use Rokezzz\Invoice\Api\InvoicePdfFileWriterInterface;
+use Rokezzz\Invoice\Api\InvoicePdfPathResolverInterface;
 
 class InvoicePdfFileWriter implements InvoicePdfFileWriterInterface
 {

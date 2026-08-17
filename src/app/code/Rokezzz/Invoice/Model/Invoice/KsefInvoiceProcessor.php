@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Invoice;
+namespace Rokezzz\Invoice\Model\Invoice;
 
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface;
-use Rokezzz\Invoices\Api\KsefClientInterface;
-use Rokezzz\Invoices\Exception\KsefApiException;
-use Rokezzz\Invoices\Model\Ksef\KsefStatusPoller;
+use Rokezzz\Invoice\Api\InvoiceXmlGeneratorInterface;
+use Rokezzz\Invoice\Api\KsefClientInterface;
+use Rokezzz\Invoice\Exception\KsefApiException;
+use Rokezzz\Invoice\Model\Ksef\KsefStatusPoller;
 
 final class KsefInvoiceProcessor
 {

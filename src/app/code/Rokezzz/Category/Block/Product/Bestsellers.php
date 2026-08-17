@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Block\Product;
+namespace Rokezzz\Category\Block\Product;
 
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Block\Product\ListProduct;
@@ -10,8 +10,8 @@ use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Framework\Data\Helper\PostHelper;
 use Magento\Framework\Url\Helper\Data as UrlHelper;
 use Magento\Framework\View\Element\Template\Context;
-use Rokezzz\DynamicCategories\Model\Bestsellers\CollectionApplier;
-use Rokezzz\DynamicCategories\Model\ProductCollectionInitializer;
+use Rokezzz\Category\Model\Bestsellers\CollectionApplier;
+use Rokezzz\Category\Model\ProductCollectionInitializer;
 
 class Bestsellers extends ListProduct
 {

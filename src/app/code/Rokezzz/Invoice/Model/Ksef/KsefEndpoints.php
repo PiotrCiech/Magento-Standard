@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Ksef;
+namespace Rokezzz\Invoice\Model\Ksef;
 
 final class KsefEndpoints
 {

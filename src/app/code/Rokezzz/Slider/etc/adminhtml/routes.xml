@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="rokezzz_promotionslider" frontName="rokezzz_promotionslider">
-            <module name="Rokezzz_PromotionSlider" before="Magento_Backend"/>
+        <route id="rokezzz_slider" frontName="rokezzz_slider">
+            <module name="Rokezzz_Slider" before="Magento_Backend"/>
         </route>
     </router>
 </config>

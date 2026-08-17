@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Pdf;
+namespace Rokezzz\Invoice\Model\Pdf;
 
 use Magento\Framework\DataObject;
 use Magento\Sales\Api\Data\InvoiceInterface;
-use Rokezzz\Invoices\Model\Invoice\LegalType;
-use Rokezzz\Invoices\Model\Invoice\PaymentMethod;
-use Rokezzz\Invoices\Model\Xml\InvoiceXmlContextBuilder;
+use Rokezzz\Invoice\Model\Invoice\LegalType;
+use Rokezzz\Invoice\Model\Invoice\PaymentMethod;
+use Rokezzz\Invoice\Model\Xml\InvoiceXmlContextBuilder;
 use Rokezzz\Settings\Api\CompanySignatureProviderInterface;
 use Rokezzz\Settings\Api\SellerDataProviderInterface;
 

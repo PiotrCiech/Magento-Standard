@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Model\Bestsellers;
+namespace Rokezzz\Category\Model\Bestsellers;
 
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection as BestsellersReportCollection;

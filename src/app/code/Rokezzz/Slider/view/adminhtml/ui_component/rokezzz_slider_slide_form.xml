@@ -3,33 +3,33 @@
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">rokezzz_promotionslider_slide_form.rokezzz_promotionslider_slide_form_data_source</item>
+            <item name="provider" xsi:type="string">rokezzz_slider_slide_form.rokezzz_slider_slide_form_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Slide Information</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
         <buttons>
-            <button name="save" class="Rokezzz\PromotionSlider\Block\Adminhtml\Slide\Edit\SaveButton"/>
-            <button name="delete" class="Rokezzz\PromotionSlider\Block\Adminhtml\Slide\Edit\DeleteButton"/>
-            <button name="back" class="Rokezzz\PromotionSlider\Block\Adminhtml\Slide\Edit\BackButton"/>
+            <button name="save" class="Rokezzz\Slider\Block\Adminhtml\Slide\Edit\SaveButton"/>
+            <button name="delete" class="Rokezzz\Slider\Block\Adminhtml\Slide\Edit\DeleteButton"/>
+            <button name="back" class="Rokezzz\Slider\Block\Adminhtml\Slide\Edit\BackButton"/>
         </buttons>
-        <namespace>rokezzz_promotionslider_slide_form</namespace>
+        <namespace>rokezzz_slider_slide_form</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>rokezzz_promotionslider_slide_form.rokezzz_promotionslider_slide_form_data_source</dep>
+            <dep>rokezzz_slider_slide_form.rokezzz_slider_slide_form_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="rokezzz_promotionslider_slide_form_data_source">
+    <dataSource name="rokezzz_slider_slide_form_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
         <settings>
-            <submitUrl path="rokezzz_promotionslider/slide/save"/>
+            <submitUrl path="rokezzz_slider/slide/save"/>
         </settings>
-        <dataProvider class="Rokezzz\PromotionSlider\Model\Slide\DataProvider" name="rokezzz_promotionslider_slide_form_data_source">
+        <dataProvider class="Rokezzz\Slider\Model\Slide\DataProvider" name="rokezzz_slider_slide_form_data_source">
             <settings>
                 <requestFieldName>slide_id</requestFieldName>
                 <primaryFieldName>slide_id</primaryFieldName>
@@ -70,7 +70,7 @@
                         <allowedExtensions>jpg jpeg gif png webp</allowedExtensions>
                         <maxFileSize>10485760</maxFileSize>
                         <uploaderConfig>
-                            <param name="url" xsi:type="url" path="rokezzz_promotionslider/slide/upload"/>
+                            <param name="url" xsi:type="url" path="rokezzz_slider/slide/upload"/>
                         </uploaderConfig>
                     </settings>
                 </imageUploader>

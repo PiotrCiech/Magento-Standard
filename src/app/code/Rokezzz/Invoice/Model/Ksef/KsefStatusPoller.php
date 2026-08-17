@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\Ksef;
+namespace Rokezzz\Invoice\Model\Ksef;
 
-use Rokezzz\Invoices\Api\KsefClientInterface;
-use Rokezzz\Invoices\Exception\KsefApiException;
-use Rokezzz\Invoices\Model\Data\KsefProcessingResult;
+use Rokezzz\Invoice\Api\KsefClientInterface;
+use Rokezzz\Invoice\Exception\KsefApiException;
+use Rokezzz\Invoice\Model\Data\KsefProcessingResult;
 
 final class KsefStatusPoller
 {

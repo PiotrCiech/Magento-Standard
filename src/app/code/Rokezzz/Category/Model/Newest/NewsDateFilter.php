@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Model\Newest;
+namespace Rokezzz\Category\Model\Newest;
 
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;

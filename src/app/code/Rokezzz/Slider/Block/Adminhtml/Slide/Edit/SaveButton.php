@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Block\Adminhtml\Slide\Edit;
+namespace Rokezzz\Slider\Block\Adminhtml\Slide\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 

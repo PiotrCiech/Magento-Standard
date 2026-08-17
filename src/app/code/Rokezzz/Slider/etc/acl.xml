@@ -5,7 +5,7 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Rokezzz_Core::main">
                     <resource id="Rokezzz_Core::content">
-                        <resource id="Rokezzz_PromotionSlider::slider" title="Promotion Slider" translate="title" sortOrder="50" />
+                        <resource id="Rokezzz_Slider::slider" title="Slider" translate="title" sortOrder="50" />
                     </resource>
                 </resource>
             </resource>

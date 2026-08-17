@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Controller\Adminhtml\Slide;
+namespace Rokezzz\Slider\Controller\Adminhtml\Slide;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Rokezzz\PromotionSlider\Model\SlideFactory;
-use Rokezzz\PromotionSlider\Model\ResourceModel\Slide as SlideResource;
+use Rokezzz\Slider\Model\SlideFactory;
+use Rokezzz\Slider\Model\ResourceModel\Slide as SlideResource;
 
 class Delete extends Action implements HttpPostActionInterface
 {
-    const ADMIN_RESOURCE = 'Rokezzz_PromotionSlider::slide';
+    const ADMIN_RESOURCE = 'Rokezzz_Slider::slide';
 
     private SlideFactory $slideFactory;
     private SlideResource $slideResource;

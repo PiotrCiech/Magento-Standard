@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Model\File;
+namespace Rokezzz\Invoice\Model\File;
 
-use Rokezzz\Invoices\Api\InvoiceXmlPathResolverInterface;
-use Rokezzz\Invoices\Api\UpoFileWriterInterface;
+use Rokezzz\Invoice\Api\InvoiceXmlPathResolverInterface;
+use Rokezzz\Invoice\Api\UpoFileWriterInterface;
 
 class UpoFileWriter implements UpoFileWriterInterface
 {

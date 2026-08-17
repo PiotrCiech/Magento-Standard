@@ -4,8 +4,8 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Rokezzz_DynamicCategories::config"
-                          title="Rokezzz Dynamic Categories Configuration"
+                <resource id="Rokezzz_Category::config"
+                          title="Rokezzz Category Configuration"
                           sortOrder="900"/>
             </resource>
         </resources>

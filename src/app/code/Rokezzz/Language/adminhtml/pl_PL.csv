@@ -18,8 +18,8 @@
 "We couldn't find any records.","Nie mogliśmy znaleźć żadnych rekordów.",module,Magento_Staging
 "Apply Filters","Zastosuj filtry",module,Magento_Ui
 "Columns","Kolumny",module,Magento_Ui
-"Promotion Slider","Slider promocji",module,Rokezzz_PromotionSlider
-"Add New Slide","Dodaj nowy slajd",module,Rokezzz_PromotionSlider
+"Promotion Slider","Slider promocji",module,Rokezzz_Slider
+"Add New Slide","Dodaj nowy slajd",module,Rokezzz_Slider
 "Offer Requests","Zapytania ofertowe",module,Rokezzz_Offers
 "Offers","Oferty",module,Rokezzz_Offers
 "Edit Offer","Edytuj ofertę",module,Rokezzz_Offers
@@ -118,11 +118,11 @@
 "Rokezzz Availability Notification","Rokezzz Powiadomienia o dostępności",module,Rokezzz_AvailabilityNotification
 "Rokezzz ChatBot (tawk.to)","Rokezzz ChatBot (tawk.to)",module,Rokezzz_ChatBot
 "Rokezzz Compare","Rokezzz Porównywarka",module,Rokezzz_Compare
-"Rokezzz Dynamic Categories","Rokezzz Dynamic Categories",module,Rokezzz_DynamicCategories
+"Rokezzz Category","Rokezzz Kategorie",module,Rokezzz_Category
 "Rokezzz GUS","Rokezzz GUS",module,Rokezzz_GUS
-"Rokezzz Google Analytics","Rokezzz Google Analytics",module,Rokezzz_GoogleAnalytics
+"Rokezzz Analytics","Rokezzz Analytics",module,Rokezzz_Analytics
 "Rokezzz InPost","Rokezzz InPost",module,Rokezzz_InPost
-"Rokezzz Invoices","Rokezzz Faktury",module,Rokezzz_Invoices
+"Rokezzz Invoice","Rokezzz Faktury",module,Rokezzz_Invoice
 "Rokezzz Most Popular","Rokezzz Najpopularniejsze produkty",module,Rokezzz_MostPopular
 "Rokezzz Omnibus","Rokezzz Omnibus",module,Rokezzz_Omnibus
 "Rokezzz Order Advance","Rokezzz Rozszerzenia zamówień",module,Rokezzz_OrderAdvance

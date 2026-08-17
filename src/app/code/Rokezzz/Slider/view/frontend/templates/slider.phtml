@@ -1,6 +1,6 @@
 <?php
 
-use Rokezzz\PromotionSlider\Block\Slider;
+use Rokezzz\Slider\Block\Slider;
 
 /** @var Slider $block */
 
@@ -90,7 +90,7 @@ $uniqueId = $block->getUniqueId();
 <script type="text/x-magento-init">
     {
     "#<?= $block->escapeJs($uniqueId) ?>": {
-        "Rokezzz_PromotionSlider/js/slider": {
+        "Rokezzz_Slider/js/slider": {
             "autoplay": <?= $block->isAutoplay() ? 'true' : 'false' ?>,
             "autoplaySpeed": <?= (int) $block->getAutoplaySpeed() ?>,
             "animationSpeed": <?= (int) $block->getAnimationSpeed() ?>,

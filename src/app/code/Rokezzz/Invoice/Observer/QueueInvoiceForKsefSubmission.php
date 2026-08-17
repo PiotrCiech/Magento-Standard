@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Observer;
+namespace Rokezzz\Invoice\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\InvoiceInterface;
 use Magento\Sales\Api\InvoiceRepositoryInterface;
-use Rokezzz\Invoices\Api\InvoicePdfGeneratorInterface;
-use Rokezzz\Invoices\Api\InvoiceXmlGeneratorInterface;
-use Rokezzz\Invoices\Model\Config;
-use Rokezzz\Invoices\Model\Invoice\InvoiceKsefEligibilityChecker;
-use Rokezzz\Invoices\Model\Invoice\InvoiceKsefStatusWriter;
-use Rokezzz\Invoices\Model\Invoice\KsefUpoStatus;
-use Rokezzz\Invoices\Model\Invoice\LegalType;
+use Rokezzz\Invoice\Api\InvoicePdfGeneratorInterface;
+use Rokezzz\Invoice\Api\InvoiceXmlGeneratorInterface;
+use Rokezzz\Invoice\Model\Config;
+use Rokezzz\Invoice\Model\Invoice\InvoiceKsefEligibilityChecker;
+use Rokezzz\Invoice\Model\Invoice\InvoiceKsefStatusWriter;
+use Rokezzz\Invoice\Model\Invoice\KsefUpoStatus;
+use Rokezzz\Invoice\Model\Invoice\LegalType;
 
 final class QueueInvoiceForKsefSubmission implements ObserverInterface
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\PromotionSlider\Model\ResourceModel\Slide;
+namespace Rokezzz\Slider\Model\ResourceModel\Slide;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Rokezzz\PromotionSlider\Model\Slide;
-use Rokezzz\PromotionSlider\Model\ResourceModel\Slide as SlideResource;
+use Rokezzz\Slider\Model\Slide;
+use Rokezzz\Slider\Model\ResourceModel\Slide as SlideResource;
 
 class Collection extends AbstractCollection
 {

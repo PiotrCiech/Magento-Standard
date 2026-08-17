@@ -3,13 +3,13 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">rokezzz_promotionslider_slide_listing.rokezzz_promotionslider_slide_listing_data_source</item>
+            <item name="provider" xsi:type="string">rokezzz_slider_slide_listing.rokezzz_slider_slide_listing_data_source</item>
         </item>
     </argument>
     <settings>
-        <spinner>rokezzz_promotionslider_slide_columns</spinner>
+        <spinner>rokezzz_slider_slide_columns</spinner>
         <deps>
-            <dep>rokezzz_promotionslider_slide_listing.rokezzz_promotionslider_slide_listing_data_source</dep>
+            <dep>rokezzz_slider_slide_listing.rokezzz_slider_slide_listing_data_source</dep>
         </deps>
         <buttons>
             <button name="add">
@@ -19,15 +19,15 @@
             </button>
         </buttons>
     </settings>
-    <dataSource name="rokezzz_promotionslider_slide_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="rokezzz_slider_slide_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <updateUrl path="mui/index/render"/>
             <storageConfig>
                 <param name="indexField" xsi:type="string">slide_id</param>
             </storageConfig>
         </settings>
-        <aclResource>Rokezzz_PromotionSlider::slide</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="rokezzz_promotionslider_slide_listing_data_source">
+        <aclResource>Rokezzz_Slider::slide</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="rokezzz_slider_slide_listing_data_source">
             <settings>
                 <requestFieldName>slide_id</requestFieldName>
                 <primaryFieldName>slide_id</primaryFieldName>
@@ -41,7 +41,7 @@
         <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
             <action name="delete">
                 <settings>
-                    <url path="rokezzz_promotionslider/slide/massDelete"/>
+                    <url path="rokezzz_slider/slide/massDelete"/>
                     <type>delete</type>
                     <label translate="true">Delete</label>
                     <confirm>
@@ -53,7 +53,7 @@
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="rokezzz_promotionslider_slide_columns">
+    <columns name="rokezzz_slider_slide_columns">
         <selectionsColumn name="ids" sortOrder="0">
             <settings>
                 <indexField>slide_id</indexField>
@@ -73,7 +73,7 @@
                 <sortable>false</sortable>
             </settings>
         </column>
-        <column name="image" class="Rokezzz\PromotionSlider\Ui\Component\Listing\Column\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="30">
+        <column name="image" class="Rokezzz\Slider\Ui\Component\Listing\Column\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="30">
             <settings>
                 <altField>title</altField>
                 <hasPreview>true</hasPreview>
@@ -105,7 +105,7 @@
                 <sortable>false</sortable>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Rokezzz\PromotionSlider\Ui\Component\Listing\Column\SlideActions" sortOrder="100">
+        <actionsColumn name="actions" class="Rokezzz\Slider\Ui\Component\Listing\Column\SlideActions" sortOrder="100">
             <settings>
                 <indexField>slide_id</indexField>
             </settings>

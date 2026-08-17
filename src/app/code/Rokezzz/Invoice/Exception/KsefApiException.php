@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\Invoices\Exception;
+namespace Rokezzz\Invoice\Exception;
 
 use RuntimeException;
 use Throwable;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\GoogleAnalytics\ViewModel;
+namespace Rokezzz\Analytics\ViewModel;
 
 use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Rokezzz\GoogleAnalytics\Model\Config;
+use Rokezzz\Analytics\Model\Config;
 
 class Tracking implements ArgumentInterface
 {

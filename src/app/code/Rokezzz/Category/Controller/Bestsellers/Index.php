@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Rokezzz\DynamicCategories\Controller\Bestsellers;
+namespace Rokezzz\Category\Controller\Bestsellers;
 
 use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
-use Rokezzz\DynamicCategories\Model\Config;
+use Rokezzz\Category\Model\Config;
 
 class Index implements HttpGetActionInterface
 {
