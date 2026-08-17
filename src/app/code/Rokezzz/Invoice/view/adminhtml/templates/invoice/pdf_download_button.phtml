@@ -1,0 +1,10 @@
+<?php
+/** @var \Rokezzz\Invoice\Block\Adminhtml\Invoice\PdfDownloadButton $block */
+?>
+<?php if ($block->canShow()): ?>
+    <a href="<?= $block->escapeUrl($block->getDownloadUrl()) ?>"
+       class="action-default scalable add"
+       target="_blank">
+        <span><?= $block->escapeHtml(__('Download PDF')) ?></span>
+    </a>
+<?php endif; ?>

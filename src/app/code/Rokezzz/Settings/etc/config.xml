@@ -19,6 +19,14 @@
             <branding>
                 <logo/>
             </branding>
+            <invoice>
+                <system_info>Magento</system_info>
+            </invoice>
+            <ksef>
+                <api_url/>
+                <token/>
+                <nip/>
+            </ksef>
             <loyalty_points>
                 <enabled>0</enabled>
                 <points_per_currency>1</points_per_currency>

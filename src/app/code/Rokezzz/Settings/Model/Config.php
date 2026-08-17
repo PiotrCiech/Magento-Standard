@@ -22,13 +22,13 @@ final class Config
     private const XML_PATH_CONTACT_PHONE = 'rokezzz_settings/company/contact_phone';
     private const XML_PATH_WEBSITE_URL = 'rokezzz_settings/company/website_url';
     private const XML_PATH_LOGO = 'rokezzz_settings/branding/logo';
+    private const XML_PATH_SYSTEM_INFO = 'rokezzz_settings/invoice/system_info';
     private const XML_PATH_KSEF_API_URL = 'rokezzz_settings/ksef/api_url';
     private const XML_PATH_KSEF_TOKEN = 'rokezzz_settings/ksef/token';
     private const XML_PATH_KSEF_NIP = 'rokezzz_settings/ksef/nip';
 
     private const DEFAULT_COUNTRY_CODE = 'PL';
     private const DEFAULT_SYSTEM_INFO = 'Magento';
-    private const PLATFORM_SIGNATURE = 'System powered by Rokezzz';
     private const LOGO_MEDIA_DIRECTORY = 'rokezzz/settings';
 
     public function __construct(
@@ -106,7 +106,9 @@ final class Config
 
     public function getSystemInfo(?int $storeId = null): string
     {
-        return (string) __(self::PLATFORM_SIGNATURE);
+        $systemInfo = $this->getString(self::XML_PATH_SYSTEM_INFO, $storeId);
+
+        return $systemInfo !== '' ? $systemInfo : self::DEFAULT_SYSTEM_INFO;
     }
 
     public function getKsefApiUrl(?int $storeId = null): string
