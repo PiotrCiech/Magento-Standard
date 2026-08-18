@@ -1,8 +1,0 @@
-<?php if ($block->canShow()): ?>
-    <?php $controller = $block->getCustomUrl(); ?>
-	<a href="<?= $controller ?>">
-        <?php echo $block->getButtonHtml(); ?>
-	</a>
-<?php else: ?>
-	<span>Wybierz środowisko z jakim chcesz się połączyć i zapisz konfigurację.</span>
-<?php endif; ?>
