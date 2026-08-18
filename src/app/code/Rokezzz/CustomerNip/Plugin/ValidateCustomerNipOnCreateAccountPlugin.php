@@ -9,7 +9,7 @@ use Magento\Customer\Model\AccountManagement;
 use Magento\Framework\Exception\InputException;
 use Rokezzz\CustomerNip\Model\NipValidator;
 
-class ValidateCustomerNipOnCreateAccountPlugin
+final class ValidateCustomerNipOnCreateAccountPlugin
 {
     public function __construct(
         private readonly NipValidator $nipValidator

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rokezzz_categoryadvance>
+            <general>
+                <enable_pdf_catalog>1</enable_pdf_catalog>
+            </general>
+        </rokezzz_categoryadvance>
+    </default>
+</config>

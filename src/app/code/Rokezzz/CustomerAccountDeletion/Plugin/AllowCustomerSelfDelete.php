@@ -9,7 +9,7 @@ use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ActionValidator\RemoveAction;
 use Rokezzz\CustomerAccountDeletion\Service\CustomerDeletePermission;
 
-class AllowCustomerSelfDelete
+final class AllowCustomerSelfDelete
 {
     public function __construct(
         private readonly CustomerDeletePermission $customerDeletePermission

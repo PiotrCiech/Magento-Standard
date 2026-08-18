@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_resubmitting_archived_orders" translate="label" sortOrder="920"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Resubmitting Archived Orders</label>
+            <tab>general</tab>
+            <resource>Rokezzz_ResubmittingArchivedOrders::config</resource>
+            <group id="general" translate="label" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable archived orders resubmit</label>
+                    <comment>When disabled, archived orders stay in the main order history and resubmit is unavailable.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="archive" translate="label" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Archiving</label>
+                <field id="age_days" translate="label comment" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Archive orders older than (days)</label>
+                    <comment>Orders matching selected statuses are moved to the archived list after this period.</comment>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="statuses" translate="label comment" type="multiselect" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order statuses eligible for archiving</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rokezzz_settings>
+            <contract_withdrawal>
+                <enabled>1</enabled>
+                <period_days>14</period_days>
+            </contract_withdrawal>
+        </rokezzz_settings>
+    </default>
+</config>

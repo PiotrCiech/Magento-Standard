@@ -1,0 +1,17 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Rokezzz\OrderAdvance\ViewModel\Order\OrderNumber $orderNumberViewModel */
+$orderNumberViewModel = $block->getData('order_number_view_model');
+
+if (!$orderNumberViewModel->shouldDisplay()) {
+    return;
+}
+?>
+<div class="box box-order-customer-number">
+    <strong class="box-title">
+        <span><?= $block->escapeHtml(__('Your order number')) ?></span>
+    </strong>
+    <div class="box-content">
+        <span><?= $block->escapeHtml($orderNumberViewModel->getOrderNumber()) ?></span>
+    </div>
+</div>

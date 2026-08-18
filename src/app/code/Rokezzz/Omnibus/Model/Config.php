@@ -7,7 +7,7 @@ namespace Rokezzz\Omnibus\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Config
+final class Config
 {
     private const XML_PATH_ENABLED = 'rokezzz_omnibus/general/enabled';
     private const XML_PATH_PERIOD_DAYS = 'rokezzz_omnibus/general/period_days';

@@ -8,7 +8,7 @@ use Magento\Customer\Model\Customer;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class EnableCustomerTaxvatAttribute implements DataPatchInterface
+final class EnableCustomerTaxvatAttribute implements DataPatchInterface
 {
     private const ATTRIBUTE_CODE = 'taxvat';
 

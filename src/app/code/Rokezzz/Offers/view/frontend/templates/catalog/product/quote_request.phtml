@@ -1,0 +1,54 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Rokezzz\Offers\ViewModel\Catalog\ProductQuoteRequest $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+<?php if ($viewModel->requiresQuoteRequest()): ?>
+    <div class="block block-rokezzz-quote-request box-to-cart">
+        <div class="block-title">
+            <strong><?= $escaper->escapeHtml(__('Request a Quote')) ?></strong>
+        </div>
+        <div class="block-content">
+            <p class="rokezzz-quote-request-lead">
+                <?= $escaper->escapeHtml(__('This product is currently out of stock. You can request a quote instead of purchasing it now.')) ?>
+            </p>
+            <?php if ($viewModel->isCustomerLoggedIn()): ?>
+                <form action="<?= $escaper->escapeUrl($viewModel->getAddUrl()) ?>"
+                      method="post"
+                      class="form quote-request-form">
+                    <?= $block->getBlockHtml('formkey') ?>
+                    <input type="hidden" name="product_id" value="<?= (int) $viewModel->getProductId() ?>"/>
+                    <div class="field qty required">
+                        <label class="label" for="rokezzz-quote-request-qty">
+                            <span><?= $escaper->escapeHtml(__('Qty')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="number"
+                                   name="qty"
+                                   id="rokezzz-quote-request-qty"
+                                   value="1"
+                                   min="1"
+                                   class="input-text qty"
+                                   required="required"/>
+                        </div>
+                    </div>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action primary">
+                                <span><?= $escaper->escapeHtml(__('Add to Quote Request Cart')) ?></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            <?php else: ?>
+                <p>
+                    <?= $escaper->escapeHtml(__('You must be logged in to request a quote.')) ?>
+                    <a href="<?= $escaper->escapeUrl($viewModel->getLoginUrl()) ?>">
+                        <?= $escaper->escapeHtml(__('Sign In')) ?>
+                    </a>
+                </p>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>

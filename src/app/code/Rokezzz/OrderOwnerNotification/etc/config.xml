@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rokezzz_order_owner_notification>
+            <general>
+                <enabled>0</enabled>
+                <recipient_email/>
+                <email_template>rokezzz_order_owner_notification_general_email_template</email_template>
+            </general>
+        </rokezzz_order_owner_notification>
+    </default>
+</config>

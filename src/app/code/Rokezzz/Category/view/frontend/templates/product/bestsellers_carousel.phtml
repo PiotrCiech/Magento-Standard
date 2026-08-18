@@ -1,0 +1,99 @@
+<?php
+/**
+ * @var \Rokezzz\Category\Block\Product\Bestsellers $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+use Magento\Catalog\Helper\Output;
+use Rokezzz\Category\ViewModel\Product\NewLabel;
+
+$productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper(Output::class);
+$imageDisplayArea = 'category_page_grid';
+/** @var NewLabel|null $newLabelViewModel */
+$newLabelViewModel = $block->getData('newLabelViewModel');
+?>
+
+<?php if ($productCollection && $productCollection->getSize()): ?>
+<div class="rokezzz-bestsellers-wrapper">
+    <h2 class="rokezzz-bestsellers-title"><?= $escaper->escapeHtml(__('Bestsellers')) ?></h2>
+
+    <a href="#" class="carousel-nav-btn prev" aria-label="Poprzednie" id="bestsellers-prev">&#10094;</a>
+    <a href="#" class="carousel-nav-btn next" aria-label="Następne" id="bestsellers-next">&#10095;</a>
+
+    <div class="bestsellers-carousel-container" id="bestsellers-carousel">
+        <?php foreach ($productCollection as $_product): ?>
+        <div class="product-item">
+            <div class="product-item-info">
+
+                <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>" class="product-item-photo">
+                    <?php if ($newLabelViewModel instanceof NewLabel && $newLabelViewModel->isNew($_product)): ?>
+                        <span class="product-label product-label--new"><?= $escaper->escapeHtml(__('New')) ?></span>
+                    <?php endif; ?>
+                    <?php $productImage = $block->getImage($_product, $imageDisplayArea); ?>
+                    <?= $productImage->toHtml() ?>
+                </a>
+
+                <div class="product-item-details">
+                    <strong class="product-item-name">
+                        <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
+                            <?= /* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                        </a>
+                    </strong>
+
+                    <div class="price-box">
+                        <?= /* @noEscape */ $block->getProductPrice($_product) ?>
+                    </div>
+
+                    <div class="product-item-actions">
+                        <div class="actions-primary">
+                            <?php if ($_product->isSaleable()): ?>
+                            <form data-role="tocart-form"
+                                action="<?= $escaper->escapeUrl($block->getAddToCartUrl($_product)) ?>" method="post">
+                                <?= $block->getBlockHtml('formkey') ?>
+                                <button type="submit" class="action primary tocart">
+                                    <span><?= $escaper->escapeHtml(__('Add To Cart')) ?></span>
+                                </button>
+                            </form>
+                            <?php else: ?>
+                            <button type="button" class="action disabled tocart" disabled>
+                                <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
+                            </button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselContainer = document.getElementById('bestsellers-carousel'),
+        buttonPrev = document.getElementById('bestsellers-prev'),
+        buttonNext = document.getElementById('bestsellers-next');
+
+    if (carouselContainer && buttonPrev && buttonNext) {
+        const scrollAmount = 304;
+
+        buttonPrev.addEventListener('click', function(event) {
+            event.preventDefault();
+            carouselContainer.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        buttonNext.addEventListener('click', function(event) {
+            event.preventDefault();
+            carouselContainer.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+</script>
+<?php endif; ?>

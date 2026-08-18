@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_settings">
+            <group id="popup" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Moduł Pop-up</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Włącz Pop-up reklamowy</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="rokezzz_settings/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="cms_block" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wybierz Blok CMS (Zawartość)</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Block</source_model>
+                    <depends>
+                        <field id="rokezzz_settings/general/enable">1</field>
+                        <field id="rokezzz_settings/popup/enable">1</field>
+                    </depends>
+                </field>
+                <field id="delay_time" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Czas opóźnienia wyświetlenia (w ms)</label>
+                    <comment>Wartość w milisekundach (np. 2000 to 2 sekundy). Pozostaw puste lub wpisz 0 dla natychmiastowego wyświetlenia.</comment>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="rokezzz_settings/general/enable">1</field>
+                        <field id="rokezzz_settings/popup/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

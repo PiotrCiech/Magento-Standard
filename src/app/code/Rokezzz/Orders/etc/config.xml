@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rokezzz_orders>
+            <order_notes>
+                <enabled>0</enabled>
+                <max_length>1000</max_length>
+                <label>Order notes</label>
+                <placeholder/>
+            </order_notes>
+        </rokezzz_orders>
+    </default>
+</config>

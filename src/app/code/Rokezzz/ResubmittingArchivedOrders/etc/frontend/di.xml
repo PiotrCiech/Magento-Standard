@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Block\Order\History">
+        <plugin name="rokezzz_resubmitting_archived_orders_exclude_archived"
+                type="Rokezzz\ResubmittingArchivedOrders\Plugin\Sales\Block\Order\ExcludeArchivedFromHistoryPlugin"/>
+    </type>
+    <type name="Magento\Customer\Block\Account\Navigation">
+        <plugin name="rokezzz_resubmitting_archived_orders_hide_nav_when_disabled"
+                type="Rokezzz\ResubmittingArchivedOrders\Plugin\Customer\Block\Account\HideArchivedOrdersNavPlugin"/>
+    </type>
+</config>

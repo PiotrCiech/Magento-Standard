@@ -9,7 +9,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Rokezzz\Omnibus\Api\PriceHistoryRecorderInterface;
 
-class RecordPriceOnProductSave implements ObserverInterface
+final class RecordPriceOnProductSave implements ObserverInterface
 {
     public function __construct(
         private readonly PriceHistoryRecorderInterface $priceHistoryRecorder

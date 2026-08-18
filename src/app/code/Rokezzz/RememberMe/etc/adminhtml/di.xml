@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\App\AbstractAction">
+        <plugin name="rokezzz_remember_me_capture_admin"
+                type="Rokezzz\RememberMe\Plugin\Backend\App\Action\CaptureAdminRememberMePlugin"
+                sortOrder="50"/>
+    </type>
+    <type name="Magento\Backend\Model\Auth\Session">
+        <plugin name="rokezzz_remember_me_renew_admin_session_cookie"
+                type="Rokezzz\RememberMe\Plugin\Backend\Model\Auth\RenewAdminSessionCookiePlugin"/>
+    </type>
+</config>
