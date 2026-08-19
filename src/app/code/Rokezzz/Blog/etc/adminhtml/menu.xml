@@ -8,6 +8,15 @@
              module="Rokezzz_Blog"
              parent="Rokezzz_Core::content"
              sortOrder="80"
+             action="rokezzz_blog/category/index"
              resource="Rokezzz_Blog::blog"/>
+        <add id="Rokezzz_Blog::categories"
+             title="Categories"
+             translate="title"
+             module="Rokezzz_Blog"
+             parent="Rokezzz_Blog::blog"
+             sortOrder="10"
+             action="rokezzz_blog/category/index"
+             resource="Rokezzz_Blog::categories"/>
     </menu>
 </config>

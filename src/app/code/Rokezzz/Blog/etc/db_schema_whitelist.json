@@ -1,0 +1,13 @@
+{
+    "rokezzz_blog_category": {
+        "column": {
+            "category_id": true,
+            "name": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
