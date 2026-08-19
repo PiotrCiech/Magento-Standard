@@ -360,6 +360,7 @@ return [
         'Magento_Wishlist' => 1,
         'Magento_WishlistAnalytics' => 1,
         'Magento_WishlistGraphQl' => 1,
+        'FurgonetkaPl_FurgonetkaPl' => 1,
         'Mageplaza_Core' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeCustomerBalance' => 1,
@@ -414,6 +415,7 @@ return [
         'Rokezzz_Tax' => 1,
         'Rokezzz_ViteDev' => 1,
         'Rokezzz_Widget' => 1,
-        'Rokezzz_Wishlist' => 1
+        'Rokezzz_Wishlist' => 1,
+        'Smartmage_Inpost' => 1
     ]
 ];

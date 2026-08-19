@@ -43,7 +43,6 @@ Adjust values in `.env` if needed, especially ports, passwords and `HOST_UID` / 
 Start the environment:
 
 ```bash
-docker compose up -d --build
 ```
 
 Enter the PHP container:
@@ -62,7 +61,6 @@ Outgoing emails from Magento are routed through Mailhog via `msmtp` in the PHP c
 After adding Mailhog, rebuild the PHP image so `msmtp` is installed:
 
 ```bash
-docker compose up -d --build
 ```
 
 ## First Install
