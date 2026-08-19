@@ -2,12 +2,21 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Rokezzz_Blog::blog"
+        <add id="Rokezzz_Blog::blog_section"
              title="Blog"
              translate="title"
              module="Rokezzz_Blog"
-             parent="Rokezzz_Core::content"
-             sortOrder="80"
+             parent="Rokezzz_Core::main"
+             sortOrder="50"
              resource="Rokezzz_Blog::blog"/>
+
+        <add id="Rokezzz_Blog::posts"
+             title="Posts"
+             translate="title"
+             module="Rokezzz_Blog"
+             parent="Rokezzz_Blog::blog_section"
+             action="rokezzz_blog/post/index"
+             sortOrder="10"
+             resource="Rokezzz_Blog::posts"/>
     </menu>
 </config>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/db_schema.xsd">
+
+    <!-- Tabela Autorów -->
+    <table name="rokezzz_blog_author" resource="default" engine="innodb" comment="Blog Authors">
+        <column xsi:type="int" name="author_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Author ID"/>
+        <column xsi:type="varchar" name="firstname" nullable="false" length="255" comment="First Name"/>
+        <column xsi:type="varchar" name="lastname" nullable="false" length="255" comment="Last Name"/>
+        <column xsi:type="varchar" name="job_title" nullable="true" length="255" comment="Job Title"/>
+        <column xsi:type="varchar" name="avatar" nullable="true" length="255" comment="Avatar"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="author_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="ROKEZZZ_BLOG_AUTHOR_IDENTIFIER">
+            <column name="identifier"/>
+        </constraint>
+    </table>
+
+    <!-- Tabela Kategorii -->
+    <table name="rokezzz_blog_category" resource="default" engine="innodb" comment="Blog Categories">
+        <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Category ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Category Name"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="category_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="ROKEZZZ_BLOG_CATEGORY_IDENTIFIER">
+            <column name="identifier"/>
+        </constraint>
+    </table>
+
+    <table name="rokezzz_blog_tag" resource="default" engine="innodb" comment="Blog Tags">
+        <column xsi:type="int" name="tag_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Tag ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Tag Name"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="tag_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="ROKEZZZ_BLOG_TAG_IDENTIFIER">
+            <column name="identifier"/>
+        </constraint>
+    </table>
+
+    <table name="rokezzz_blog_post" resource="default" engine="innodb" comment="Rokezzz Blog Posts">
+        <column xsi:type="int" name="post_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Post ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="varchar" name="background_image" nullable="true" length="255" comment="Background Image"/>
+        <column xsi:type="int" name="author_id" padding="10" unsigned="true" nullable="false" comment="Author ID"/>
+        <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" comment="Category ID"/>
+        <column xsi:type="mediumtext" name="content" nullable="true" comment="Page Builder WYSIWYG Content"/>
+        <column xsi:type="text" name="short_content" nullable="true" comment="Short Content"/>
+        <column xsi:type="smallint" name="is_active" padding="6" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="timestamp" name="published_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Publish Date"/>
+        <column xsi:type="smallint" name="allow_comments" padding="6" nullable="false" default="1" comment="Allow Comments"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="ROKEZZZ_BLOG_POST_IDENTIFIER">
+            <column name="identifier"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_AUTHOR_ID" table="rokezzz_blog_post" column="author_id" referenceTable="rokezzz_blog_author" referenceColumn="author_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_CATEGORY_ID" table="rokezzz_blog_post" column="category_id" referenceTable="rokezzz_blog_category" referenceColumn="category_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="rokezzz_blog_post_tag" resource="default" engine="innodb" comment="Post Tag Relations">
+        <column xsi:type="int" name="post_id" padding="10" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="int" name="tag_id" padding="10" unsigned="true" nullable="false" comment="Tag ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+            <column name="tag_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_TAG_POST_ID" table="rokezzz_blog_post_tag" column="post_id" referenceTable="rokezzz_blog_post" referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_TAG_TAG_ID" table="rokezzz_blog_post_tag" column="tag_id" referenceTable="rokezzz_blog_tag" referenceColumn="tag_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="rokezzz_blog_post_store" resource="default" engine="innodb" comment="Post Store Relations">
+        <column xsi:type="int" name="post_id" padding="10" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" comment="Store ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_STORE_POST_ID" table="rokezzz_blog_post_store" column="post_id" referenceTable="rokezzz_blog_post" referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_STORE_STORE_ID" table="rokezzz_blog_post_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    </table>
+</schema>
