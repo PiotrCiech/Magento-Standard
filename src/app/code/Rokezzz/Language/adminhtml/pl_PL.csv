@@ -205,3 +205,32 @@
 "Minimum Terms to Match","Minimalna liczba pasujących terminów",module,Magento_OpenSearch
 "<a href=""https://experienceleague.adobe.com/en/docs/commerce-admin/catalog/catalog/search/search-configuration"">Learn more</a> about valid syntax.","<a href=""https://experienceleague.adobe.com/en/docs/commerce-admin/catalog/catalog/search/search-configuration"">Dowiedz się więcej</a> o poprawnej składni.",module,Magento_OpenSearch
 "We strongly recommend to enable a <a href=""https://experienceleague.adobe.com/docs/commerce-admin/systems/security/captcha/security-google-recaptcha.html"" target=""_blank"">CAPTCHA solution</a> alongside enabling ""Email to a Friend"" to ensure abuse of this feature does not occur.","Zdecydowanie zalecamy włączenie <a href=""https://experienceleague.adobe.com/docs/commerce-admin/systems/security/captcha/security-google-recaptcha.html"" target=""_blank"">rozwiązania CAPTCHA</a> wraz z funkcją ""Wyślij znajomemu"", aby zapobiec nadużyciom.",module,Magento_SendFriend
+"Blog","Blog",module,Rokezzz_Blog
+"Posts","Posty",module,Rokezzz_Blog
+"Blog Posts","Wpisy na blogu",module,Rokezzz_Blog
+"Add New Post","Dodaj nowy wpis",module,Rokezzz_Blog
+"Post Information","Informacje o wpisie",module,Rokezzz_Blog
+"Enable Post","Włącz wpis",module,Rokezzz_Blog
+"Publish Date","Data publikacji",module,Rokezzz_Blog
+"Author ID","ID autora",module,Rokezzz_Blog
+"Category ID","ID kategorii",module,Rokezzz_Blog
+"Background Image","Zdjęcie w tle",module,Rokezzz_Blog
+"Allow Comments","Zezwól na komentarze",module,Rokezzz_Blog
+"Short Content","Krótka treść",module,Rokezzz_Blog
+"Search Engine Optimization","Optymalizacja dla wyszukiwarek",module,Rokezzz_Blog
+"URL Key","Klucz URL",module,Rokezzz_Blog
+"Meta Title","Meta tytuł",module,Rokezzz_Blog
+"Meta Description","Opis strony META",module,Rokezzz_Blog
+"Delete Post","Usuń wpis",module,Rokezzz_Blog
+"Are you sure you want to delete this post?","Czy na pewno chcesz usunąć ten wpis?",module,Rokezzz_Blog
+"You saved the post.","Wpis został zapisany.",module,Rokezzz_Blog
+"You deleted the post.","Wpis został usunięty.",module,Rokezzz_Blog
+"This post no longer exists.","Ten wpis już nie istnieje.",module,Rokezzz_Blog
+"Something went wrong while saving the post.","Wystąpił błąd podczas zapisywania wpisu.",module,Rokezzz_Blog
+"We can't find a post to delete.","Nie znaleziono wpisu do usunięcia.",module,Rokezzz_Blog
+"New Post","Nowy wpis",module,Rokezzz_Blog
+"Edit Post \"%1\"","Edytuj wpis \"%1\"",module,Rokezzz_Blog
+"Save","Zapisz",module,Rokezzz_Blog
+"Back","Powrót",module,Rokezzz_Blog
+"Edit","Edytuj",module,Rokezzz_Blog
+"Delete","Usuń",module,Rokezzz_Blog

@@ -1,13 +1,92 @@
 {
+    "rokezzz_blog_author": {
+        "column": {
+            "author_id": true,
+            "firstname": true,
+            "lastname": true,
+            "job_title": true,
+            "avatar": true,
+            "identifier": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_BLOG_AUTHOR_IDENTIFIER": true
+        }
+    },
     "rokezzz_blog_category": {
         "column": {
             "category_id": true,
             "name": true,
+            "is_active": true,
             "created_at": true,
             "updated_at": true
         },
         "constraint": {
             "PRIMARY": true
+        }
+    },
+    "rokezzz_blog_tag": {
+        "column": {
+            "tag_id": true,
+            "name": true,
+            "identifier": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_BLOG_TAG_IDENTIFIER": true
+        }
+    },
+    "rokezzz_blog_post": {
+        "column": {
+            "post_id": true,
+            "title": true,
+            "identifier": true,
+            "background_image": true,
+            "author_id": true,
+            "category_id": true,
+            "content": true,
+            "short_content": true,
+            "is_active": true,
+            "published_at": true,
+            "allow_comments": true,
+            "meta_title": true,
+            "meta_description": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_BLOG_POST_IDENTIFIER": true,
+            "ROKEZZZ_BLOG_POST_AUTHOR_ID": true,
+            "ROKEZZZ_BLOG_POST_CATEGORY_ID": true
+        }
+    },
+    "rokezzz_blog_post_tag": {
+        "column": {
+            "post_id": true,
+            "tag_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_BLOG_POST_TAG_POST_ID": true,
+            "ROKEZZZ_BLOG_POST_TAG_TAG_ID": true
+        }
+    },
+    "rokezzz_blog_post_store": {
+        "column": {
+            "post_id": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_BLOG_POST_STORE_POST_ID": true,
+            "ROKEZZZ_BLOG_POST_STORE_STORE_ID": true
         }
     }
 }
