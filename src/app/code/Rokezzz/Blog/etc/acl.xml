@@ -5,11 +5,9 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Rokezzz_Core::main">
-                    <resource id="Rokezzz_Core::content">
-                        <resource id="Rokezzz_Blog::blog" title="Blog" sortOrder="80">
-                            <resource id="Rokezzz_Blog::categories" title="Categories" sortOrder="10"/>
-                            <resource id="Rokezzz_Blog::posts" title="Posts" sortOrder="20"/>
-                        </resource>
+                    <resource id="Rokezzz_Blog::blog" title="Blog" sortOrder="80">
+                        <resource id="Rokezzz_Blog::categories" title="Categories" sortOrder="10"/>
+                        <resource id="Rokezzz_Blog::posts" title="Posts" sortOrder="20"/>
                     </resource>
                 </resource>
             </resource>

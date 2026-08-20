@@ -6,7 +6,7 @@
              title="Blog"
              translate="title"
              module="Rokezzz_Blog"
-             parent="Rokezzz_Core::content"
+             parent="Rokezzz_Core::main"
              sortOrder="80"
              resource="Rokezzz_Blog::blog"/>
         <add id="Rokezzz_Blog::categories"
