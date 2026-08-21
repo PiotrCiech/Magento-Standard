@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View\Attributes;
+
+/** @var Attributes $block */
+$_product = $block->getProduct();
+$_additional = $block->getAdditionalData();
+?>
+
+<?php if ($_additional): ?>
+<div class="product-attributes-wrapper">
+    <h3 class="attributes-title">
+        <?= $block->escapeHtml(__('Specyfikacja techniczna')) ?>
+    </h3>
+
+    <table class="attributes-table">
+        <tbody>
+            <?php foreach ($_additional as $_data): ?>
+            <tr>
+                <th class="col label" scope="row">
+                    <?= $block->escapeHtml($_data['label']) ?>
+                </th>
+                <td class="col data">
+                    <?= /* @noEscape */ $_data['value'] ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>

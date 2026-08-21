@@ -42,9 +42,9 @@
             inset: 0;
             z-index: 1;
             background: linear-gradient(90deg,
-                    fade(@mainColor, 92%) 0%,
-                    fade(@mainColor, 70%) 40%,
-                    fade(@mainColor, 30%) 100%);
+                    fade(@slate800, 92%) 0%,
+                    fade(@slate800, 70%) 40%,
+                    fade(@slate800, 30%) 100%);
         }
 
         .slide-content {
@@ -82,48 +82,18 @@
         }
 
         .slide-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             min-width: 180px;
-            height: 52px;
-            padding: 0 24px;
-            border-radius: 999px;
-            text-decoration: none;
-            font-size: @fontSizeL;
-            font-weight: 600;
-            transition:
-                transform .3s ease,
-                background-color .3s ease,
-                color .3s ease,
-                border-color .3s ease;
-
-            &:hover {
-                text-decoration: none;
-                transform: translateY(-2px);
-            }
 
             &.left {
-                background: @accent__color;
-                color: @mainColor;
-                border: none;
-
-                &:hover {
-                    background: @accent__color__dark;
-                    color: @mainColor;
-                }
+                .btn-accent();
+                .btn-large();
+                border-radius: 999px;
             }
 
             &.right {
-                background: rgba(255, 255, 255, .08);
-                border: 1px solid rgba(255, 255, 255, .15);
-                color: @whiteColor;
-                backdrop-filter: blur(12px);
-
-                &:hover {
-                    background: rgba(255, 255, 255, .14);
-                    border-color: rgba(255, 255, 255, .25);
-                }
+                .btn-glass();
+                .btn-large();
+                border-radius: 999px;
             }
         }
 
@@ -205,7 +175,6 @@
     }
 }
 
-
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
     .promotion-slider {
         .slide-image img {
@@ -263,7 +232,6 @@
         }
     }
 }
-
 
 .media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__m) {
     .promotion-slider {
