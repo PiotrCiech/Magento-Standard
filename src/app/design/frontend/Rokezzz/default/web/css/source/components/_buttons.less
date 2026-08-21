@@ -58,14 +58,12 @@
     border-color: @mainColor;
     color: @whiteColor;
     font-weight: 700;
-
     box-shadow: 0 12px 28px fade(@mainColor, 18%);
 
     &:hover {
         background: @mainAccentColor;
         border-color: @mainAccentColor;
         color: @whiteColor;
-
         box-shadow: 0 16px 36px fade(@mainAccentColor, 25%);
     }
 }
@@ -77,14 +75,12 @@
     border-color: @mainAccentColor;
     color: @whiteColor;
     font-weight: 700;
-
     box-shadow: 0 12px 28px fade(@mainAccentColor, 25%);
 
     &:hover {
         background: darken(@mainAccentColor, 8%);
         border-color: darken(@mainAccentColor, 8%);
         color: @whiteColor;
-
         box-shadow: 0 16px 36px fade(@mainAccentColor, 35%);
     }
 }
@@ -94,10 +90,8 @@
 
     background: fade(@whiteColor, 65%);
     backdrop-filter: blur(18px);
-
     border: 1px solid fade(@mainColor, 10%);
     color: @mainColor;
-
     box-shadow: 0 8px 20px fade(#000, 5%);
 
     &:hover {
@@ -169,7 +163,6 @@
 }
 
 & when (@media-common =true) {
-
     .btn,
     .action-primary,
     .action-secondary,
