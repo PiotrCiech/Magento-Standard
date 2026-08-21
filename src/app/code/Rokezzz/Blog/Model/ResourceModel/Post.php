@@ -23,7 +23,6 @@ class Post extends AbstractDb
         $connection = $this->getConnection();
         $postId = (int) $object->getId();
 
-        // Zapis powiązań tagów
         if ($object->hasData('tag_ids')) {
             $tableTag = $this->getTable(self::TABLE_TAG);
             $connection->delete($tableTag, ['post_id = ?' => $postId]);
@@ -43,7 +42,6 @@ class Post extends AbstractDb
             }
         }
 
-        // Zapis powiązań Store Views
         if ($object->hasData('store_ids') || $object->hasData('stores')) {
             $tableStore = $this->getTable(self::TABLE_STORE);
             $connection->delete($tableStore, ['post_id = ?' => $postId]);

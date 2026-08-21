@@ -10,6 +10,7 @@ use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\WriteInterface;
 use Magento\Framework\UrlInterface;
 use Magento\MediaStorage\Model\File\UploaderFactory;
+use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 
 class ImageUploader
@@ -47,7 +48,7 @@ class ImageUploader
         $result['tmp_name'] = str_replace('\\', '/', $result['tmp_name']);
         $result['path'] = str_replace('\\', '/', $result['path']);
 
-        /** @var \Magento\Store\Model\Store $store */
+        /** @var Store $store */
         $store = $this->storeManager->getStore();
         $result['url'] = $store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . $baseTmpPath . '/' . $result['file'];
         $result['name'] = $result['file'];

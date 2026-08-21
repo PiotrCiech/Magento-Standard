@@ -6,6 +6,7 @@ namespace Rokezzz\Blog\Controller\Adminhtml\Post\Image;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Rokezzz\Blog\Model\ImageUploader;
@@ -26,7 +27,7 @@ class Upload extends Action
 
     public function execute(): ResultInterface
     {
-        /** @var \Magento\Framework\Controller\Result\Json $jsonResult */
+        /** @var Json $jsonResult */
         $jsonResult = $this->resultFactory->create(ResultFactory::TYPE_JSON);
 
         try {

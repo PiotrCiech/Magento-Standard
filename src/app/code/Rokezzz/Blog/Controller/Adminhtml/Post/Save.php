@@ -45,6 +45,7 @@ class Save extends Action
                 $this->postResource->load($model, $id);
                 if (!$model->getId()) {
                     $this->messageManager->addErrorMessage(__('This post no longer exists.'));
+
                     return $resultRedirect->setPath('*/*/');
                 }
             }
@@ -67,6 +68,7 @@ class Save extends Action
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['post_id' => $model->getId()]);
                 }
+
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
@@ -75,6 +77,7 @@ class Save extends Action
             }
 
             $this->dataPersistor->set('rokezzz_blog_post', $data);
+            
             return $resultRedirect->setPath('*/*/edit', ['post_id' => $id]);
         }
 
