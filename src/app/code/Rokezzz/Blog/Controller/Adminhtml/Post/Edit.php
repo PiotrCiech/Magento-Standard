@@ -35,10 +35,11 @@ class Edit extends Action
 
         if ($id) {
             $model->load($id);
+            
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This post no longer exists.'));
                 $resultRedirect = $this->resultRedirectFactory->create();
-                
+
                 return $resultRedirect->setPath('*/*/');
             }
         }

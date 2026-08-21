@@ -37,6 +37,7 @@ class Post extends AbstractDb
                     ];
                 }
             }
+            
             if (!empty($data)) {
                 $connection->insertMultiple($tableTag, $data);
             }
@@ -54,6 +55,7 @@ class Post extends AbstractDb
                     'store_id' => (int) $storeId
                 ];
             }
+
             if (!empty($data)) {
                 $connection->insertMultiple($tableStore, $data);
             }
