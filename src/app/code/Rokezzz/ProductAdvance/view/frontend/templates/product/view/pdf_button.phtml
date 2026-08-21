@@ -21,10 +21,12 @@ require(['jquery'], function(jQuery) {
     jQuery('.download-pdf-btn').on('click', function(e) {
         e.preventDefault();
         const url = jQuery(this).attr('href'),
+            
             iframeId = 'hidden-print-iframe';
 
         jQuery('#' + iframeId).remove();
         const iframe = jQuery('<iframe>', {
+            
             id: iframeId,
             src: url,
             style: 'visibility: hidden; position: absolute; width: 0; height: 0; border: none;'
