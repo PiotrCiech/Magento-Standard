@@ -73,7 +73,7 @@
         </field>
         <field name="avatar" formElement="imageUploader" sortOrder="40">
             <settings>
-                <label translate="true">Avatar</label>
+                <label translate="true">Awatar</label>
                 <componentType>imageUploader</componentType>
             </settings>
             <formElements>
