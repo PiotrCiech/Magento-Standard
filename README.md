@@ -98,12 +98,13 @@ Magento wiąże paczki Marketplace z **kontem**, nie z ludźmi. Dlatego:
 3. Klucze leżą w **menedżerze haseł zespołu** (1Password / Bitwarden / …) — **nie w repozytorium Git**.
 4. Nowa osoba dostaje tylko te klucze od zespołu i odpala Composer. **Nie musi** wchodzić na Marketplace i nic kupować.
 
-Nowy developer:
+Nowy developer (z katalogu projektu → wejście do PHP = `src`):
 
 ```bash
 docker compose exec php bash
 composer config --auth http-basic.repo.magento.com PUBLIC_KEY PRIVATE_KEY
 composer install
+exit
 ```
 
 `PUBLIC_KEY` = username, `PRIVATE_KEY` = password. Powstaje `src/auth.json` (jest w `.gitignore` — nigdy go nie commituj).
@@ -121,16 +122,37 @@ Nie rozwiązaniem jest wrzucanie `vendor/` do Gita ani rozdawanie zipów — to 
 
 ### 8. Instalacja Magento i codzienna praca
 
-Po `composer install`:
+**Ważne — dwa katalogi:**
 
-1. **Pierwszy raz na maszynie** (brak `src/app/etc/env.php`) → [First Install](#first-install) (`setup:install`). To tworzy `env.php` i schemat w bazie.
-2. **Potem** (oraz po każdym pullu z nowymi modułami / schemą) → `setup:upgrade`:
+| Gdzie | Co uruchamiasz |
+| --- | --- |
+| **Katalog projektu** (tu jest `compose.yaml`) | `docker compose …`, `make …` |
+| **`src/`** (= w kontenerze PHP `/var/www/html`) | `composer …`, `php bin/magento …` |
+
+`setup:install` / `bin/magento` **nie** odpalaj z katalogu projektu na hoście — wejdź do kontenera (workdir to już `src`) albo `cd src` tylko jeśli celowo pracujesz w tym drzewie plików.
+
+Po `composer install` (w kontenerze PHP):
+
+1. **Pierwszy raz na maszynie** (brak `src/app/etc/env.php`) → [First Install](#first-install).
+2. **Potem**:
+
+docker compose exec -u root php bash -lc '
+  chown -R www-data:www-data pub/static var generated
+'
+
+docker compose exec -u www-data php php bin/magento deploy:mode:set developer
+docker compose exec -u www-data php php bin/magento setup:static-content:deploy -f pl_PL en_US
+docker compose exec -u www-data php php bin/magento cache:flush
 
 ```bash
+# z katalogu projektu:
 docker compose exec -u www-data php php bin/magento setup:upgrade
+# albo po wejściu do kontenera:
+# docker compose exec -u www-data php bash
+# php bin/magento setup:upgrade
 ```
 
-Albo skrót z Makefile (to samo):
+Albo skrót:
 
 ```bash
 make setup-upgrade
@@ -138,15 +160,15 @@ make cache-flush
 ```
 
 - storefront: http://localhost:8080/
-- admin: http://localhost:8080/admin (domyślnie `admin` / `Admin123!` po First Install)
+- admin: http://localhost:8080/admin (domyślnie `admin` / `Admin123!@#` po First Install)
 - Mailhog: http://localhost:8025/
 
 Inne komendy:
 
 ```bash
-docker compose up -d          # start
-docker compose exec php bash  # shell w PHP (workdir = src)
-make restart                  # gdy Varnish zwraca 503 Backend fetch failed
+docker compose up -d                 # z katalogu projektu
+docker compose exec -u www-data php bash   # shell w src (/var/www/html)
+make restart                         # gdy Varnish zwraca 503 Backend fetch failed
 ```
 
 ## Docker Environment
@@ -207,44 +229,57 @@ docker compose up -d --build
 Tylko gdy Magento **nie jest jeszcze zainstalowane** na tej maszynie (brak `src/app/etc/env.php`).  
 `setup:upgrade` **nie** zastępuje tej komendy.
 
-Hasła poniżej muszą być spójne z `.env` (DB: `magento`/`magento`; Valkey/RabbitMQ jak w `.env.example`).
+Hasła poniżej muszą być spójne z `.env` (DB: `magento`/`magento`).
 
-Z hosta (katalog projektu):
+**Install rób w `src`**, nie z katalogu projektu:
 
-```bash
-docker compose exec -u www-data php php bin/magento setup:install \
-    --cleanup-database \
-    --base-url=http://localhost:8080/ \
-    --db-host=db \
-    --db-name=magento \
-    --db-user=magento \
-    --db-password=magento \
-    --admin-firstname=Admin \
-    --admin-lastname=User \
-    --admin-email=admin@rokezzz.pl \
-    --admin-user=admin \
-    --admin-password='Admin123!@#' \
-    --language=pl_PL \
-    --currency=PLN \
-    --timezone=Europe/Warsaw \
-    --use-rewrites=1 \
-    --backend-frontname=admin \
-    --search-engine=opensearch \
-    --opensearch-host=opensearch \
-    --opensearch-port=9200
-```
+1. Na hoście wejdź do katalogu projektu (tu jest `compose.yaml`) i odpal kontenery, jeśli nie działają.
+2. Wejdź do kontenera PHP — workdir to `/var/www/html` = mount `src/`.
+3. Dopiero tam uruchom: 
 
-Nie dodawajcie `--disable-modules=Magento_InventorySales` — wyłącza MSI w trakcie install i pada na reindexie (`GetIsStockItemSalableConditionInterface`).
-
-Po udanym install:
+php bin/magento setup:install \
+  --cleanup-database \
+  --base-url=http://localhost:8080/ \
+  --db-host=db \
+  --db-name=magento \
+  --db-user=magento \
+  --db-password=magento \
+  --admin-firstname=Admin \
+  --admin-lastname=User \
+  --admin-email=admin@test.com \
+  --admin-user=admin \
+  --admin-password='Admin123!@#' \
+  --language=pl_PL \
+  --currency=PLN \
+  --timezone=Europe/Warsaw \
+  --use-rewrites=1 \
+  --backend-frontname=admin \
+  --search-engine=opensearch \
+  --opensearch-host=opensearch \
+  --opensearch-port=9200
 
 ```bash
-docker compose exec -u www-data php php bin/magento setup:upgrade
-docker compose exec -u www-data php php bin/magento cache:flush
+php bin/magento setup:upgrade
+
+# lokalnie wyłącz 2FA / Adobe IMS 2FA — wejście do admina bez weryfikacji
+php bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+
+php bin/magento cache:flush
+exit
+
+# host — katalog projektu
 make restart
 ```
 
-Opcjonalnie Redis (Valkey) / RabbitMQ możecie skonfigurować po install albo dopisać flagi `--cache-backend=redis` / `--amqp-*` do `setup:install` — **bez** wyłączania InventorySales.
+Jeśli base URL wyszedł bez portu:
+
+```bash
+docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://localhost:8080/
+docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://localhost:8080/
+docker compose exec -u www-data php php bin/magento cache:flush
+```
+
+Opcjonalnie Redis (Valkey) / RabbitMQ: po install albo flagi `--cache-backend=redis` / `--amqp-*` w `setup:install`.
 
 ## Admin Credentials
 
@@ -252,7 +287,9 @@ Default credentials from the example installation command:
 
 - URL: `http://localhost:8080/admin`
 - User: `admin`
-- Password: `Admin123!`
+- Password: `Admin123!@#`
+
+Po First Install wyłącz 2FA (patrz wyżej), inaczej admin może wymagać Google Authenticator / Adobe IMS.
 
 ## Rokezzz Modules
 

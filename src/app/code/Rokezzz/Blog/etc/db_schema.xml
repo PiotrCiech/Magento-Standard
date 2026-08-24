@@ -95,4 +95,20 @@
         <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_STORE_POST_ID" table="rokezzz_blog_post_store" column="post_id" referenceTable="rokezzz_blog_post" referenceColumn="post_id" onDelete="CASCADE"/>
         <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_STORE_STORE_ID" table="rokezzz_blog_post_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
     </table>
+
+    <table name="rokezzz_blog_comment" resource="default" engine="innodb" comment="Blog Comments">
+        <column xsi:type="int" name="comment_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Comment ID"/>
+        <column xsi:type="int" name="post_id" padding="10" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="varchar" name="author_name" nullable="false" length="255" comment="Author Name"/>
+        <column xsi:type="varchar" name="author_email" nullable="true" length="255" comment="Author Email"/>
+        <column xsi:type="text" name="content" nullable="false" comment="Content"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="32" default="pending" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="comment_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_COMMENT_POST_ID" table="rokezzz_blog_comment" column="post_id" referenceTable="rokezzz_blog_post" referenceColumn="post_id" onDelete="CASCADE"/>
+    </table>
 </schema>

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rokezzz\Blog\Model\ResourceModel\Author;
@@ -9,6 +10,8 @@ use Rokezzz\Blog\Model\ResourceModel\Author as AuthorResource;
 
 class Collection extends AbstractCollection
 {
+    protected $_idFieldName = 'author_id';
+
     protected function _construct(): void
     {
         $this->_init(AuthorModel::class, AuthorResource::class);

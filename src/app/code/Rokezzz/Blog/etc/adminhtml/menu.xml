@@ -25,5 +25,29 @@
              sortOrder="20"
              action="rokezzz_blog/post/index"
              resource="Rokezzz_Blog::posts"/>
+        <add id="Rokezzz_Blog::tags"
+             title="Tags"
+             translate="title"
+             module="Rokezzz_Blog"
+             parent="Rokezzz_Blog::blog_section"
+             sortOrder="30"
+             action="rokezzz_blog/tag/index"
+             resource="Rokezzz_Blog::tags"/>
+        <add id="Rokezzz_Blog::authors"
+             title="Authors"
+             translate="title"
+             module="Rokezzz_Blog"
+             parent="Rokezzz_Blog::blog_section"
+             sortOrder="40"
+             action="rokezzz_blog/author/index"
+             resource="Rokezzz_Blog::authors"/>
+        <add id="Rokezzz_Blog::comments"
+             title="Comments"
+             translate="title"
+             module="Rokezzz_Blog"
+             parent="Rokezzz_Blog::blog_section"
+             sortOrder="50"
+             action="rokezzz_blog/comment/index"
+             resource="Rokezzz_Blog::comments"/>
     </menu>
 </config>

@@ -88,5 +88,21 @@
             "ROKEZZZ_BLOG_POST_STORE_POST_ID": true,
             "ROKEZZZ_BLOG_POST_STORE_STORE_ID": true
         }
+    },
+    "rokezzz_blog_comment": {
+        "column": {
+            "comment_id": true,
+            "post_id": true,
+            "author_name": true,
+            "author_email": true,
+            "content": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ROKEZZZ_BLOG_COMMENT_POST_ID": true
+        }
     }
 }
