@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rokezzz\Blog\Controller\Adminhtml\Comment;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -13,7 +14,7 @@ class Index extends Action implements HttpGetActionInterface
     public const ADMIN_RESOURCE = 'Rokezzz_Blog::comments';
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         private readonly PageFactory $resultPageFactory
     ) {
         parent::__construct($context);

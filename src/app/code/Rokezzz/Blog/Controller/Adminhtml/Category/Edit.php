@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rokezzz\Blog\Controller\Adminhtml\Category;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Rokezzz\Blog\Model\CategoryCreator;
@@ -14,7 +15,7 @@ class Edit extends Action implements HttpGetActionInterface
     public const ADMIN_RESOURCE = 'Rokezzz_Blog::categories';
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         private readonly PageFactory $resultPageFactory,
         private readonly CategoryCreator $categoryCreator
     ) {

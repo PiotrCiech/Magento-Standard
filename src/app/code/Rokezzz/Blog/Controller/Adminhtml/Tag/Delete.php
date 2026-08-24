@@ -6,6 +6,7 @@ namespace Rokezzz\Blog\Controller\Adminhtml\Tag;
 
 use Exception;
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Rokezzz\Blog\Model\ResourceModel\Tag as TagResource;
 use Rokezzz\Blog\Model\TagCreator;
@@ -15,7 +16,7 @@ class Delete extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'Rokezzz_Blog::tags';
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         private readonly TagCreator $tagCreator,
         private readonly TagResource $tagResource
     ) {

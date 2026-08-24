@@ -6,6 +6,7 @@ namespace Rokezzz\Blog\Controller\Adminhtml\Comment;
 
 use Exception;
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Rokezzz\Blog\Api\Data\CommentInterface;
 use Rokezzz\Blog\Model\CommentCreator;
@@ -16,7 +17,7 @@ class Approve extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'Rokezzz_Blog::comments';
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         private readonly CommentCreator $commentCreator,
         private readonly CommentResource $commentResource
     ) {

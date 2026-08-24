@@ -6,6 +6,7 @@ namespace Rokezzz\Blog\Controller\Adminhtml\Category;
 
 use Exception;
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Rokezzz\Blog\Model\CategoryCreator;
 use Rokezzz\Blog\Model\ResourceModel\CategoryResource;
@@ -15,7 +16,7 @@ class Delete extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'Rokezzz_Blog::categories';
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         private readonly CategoryCreator $categoryCreator,
         private readonly CategoryResource $categoryResource
     ) {

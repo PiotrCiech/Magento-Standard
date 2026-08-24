@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rokezzz\Blog\Controller\Adminhtml\Tag;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
@@ -17,7 +18,7 @@ class MassDelete extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'Rokezzz_Blog::tags';
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         private readonly Filter $filter,
         private readonly CollectionCreator $collectionCreator,
         private readonly TagResource $tagResource
