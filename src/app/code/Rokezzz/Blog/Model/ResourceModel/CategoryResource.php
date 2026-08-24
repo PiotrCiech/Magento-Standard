@@ -1,16 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rokezzz\Blog\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Rokezzz\Blog\Api\Data\CategoryInterface;
 
-class Category extends AbstractDb
+class CategoryResource extends AbstractDb
 {
-    public const TABLE_NAME = 'rokezzz_blog_category';
-
     protected function _construct(): void
     {
-        $this->_init(self::TABLE_NAME, 'category_id');
+        $this->_init(CategoryInterface::TABLE_NAME, CategoryInterface::CATEGORY_ID);
     }
 }

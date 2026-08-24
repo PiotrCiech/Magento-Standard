@@ -6,6 +6,7 @@ namespace Rokezzz\Slider\Controller\Adminhtml\Slide;
 
 use Exception;
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Controller\ResultFactory;
@@ -22,7 +23,7 @@ class Upload extends Action implements HttpPostActionInterface
     private Filesystem $filesystem;
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         UploaderCreator $uploaderCreator,
         Filesystem $filesystem
     ) {

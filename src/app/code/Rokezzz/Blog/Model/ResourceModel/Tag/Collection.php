@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Rokezzz\Blog\Model\ResourceModel\Tag;
@@ -9,6 +10,8 @@ use Rokezzz\Blog\Model\Tag as TagModel;
 
 class Collection extends AbstractCollection
 {
+    protected $_idFieldName = 'tag_id';
+
     protected function _construct(): void
     {
         $this->_init(TagModel::class, TagResource::class);
