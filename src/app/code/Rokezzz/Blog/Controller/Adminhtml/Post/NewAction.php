@@ -15,6 +15,7 @@ class NewAction extends Action
     public function execute(): ResultInterface
     {
         $resultForward = $this->resultFactory->create(ResultFactory::TYPE_FORWARD);
+        
         return $resultForward->forward('edit');
     }
 }

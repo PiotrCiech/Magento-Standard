@@ -159,8 +159,8 @@ make setup-upgrade
 make cache-flush
 ```
 
-- storefront: http://localhost:8080/
-- admin: http://localhost:8080/admin (domyślnie `admin` / `Admin123!@#` po First Install)
+- storefront: http://localhost/
+- admin: http://localhost/admin (domyślnie `admin` / `Admin123!@#` po First Install)
 - Mailhog: http://localhost:8025/
 
 Inne komendy:
@@ -239,7 +239,7 @@ Hasła poniżej muszą być spójne z `.env` (DB: `magento`/`magento`).
 
 php bin/magento setup:install \
   --cleanup-database \
-  --base-url=http://localhost:8080/ \
+  --base-url=http://localhost/ \
   --db-host=db \
   --db-name=magento \
   --db-user=magento \
@@ -274,8 +274,8 @@ make restart
 Jeśli base URL wyszedł bez portu:
 
 ```bash
-docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://localhost:8080/
-docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://localhost:8080/
+docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://localhost
+docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://localhost
 docker compose exec -u www-data php php bin/magento cache:flush
 ```
 
@@ -285,7 +285,7 @@ Opcjonalnie Redis (Valkey) / RabbitMQ: po install albo flagi `--cache-backend=re
 
 Default credentials from the example installation command:
 
-- URL: `http://localhost:8080/admin`
+- URL: `http://localhost/admin`
 - User: `admin`
 - Password: `Admin123!@#`
 

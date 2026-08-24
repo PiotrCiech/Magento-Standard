@@ -6,6 +6,7 @@ namespace Rokezzz\Blog\Model\Post;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\UrlInterface;
+use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Rokezzz\Blog\Model\ResourceModel\Post as PostResource;
@@ -36,7 +37,7 @@ class DataProvider extends AbstractDataProvider
             return $this->loadedData;
         }
 
-        /** @var \Magento\Store\Model\Store $store */
+        /** @var Store $store */
         $store = $this->storeManager->getStore();
         $mediaUrl = $store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
         $items = $this->collection->getItems();
