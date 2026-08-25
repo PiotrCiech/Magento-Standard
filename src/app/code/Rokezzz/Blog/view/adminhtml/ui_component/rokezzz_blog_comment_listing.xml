@@ -32,7 +32,11 @@
         <settings>
             <sticky>true</sticky>
         </settings>
-        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <massaction name="listing_massaction">
             <action name="approve">
                 <settings>
                     <url path="rokezzz_blog/comment/massApprove"/>
@@ -47,8 +51,18 @@
                     <label translate="true">Reject</label>
                 </settings>
             </action>
+            <action name="delete">
+                <settings>
+                    <url path="rokezzz_blog/comment/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                    <confirm>
+                        <title translate="true">Delete Comments</title>
+                        <message translate="true">Are you sure you want to delete the selected comments?</message>
+                    </confirm>
+                </settings>
+            </action>
         </massaction>
-        <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="rokezzz_blog_comment_columns">
@@ -61,6 +75,7 @@
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
+                <sorting>desc</sorting>
             </settings>
         </column>
         <column name="post_title" sortOrder="20">

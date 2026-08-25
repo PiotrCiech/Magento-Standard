@@ -11,7 +11,7 @@ class Collection extends SearchResult
 {
     protected $_idFieldName = 'comment_id';
 
-    protected function _initSelect()
+    protected function _initSelect(): self
     {
         parent::_initSelect();
 

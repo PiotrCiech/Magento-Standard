@@ -1,0 +1,89 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Rokezzz\Blog\ViewModel\PostList;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var PostList $viewModel */
+$viewModel = $block->getData('view_model');
+$posts = $viewModel->getPosts();
+?>
+
+<div class="blog-posts-container">
+    <?php if (!$posts->count()): ?>
+    <div class="message info empty">
+        <div><?= $escaper->escapeHtml(__('No blog posts found.')) ?></div>
+    </div>
+    <?php else: ?>
+    <div class="blog-post-grid">
+        <?php foreach ($posts as $post): ?>
+        <?php
+                    $author = $viewModel->getAuthor((int)$post->getAuthorId());
+                    $category = $viewModel->getCategory((int)$post->getCategoryId());
+                    $tags = $viewModel->getTagsForPost((int)$post->getId());
+                    $bgImage = $viewModel->getImageUrl($post->getBackgroundImage());
+                ?>
+        <article class="blog-post-card">
+            <?php if ($bgImage): ?>
+            <div class="blog-post-image">
+                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/' . $post->getIdentifier())) ?>">
+                    <img src="<?= $escaper->escapeUrl($bgImage) ?>"
+                        alt="<?= $escaper->escapeHtmlAttr($post->getTitle()) ?>" loading="lazy" />
+                </a>
+            </div>
+            <?php endif; ?>
+
+            <div class="blog-post-content">
+                <div class="blog-post-meta">
+                    <?php if ($category): ?>
+                    <a class="blog-meta-category"
+                        href="<?= $escaper->escapeUrl($block->getUrl('blog/category/' . $category->getIdentifier())) ?>">
+                        <?= $escaper->escapeHtml($category->getName()) ?>
+                    </a>
+                    <?php endif; ?>
+                    <span
+                        class="blog-meta-date"><?= $escaper->escapeHtml(date('d.m.Y', strtotime((string)$post->getPublishedAt()))) ?></span>
+                </div>
+
+                <h2 class="blog-post-title">
+                    <a href="<?= $escaper->escapeUrl($block->getUrl('blog/' . $post->getIdentifier())) ?>">
+                        <?= $escaper->escapeHtml($post->getTitle()) ?>
+                    </a>
+                </h2>
+
+                <?php if ($post->getShortContent()): ?>
+                <div class="blog-post-excerpt">
+                    <?= $escaper->escapeHtml($post->getShortContent()) ?>
+                </div>
+                <?php endif; ?>
+
+                <div class="blog-post-footer">
+                    <?php if ($author): ?>
+                    <span class="blog-author">
+                        <?= $escaper->escapeHtml(__('By:')) ?>
+                        <a href="<?= $escaper->escapeUrl($block->getUrl('blog/author/' . $author->getIdentifier())) ?>">
+                            <?= $escaper->escapeHtml(trim($author->getFirstname() . ' ' . $author->getLastname())) ?>
+                        </a>
+                    </span>
+                    <?php endif; ?>
+
+                    <?php if (!empty($tags)): ?>
+                    <div class="blog-tags">
+                        <?php foreach ($tags as $tag): ?>
+                        <a class="blog-tag"
+                            href="<?= $escaper->escapeUrl($block->getUrl('blog/tag/' . $tag->getIdentifier())) ?>">
+                            #<?= $escaper->escapeHtml($tag->getName()) ?>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </article>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+</div>

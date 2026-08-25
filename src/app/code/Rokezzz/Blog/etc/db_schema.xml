@@ -110,5 +110,9 @@
             <column name="comment_id"/>
         </constraint>
         <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_COMMENT_POST_ID" table="rokezzz_blog_comment" column="post_id" referenceTable="rokezzz_blog_post" referenceColumn="post_id" onDelete="CASCADE"/>
+        <index referenceId="ROKEZZZ_BLOG_COMMENT_POST_ID_STATUS" indexType="btree">
+            <column name="post_id"/>
+            <column name="status"/>
+        </index>
     </table>
 </schema>

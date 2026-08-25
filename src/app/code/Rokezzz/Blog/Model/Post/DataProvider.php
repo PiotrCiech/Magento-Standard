@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Rokezzz\Blog\Model\Post;
@@ -54,7 +53,11 @@ class DataProvider extends AbstractDataProvider
 
                 if (str_starts_with($imagePath, 'http')) {
                     $imageUrl = $imagePath;
-                } elseif (str_starts_with($imagePath, 'blog/') || str_starts_with($imagePath, 'wysiwyg/')) {
+                } elseif (
+                    str_starts_with($imagePath, 'catalog/') ||
+                    str_starts_with($imagePath, 'wysiwyg/') ||
+                    str_starts_with($imagePath, 'blog/')
+                ) {
                     $imageUrl = $mediaUrl . ltrim($imagePath, '/');
                 } else {
                     $imageUrl = $mediaUrl . 'blog/tmp/image/' . ltrim($imagePath, '/');

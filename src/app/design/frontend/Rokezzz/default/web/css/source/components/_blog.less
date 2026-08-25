@@ -1,0 +1,468 @@
+@blogCardRadius: 16px;
+@blogBorderColor: @backgroundColorAlternate;
+@blogTextSecondary: lighten(@mainColor, 25%);
+
+& when (@media-common = true) {
+
+    // ==========================================================
+    // Listing (grid postów: /blog, kategoria, tag, autor, widget)
+    // ==========================================================
+
+    .blog-posts-container {
+        max-width: 1400px;
+        margin: 30px auto;
+        padding: 0 16px;
+    }
+
+    .blog-post-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .blog-post-card {
+        display: flex;
+        flex-direction: column;
+        background: @whiteColor;
+        border: 1px solid @blogBorderColor;
+        border-radius: @blogCardRadius;
+        overflow: hidden;
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.15), 0 10px 15px -5px rgba(15, 23, 42, 0.06);
+            border-color: darken(@blogBorderColor, 5%);
+
+            .blog-post-image img {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .blog-post-image {
+        display: block;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    .blog-post-content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    .blog-post-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        font-size: @fontSizeXS;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .blog-meta-category {
+        color: @mainAccentColor;
+        font-weight: 700;
+        text-decoration: none;
+
+        &:hover {
+            color: @accent__color__dark;
+        }
+    }
+
+    .blog-meta-date {
+        color: @blogTextSecondary;
+    }
+
+    .blog-post-title {
+        margin: 0 0 10px 0;
+        font-size: @fontSizeL;
+        line-height: @lineHeightM;
+
+        a {
+            color: @mainColor;
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: @mainSecondColor;
+            }
+        }
+    }
+
+    .blog-post-excerpt {
+        margin-bottom: 16px;
+        color: @blogTextSecondary;
+        font-size: @fontSizeS;
+        line-height: @lineHeightL;
+    }
+
+    .blog-post-footer {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid @blogBorderColor;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        font-size: @fontSizeXS;
+    }
+
+    .blog-author {
+        color: @blogTextSecondary;
+
+        a {
+            color: @mainColor;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+                color: @mainSecondColor;
+            }
+        }
+    }
+
+    .blog-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .blog-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: @backgroundColorAlternate;
+        color: @blogTextSecondary;
+        font-size: @fontSizeXS;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: @mainAccentColor;
+            color: @whiteColor;
+        }
+    }
+
+    // ==========================================================
+    // Podgląd posta
+    // ==========================================================
+
+    .blog-post-single {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 16px;
+    }
+
+    .blog-post-header {
+        margin-bottom: 24px;
+    }
+
+    .blog-post-hero {
+        position: relative;
+        border-radius: @blogCardRadius;
+        overflow: hidden;
+        min-height: 260px;
+        display: flex;
+        align-items: flex-end;
+        background-size: cover;
+        background-position: center;
+        padding: 32px;
+        margin-bottom: 20px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, fade(@mainColor, 85%) 0%, fade(@mainColor, 15%) 70%);
+        }
+
+        .blog-post-title {
+            position: relative;
+            z-index: 1;
+            color: @whiteColor;
+            font-size: @fontSizeXXL;
+            margin: 0;
+        }
+    }
+
+    .blog-post-header > .blog-post-title {
+        font-size: @fontSizeXXL;
+        color: @mainColor;
+        margin-bottom: 16px;
+    }
+
+    .blog-post-meta {
+        flex-wrap: wrap;
+        gap: 16px;
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: @fontSizeS;
+    }
+
+    .blog-meta-item {
+        color: @blogTextSecondary;
+
+        a {
+            color: @mainColor;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+                color: @mainSecondColor;
+            }
+        }
+    }
+
+    .blog-post-body {
+        margin: 30px 0;
+        font-size: @fontSizeM;
+        line-height: @lineHeightXL;
+        color: @mainColor;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    }
+
+    .blog-post-footer-tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        padding-top: 20px;
+        border-top: 1px solid @blogBorderColor;
+    }
+
+    // ==========================================================
+    // Komentarze
+    // ==========================================================
+
+    .blog-post-comments {
+        max-width: 900px;
+        margin: 0 auto 40px auto;
+        padding: 0 16px;
+    }
+
+    .blog-comments-title {
+        font-size: @fontSizeXL;
+        color: @mainColor;
+        margin-bottom: 20px;
+    }
+
+    .blog-comments-empty {
+        color: @blogTextSecondary;
+    }
+
+    .blog-comments-list {
+        list-style: none;
+        margin: 0 0 30px 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .blog-comment-item {
+        background: @backgroundColorAlternate;
+        border-radius: 12px;
+        padding: 16px 20px;
+    }
+
+    .blog-comment-meta {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+
+    .blog-comment-nickname {
+        color: @mainColor;
+    }
+
+    .blog-comment-date {
+        font-size: @fontSizeXS;
+        color: @blogTextSecondary;
+    }
+
+    .blog-comment-detail {
+        margin: 0;
+        color: @mainColor;
+        line-height: @lineHeightL;
+    }
+
+    .blog-comment-form {
+        background: @whiteColor;
+        border: 1px solid @blogBorderColor;
+        border-radius: @blogCardRadius;
+        padding: 24px;
+
+        .blog-comment-form-title {
+            font-size: @fontSizeL;
+            color: @mainColor;
+            margin-bottom: 16px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+
+            label {
+                display: block;
+                margin-bottom: 6px;
+                font-size: @fontSizeS;
+                font-weight: 600;
+                color: @mainColor;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 10px 14px;
+                border: 1px solid @blogBorderColor;
+                border-radius: 8px;
+                font-size: @fontSizeS;
+                font-family: inherit;
+                color: @mainColor;
+                transition: border-color 0.2s ease;
+
+                &:focus {
+                    outline: none;
+                    border-color: @mainSecondColor;
+                }
+            }
+
+            textarea {
+                resize: vertical;
+            }
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        .action.submit.primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            padding: 0 28px;
+            border: none;
+            border-radius: 999px;
+            background: @mainAccentColor;
+            color: @whiteColor;
+            font-size: @fontSizeS;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+
+            &:hover {
+                background: @accent__color__dark;
+            }
+
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+    }
+
+    // ==========================================================
+    // Widget "najnowsze posty"
+    // ==========================================================
+
+    .rokezzz-blog-latest-posts {
+        max-width: 1400px;
+        margin: 30px auto;
+        padding: 0 16px;
+
+        .block-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: @mainColor;
+        }
+
+        .blog-post-grid-more {
+            text-align: center;
+            margin-top: 24px;
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                height: 44px;
+                padding: 0 28px;
+                border-radius: 999px;
+                border: 1px solid @mainAccentColor;
+                color: @mainAccentColor;
+                font-weight: 600;
+                text-decoration: none;
+                transition: background-color 0.2s ease, color 0.2s ease;
+
+                &:hover {
+                    background: @mainAccentColor;
+                    color: @whiteColor;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__m) {
+
+    .blog-post-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .blog-post-hero {
+        min-height: 320px;
+        padding: 40px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__l) {
+
+    .blog-posts-container,
+    .blog-post-single,
+    .blog-post-comments,
+    .rokezzz-blog-latest-posts {
+        padding: 0 40px;
+    }
+
+    .blog-post-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .blog-post-hero {
+        min-height: 420px;
+        padding: 60px;
+    }
+
+    .blog-post-hero .blog-post-title {
+        font-size: @fontSizeXXXL;
+    }
+}
