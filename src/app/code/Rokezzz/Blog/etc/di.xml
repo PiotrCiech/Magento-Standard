@@ -6,6 +6,7 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="rokezzz_blog_post_listing_data_source" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Post\Grid\Collection</item>
+                <item name="rokezzz_blog_comment_listing_data_source" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Comment\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -16,5 +17,12 @@
             <argument name="resourceModel" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Post</argument>
         </arguments>
     </virtualType>
+
+    <type name="Rokezzz\Blog\Model\ResourceModel\Comment\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_blog_comment</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Comment</argument>
+        </arguments>
+    </type>
 
 </config>

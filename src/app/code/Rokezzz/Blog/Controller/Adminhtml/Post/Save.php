@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Rokezzz\Blog\Controller\Adminhtml\Post;
@@ -16,20 +15,13 @@ class Save extends Action
 {
     public const ADMIN_RESOURCE = 'Rokezzz_Blog::posts';
 
-    private DataPersistorInterface $dataPersistor;
-    private PostFactory $postFactory;
-    private PostResource $postResource;
-
     public function __construct(
         Context $context,
-        DataPersistorInterface $dataPersistor,
-        PostFactory $postFactory,
-        PostResource $postResource
+        private readonly DataPersistorInterface $dataPersistor,
+        private readonly PostFactory $postFactory,
+        private readonly PostResource $postResource
     ) {
         parent::__construct($context);
-        $this->dataPersistor = $dataPersistor;
-        $this->postFactory = $postFactory;
-        $this->postResource = $postResource;
     }
 
     public function execute(): ResultInterface
@@ -45,15 +37,23 @@ class Save extends Action
                 $this->postResource->load($model, $id);
                 if (!$model->getId()) {
                     $this->messageManager->addErrorMessage(__('This post no longer exists.'));
-
                     return $resultRedirect->setPath('*/*/');
                 }
             }
 
-            if (isset($data['background_image'][0]['name'])) {
-                $data['background_image'] = $data['background_image'][0]['name'];
-            } elseif (isset($data['background_image'][0]['url'])) {
-                $data['background_image'] = basename($data['background_image'][0]['url']);
+            if (!empty($data['background_image']) && is_array($data['background_image'])) {
+                if (!empty($data['background_image'][0]['name'])) {
+                    $data['background_image'] = $data['background_image'][0]['name'];
+                } elseif (!empty($data['background_image'][0]['url'])) {
+                    // Wyciągamy ścieżkę względną od katalogu /media/
+                    $url = $data['background_image'][0]['url'];
+                    $mediaPos = strpos($url, '/media/');
+                    if ($mediaPos !== false) {
+                        $data['background_image'] = substr($url, $mediaPos + 7);
+                    } else {
+                        $data['background_image'] = basename($url);
+                    }
+                }
             } else {
                 $data['background_image'] = null;
             }
@@ -77,7 +77,7 @@ class Save extends Action
             }
 
             $this->dataPersistor->set('rokezzz_blog_post', $data);
-            
+
             return $resultRedirect->setPath('*/*/edit', ['post_id' => $id]);
         }
 

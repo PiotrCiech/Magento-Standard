@@ -5,3 +5,24 @@
 "Write Us","Napisz do nas",module,Magento_Contact
 "Jot us a note and we’ll get back to you as quickly as possible.","Napisz wiadomość, a my odezwiemy się tak szybko, jak to możliwe.",module,Magento_Contact
 "Jot us a note and we'll get back to you as quickly as possible.","Napisz wiadomość, a my odezwiemy się tak szybko, jak to możliwe.",module,Magento_Contact
+"Blog","Blog",module,Rokezzz_Blog
+"No blog posts found.","Nie znaleziono żadnych wpisów na blogu.",module,Rokezzz_Blog
+"By:","Autor:",module,Rokezzz_Blog
+"Author:","Autor:",module,Rokezzz_Blog
+"Category:","Kategoria:",module,Rokezzz_Blog
+"Category: %1","Kategoria: %1",module,Rokezzz_Blog
+"Author: %1","Autor: %1",module,Rokezzz_Blog
+"Tag: %1","Tag: %1",module,Rokezzz_Blog
+"Tags:","Tagi:",module,Rokezzz_Blog
+"Latest from the blog","Najnowsze na blogu",module,Rokezzz_Blog
+"See all posts","Zobacz wszystkie wpisy",module,Rokezzz_Blog
+"Comments (%1)","Komentarze (%1)",module,Rokezzz_Blog
+"Be the first to comment on this post.","Bądź pierwszą osobą, która skomentuje ten wpis.",module,Rokezzz_Blog
+"Leave a comment","Dodaj komentarz",module,Rokezzz_Blog
+"Name","Imię",module,Rokezzz_Blog
+"Email","Email",module,Rokezzz_Blog
+"Comment","Komentarz",module,Rokezzz_Blog
+"Submit comment","Wyślij komentarz",module,Rokezzz_Blog
+"We can't post your comment right now.","Nie możemy teraz opublikować Twojego komentarza.",module,Rokezzz_Blog
+"Please fill in your name, a valid email and a comment.","Uzupełnij imię, prawidłowy adres email oraz treść komentarza.",module,Rokezzz_Blog
+"Your comment has been submitted and is awaiting approval.","Twój komentarz został wysłany i oczekuje na akceptację.",module,Rokezzz_Blog

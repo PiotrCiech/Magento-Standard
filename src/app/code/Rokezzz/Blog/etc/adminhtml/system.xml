@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rokezzz_blog" translate="label" sortOrder="960" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rokezzz Blog</label>
+            <tab>general</tab>
+            <resource>Rokezzz_Blog::blog</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Latest posts section</label>
+                <field id="enable_latest_posts" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable latest posts section</label>
+                    <comment>When disabled, the homepage section and the widget do not render on the storefront.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="latest_posts_count" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default number of posts</label>
+                    <comment>Used when the widget instance does not specify its own number of posts.</comment>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enable_latest_posts">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

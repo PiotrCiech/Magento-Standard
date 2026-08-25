@@ -8,6 +8,7 @@
                     <resource id="Rokezzz_Core::content">
                         <resource id="Rokezzz_Blog::blog" title="Blog" sortOrder="80">
                             <resource id="Rokezzz_Blog::posts" title="Posts" sortOrder="10"/>
+                            <resource id="Rokezzz_Blog::comments" title="Comments" sortOrder="50"/>
                         </resource>
                     </resource>
                 </resource>

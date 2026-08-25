@@ -1,0 +1,129 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Rokezzz\Blog\ViewModel\PostView;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var PostView $viewModel */
+$viewModel = $block->getData('view_model');
+$post = $viewModel->getPost();
+
+if (!$post) {
+    return;
+}
+
+$author = $viewModel->getAuthor((int)$post->getAuthorId());
+$category = $viewModel->getCategory((int)$post->getCategoryId());
+$tags = $viewModel->getTagsForPost((int)$post->getId());
+$bgImage = $viewModel->getImageUrl($post->getBackgroundImage());
+?>
+
+<article class="blog-post-single">
+    <header class="blog-post-header">
+        <?php if ($bgImage): ?>
+        <div class="blog-post-hero" style="background-image: url('<?= $escaper->escapeUrl($bgImage) ?>');">
+            <h1 class="blog-post-title"><?= $escaper->escapeHtml($post->getTitle()) ?></h1>
+        </div>
+        <?php else: ?>
+        <h1 class="blog-post-title"><?= $escaper->escapeHtml($post->getTitle()) ?></h1>
+        <?php endif; ?>
+
+        <div class="blog-post-meta">
+            <?php if ($author): ?>
+            <span class="blog-meta-item blog-author">
+                <?= $escaper->escapeHtml(__('Author:')) ?>
+                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/author/' . $author->getIdentifier())) ?>">
+                    <?= $escaper->escapeHtml(trim($author->getFirstname() . ' ' . $author->getLastname())) ?>
+                </a>
+            </span>
+            <?php endif; ?>
+
+            <?php if ($category): ?>
+            <span class="blog-meta-item blog-category">
+                <?= $escaper->escapeHtml(__('Category:')) ?>
+                <a href="<?= $escaper->escapeUrl($block->getUrl('blog/category/' . $category->getIdentifier())) ?>">
+                    <?= $escaper->escapeHtml($category->getName()) ?>
+                </a>
+            </span>
+            <?php endif; ?>
+
+            <span class="blog-meta-item blog-date">
+                <?= $escaper->escapeHtml(date('d.m.Y', strtotime((string)$post->getPublishedAt()))) ?>
+            </span>
+        </div>
+    </header>
+
+    <div class="blog-post-body">
+        <?= /* @noEscape */ $viewModel->renderContent((string)$post->getContent()) ?>
+    </div>
+
+    <?php if (!empty($tags)): ?>
+    <footer class="blog-post-footer-tags">
+        <strong><?= $escaper->escapeHtml(__('Tags:')) ?></strong>
+        <?php foreach ($tags as $tag): ?>
+        <a class="blog-tag" href="<?= $escaper->escapeUrl($block->getUrl('blog/tag/' . $tag->getIdentifier())) ?>">
+            #<?= $escaper->escapeHtml($tag->getName()) ?>
+        </a>
+        <?php endforeach; ?>
+    </footer>
+    <?php endif; ?>
+</article>
+
+<?php $comments = $viewModel->getComments((int)$post->getId()); ?>
+<section class="blog-post-comments">
+    <h2 class="blog-comments-title">
+        <?= $escaper->escapeHtml(__('Comments (%1)', count($comments))) ?>
+    </h2>
+
+    <?php if (!empty($comments)): ?>
+    <ul class="blog-comments-list">
+        <?php foreach ($comments as $comment): ?>
+        <li class="blog-comment-item">
+            <div class="blog-comment-meta">
+                <strong class="blog-comment-nickname"><?= $escaper->escapeHtml($comment->getNickname()) ?></strong>
+                <span class="blog-comment-date">
+                    <?= $escaper->escapeHtml(date('d.m.Y H:i', strtotime((string)$comment->getCreatedAt()))) ?>
+                </span>
+            </div>
+            <p class="blog-comment-detail"><?= $escaper->escapeHtml($comment->getDetail()) ?></p>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php else: ?>
+    <p class="blog-comments-empty"><?= $escaper->escapeHtml(__('Be the first to comment on this post.')) ?></p>
+    <?php endif; ?>
+
+    <?php if ($post->getData('allow_comments')): ?>
+    <div class="blog-comment-form">
+        <h3 class="blog-comment-form-title"><?= $escaper->escapeHtml(__('Leave a comment')) ?></h3>
+        <form action="<?= $escaper->escapeUrl($block->getUrl('blog/comment/post')) ?>" method="post">
+            <input type="hidden" name="form_key" value="<?= $escaper->escapeHtmlAttr($viewModel->getFormKey()) ?>"/>
+            <input type="hidden" name="identifier" value="<?= $escaper->escapeHtmlAttr($post->getIdentifier()) ?>"/>
+
+            <div class="field nickname required">
+                <label for="blog-comment-nickname"><?= $escaper->escapeHtml(__('Name')) ?></label>
+                <input type="text" id="blog-comment-nickname" name="nickname" required="required"/>
+            </div>
+
+            <div class="field email required">
+                <label for="blog-comment-email"><?= $escaper->escapeHtml(__('Email')) ?></label>
+                <input type="email" id="blog-comment-email" name="email" required="required"/>
+            </div>
+
+            <div class="field detail required">
+                <label for="blog-comment-detail"><?= $escaper->escapeHtml(__('Comment')) ?></label>
+                <textarea id="blog-comment-detail" name="detail" rows="5" required="required"></textarea>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="action submit primary">
+                    <span><?= $escaper->escapeHtml(__('Submit comment')) ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <?php endif; ?>
+</section>

@@ -18,5 +18,14 @@
              action="rokezzz_blog/post/index"
              sortOrder="10"
              resource="Rokezzz_Blog::posts"/>
+
+        <add id="Rokezzz_Blog::comments"
+             title="Comments"
+             translate="title"
+             module="Rokezzz_Blog"
+             parent="Rokezzz_Blog::blog_section"
+             action="rokezzz_blog/comment/index"
+             sortOrder="50"
+             resource="Rokezzz_Blog::comments"/>
     </menu>
 </config>

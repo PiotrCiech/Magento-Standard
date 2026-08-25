@@ -104,4 +104,23 @@
         <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_STORE_POST_ID" table="rokezzz_blog_post_store" column="post_id" referenceTable="rokezzz_blog_post" referenceColumn="post_id" onDelete="CASCADE"/>
         <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_POST_STORE_STORE_ID" table="rokezzz_blog_post_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
     </table>
+
+    <!-- Tabela Komentarzy -->
+    <table name="rokezzz_blog_comment" resource="default" engine="innodb" comment="Blog Post Comments">
+        <column xsi:type="int" name="comment_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Comment ID"/>
+        <column xsi:type="int" name="post_id" padding="10" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="varchar" name="nickname" nullable="false" length="255" comment="Nickname"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="text" name="detail" nullable="false" comment="Comment Text"/>
+        <column xsi:type="smallint" name="status_id" padding="6" unsigned="true" nullable="false" default="2" comment="Status: 1=Approved, 2=Pending, 3=Not Approved"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="comment_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROKEZZZ_BLOG_COMMENT_POST_ID" table="rokezzz_blog_comment" column="post_id" referenceTable="rokezzz_blog_post" referenceColumn="post_id" onDelete="CASCADE"/>
+        <index referenceId="ROKEZZZ_BLOG_COMMENT_POST_ID_STATUS_ID" indexType="btree">
+            <column name="post_id"/>
+            <column name="status_id"/>
+        </index>
+    </table>
 </schema>
