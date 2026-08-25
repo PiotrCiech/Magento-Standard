@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="product.tabs.custom.wrapper" htmlTag="div" htmlClass="product-tabs-main-wrapper" after="-">
+                <block class="Magento\Framework\View\Element\Template"
+                       name="product.custom.tabs.nav"
+                       template="Magento_Catalog::product/view/tabs.phtml" />
+            </container>
+        </referenceContainer>
+        <move element="product.info.description" destination="product.tabs.custom.wrapper" after="product.custom.tabs.nav" />
+        <move element="reviews.tab" destination="product.tabs.custom.wrapper" after="product.info.description" />
+    </body>
+</page>

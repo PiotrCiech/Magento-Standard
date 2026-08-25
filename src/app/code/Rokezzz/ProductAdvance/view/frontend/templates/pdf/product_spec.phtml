@@ -1,0 +1,45 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View;
+
+/** @var View $block */
+$_product = $block->getProduct() ?: $block->getData('product');
+
+if (!$_product): ?>
+<p class="print-error-msg">Nie udało się załadować danych produktu.</p>
+<?php return; ?>
+<?php endif; ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title><?= $block->escapeHtml($_product->getName()) ?> - Specyfikacja</title>
+    <link rel="stylesheet" type="text/css" media="all" href="<?= $block->getViewFileUrl('css/styles-m.css') ?>" />
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)"
+        href="<?= $block->getViewFileUrl('css/styles-l.css') ?>" />
+</head>
+
+<body class="print-page-body">
+    <h1 class="print-page-title"><?= $block->escapeHtml($_product->getName()) ?></h1>
+    <div class="print-page-sku">Kod produktu (SKU): <strong><?= $block->escapeHtml($_product->getSku()) ?></strong>
+    </div>
+    <h3 class="print-section-title">Specyfikacja techniczna</h3>
+    <table class="print-attributes-table">
+        <tbody>
+            <?php foreach ($_product->getAttributes() as $attribute): ?>
+            <?php if ($attribute->getIsVisibleOnFront() && $_product->getData($attribute->getAttributeCode())): ?>
+            <tr class="print-table-row">
+                <th class="print-table-header"><?= $block->escapeHtml($attribute->getStoreLabel()) ?></th>
+                <td class="print-table-data"><?= $block->escapeHtml($attribute->getFrontend()->getValue($_product)) ?>
+                </td>
+            </tr>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -11,7 +11,8 @@ use Magento\Framework\View\Element\Template;
 <div class="container section-spacing styleguide-page">
     <div class="styleguide-header">
         <h1>Rokezzz Design System & Styleguide</h1>
-        <p>Pełen przegląd globalnych komponentów UI, zmiennych systemowych, typografii, przycisków oraz elementów formularzy.</p>
+        <p>Pełen przegląd globalnych komponentów UI, zmiennych systemowych, typografii, przycisków oraz elementów
+            formularzy.</p>
     </div>
 
     <section class="styleguide-section">
@@ -98,27 +99,63 @@ use Magento\Framework\View\Element\Template;
     </section>
 
     <section class="styleguide-section">
-        <h2>3. Przyciski (.action)</h2>
+        <h2>3. Komponenty Przycisków (System Mixinów & Klas)</h2>
         <div class="sg-info-box">
-            Klasy automatycznie dziedziczą style z pliku _buttons.less (promień koła, padding, hover).
+            System oparty o mixiny (.btn-primary, .btn-secondary, .btn-glass, .btn-outline, .btn-link) oraz wspierające
+            modyfikatory rozmiarów (.btn-small, .btn-large, .btn-icon).
         </div>
-        <div class="sg-buttons-flex">
-            <div>
-                <span class="sg-label">Primary (.action.primary)</span>
-                <button class="action primary"><span>Kup teraz</span></button>
-            </div>
-            <div>
-                <span class="sg-label">Text (.action.btn-text)</span>
-                <button class="action btn-text"><span>Zobacz więcej</span></button>
-            </div>
-            <div>
-                <span class="sg-label">Disabled (:disabled)</span>
-                <button class="action primary" disabled><span>Niedostępny</span></button>
+
+        <div class="sg-buttons-block">
+            <h3>Warianty Podstawowe (Jasne tło)</h3>
+            <div class="sg-buttons-flex">
+                <div>
+                    <span class="sg-label">Primary (.action.primary)</span>
+                    <button class="action primary"><span>Dodaj do koszyka</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Accent (.action.accent)</span>
+                    <button class="action accent"><span>Sprawdź promocje</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Secondary (.action.secondary)</span>
+                    <button class="action secondary"><span>♡ Do ulubionych</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Outline (.action.outline)</span>
+                    <button class="action outline"><span>Pobierz specyfikację PDF</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Link (.action.btn-text)</span>
+                    <button class="action btn-text"><span>Zobacz więcej →</span></button>
+                </div>
             </div>
         </div>
+
+        <div class="sg-buttons-block">
+            <h3>Modyfikatory Rozmiarów & Stany</h3>
+            <div class="sg-buttons-flex">
+                <div>
+                    <span class="sg-label">Small (.btn-small)</span>
+                    <button class="action secondary sg-btn-small"><span>Mały przycisk</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Large (.btn-large)</span>
+                    <button class="action primary sg-btn-large"><span>Duży przycisk</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Icon (.btn-icon)</span>
+                    <button class="action secondary sg-btn-icon" aria-label="Ulubione"><span>♡</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Disabled (:disabled)</span>
+                    <button class="action primary" disabled><span>Niedostępny</span></button>
+                </div>
+            </div>
+        </div>
+
         <div class="sg-dark-section">
-            <span class="sg-label sg-label-light">Secondary (.action.secondary - dedykowany na ciemne tła)</span>
-            <button class="action secondary"><span>Przycisk poboczny</span></button>
+            <span class="sg-label sg-label-light">Glass (.action.glass - dedykowany na ciemne tła i bannery)</span>
+            <button class="action glass"><span>Przycisk przezroczysty</span></button>
         </div>
     </section>
 
