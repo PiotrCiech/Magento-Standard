@@ -1,0 +1,45 @@
+<?php
+/**
+ * @var \Rokezzz\ShippingPayment\Block\Adminhtml\System\Config\Form\Field\Mapping $block
+ */
+
+$shippingOptions = $block->getShippingOptions();
+$paymentOptions = $block->getPaymentOptions();
+?>
+<div class="rokezzz-shipping-payment-mapping">
+    <input type="hidden"
+           name="<?= $block->escapeHtmlAttr($block->getEmptyInputName()) ?>"
+           value=""/>
+
+    <?php if ($shippingOptions === []): ?>
+        <p><?= $block->escapeHtml(__('No shipping methods are available.')) ?></p>
+    <?php elseif ($paymentOptions === []): ?>
+        <p><?= $block->escapeHtml(__('No payment methods are available.')) ?></p>
+    <?php else: ?>
+        <?php foreach ($shippingOptions as $shippingOption): ?>
+            <?php
+            $shippingCode = $shippingOption['value'];
+            $fieldId = $block->getFieldId($shippingCode);
+            $selected = $block->getSelectedPaymentCodes($shippingCode);
+            ?>
+            <div class="rokezzz-shipping-payment-mapping__row">
+                <label for="<?= $block->escapeHtmlAttr($fieldId) ?>"
+                       class="rokezzz-shipping-payment-mapping__label">
+                    <?= $block->escapeHtml($shippingOption['label']) ?>
+                </label>
+                <select id="<?= $block->escapeHtmlAttr($fieldId) ?>"
+                        name="<?= $block->escapeHtmlAttr($block->getFieldName($shippingCode)) ?>[]"
+                        class="select multiselect admin__control-multiselect rokezzz-shipping-payment-mapping__select"
+                        multiple="multiple"
+                        size="6">
+                    <?php foreach ($paymentOptions as $paymentOption): ?>
+                        <option value="<?= $block->escapeHtmlAttr($paymentOption['value']) ?>"
+                            <?= in_array($paymentOption['value'], $selected, true) ? 'selected="selected"' : '' ?>>
+                            <?= $block->escapeHtml($paymentOption['label']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>

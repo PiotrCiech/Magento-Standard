@@ -272,6 +272,10 @@ Archives old orders and lets customers resubmit them. Toggle it in **Stores → 
 
 Preferred delivery date in checkout. Toggle it in **Stores → Configuration → General → Rokezzz Settings → Delivery date** (min/max days ahead, weekends, required flag).
 
+#### Rokezzz_ShippingPayment
+
+Restricts checkout payment methods by the selected shipping method. Toggle it and map allowed payments per carrier method in **Stores → Configuration → General → Rokezzz Shipping Payment**. Shipping and payment options are loaded dynamically from Magento (no hardcoded lists). An empty selection for a shipping method leaves all payments available for that method.
+
 #### Rokezzz_Delivery
 
 Disables Magento multi-address checkout by default. Also registers five placeholder shipping methods (disabled until enabled) in **Stores → Configuration → Sales → Delivery Methods**.
