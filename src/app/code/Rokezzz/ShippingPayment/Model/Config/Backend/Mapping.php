@@ -39,7 +39,7 @@ class Mapping extends Value
             unset($value['__empty']);
             $cleaned = [];
 
-            foreach ($value as $shippingMethod => $payments) {
+            foreach ($value as $carrierCode => $payments) {
                 if (!is_array($payments)) {
                     continue;
                 }
@@ -55,7 +55,7 @@ class Mapping extends Value
                     continue;
                 }
 
-                $cleaned[(string) $shippingMethod] = $codes;
+                $cleaned[(string) $carrierCode] = $codes;
             }
 
             $this->setValue($this->json->serialize($cleaned));

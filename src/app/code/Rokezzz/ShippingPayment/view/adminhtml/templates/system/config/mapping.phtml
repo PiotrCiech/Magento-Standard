@@ -3,7 +3,7 @@
  * @var \Rokezzz\ShippingPayment\Block\Adminhtml\System\Config\Form\Field\Mapping $block
  */
 
-$shippingOptions = $block->getShippingOptions();
+$carrierOptions = $block->getCarrierOptions();
 $paymentOptions = $block->getPaymentOptions();
 ?>
 <div class="rokezzz-shipping-payment-mapping">
@@ -11,24 +11,24 @@ $paymentOptions = $block->getPaymentOptions();
            name="<?= $block->escapeHtmlAttr($block->getEmptyInputName()) ?>"
            value=""/>
 
-    <?php if ($shippingOptions === []): ?>
-        <p><?= $block->escapeHtml(__('No shipping methods are available.')) ?></p>
+    <?php if ($carrierOptions === []): ?>
+        <p><?= $block->escapeHtml(__('No shipping carriers are available.')) ?></p>
     <?php elseif ($paymentOptions === []): ?>
         <p><?= $block->escapeHtml(__('No payment methods are available.')) ?></p>
     <?php else: ?>
-        <?php foreach ($shippingOptions as $shippingOption): ?>
+        <?php foreach ($carrierOptions as $carrierOption): ?>
             <?php
-            $shippingCode = $shippingOption['value'];
-            $fieldId = $block->getFieldId($shippingCode);
-            $selected = $block->getSelectedPaymentCodes($shippingCode);
+            $carrierCode = $carrierOption['value'];
+            $fieldId = $block->getFieldId($carrierCode);
+            $selected = $block->getSelectedPaymentCodes($carrierCode);
             ?>
             <div class="rokezzz-shipping-payment-mapping__row">
                 <label for="<?= $block->escapeHtmlAttr($fieldId) ?>"
                        class="rokezzz-shipping-payment-mapping__label">
-                    <?= $block->escapeHtml($shippingOption['label']) ?>
+                    <?= $block->escapeHtml($carrierOption['label']) ?>
                 </label>
                 <select id="<?= $block->escapeHtmlAttr($fieldId) ?>"
-                        name="<?= $block->escapeHtmlAttr($block->getFieldName($shippingCode)) ?>[]"
+                        name="<?= $block->escapeHtmlAttr($block->getFieldName($carrierCode)) ?>[]"
                         class="select multiselect admin__control-multiselect rokezzz-shipping-payment-mapping__select"
                         multiple="multiple"
                         size="6">

@@ -7,8 +7,8 @@ namespace Rokezzz\ShippingPayment\Block\Adminhtml\System\Config\Form\Field;
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
+use Rokezzz\ShippingPayment\Model\CarrierOptions;
 use Rokezzz\ShippingPayment\Model\PaymentMethodOptions;
-use Rokezzz\ShippingPayment\Model\ShippingMethodOptions;
 
 class Mapping extends Field
 {
@@ -24,7 +24,7 @@ class Mapping extends Field
      */
     public function __construct(
         Context $context,
-        private readonly ShippingMethodOptions $shippingMethodOptions,
+        private readonly CarrierOptions $carrierOptions,
         private readonly PaymentMethodOptions $paymentMethodOptions,
         array $data = []
     ) {
@@ -41,9 +41,9 @@ class Mapping extends Field
     /**
      * @return array<int, array{value: string, label: string}>
      */
-    public function getShippingOptions(): array
+    public function getCarrierOptions(): array
     {
-        return $this->shippingMethodOptions->toOptionArray();
+        return $this->carrierOptions->toOptionArray();
     }
 
     /**
@@ -59,20 +59,20 @@ class Mapping extends Field
         return (string) $this->formElement->getName() . '[__empty]';
     }
 
-    public function getFieldId(string $shippingCode): string
+    public function getFieldId(string $carrierCode): string
     {
-        return $this->formElement->getHtmlId() . '_' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $shippingCode);
+        return $this->formElement->getHtmlId() . '_' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $carrierCode);
     }
 
-    public function getFieldName(string $shippingCode): string
+    public function getFieldName(string $carrierCode): string
     {
-        return $this->formElement->getName() . '[' . $shippingCode . ']';
+        return $this->formElement->getName() . '[' . $carrierCode . ']';
     }
 
     /**
      * @return string[]
      */
-    public function getSelectedPaymentCodes(string $shippingCode): array
+    public function getSelectedPaymentCodes(string $carrierCode): array
     {
         $value = $this->formElement->getValue();
 
@@ -80,7 +80,7 @@ class Mapping extends Field
             return [];
         }
 
-        $selected = $value[$shippingCode] ?? [];
+        $selected = $value[$carrierCode] ?? [];
 
         return is_array($selected) ? array_map('strval', $selected) : [];
     }

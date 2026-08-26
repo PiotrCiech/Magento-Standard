@@ -274,7 +274,7 @@ Preferred delivery date in checkout. Toggle it in **Stores → Configuration →
 
 #### Rokezzz_ShippingPayment
 
-Restricts checkout payment methods by the selected shipping method. Toggle it and map allowed payments per carrier method in **Stores → Configuration → General → Rokezzz Shipping Payment**. Shipping and payment options are loaded dynamically from Magento (no hardcoded lists). An empty selection for a shipping method leaves all payments available for that method.
+Restricts checkout payment methods by the selected shipping carrier. Toggle it and map allowed payments per carrier (not per method variant) in **Stores → Configuration → General → Rokezzz Shipping Payment**. Carrier and payment options are loaded dynamically from active Magento configuration. An empty selection for a carrier leaves all payments available for it.
 
 #### Rokezzz_Delivery
 

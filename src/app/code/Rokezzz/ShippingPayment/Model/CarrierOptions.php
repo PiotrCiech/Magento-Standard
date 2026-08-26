@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Rokezzz\ShippingPayment\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Shipping\Model\Carrier\CarrierInterface;
 use Magento\Shipping\Model\Config as ShippingConfig;
 use Magento\Store\Model\ScopeInterface;
 
-final class ShippingMethodOptions
+final class CarrierOptions
 {
     public function __construct(
         private readonly ShippingConfig $shippingConfig,
@@ -23,13 +24,18 @@ final class ShippingMethodOptions
     {
         $options = [];
 
-        foreach ($this->shippingConfig->getAllCarriers($storeId) as $carrierCode => $carrierModel) {
+        foreach ($this->shippingConfig->getActiveCarriers($storeId) as $carrierCode => $carrierModel) {
+            if (!$carrierModel instanceof CarrierInterface) {
+                continue;
+            }
+
             $allowedMethods = $carrierModel->getAllowedMethods();
 
             if (!is_array($allowedMethods) || $allowedMethods === []) {
                 continue;
             }
 
+            $carrierCode = (string) $carrierCode;
             $carrierTitle = (string) $this->scopeConfig->getValue(
                 'carriers/' . $carrierCode . '/title',
                 ScopeInterface::SCOPE_STORE,
@@ -37,22 +43,15 @@ final class ShippingMethodOptions
             );
 
             if ($carrierTitle === '') {
-                $carrierTitle = (string) $carrierCode;
+                $carrierTitle = $carrierCode;
             } else {
                 $carrierTitle = (string) __($carrierTitle);
             }
 
-            foreach ($allowedMethods as $methodCode => $methodTitle) {
-                $value = $carrierCode . '_' . $methodCode;
-                $methodLabel = is_string($methodTitle) && $methodTitle !== ''
-                    ? (string) __($methodTitle)
-                    : (string) $methodCode;
-
-                $options[] = [
-                    'value' => $value,
-                    'label' => $carrierTitle . ' - ' . $methodLabel . ' (' . $value . ')',
-                ];
-            }
+            $options[] = [
+                'value' => $carrierCode,
+                'label' => $carrierTitle . ' (' . $carrierCode . ')',
+            ];
         }
 
         usort(

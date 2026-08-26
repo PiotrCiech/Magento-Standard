@@ -29,17 +29,17 @@ final class Config
     }
 
     /**
-     * Returns allowed payment method codes for a shipping method, or null when unrestricted.
+     * Returns allowed payment method codes for a shipping carrier, or null when unrestricted.
      *
      * @return string[]|null
      */
-    public function getAllowedPaymentMethodCodes(string $shippingMethod, ?int $storeId = null): ?array
+    public function getAllowedPaymentMethodCodes(string $carrierCode, ?int $storeId = null): ?array
     {
-        if ($shippingMethod === '') {
+        if ($carrierCode === '') {
             return null;
         }
 
-        return $this->getMapping($storeId)[$shippingMethod] ?? null;
+        return $this->getMapping($storeId)[$carrierCode] ?? null;
     }
 
     /**
@@ -68,7 +68,7 @@ final class Config
     {
         $normalized = [];
 
-        foreach ($mapping as $shippingMethod => $payments) {
+        foreach ($mapping as $carrierCode => $payments) {
             if (!is_array($payments)) {
                 continue;
             }
@@ -79,7 +79,7 @@ final class Config
                 continue;
             }
 
-            $normalized[(string) $shippingMethod] = $codes;
+            $normalized[(string) $carrierCode] = $codes;
         }
 
         return $normalized;
