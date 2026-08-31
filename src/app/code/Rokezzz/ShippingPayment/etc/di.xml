@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Payment\Model\MethodList">
+        <plugin name="rokezzz_shipping_payment_filter_methods"
+                type="Rokezzz\ShippingPayment\Plugin\Payment\MethodListPlugin"
+                sortOrder="20"/>
+    </type>
+    <type name="Magento\Payment\Model\Method\AbstractMethod">
+        <plugin name="rokezzz_shipping_payment_abstract_availability"
+                type="Rokezzz\ShippingPayment\Plugin\Payment\MethodAvailabilityPlugin"
+                sortOrder="20"/>
+    </type>
+    <type name="Magento\Payment\Model\Method\Adapter">
+        <plugin name="rokezzz_shipping_payment_adapter_availability"
+                type="Rokezzz\ShippingPayment\Plugin\Payment\MethodAvailabilityPlugin"
+                sortOrder="20"/>
+    </type>
+</config>

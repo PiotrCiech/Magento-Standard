@@ -1,0 +1,18 @@
+.rokezzz-shipping-payment-mapping {
+    max-width: 900px;
+}
+
+.rokezzz-shipping-payment-mapping__row {
+    margin: 0 0 1.5rem;
+}
+
+.rokezzz-shipping-payment-mapping__label {
+    display: block;
+    font-weight: 600;
+    margin: 0 0 .4rem;
+}
+
+.rokezzz-shipping-payment-mapping__select {
+    width: 100%;
+    min-height: 8rem;
+}
