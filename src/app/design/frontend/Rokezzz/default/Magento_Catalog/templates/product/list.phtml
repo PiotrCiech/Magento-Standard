@@ -7,7 +7,6 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
 use Rokezzz\Category\ViewModel\Product\NewLabel;
-use RuntimeException;
 
 /**
  * Product list template
@@ -23,7 +22,7 @@ $_helper = $block->getData('outputHelper');
 $newLabelViewModel = $block->getData('newLabelViewModel');
 
 if (!$_helper instanceof Output) {
-    throw new RuntimeException('Catalog product list requires Magento\Catalog\Helper\Output.');
+    throw new \RuntimeException('Catalog product list requires Magento\Catalog\Helper\Output.');
 }
 
 if (!$newLabelViewModel instanceof NewLabel) {

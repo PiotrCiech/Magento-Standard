@@ -80,6 +80,118 @@
                 }
             }
         }
+
+        .block-compare,
+        .block-wishlist {
+            background: @whiteColor;
+            border: 1px solid @backgroundColorAlternate;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+            margin-bottom: 24px;
+            box-sizing: border-box;
+
+            .block-title {
+                margin-bottom: 16px;
+
+                strong {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: @textPrimary;
+                }
+
+                .counter {
+                    font-size: @fontSizeXS;
+                    color: @textSecondary;
+                    font-weight: 400;
+                    margin-left: 6px;
+                }
+            }
+
+            .block-content {
+                .items {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 8px 0;
+                    border-bottom: 1px solid fade(@backgroundColorAlternate, 50%);
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    .product-item-name {
+                        font-size: 14px;
+                        color: @textPrimary;
+                        margin: 0;
+
+                        a {
+                            color: @textPrimary;
+                            text-decoration: none;
+
+                            &:hover {
+                                color: @mainAccentColor;
+                            }
+                        }
+                    }
+
+                    .action.delete {
+                        color: @textSecondary;
+                        text-decoration: none;
+                        font-size: 14px;
+
+                        &:hover {
+                            color: @red600;
+                        }
+                    }
+
+                    .actions-toolbar {
+                        margin-top: 16px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        .action.primary,
+                        .action.compare {
+                            .btn-accent();
+                            width: 100%;
+                            min-height: 40px;
+                            font-size: 14px;
+                        }
+
+                        .action.clear,
+                        .action.details {
+                            .btn-link();
+                            font-size: 14px;
+                            color: @mainSecondColor;
+                            font-weight: 600;
+
+                            &:hover {
+                                color: @mainColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .rokezzz-category-pdf {
+            margin-bottom: 24px;
+
+            .action.accent,
+            .action.primary {
+                .btn-accent();
+                width: 100%;
+                min-height: 40px;
+                font-size: 14px;
+            }
+        }
     }
 
     .toolbar-products {
@@ -570,112 +682,6 @@
                 padding: 0 0 40px 0 !important;
                 order: 2 !important;
                 min-width: 0 !important;
-            }
-        }
-    }
-}
-
-& when (@media-common =true) {
-    .sidebar.sidebar-additional {
-        display: block !important;
-
-        .block-compare,
-        .block-wishlist {
-            background: @whiteColor;
-            border: 1px solid @backgroundColorAlternate;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
-            margin-bottom: 24px;
-            box-sizing: border-box;
-
-            .block-title {
-                margin-bottom: 16px;
-
-                strong {
-                    font-size: 16px;
-                    font-weight: 600;
-                    color: @textPrimary;
-                }
-
-                .counter {
-                    font-size: @fontSizeXS;
-                    color: @textSecondary;
-                    font-weight: 400;
-                    margin-left: 6px;
-                }
-            }
-
-            .block-content {
-                .items {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                }
-
-                .item {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 8px 0;
-                    border-bottom: 1px solid fade(@backgroundColorAlternate, 50%);
-
-                    &:last-child {
-                        border-bottom: none;
-                    }
-
-                    .product-item-name {
-                        font-size: 14px;
-                        color: @textPrimary;
-                        margin: 0;
-
-                        a {
-                            color: @textPrimary;
-                            text-decoration: none;
-
-                            &:hover {
-                                color: @mainAccentColor;
-                            }
-                        }
-                    }
-
-                    .action.delete {
-                        color: @textSecondary;
-                        text-decoration: none;
-                        font-size: 14px;
-
-                        &:hover {
-                            color: @red600;
-                        }
-                    }
-
-                    .actions-toolbar {
-                        margin-top: 16px;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 10px;
-
-                        .action.primary,
-                        .action.compare {
-                            .btn-accent();
-                            width: 100%;
-                            min-height: 40px;
-                            font-size: 14px;
-                        }
-
-                        .action.clear,
-                        .action.details {
-                            .btn-link();
-                            font-size: 14px;
-                            color: @mainSecondColor;
-                            font-weight: 600;
-
-                            &:hover {
-                                color: @mainColor;
-                            }
-                        }
-                    }
-                }
             }
         }
     }
