@@ -1,7 +1,16 @@
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
+<?php
+$stockLabelViewModel = $block->getData('stock_label_view_model');
+$lowStockLabel = ($stockLabelViewModel instanceof \Rokezzz\Category\ViewModel\Product\StockLabel)
+    ? $stockLabelViewModel->getLabel($_product)
+    : null;
+?>
 <?php if ($_product->isSaleable()): ?>
 <div class="box-tocart">
+    <?php if ($lowStockLabel !== null): ?>
+        <p class="product-low-stock"><?= $block->escapeHtml($lowStockLabel) ?></p>
+    <?php endif; ?>
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()): ?>
         <div class="field qty">

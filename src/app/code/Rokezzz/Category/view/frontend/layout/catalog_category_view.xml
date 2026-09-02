@@ -5,6 +5,7 @@
         <referenceBlock name="category.products.list">
             <arguments>
                 <argument name="newLabelViewModel" xsi:type="object">Rokezzz\Category\ViewModel\Product\NewLabel</argument>
+                <argument name="stockLabelViewModel" xsi:type="object">Rokezzz\Category\ViewModel\Product\StockLabel</argument>
             </arguments>
         </referenceBlock>
     </body>

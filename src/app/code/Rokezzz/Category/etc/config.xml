@@ -7,7 +7,12 @@
                 <enable_new>1</enable_new>
                 <enable_bestsellers>1</enable_bestsellers>
             </general>
+            <product_labels>
+                <enable_bestseller_badge>1</enable_bestseller_badge>
+                <enable_discount_badge>0</enable_discount_badge>
+                <enable_low_stock_badge>1</enable_low_stock_badge>
+                <low_stock_threshold>5</low_stock_threshold>
+            </product_labels>
         </rokezzz_category>
     </default>
 </config>
-

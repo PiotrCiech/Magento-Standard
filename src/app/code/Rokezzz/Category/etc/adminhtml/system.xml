@@ -17,7 +17,32 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
+            <group id="product_labels" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product labels</label>
+                <field id="enable_bestseller_badge" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "Bestseller" label</label>
+                    <comment>Label on the product image for the 10 best-selling products (sales report). Takes priority over the "New" label.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_discount_badge" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show discount label (-X%)</label>
+                    <comment>Shows the percentage off (from the special price) below the New/Bestseller label. Off by default.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_low_stock_badge" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "Last items" label</label>
+                    <comment>Shows on product listings and on the product page when stock is running low.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="low_stock_threshold" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Last items" threshold (qty)</label>
+                    <comment>The label appears when the product stock is above zero and not greater than this value.</comment>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enable_low_stock_badge">1</field>
+                    </depends>
+                </field>
+            </group>
         </section>
     </system>
 </config>
-

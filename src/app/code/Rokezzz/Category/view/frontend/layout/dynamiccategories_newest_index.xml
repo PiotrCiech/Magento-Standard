@@ -10,6 +10,7 @@
                 <arguments>
                     <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
                     <argument name="newLabelViewModel" xsi:type="object">Rokezzz\Category\ViewModel\Product\NewLabel</argument>
+                    <argument name="stockLabelViewModel" xsi:type="object">Rokezzz\Category\ViewModel\Product\StockLabel</argument>
                 </arguments>
                 <container name="dynamiccategories.newest.product.list.additional" as="additional"/>
                 <block class="Magento\Framework\View\Element\RendererList"

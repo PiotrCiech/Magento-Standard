@@ -10,5 +10,10 @@
         </referenceContainer>
         <move element="product.info.description" destination="product.tabs.custom.wrapper" after="product.custom.tabs.nav" />
         <move element="reviews.tab" destination="product.tabs.custom.wrapper" after="product.info.description" />
+        <referenceBlock name="product.info.addtocart">
+            <arguments>
+                <argument name="stock_label_view_model" xsi:type="object">Rokezzz\Category\ViewModel\Product\StockLabel</argument>
+            </arguments>
+        </referenceBlock>
     </body>
 </page>
