@@ -9,7 +9,7 @@ use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Framework\Data\Helper\PostHelper;
 use Magento\Framework\Url\Helper\Data as UrlHelper;
-use Magento\Framework\View\Element\Template\Context;
+use Magento\Catalog\Block\Product\Context;
 use Rokezzz\Category\Model\Bestsellers\CollectionApplier;
 use Rokezzz\Category\Model\ProductCollectionInitializer;
 
