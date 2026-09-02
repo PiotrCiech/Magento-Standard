@@ -1,11 +1,20 @@
 & when (@media-common = true) {
     .latest-order-status-bar {
-        background: @color-gray94;
-        border-bottom: 1px solid @color-gray80;
         color: @color-gray20;
         font-size: 1.4rem;
         line-height: 1.4;
         width: 100%;
+
+        &__bar {
+            display: none;
+            width: 100%;
+            background: @color-gray94;
+            border-bottom: 1px solid @color-gray80;
+
+            &--active {
+                display: block;
+            }
+        }
 
         &__content {
             align-items: center;

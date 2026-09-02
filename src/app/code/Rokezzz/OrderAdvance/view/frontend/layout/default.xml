@@ -2,11 +2,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="page.top">
+        <referenceContainer name="page.wrapper">
             <block class="Magento\Framework\View\Element\Template"
                    name="rokezzz.latest.order.status.bar"
                    template="Rokezzz_OrderAdvance::status-bar.phtml"
-                   before="-">
+                   before="header.container">
                 <arguments>
                     <argument name="status_bar_view_model" xsi:type="object">Rokezzz\OrderAdvance\ViewModel\StatusBar</argument>
                 </arguments>
