@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Rokezzz\Blog\Block\Widget;
 
+use DateTime;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 use Rokezzz\Blog\Model\Config;
 use Rokezzz\Blog\Model\ResourceModel\Post\Collection;
-use Rokezzz\Blog\Model\ResourceModel\Post\CollectionFactory as PostCollectionFactory;
+use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
 
 class LatestPosts extends Template implements BlockInterface
 {
@@ -19,7 +20,7 @@ class LatestPosts extends Template implements BlockInterface
 
     public function __construct(
         Template\Context $context,
-        private readonly PostCollectionFactory $postCollectionFactory,
+        private readonly CollectionCreator $postCollectionCreator,
         private readonly Config $config,
         array $data = []
     ) {
@@ -40,15 +41,15 @@ class LatestPosts extends Template implements BlockInterface
 
     public function getPosts(): Collection
     {
-        if ($this->posts !== null) {
+        if (!is_null($this->posts)) {
             return $this->posts;
         }
 
         $storeId = (int) $this->_storeManager->getStore()->getId();
 
-        $collection = $this->postCollectionFactory->create();
+        $collection = $this->postCollectionCreator->create();
         $collection->addFieldToFilter('main_table.is_active', 1)
-            ->addFieldToFilter('main_table.published_at', ['lteq' => (new \DateTime())->format('Y-m-d H:i:s')])
+            ->addFieldToFilter('main_table.published_at', ['lteq' => (new DateTime())->format('Y-m-d H:i:s')])
             ->setOrder('main_table.published_at', 'DESC')
             ->setPageSize($this->getPostsCount());
 
@@ -71,6 +72,7 @@ class LatestPosts extends Template implements BlockInterface
         if (!$image) {
             return '';
         }
+
         if (str_starts_with($image, 'http')) {
             return $image;
         }

@@ -13,7 +13,7 @@ use Magento\Framework\Message\ManagerInterface as MessageManager;
 use Rokezzz\Blog\Api\Data\CommentInterface;
 use Rokezzz\Blog\Model\CommentCreator;
 use Rokezzz\Blog\Model\ResourceModel\CommentResource;
-use Rokezzz\Blog\Model\ResourceModel\Post\CollectionFactory as PostCollectionFactory;
+use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
 
 class Post implements HttpPostActionInterface
 {
@@ -24,7 +24,7 @@ class Post implements HttpPostActionInterface
         private readonly MessageManager $messageManager,
         private readonly CommentCreator $commentCreator,
         private readonly CommentResource $commentResource,
-        private readonly PostCollectionFactory $postCollectionFactory
+        private readonly CollectionCreator $postCollectionCreator
     ) {
     }
 
@@ -40,7 +40,7 @@ class Post implements HttpPostActionInterface
             return $resultRedirect->setPath($backUrl);
         }
 
-        $postCollection = $this->postCollectionFactory->create();
+        $postCollection = $this->postCollectionCreator->create();
         $postCollection->addFieldToFilter('identifier', $identifier)
             ->addFieldToFilter('is_active', 1);
         $post = $postCollection->getFirstItem();

@@ -8,36 +8,36 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use DateTime;
 use Rokezzz\Blog\Model\AuthorFactory;
 use Rokezzz\Blog\Model\CategoryFactory;
 use Rokezzz\Blog\Model\ResourceModel\Author as AuthorResource;
 use Rokezzz\Blog\Model\ResourceModel\Category as CategoryResource;
 use Rokezzz\Blog\Model\ResourceModel\Post\Collection;
-use Rokezzz\Blog\Model\ResourceModel\Post\CollectionFactory as PostCollectionFactory;
+use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
 use Rokezzz\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
 
 class PostList implements ArgumentInterface
 {
     public function __construct(
         private readonly RequestInterface $request,
-        private readonly PostCollectionFactory $postCollectionFactory,
+        private readonly CollectionCreator $postCollectionCreator,
         private readonly StoreManagerInterface $storeManager,
         private readonly AuthorFactory $authorFactory,
         private readonly AuthorResource $authorResource,
         private readonly CategoryFactory $categoryFactory,
         private readonly CategoryResource $categoryResource,
         private readonly TagCollectionFactory $tagCollectionFactory,
-        private readonly FilterProvider $filterProvider
     ) {
     }
 
     public function getPosts(): Collection
     {
-        $collection = $this->postCollectionFactory->create();
+        $collection = $this->postCollectionCreator->create();
         $storeId = (int)$this->storeManager->getStore()->getId();
 
         $collection->addFieldToFilter('main_table.is_active', 1)
-            ->addFieldToFilter('main_table.published_at', ['lteq' => (new \DateTime())->format('Y-m-d H:i:s')])
+            ->addFieldToFilter('main_table.published_at', ['lteq' => (new DateTime())->format('Y-m-d H:i:s')])
             ->setOrder('main_table.published_at', 'DESC');
 
         // Filtrowanie po Store View

@@ -17,7 +17,7 @@ use Rokezzz\Blog\Model\Post;
 use Rokezzz\Blog\Model\ResourceModel\Author as AuthorResource;
 use Rokezzz\Blog\Model\ResourceModel\Category as CategoryResource;
 use Rokezzz\Blog\Model\ResourceModel\Comment\CollectionCreator as CommentCollectionCreator;
-use Rokezzz\Blog\Model\ResourceModel\Post\CollectionFactory as PostCollectionFactory;
+use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
 use Rokezzz\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
 
 class PostView implements ArgumentInterface
@@ -26,7 +26,7 @@ class PostView implements ArgumentInterface
 
     public function __construct(
         private readonly RequestInterface $request,
-        private readonly PostCollectionFactory $postCollectionFactory,
+        private readonly CollectionCreator $postCollectionCreator,
         private readonly StoreManagerInterface $storeManager,
         private readonly AuthorFactory $authorFactory,
         private readonly AuthorResource $authorResource,
@@ -51,7 +51,7 @@ class PostView implements ArgumentInterface
         }
 
         $identifier = (string) $this->request->getParam('identifier');
-        $collection = $this->postCollectionFactory->create();
+        $collection = $this->postCollectionCreator->create();
         $collection->addFieldToFilter('identifier', $identifier)
             ->addFieldToFilter('is_active', 1);
 

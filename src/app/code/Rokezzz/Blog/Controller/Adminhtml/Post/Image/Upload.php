@@ -9,6 +9,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
+use Exception;
 use Rokezzz\Blog\Model\ImageUploader;
 
 class Upload extends Action
@@ -32,7 +33,7 @@ class Upload extends Action
 
         try {
             $result = $this->imageUploader->saveFileToTmpDir('background_image');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $result = [
                 'error' => $e->getMessage(),
                 'errorcode' => (int) $e->getCode()

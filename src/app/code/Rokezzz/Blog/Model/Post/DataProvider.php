@@ -8,8 +8,8 @@ use Magento\Framework\UrlInterface;
 use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Rokezzz\Blog\Model\ResourceModel\Post as PostResource;
-use Rokezzz\Blog\Model\ResourceModel\Post\CollectionFactory;
+use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
+use Rokezzz\Blog\Model\ResourceModel\PostResource;
 
 class DataProvider extends AbstractDataProvider
 {
@@ -19,14 +19,14 @@ class DataProvider extends AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $collectionFactory,
+        CollectionCreator $collectionCreator,
         private readonly DataPersistorInterface $dataPersistor,
         private readonly StoreManagerInterface $storeManager,
         private readonly PostResource $postResource,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $collectionFactory->create();
+        $this->collection = $collectionCreator->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 

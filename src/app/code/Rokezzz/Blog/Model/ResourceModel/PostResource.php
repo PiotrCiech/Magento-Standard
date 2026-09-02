@@ -7,7 +7,7 @@ namespace Rokezzz\Blog\Model\ResourceModel;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
-class Post extends AbstractDb
+class PostResource extends AbstractDb
 {
     public const TABLE_NAME = 'rokezzz_blog_post';
     public const TABLE_TAG = 'rokezzz_blog_post_tag';
@@ -37,7 +37,7 @@ class Post extends AbstractDb
                     ];
                 }
             }
-            
+
             if (!empty($data)) {
                 $connection->insertMultiple($tableTag, $data);
             }

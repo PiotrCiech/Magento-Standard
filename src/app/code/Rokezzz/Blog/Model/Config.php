@@ -11,6 +11,7 @@ class Config
 {
     private const XML_PATH_ENABLE_LATEST_POSTS = 'rokezzz_blog/general/enable_latest_posts';
     private const XML_PATH_LATEST_POSTS_COUNT = 'rokezzz_blog/general/latest_posts_count';
+    private const DEFAULT_LATEST_POSTS_COUNT = 3;
 
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig
@@ -34,6 +35,6 @@ class Config
             $storeId
         );
 
-        return $count > 0 ? $count : 3;
+        return $count > 0 ? $count : self::DEFAULT_LATEST_POSTS_COUNT;
     }
 }

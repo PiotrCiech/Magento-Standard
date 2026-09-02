@@ -17,7 +17,7 @@ class Category implements OptionSourceInterface
 
     public function toOptionArray(): array
     {
-        if ($this->options !== null) {
+        if (!is_null($this->options)) {
             return $this->options;
         }
 

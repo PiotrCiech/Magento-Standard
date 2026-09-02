@@ -8,8 +8,9 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Rokezzz\Blog\Model\PostFactory;
-use Rokezzz\Blog\Model\ResourceModel\Post as PostResource;
+use Exception;
+use Rokezzz\Blog\Model\PostCreator;
+use Rokezzz\Blog\Model\ResourceModel\PostResource;
 
 class Save extends Action
 {
@@ -18,7 +19,7 @@ class Save extends Action
     public function __construct(
         Context $context,
         private readonly DataPersistorInterface $dataPersistor,
-        private readonly PostFactory $postFactory,
+        private readonly PostCreator $postCreator,
         private readonly PostResource $postResource
     ) {
         parent::__construct($context);
@@ -31,7 +32,7 @@ class Save extends Action
 
         if ($data) {
             $id = $this->getRequest()->getParam('post_id');
-            $model = $this->postFactory->create();
+            $model = $this->postCreator->create();
 
             if ($id) {
                 $this->postResource->load($model, $id);
@@ -72,7 +73,7 @@ class Save extends Action
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the post.'));
             }
 

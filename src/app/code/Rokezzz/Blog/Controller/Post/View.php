@@ -8,7 +8,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
-use Rokezzz\Blog\Model\ResourceModel\Post\CollectionFactory;
+use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
 
 class View implements HttpGetActionInterface
 {
@@ -16,7 +16,7 @@ class View implements HttpGetActionInterface
         private readonly RequestInterface $request,
         private readonly PageFactory $pageFactory,
         private readonly ForwardFactory $forwardFactory,
-        private readonly CollectionFactory $postCollectionFactory
+        private readonly CollectionCreator $postCollectionCreator
     ) {
     }
 
@@ -28,7 +28,7 @@ class View implements HttpGetActionInterface
             return $this->forwardFactory->create()->forward('noroute');
         }
 
-        $collection = $this->postCollectionFactory->create();
+        $collection = $this->postCollectionCreator->create();
         $collection->addFieldToFilter('identifier', $identifier)
             ->addFieldToFilter('is_active', 1);
 
