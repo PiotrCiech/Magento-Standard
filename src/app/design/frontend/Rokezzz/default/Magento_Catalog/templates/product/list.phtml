@@ -6,7 +6,7 @@ use Magento\Catalog\Model\Product;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
-use Rokezzz\Category\ViewModel\Product\NewLabel;
+use Rokezzz\Category\ViewModel\Product\ProductListLabels;
 use Rokezzz\Category\ViewModel\Product\StockLabel;
 
 /**
@@ -20,15 +20,17 @@ use Rokezzz\Category\ViewModel\Product\StockLabel;
 <?php
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $block->getData('outputHelper');
-$newLabelViewModel = $block->getData('newLabelViewModel');
+/** @var ProductListLabels|null $productListLabelsViewModel */
+$productListLabelsViewModel = $block->getData('productListLabelsViewModel');
+/** @var StockLabel|null $stockLabelViewModel */
 $stockLabelViewModel = $block->getData('stockLabelViewModel');
 
 if (!$_helper instanceof Output) {
     throw new \RuntimeException('Catalog product list requires Magento\Catalog\Helper\Output.');
 }
 
-if (!$newLabelViewModel instanceof NewLabel) {
-    $newLabelViewModel = null;
+if (!$productListLabelsViewModel instanceof ProductListLabels) {
+    $productListLabelsViewModel = null;
 }
 
 if (!$stockLabelViewModel instanceof StockLabel) {
@@ -66,12 +68,12 @@ if (!$stockLabelViewModel instanceof StockLabel) {
                      id="product-item-info_<?=$_product->getId() ?>"
                      data-container="product-<?=$viewMode ?>">
                     <?php $stockLabel = $stockLabelViewModel ? $stockLabelViewModel->getLabel($_product) : null; ?>
-                    <?php if ($stockLabel !== null): ?>
+                    <?php if (!is_null($stockLabel)): ?>
                         <span class="product-item-stock-label"><?= $escaper->escapeHtml($stockLabel) ?></span>
                     <?php endif; ?>
                     <?php
                     $productImage = $block->getImage($_product, $imageDisplayArea);
-                    if ($pos != null) {
+                    if (!is_null($pos)) {
                         $position = 'left:' . $productImage->getWidth() . 'px;'
                             . 'top:' . $productImage->getHeight() . 'px;';
                     }
@@ -81,15 +83,18 @@ if (!$stockLabelViewModel instanceof StockLabel) {
                        class="product photo product-item-photo"
                        tabindex="-1">
                         <?php
-                        $badge = $newLabelViewModel ? $newLabelViewModel->getBadge($_product) : null;
-                        $discountLabel = $newLabelViewModel ? $newLabelViewModel->getDiscountLabel($_product) : null;
+                        $listItemLabels = $productListLabelsViewModel
+                            ? $productListLabelsViewModel->forProduct($_product)
+                            : ['badge' => null, 'discountLabel' => null];
+                        $badge = $listItemLabels['badge'];
+                        $discountLabel = $listItemLabels['discountLabel'];
                         ?>
-                        <?php if ($badge !== null || $discountLabel !== null): ?>
+                        <?php if (!is_null($badge) || !is_null($discountLabel)): ?>
                             <span class="product-labels">
-                                <?php if ($badge !== null): ?>
+                                <?php if (!is_null($badge)): ?>
                                     <span class="product-label <?= $escaper->escapeHtmlAttr($badge['css']) ?>"><?= $escaper->escapeHtml($badge['text']) ?></span>
                                 <?php endif; ?>
-                                <?php if ($discountLabel !== null): ?>
+                                <?php if (!is_null($discountLabel)): ?>
                                     <span class="product-label product-label--discount"><?= $escaper->escapeHtml($discountLabel) ?></span>
                                 <?php endif; ?>
                             </span>
