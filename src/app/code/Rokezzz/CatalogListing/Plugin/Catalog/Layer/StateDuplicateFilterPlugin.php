@@ -30,7 +30,7 @@ final class StateDuplicateFilterPlugin
                 continue;
             }
 
-            if ($existing->getValue() == $value) {
+            if ($existing->getValue() === $value) {
                 return $subject;
             }
         }

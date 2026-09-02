@@ -16,6 +16,7 @@ final class StockLabel implements ArgumentInterface
         private readonly StockRegistryInterface $stockRegistry
     ) {
     }
+
     public function getLabel(ProductInterface $product): ?string
     {
         if (!$this->config->isLowStockBadgeEnabled()) {
