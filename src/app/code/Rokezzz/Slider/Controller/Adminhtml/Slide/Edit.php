@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rokezzz\Slider\Controller\Adminhtml\Slide;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Rokezzz\Slider\Model\SlideFactory;
@@ -17,7 +18,7 @@ class Edit extends Action implements HttpGetActionInterface
     private SlideFactory $slideFactory;
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         PageFactory $resultPageFactory,
         SlideFactory $slideFactory
     ) {

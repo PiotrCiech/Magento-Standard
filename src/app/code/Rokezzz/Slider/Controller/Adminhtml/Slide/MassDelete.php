@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rokezzz\Slider\Controller\Adminhtml\Slide;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\Result\Redirect;
@@ -21,7 +22,7 @@ class MassDelete extends Action implements HttpPostActionInterface
     private SlideResource $slideResource;
 
     public function __construct(
-        Action\Context $context,
+        Context $context,
         Filter $filter,
         CollectionCreator $collectionCreator,
         SlideResource $slideResource

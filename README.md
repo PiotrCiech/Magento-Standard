@@ -12,13 +12,175 @@ Main project assumptions:
 - PHP code style is checked by PHP-CS-Fixer and PHPCS.
 - Pull requests are checked by GitHub Actions.
 
+## Getting started (new team members)
+
+Step-by-step guide to run the project locally (Windows + WSL2 + Docker Desktop).
+
+### 1. Requirements
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) — **WSL 2** backend enabled
+- [WSL 2](https://learn.microsoft.com/windows/wsl/install) with an Ubuntu distro
+- Git (in WSL: `sudo apt update && sudo apt install -y git`)
+- A GitHub account with access to the **rokezzz** organization (ask someone on the team to invite you)
+- **Access Keys** from the shared company Magento Marketplace account (from the password manager / a teammate) — see step 7
+
+### 2. Docker Desktop
+
+1. Install Docker Desktop and start it.
+2. Settings → **Resources** → **WSL Integration** → enable integration with Ubuntu.
+3. Verify in a WSL terminal:
+
+```bash
+docker version
+docker compose version
+```
+
+If the commands fail, Docker Desktop is not running or WSL integration is disabled.
+
+### 3. GitHub access (SSH)
+
+In WSL, generate a key (if you do not have one yet) and add it in GitHub → Settings → SSH and GPG keys:
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"
+cat ~/.ssh/id_ed25519.pub
+```
+
+Test the connection:
+
+```bash
+ssh -T git@github.com
+```
+
+You should see a greeting with your GitHub username.
+
+### 4. Clone the repository
+
+```bash
+cd ~/rokezzz
+git clone git@github.com:rokezzz/template-magento.git
+cd template-magento
+git checkout develop
+```
+
+Day-to-day work uses the `develop` branch (feature branches are created from it).
+
+### 5. Configure `.env`
+
+```bash
+cp .env.example .env
+```
+
+Set `HOST_UID` / `HOST_GID` to the values from WSL (`id -u` / `id -g`) so files under `src` have correct ownership. Passwords and ports from `.env.example` are usually fine for local use.
+
+**Important:** `.env` / `.env.example` configure **Docker** (MariaDB, Valkey, RabbitMQ, ports). They are **not** a Magento install and **do not** replace `setup:install`. Passwords in `.env` must match those used in `setup:install` (or an existing `app/etc/env.php` plus a database dump).
+
+### 6. Start the Docker environment
+
+From the project root (where `compose.yaml` lives):
+
+```bash
+make start
+# equivalent: docker compose up -d --build
+```
+
+The first build can take a while.
+
+### 7. Composer / Magento Marketplace
+
+`src/vendor/` is not in the repository — Composer downloads packages from `repo.magento.com`.
+
+#### How the team handles Marketplace packages
+
+Magento Marketplace entitlements are tied to an **account**, not to individual people. Therefore:
+
+1. There is **one shared company account** on [marketplace.magento.com](https://marketplace.magento.com/) that already owns / can download every extension listed in `src/composer.json` (InPost, Przelewy24, Furgonetka, etc.).
+2. That account has **Access Keys** (Public + Private).
+3. The keys live in the **team password manager** (1Password / Bitwarden / …) — **never in the Git repository**.
+4. A new developer only needs those keys from the team and then runs Composer. They do **not** need to open Marketplace or buy anything.
+
+New developer (from the project root → PHP container workdir is `src`):
+
+```bash
+docker compose exec php bash
+composer config --auth http-basic.repo.magento.com PUBLIC_KEY PRIVATE_KEY
+composer install
+exit
+```
+
+`PUBLIC_KEY` = username, `PRIVATE_KEY` = password. This creates `src/auth.json` (listed in `.gitignore` — never commit it).
+
+When you add a **new** Marketplace module: one person logs into the company account, completes Get Access / purchase, updates `composer.json` / lock — everyone else only runs `composer install` with the same keys.
+
+#### When you see 401 / 404
+
+| HTTP | Meaning | What to do |
+| --- | --- | --- |
+| **401** Invalid credentials | Wrong / swapped keys | Take fresh Access Keys from the company account (Public ≠ Private) |
+| **404** file could not be downloaded | Company account lacks entitlement for that package | On the company account, add the missing product to My Purchases; do not create a personal “trial” account |
+
+Committing `vendor/` or sharing zip archives is not a solution — it breaks Marketplace licenses and bloats the repo.
+
+### 8. Magento install and daily work
+
+**Important — two directories:**
+
+| Where | What you run |
+| --- | --- |
+| **Project root** (where `compose.yaml` is) | `docker compose …`, `make …` |
+| **`src/`** (= PHP container `/var/www/html`) | `composer …`, `php bin/magento …` |
+
+Do **not** run `setup:install` / `bin/magento` from the project root on the host — enter the container (workdir is already `src`) or `cd src` only when you intentionally work in that tree.
+
+After `composer install` (inside the PHP container):
+
+1. **First time on this machine** (no `src/app/etc/env.php`) → [First Install](#first-install).
+2. **Afterwards**:
+
+```bash
+docker compose exec -u root php bash -lc '
+  chown -R www-data:www-data pub/static var generated
+'
+
+docker compose exec -u www-data php php bin/magento deploy:mode:set developer
+docker compose exec -u www-data php php bin/magento setup:static-content:deploy -f pl_PL en_US
+docker compose exec -u www-data php php bin/magento cache:flush
+```
+
+```bash
+# from the project root:
+docker compose exec -u www-data php php bin/magento setup:upgrade
+# or after entering the container:
+# docker compose exec -u www-data php bash
+# php bin/magento setup:upgrade
+```
+
+Or the Makefile shortcuts:
+
+```bash
+make setup-upgrade
+make cache-flush
+```
+
+- storefront: http://localhost/
+- admin: http://localhost/admin (default `admin` / `Admin123!@#` after First Install)
+- Mailhog: http://localhost:8025/
+
+Other useful commands:
+
+```bash
+make start                           # docker compose up -d --build
+docker compose exec -u www-data php bash   # shell in src (/var/www/html)
+make restart                         # when Varnish returns 503 Backend fetch failed
+```
+
 ## Docker Environment
 
 The local environment is defined in `compose.yaml` and contains:
 
 - `php` - PHP-FPM container based on PHP 8.5 with Magento-related extensions and Composer.
 - `nginx` - web server serving Magento from `src/pub`.
-- `varnish` - HTTP cache exposed on the local `HTTP_PORT`, by default `8080`.
+- `varnish` - HTTP cache exposed on the local `HTTP_PORT`, by default `80`.
 - `db` - MariaDB 11.8 database.
 - `opensearch` - OpenSearch service used by Magento search.
 - `valkey` - Redis-compatible cache backend.
@@ -43,6 +205,7 @@ Adjust values in `.env` if needed, especially ports, passwords and `HOST_UID` / 
 Start the environment:
 
 ```bash
+make start
 ```
 
 Enter the PHP container:
@@ -61,58 +224,71 @@ Outgoing emails from Magento are routed through Mailhog via `msmtp` in the PHP c
 After adding Mailhog, rebuild the PHP image so `msmtp` is installed:
 
 ```bash
+make start
 ```
 
 ## First Install
 
-To install Magento after the environment is running, execute the installation command inside the PHP container.
+Only when Magento is **not yet installed** on this machine (no `src/app/etc/env.php`).  
+`setup:upgrade` does **not** replace this command.
 
-Example local installation:
+Passwords below must match `.env` (DB: `magento` / `magento`).
+
+Run install **inside `src`**, not from the project root:
+
+1. On the host, go to the project root (where `compose.yaml` is) and start containers if they are not running.
+2. Enter the PHP container — workdir is `/var/www/html` = mounted `src/`.
+3. Only then run:
 
 ```bash
 php bin/magento setup:install \
-    --base-url=http://localhost:8080/ \
-    --db-host=db \
-    --db-name=magento \
-    --db-user=magento \
-    --db-password=magento \
-    --admin-firstname=admin \
-    --admin-lastname=admin \
-    --admin-email=admin@rokezzz.pl \
-    --admin-user=admin \
-    --admin-password='Admin123!' \
-    --language=pl_PL \
-    --currency=PLN \
-    --timezone=Europe/Warsaw \
-    --use-rewrites=1 \
-    --search-engine=opensearch \
-    --opensearch-host=opensearch \
-    --opensearch-port=9200 \
-    --cache-backend=redis \
-    --cache-backend-redis-server=valkey \
-    --cache-backend-redis-password="${VALKEY_PASSWORD}" \
-    --cache-backend-redis-db=0 \
-    --page-cache=redis \
-    --page-cache-redis-server=valkey \
-    --page-cache-redis-password="${VALKEY_PASSWORD}" \
-    --page-cache-redis-db=1 \
-    --amqp-host=rabbitmq \
-    --amqp-port=5672 \
-    --amqp-user="${RABBITMQ_USER}" \
-    --amqp-password="${RABBITMQ_PASSWORD}" \
-    --backend-frontname=admin
+  --cleanup-database \
+  --base-url=http://localhost/ \
+  --db-host=db \
+  --db-name=magento \
+  --db-user=magento \
+  --db-password=magento \
+  --admin-firstname=Admin \
+  --admin-lastname=User \
+  --admin-email=admin@test.com \
+  --admin-user=admin \
+  --admin-password='Admin123!@#' \
+  --language=pl_PL \
+  --currency=PLN \
+  --timezone=Europe/Warsaw \
+  --use-rewrites=1 \
+  --backend-frontname=admin \
+  --search-engine=opensearch \
+  --opensearch-host=opensearch \
+  --opensearch-port=9200
 ```
-
-After installation, run:
 
 ```bash
 php bin/magento setup:upgrade
+
+# disable 2FA / Adobe IMS 2FA locally — admin login without verification
+php bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+
 php bin/magento cache:flush
+exit
+
+# host — project root
+make restart
 ```
+
+If the base URL is wrong (for example it still points at another port):
+
+```bash
+docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://localhost/
+docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://localhost/
+docker compose exec -u www-data php php bin/magento cache:flush
+```
+
+Optional Redis (Valkey) / RabbitMQ: after install, or via `--cache-backend=redis` / `--amqp-*` flags on `setup:install`.
 
 ## Varnish
 
-The `varnish` container sits in front of `nginx` and is exposed on `HTTP_PORT` (default `8080`). Magento install above still sets Redis as the page cache, so after installation switch full-page cache to Varnish and point Magento at the Docker service name. Run this inside the PHP container:
+The `varnish` container sits in front of `nginx` and is exposed on `HTTP_PORT` (default `80`). Magento install above may still set Redis as the page cache, so after installation switch full-page cache to Varnish and point Magento at the Docker service name. Run this inside the PHP container:
 
 ```bash
 php bin/magento config:set --lock-env system/full_page_cache/caching_application 2
@@ -126,9 +302,11 @@ php bin/magento cache:flush
 
 Default credentials from the example installation command:
 
-- URL: `http://localhost:8080/admin`
+- URL: `http://localhost/admin`
 - User: `admin`
-- Password: `Admin123!`
+- Password: `Admin123!@#`
+
+After First Install, disable 2FA (see above); otherwise admin may require Google Authenticator / Adobe IMS.
 
 ## Rokezzz Modules
 
@@ -226,6 +404,10 @@ The data patch creates Polish tax rates for `0%`, `5%`, `8%` and `23%`, creates 
 php bin/magento rokezzz:tax:adjust-prices 23 up
 ```
 
+#### Rokezzz_Product / Rokezzz_ProductAdvance
+
+Product view extras: attributes table, copy SKU, and PDF product specification download. Layout and templates live under these modules and the `Rokezzz/default` theme.
+
 ### Customer
 
 #### Rokezzz_CustomerNip
@@ -311,6 +493,10 @@ php bin/magento rokezzz:invoices:send-ksef
 #### Rokezzz_Cms
 
 Creates the editable homepage **O nas** CMS block (`rokezzz_about`). Edit it in **Content → Blocks**.
+
+#### Rokezzz_Blog
+
+Blog with categories, tags, authors, posts and moderated comments. Admin under **Rokezzz → Blog**; storefront routes for listing, post, category, tag and author views, plus a latest-posts widget.
 
 #### Rokezzz_Slider
 

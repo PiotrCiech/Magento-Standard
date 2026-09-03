@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="rokezzz_blog_latest"
+            class="Rokezzz\Blog\Block\Widget\LatestPosts">
+        <label translate="true">Rokezzz Latest Blog Posts</label>
+        <description translate="true">Section showing the latest published blog posts.</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="posts_count" xsi:type="text" required="false" visible="true">
+                <label translate="true">Number of Posts</label>
+                <description translate="true">Leave empty to use the default from store configuration.</description>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

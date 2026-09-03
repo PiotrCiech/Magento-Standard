@@ -6,7 +6,13 @@ LOCALE ?= en_US
 STATIC_LOCALES ?= pl_PL en_US de_DE
 ADMIN_STATIC_LOCALES ?= $(STATIC_LOCALES)
 
-.PHONY: fix cs-check cs-fix static-deploy cache-flush static-refresh admin-static-fix setup-upgrade setup-refresh static-clean static-fresh
+.PHONY: fix cs-check cs-fix static-deploy cache-flush static-refresh admin-static-fix setup-upgrade setup-refresh static-clean static-fresh start restart
+
+start:
+	docker compose up -d --build
+
+restart:
+	docker compose up -d --force-recreate php nginx varnish
 
 fix:
 	docker compose exec php sh -lc "rm -rf pub/static/adminhtml/* pub/static/frontend/* var/view_preprocessed/* && php bin/magento setup:static-content:deploy $(STATIC_LOCALES) -f && php bin/magento cache:flush"

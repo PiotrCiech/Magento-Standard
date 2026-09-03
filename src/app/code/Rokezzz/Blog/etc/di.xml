@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rokezzz_blog_category_listing_data_source" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Category\Grid\Collection</item>
+                <item name="rokezzz_blog_post_listing_data_source" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Post\Grid\Collection</item>
+                <item name="rokezzz_blog_tag_listing_data_source" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Tag\Grid\Collection</item>
+                <item name="rokezzz_blog_author_listing_data_source" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Author\Grid\Collection</item>
+                <item name="rokezzz_blog_comment_listing_data_source" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Comment\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Rokezzz\Blog\Model\ResourceModel\Category\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_blog_category</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\CategoryResource</argument>
+        </arguments>
+    </type>
+    <type name="Rokezzz\Blog\Model\ResourceModel\Tag\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_blog_tag</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Tag</argument>
+        </arguments>
+    </type>
+    <type name="Rokezzz\Blog\Model\ResourceModel\Author\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_blog_author</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\Author</argument>
+        </arguments>
+    </type>
+    <type name="Rokezzz\Blog\Model\ResourceModel\Comment\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_blog_comment</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\CommentResource</argument>
+        </arguments>
+    </type>
+    <virtualType name="Rokezzz\Blog\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rokezzz_blog_post</argument>
+            <argument name="resourceModel" xsi:type="string">Rokezzz\Blog\Model\ResourceModel\PostResource</argument>
+        </arguments>
+    </virtualType>
+</config>
