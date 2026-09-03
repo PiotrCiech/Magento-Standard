@@ -6,7 +6,7 @@ LOCALE ?= en_US
 STATIC_LOCALES ?= pl_PL en_US de_DE
 ADMIN_STATIC_LOCALES ?= $(STATIC_LOCALES)
 
-.PHONY: fix cs-check cs-fix static-deploy cache-flush static-refresh admin-static-fix setup-upgrade setup-refresh static-clean static-fresh start restart
+.PHONY: fix cs-check cs-fix static-deploy cache-flush static-refresh admin-static-fix setup-upgrade setup-refresh static-clean static-fresh start restart reindex
 
 start:
 	docker compose up -d --build
@@ -26,6 +26,10 @@ static-clean:
 static-fresh: static-clean static-deploy cache-flush
 
 cache-flush:
+	docker compose exec php php bin/magento cache:flush
+
+reindex:
+	docker compose exec php php bin/magento indexer:reindex
 	docker compose exec php php bin/magento cache:flush
 
 setup-upgrade:
