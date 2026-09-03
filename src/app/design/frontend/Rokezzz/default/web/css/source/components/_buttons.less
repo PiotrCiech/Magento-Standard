@@ -1,7 +1,8 @@
-@btn-radius: 12px;
+@btn-radius: @radiusM;
+@btn-radius-pill: @radiusPill;
 @btn-height: 48px;
 @btn-padding: 0 22px;
-@btn-transition: .25s ease;
+@btn-transition: @transitionBase;
 
 .btn-hover-lift() {
     &:hover {
@@ -17,15 +18,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     min-height: @btn-height;
     padding: @btn-padding;
     border-radius: @btn-radius;
     border: 1px solid transparent;
     cursor: pointer;
     text-decoration: none;
+    font-family: inherit;
     font-size: @fontSizeM;
     font-weight: 600;
     line-height: 1;
+    text-align: center;
     box-sizing: border-box;
     transition:
         background @btn-transition,
@@ -34,20 +38,27 @@
         transform @btn-transition,
         box-shadow @btn-transition;
 
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-
     &:hover {
         text-decoration: none;
     }
 
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: 2px solid @mainAccentColor;
+        outline-offset: 2px;
+    }
+
     &:disabled,
-    &.disabled {
+    &.disabled,
+    &[disabled] {
         opacity: .45;
         pointer-events: none;
         cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
     }
 }
 
@@ -58,13 +69,13 @@
     border-color: @mainColor;
     color: @whiteColor;
     font-weight: 700;
-    box-shadow: 0 12px 28px fade(@mainColor, 18%);
+    box-shadow: 0 4px 14px fade(@mainColor, 20%);
 
     &:hover {
         background: @mainAccentColor;
         border-color: @mainAccentColor;
         color: @whiteColor;
-        box-shadow: 0 16px 36px fade(@mainAccentColor, 25%);
+        box-shadow: 0 8px 22px fade(@mainAccentColor, 28%);
     }
 }
 
@@ -75,13 +86,13 @@
     border-color: @mainAccentColor;
     color: @whiteColor;
     font-weight: 700;
-    box-shadow: 0 12px 28px fade(@mainAccentColor, 25%);
+    box-shadow: 0 4px 14px fade(@mainAccentColor, 28%);
 
     &:hover {
         background: darken(@mainAccentColor, 8%);
         border-color: darken(@mainAccentColor, 8%);
         color: @whiteColor;
-        box-shadow: 0 16px 36px fade(@mainAccentColor, 35%);
+        box-shadow: 0 8px 22px fade(@mainAccentColor, 36%);
     }
 }
 
@@ -89,6 +100,7 @@
     .btn-base();
 
     background: fade(@whiteColor, 65%);
+    -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     border: 1px solid fade(@mainColor, 10%);
     color: @mainColor;
@@ -105,9 +117,10 @@
 .btn-glass() {
     .btn-base();
 
-    background: rgba(255, 255, 255, 0.06);
+    background: fade(@whiteColor, 6%);
     border: 1px solid fade(@whiteColor, 20%);
     color: @whiteColor;
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
 
     &:hover {
@@ -126,28 +139,36 @@
 
     &:hover {
         background: @mainColor;
+        border-color: @mainColor;
         color: @whiteColor;
     }
 }
 
 .btn-link() {
-    background: none;
-    border: 0;
+    display: inline;
+    min-height: 0;
     padding: 0;
-    min-height: auto;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    font-weight: 600;
     color: @mainColor;
+    transition: color @btn-transition;
 
     &:hover {
+        background: none;
         color: @mainAccentColor;
     }
 }
 
 .btn-icon() {
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
-    min-height: 46px;
+    width: @btn-height;
+    height: @btn-height;
+    min-width: @btn-height;
+    min-height: @btn-height;
     padding: 0;
+    gap: 0;
 }
 
 .btn-small() {
@@ -162,45 +183,82 @@
     font-size: @fontSizeL;
 }
 
-& when (@media-common =true) {
-    .btn,
-    .action-primary,
-    .action-secondary,
-    .action-accent,
-    .action-glass,
-    .action-outline,
-    .action-link {
+.btn-pill() {
+    border-radius: @btn-radius-pill;
+}
+
+& when (@media-common = true) {
+
+    .btn {
         .btn-base();
     }
 
     .action.primary,
-    .action-primary {
+    .action-primary,
+    a.action.primary {
         .btn-primary();
     }
 
     .action.secondary,
-    .action-secondary {
+    .action-secondary,
+    a.action.secondary {
         .btn-secondary();
     }
 
     .action.accent,
-    .action-accent {
+    .action-accent,
+    a.action.accent {
         .btn-accent();
     }
 
     .action.glass,
-    .action-glass {
+    .action-glass,
+    a.action.glass {
         .btn-glass();
     }
 
     .action.outline,
-    .action-outline {
+    .action-outline,
+    a.action.outline {
         .btn-outline();
     }
 
     .action.btn-text,
-    .action-link {
+    .action-link,
+    a.action.btn-text {
         .btn-link();
+    }
+
+    .actions-toolbar,
+    .form .actions-toolbar,
+    .block .actions-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-left: 0;
+
+        &::before,
+        &::after {
+            content: none;
+        }
+
+        > .primary,
+        > .secondary {
+            float: none;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+
+            .action,
+            a.action.action {
+                float: none;
+                margin: 0;
+                display: inline-flex;
+            }
+        }
     }
 
     .action.search,

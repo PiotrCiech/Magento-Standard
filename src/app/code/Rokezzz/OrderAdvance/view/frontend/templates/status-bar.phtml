@@ -8,19 +8,20 @@ if (!$statusBarViewModel->isEnabled()) {
 }
 ?>
 <div class="latest-order-status-bar" data-bind="scope: 'rokezzzLatestOrderStatusBar'">
-    <!-- ko if: isVisible() -->
-    <div class="latest-order-status-bar__content">
-        <span class="latest-order-status-bar__message">
-            <?= $block->escapeHtml(__('Your order')) ?>
-            <a class="latest-order-status-bar__link" data-bind="attr: {href: orderUrl()}">
-                <span data-bind="text: '#' + incrementId()"></span>
-            </a>
-        </span>
-        <span class="latest-order-status-bar__status">
-            <span class="latest-order-status-bar__status-label" data-bind="text: statusLabel()"></span>
-        </span>
+    <div class="latest-order-status-bar__bar"
+         data-bind="css: {'latest-order-status-bar__bar--active': isVisible()}">
+        <div class="latest-order-status-bar__content">
+            <span class="latest-order-status-bar__message">
+                <?= $block->escapeHtml(__('Your order')) ?>
+                <a class="latest-order-status-bar__link" data-bind="attr: {href: orderUrl()}">
+                    <span data-bind="text: '#' + incrementId()"></span>
+                </a>
+            </span>
+            <span class="latest-order-status-bar__status">
+                <span class="latest-order-status-bar__status-label" data-bind="text: statusLabel()"></span>
+            </span>
+        </div>
     </div>
-    <!-- /ko -->
 </div>
 <script type="text/x-magento-init">
 {

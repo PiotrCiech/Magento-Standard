@@ -16,6 +16,7 @@
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>NIP</label>
                     <comment>10-digit tax identification number without spaces.</comment>
+                    <backend_model>Rokezzz\Settings\Model\Config\Backend\Nip</backend_model>
                 </field>
                 <field id="regon" translate="label" type="text" sortOrder="30"
                        showInDefault="1" showInWebsite="1" showInStore="1">
@@ -96,6 +97,7 @@
                        showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>KSeF NIP</label>
                     <comment>Leave empty to use the company NIP from settings above.</comment>
+                    <backend_model>Rokezzz\Settings\Model\Config\Backend\Nip</backend_model>
                 </field>
             </group>
         </section>

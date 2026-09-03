@@ -10,9 +10,9 @@ use Magento\Framework\View\Element\Template;
 
 <div class="container section-spacing styleguide-page">
     <div class="styleguide-header">
-        <h1>Rokezzz Design System & Styleguide</h1>
-        <p>Pełen przegląd globalnych komponentów UI, zmiennych systemowych, typografii, przycisków oraz elementów
-            formularzy.</p>
+        <h1>Rokezzz Design System &amp; Styleguide</h1>
+        <p>Pełen przegląd globalnych komponentów UI, zmiennych systemowych, typografii, przycisków, formularzy oraz
+            widżetów sklepu (akordeon, galeria, slider, karta produktu i inne).</p>
     </div>
 
     <section class="styleguide-section">
@@ -38,72 +38,87 @@ use Magento\Framework\View\Element\Template;
                 <strong class="sg-color-name">@backgroundColorAlternate</strong>
                 <span class="sg-color-value">Gray 50</span>
             </div>
+            <div class="sg-color-card">
+                <div class="sg-color-swatch sg-color-text"></div>
+                <strong class="sg-color-name">@text__color</strong>
+                <span class="sg-color-value">Gray 900</span>
+            </div>
+            <div class="sg-color-card">
+                <div class="sg-color-swatch sg-color-error"></div>
+                <strong class="sg-color-name">@error__color</strong>
+                <span class="sg-color-value">Red 600</span>
+            </div>
         </div>
     </section>
 
     <section class="styleguide-section">
         <h2>2. Typografia (Zmienne wielkości fontów)</h2>
         <div class="sg-typography-flex">
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeTitle (72px)</span>
                 <div class="sg-font-title">AaBbGg - Banner Title</div>
             </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeSubtitle (40px)</span>
                 <div class="sg-font-subtitle">Nagłówek podstrony / Subtitle</div>
             </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeXXXL (36px)</span>
                 <div class="sg-font-xxxl">Duży tytuł sekcji H2</div>
             </div>
-
-            <div class="sg-type-row">
-                <span class="sg-type-meta">@fontSizeTitleDesktop (36px)</span>
-                <div class="sg-font-title-desktop">Tytuł strony główny (Desktop)</div>
-            </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeXXL (28px)</span>
                 <div class="sg-font-xxl">Tytuł bloku / widgetu CMS</div>
             </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeXL (24px)</span>
                 <div class="sg-font-xl">Cena produktu grid / Nagłówek H3</div>
             </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeL (20px)</span>
                 <div class="sg-font-l">Tekst wyróżniony (Lead) / Nazwa w liście</div>
             </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeM (16px)</span>
                 <div class="sg-font-m">Standardowy tekst akapitu, opisu produktu oraz interfejsu (Domyślny)</div>
             </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeS (14px)</span>
                 <div class="sg-font-s">Etykiety formularzy (labels), okruszki chleba, małe elementy</div>
             </div>
-
             <div class="sg-type-row">
                 <span class="sg-type-meta">@fontSizeXS (12px)</span>
                 <div class="sg-font-xs">Teksty pomocnicze, daty recenzji, dopiski podatków pod ceną</div>
             </div>
-
         </div>
     </section>
 
     <section class="styleguide-section">
-        <h2>3. Komponenty Przycisków (System Mixinów & Klas)</h2>
-        <div class="sg-info-box">
-            System oparty o mixiny (.btn-primary, .btn-secondary, .btn-glass, .btn-outline, .btn-link) oraz wspierające
-            modyfikatory rozmiarów (.btn-small, .btn-large, .btn-icon).
+        <h2>3. Zaokrąglenia narożników (@radius*)</h2>
+        <div class="sg-info-box">Globalne tokeny z <code>_theme.less</code>. Przyciski/inputy = @radiusM, karty = @radiusL,
+            elementy „pill" = @radiusPill.</div>
+        <div class="sg-radius-grid">
+            <div class="sg-radius-item"><span class="sg-radius-box sg-r-xs"></span><span class="sg-label">@radiusXS · 4px</span></div>
+            <div class="sg-radius-item"><span class="sg-radius-box sg-r-s"></span><span class="sg-label">@radiusS · 8px</span></div>
+            <div class="sg-radius-item"><span class="sg-radius-box sg-r-m"></span><span class="sg-label">@radiusM · 12px</span></div>
+            <div class="sg-radius-item"><span class="sg-radius-box sg-r-l"></span><span class="sg-label">@radiusL · 16px</span></div>
+            <div class="sg-radius-item"><span class="sg-radius-box sg-r-xl"></span><span class="sg-label">@radiusXL · 24px</span></div>
+            <div class="sg-radius-item"><span class="sg-radius-box sg-r-pill"></span><span class="sg-label">@radiusPill · 999px</span></div>
         </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>4. Cienie / Elevation</h2>
+        <div class="sg-shadow-grid">
+            <div class="sg-shadow-box sg-elev-1"><span class="sg-label">Karta – spoczynek</span></div>
+            <div class="sg-shadow-box sg-elev-2"><span class="sg-label">Karta – hover</span></div>
+            <div class="sg-shadow-box sg-elev-3"><span class="sg-label">Dropdown / popover</span></div>
+            <div class="sg-shadow-box sg-elev-4"><span class="sg-label">Modal / overlay</span></div>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>5. Komponenty Przycisków (System Mixinów &amp; Klas)</h2>
 
         <div class="sg-buttons-block">
             <h3>Warianty Podstawowe (Jasne tło)</h3>
@@ -132,7 +147,7 @@ use Magento\Framework\View\Element\Template;
         </div>
 
         <div class="sg-buttons-block">
-            <h3>Modyfikatory Rozmiarów & Stany</h3>
+            <h3>Modyfikatory Rozmiarów &amp; Stany</h3>
             <div class="sg-buttons-flex">
                 <div>
                     <span class="sg-label">Small (.btn-small)</span>
@@ -141,6 +156,10 @@ use Magento\Framework\View\Element\Template;
                 <div>
                     <span class="sg-label">Large (.btn-large)</span>
                     <button class="action primary sg-btn-large"><span>Duży przycisk</span></button>
+                </div>
+                <div>
+                    <span class="sg-label">Pill (.btn-pill)</span>
+                    <button class="action accent sg-btn-pill"><span>Zaokrąglony</span></button>
                 </div>
                 <div>
                     <span class="sg-label">Icon (.btn-icon)</span>
@@ -153,6 +172,18 @@ use Magento\Framework\View\Element\Template;
             </div>
         </div>
 
+        <div class="sg-buttons-block">
+            <h3>actions-toolbar (formularze konta / checkout)</h3>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button class="action submit primary"><span>Zapisz</span></button>
+                </div>
+                <div class="secondary">
+                    <a class="action back" href="#sg"><span>Wstecz</span></a>
+                </div>
+            </div>
+        </div>
+
         <div class="sg-dark-section">
             <span class="sg-label sg-label-light">Glass (.action.glass - dedykowany na ciemne tła i bannery)</span>
             <button class="action glass"><span>Przycisk przezroczysty</span></button>
@@ -160,7 +191,7 @@ use Magento\Framework\View\Element\Template;
     </section>
 
     <section class="styleguide-section">
-        <h2>4. Elementy Formularzy</h2>
+        <h2>6. Elementy Formularzy</h2>
         <div class="sg-forms-container">
             <div class="sg-form-group">
                 <label for="input-text-example">Standardowe pole tekstowe</label>
@@ -186,13 +217,223 @@ use Magento\Framework\View\Element\Template;
     </section>
 
     <section class="styleguide-section">
-        <h2>5. Nawigacja Okruszkowa (.breadcrumbs)</h2>
+        <h2>7. Etykiety i odznaki</h2>
+        <div class="sg-badges-flex">
+            <span class="product-label product-label--new">Nowość</span>
+            <span class="sg-badge sg-badge--sale">-30%</span>
+            <span class="sg-badge sg-badge--soft">Bestseller</span>
+            <span class="sg-badge sg-badge--outline">Ostatnie sztuki</span>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>8. Komunikaty systemowe (.message)</h2>
+        <div class="messages">
+            <div class="message success"><div>Produkt został dodany do koszyka.</div></div>
+            <div class="message info"><div>Zaloguj się, aby zobaczyć ceny hurtowe.</div></div>
+            <div class="message warning"><div>Zostały tylko 2 sztuki tego produktu.</div></div>
+            <div class="message error"><div>Nie udało się przetworzyć płatności. Spróbuj ponownie.</div></div>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>9. Akordeon (Rokezzz_Acordeon)</h2>
+        <div class="rokezzz-accordion-wrapper" id="sg-accordion">
+            <div class="accordion-items">
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        <span class="accordion-item-title">Jak długo trwa dostawa?</span>
+                        <span class="accordion-icon"></span>
+                    </div>
+                    <div class="accordion-content" style="display:block;">
+                        <div class="accordion-content-inner">
+                            <p>Zamówienia realizujemy w ciągu 1–2 dni roboczych. Czas dostawy kurierem to zwykle 24–48h.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-item-title">Czy mogę zwrócić produkt?</span>
+                        <span class="accordion-icon"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Tak, masz 14 dni na odstąpienie od umowy bez podania przyczyny.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-item-title">Jakie są formy płatności?</span>
+                        <span class="accordion-icon"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <ul>
+                                <li>Szybki przelew online</li>
+                                <li>BLIK</li>
+                                <li>Za pobraniem</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>10. Galeria produktu (Rokezzz_Gallery)</h2>
+        <?php $sgImg = $block->getViewFileUrl('images/logo.png'); ?>
+        <p class="sg-label">Prawdziwy markup i klasy widżetu (<code>_gallerywidget.less</code>) — zmiany w komponencie widać tutaj. Strzałki i miniatury działają.</p>
+        <div class="rokezzz-gallery-wrapper sg-widget-demo" id="sg-gallery-demo">
+            <div class="gallery-main-viewport">
+                <button class="gallery-nav-btn prev-btn" type="button" aria-label="Poprzednie">&#10094;</button>
+                <div class="gallery-main-stage">
+                    <?php $sgCaps = ['Widok z przodu', 'Widok z tyłu', 'Detal', 'Opakowanie']; ?>
+                    <?php foreach ($sgCaps as $i => $cap): ?>
+                    <div class="gallery-slide<?= $i === 0 ? ' active' : '' ?>">
+                        <img src="<?= $block->escapeUrl($sgImg) ?>" alt="<?= $block->escapeHtmlAttr($cap) ?>">
+                        <div class="slide-caption"><?= $block->escapeHtml($cap) ?></div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <button class="gallery-nav-btn next-btn" type="button" aria-label="Następne">&#10095;</button>
+            </div>
+            <div class="gallery-thumbnails">
+                <?php foreach ($sgCaps as $i => $cap): ?>
+                <div class="thumb-item<?= $i === 0 ? ' active' : '' ?>" data-slide-index="<?= $i ?>">
+                    <img src="<?= $block->escapeUrl($sgImg) ?>" alt="">
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>11. Slider / Hero (Rokezzz_Slider)</h2>
+        <p class="sg-label">Prawdziwy markup i klasy widżetu (<code>_slider.less</code>). Kropki działają, autoodtwarzanie co 4&nbsp;s.</p>
+        <?php
+        $sgHeroSlides = [
+            ['title' => "Slider 1", 'l' => 'Przycisk lewy - label', 'r' => 'Przycisk prawy - label', 'cn1' => '23', 'cl1' => 'Licznik lewy - label', 'cn2' => '24', 'cl2' => 'Licznik prawy - label'],
+            ['title' => "Slider 2", 'l' => 'Przycisk lewy - label', 'r' => 'Przycisk prawy - label', 'cn1' => '23', 'cl1' => 'Licznik lewy - label', 'cn2' => '24', 'cl2' => 'Licznik prawy - label'],
+            ['title' => "Slider 3", 'l' => 'Przycisk lewy - label', 'r' => 'Przycisk prawy - label', 'cn1' => '23', 'cl1' => 'Licznik lewy - label', 'cn2' => '24', 'cl2' => 'Licznik prawy - label'],
+        ];
+        ?>
+        <div class="promotion-slider sg-widget-demo" id="sg-slider-demo">
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                    <?php foreach ($sgHeroSlides as $idx => $s): ?>
+                    <div class="slide" data-slide-index="<?= $idx ?>">
+                        <div class="slide-image"><img src="<?= $block->escapeUrl($sgImg) ?>" alt=""></div>
+                        <div class="slide-content">
+                            <div class="slide-title">
+                                <h1><?= $block->escapeHtml($s['title']) ?></h1>
+                                <div class="slide-buttons">
+                                    <span class="slide-btn left"><?= $block->escapeHtml($s['l']) ?></span>
+                                    <span class="slide-btn right"><?= $block->escapeHtml($s['r']) ?></span>
+                                </div>
+                            </div>
+                            <div class="slide-numbers">
+                                <div class="slide-counter">
+                                    <span class="number"><?= $block->escapeHtml($s['cn1']) ?></span>
+                                    <span class="label"><?= $block->escapeHtml($s['cl1']) ?></span>
+                                </div>
+                                <div class="slide-counter">
+                                    <span class="number"><?= $block->escapeHtml($s['cn2']) ?></span>
+                                    <span class="label"><?= $block->escapeHtml($s['cl2']) ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="slider-dots">
+                <?php foreach ($sgHeroSlides as $idx => $s): ?>
+                <button class="dot<?= $idx === 0 ? ' active' : '' ?>" data-slide-index="<?= $idx ?>"
+                        type="button" aria-label="Slajd <?= $idx + 1 ?>"></button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>12. Baner cookie (Rokezzz_Cookies)</h2>
+        <div class="sg-mock-static">
+            <aside class="cookie-banner-wrapper" role="dialog" aria-label="Cookies (podgląd)">
+                <div class="cookie-header"><h2>Ta strona używa plików cookie</h2></div>
+                <div class="cookie-content">
+                    <p>Używamy plików cookie, aby zapewnić najlepsze doświadczenia na naszej stronie.</p>
+                </div>
+                <div class="cookie-actions">
+                    <button class="btn-cookie btn-reject" type="button">Odrzuć</button>
+                    <button class="btn-cookie btn-accept" type="button">Akceptuję</button>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section class="styleguide-section">
+        <h2>13. Nawigacja Okruszkowa (.breadcrumbs)</h2>
         <div class="breadcrumbs">
             <ul class="items">
-                <li class="item home"><a href="#">Sklep</a></li>
-                <li class="item category"><a href="#">Elektronika</a></li>
-                <li class="item product"><strong>Smartfony i Telefony</strong></li>
+                <li class="item home"><a href="#sg">Sklep</a></li>
+                <li class="item category"><a href="#sg">Akcesoria</a></li>
+                <li class="item product"><strong>Zawieszki dekoracyjne</strong></li>
             </ul>
         </div>
     </section>
 </div>
+
+<script>
+require(['jquery'], function ($) {
+    'use strict';
+
+    var $acc = $('#sg-accordion');
+    $acc.on('click', '.accordion-header', function () {
+        var $item = $(this).closest('.accordion-item'),
+            $content = $item.find('.accordion-content');
+        if ($item.hasClass('active')) {
+            $content.slideUp(200);
+            $item.removeClass('active');
+        } else {
+            $acc.find('.accordion-item.active').removeClass('active')
+                .find('.accordion-content').slideUp(200);
+            $content.slideDown(200);
+            $item.addClass('active');
+        }
+    });
+
+    (function () {
+        var $g = $('#sg-gallery-demo'),
+            $slides = $g.find('.gallery-slide'),
+            $thumbs = $g.find('.thumb-item'),
+            idx = 0;
+        function show(i) {
+            idx = (i + $slides.length) % $slides.length;
+            $slides.removeClass('active').eq(idx).addClass('active');
+            $thumbs.removeClass('active').eq(idx).addClass('active');
+        }
+        $g.find('.next-btn').on('click', function () { show(idx + 1); });
+        $g.find('.prev-btn').on('click', function () { show(idx - 1); });
+        $thumbs.on('click', function () { show($(this).data('slide-index')); });
+    })();
+
+    (function () {
+        var $s = $('#sg-slider-demo'),
+            $wrap = $s.find('.slider-wrapper'),
+            $dots = $s.find('.dot'),
+            count = $s.find('.slide').length,
+            cur = 0, timer;
+        function go(i) {
+            cur = (i + count) % count;
+            $wrap.css('transform', 'translateX(' + (-100 * cur) + '%)');
+            $dots.removeClass('active').eq(cur).addClass('active');
+        }
+        function play() { timer = setInterval(function () { go(cur + 1); }, 4000); }
+        $dots.on('click', function () { clearInterval(timer); go($(this).data('slide-index')); play(); });
+        play();
+    })();
+});
+</script>

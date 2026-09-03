@@ -21,6 +21,6 @@ class AccordionRows extends Template
 
     public function getElement(): AbstractElement
     {
-        $this->_element;
+        return $this->_element;
     }
 }

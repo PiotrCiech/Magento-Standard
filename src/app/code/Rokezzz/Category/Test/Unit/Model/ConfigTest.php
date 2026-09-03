@@ -31,4 +31,29 @@ final class ConfigTest extends TestCase
 
         $this->assertFalse((new Config($this->scopeConfig))->isBestsellersEnabled(1));
     }
+
+    public function testBadgeFlagsReadFromScopeConfig(): void
+    {
+        $this->scopeConfig->method('isSetFlag')->willReturn(true);
+
+        $config = new Config($this->scopeConfig);
+
+        $this->assertTrue($config->isBestsellerBadgeEnabled(1));
+        $this->assertTrue($config->isDiscountBadgeEnabled(1));
+        $this->assertTrue($config->isLowStockBadgeEnabled(1));
+    }
+
+    public function testGetLowStockThresholdFallsBackToDefaultWhenInvalid(): void
+    {
+        $this->scopeConfig->method('getValue')->willReturn('0');
+
+        $this->assertSame(5, (new Config($this->scopeConfig))->getLowStockThreshold(1));
+    }
+
+    public function testGetLowStockThresholdReturnsConfiguredValue(): void
+    {
+        $this->scopeConfig->method('getValue')->willReturn('3');
+
+        $this->assertSame(3, (new Config($this->scopeConfig))->getLowStockThreshold(1));
+    }
 }
