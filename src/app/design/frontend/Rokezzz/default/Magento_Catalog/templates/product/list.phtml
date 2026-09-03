@@ -8,8 +8,8 @@ use Magento\Catalog\Model\Product;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
-use Rokezzz\Category\ViewModel\Product\NewLabel;
-use RuntimeException;
+use Rokezzz\Category\ViewModel\Product\ProductListLabels;
+use Rokezzz\Category\ViewModel\Product\StockLabel;
 
 /**
  * Product list template
@@ -20,14 +20,21 @@ use RuntimeException;
  */
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $block->getData('outputHelper');
-$newLabelViewModel = $block->getData('newLabelViewModel');
+/** @var ProductListLabels|null $productListLabelsViewModel */
+$productListLabelsViewModel = $block->getData('productListLabelsViewModel');
+/** @var StockLabel|null $stockLabelViewModel */
+$stockLabelViewModel = $block->getData('stockLabelViewModel');
 
 if (!$_helper instanceof Output) {
-    throw new RuntimeException('Catalog product list requires Magento\Catalog\Helper\Output.');
+    throw new \RuntimeException('Catalog product list requires Magento\Catalog\Helper\Output.');
 }
 
-if (!$newLabelViewModel instanceof NewLabel) {
-    $newLabelViewModel = null;
+if (!$productListLabelsViewModel instanceof ProductListLabels) {
+    $productListLabelsViewModel = null;
+}
+
+if (!$stockLabelViewModel instanceof StockLabel) {
+    $stockLabelViewModel = null;
 }
 ?>
 <?php if ($block->getData('has_error') || !$_productCollection->count()): ?>
@@ -61,7 +68,7 @@ if (!$newLabelViewModel instanceof NewLabel) {
                 data-container="product-<?=$viewMode ?>">
                 <?php
                     $productImage = $block->getImage($_product, $imageDisplayArea);
-                    if ($pos != null) {
+                    if (!is_null($pos)) {
                         $position = 'left:' . $productImage->getWidth() . 'px;'
                             . 'top:' . $productImage->getHeight() . 'px;';
                     }

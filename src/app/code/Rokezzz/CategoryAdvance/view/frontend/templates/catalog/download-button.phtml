@@ -7,9 +7,11 @@ if (!$block->isVisible()) {
     return;
 }
 ?>
-<div class="rokezzz-category-pdf">
-    <a class="action primary rokezzz-category-pdf__link"
-       href="<?= $escaper->escapeUrl($block->getDownloadUrl()) ?>">
-        <?= $escaper->escapeHtml(__('Download PDF catalog')) ?>
-    </a>
+<div class="block rokezzz-category-pdf">
+    <div class="block-content">
+        <a class="action accent"
+           href="<?= $escaper->escapeUrl($block->getDownloadUrl()) ?>">
+            <?= $escaper->escapeHtml(__('Download PDF catalog')) ?>
+        </a>
+    </div>
 </div>

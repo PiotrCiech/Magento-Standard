@@ -13,4 +13,8 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Elasticsearch\Model\Adapter\BatchDataMapper\PriceFieldsProvider">
+        <plugin name="rokezzz_tax_display_price_fields"
+                type="Rokezzz\Tax\Plugin\Elasticsearch\PriceFieldsProviderPlugin"/>
+    </type>
 </config>

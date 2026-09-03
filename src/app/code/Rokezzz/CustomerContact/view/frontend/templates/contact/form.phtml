@@ -61,7 +61,8 @@ $viewModel = $block->getViewModel();
                        title="<?= $escaper->escapeHtmlAttr(__('Phone Number')) ?>"
                        value="<?= $escaper->escapeHtmlAttr($viewModel->getUserTelephone()) ?>"
                        class="input-text"
-                       type="tel" />
+                       type="tel"
+                       data-validate="{'validate-rokezzz-polish-phone':true}" />
             </div>
         </div>
         <div class="field comment required">
@@ -94,6 +95,7 @@ $viewModel = $block->getViewModel();
         </div>
     </div>
 </form>
+<?= $block->getChildHtml('rokezzz.customercontact.phone.validation') ?>
 <script type="text/x-magento-init">
     {
         "*": {

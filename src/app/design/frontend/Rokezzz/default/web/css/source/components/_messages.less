@@ -1,0 +1,64 @@
+@msg-success: #16a34a;
+@msg-info: @mainAccentColor;
+@msg-warning: #d97706;
+@msg-error: @error__color;
+
+.message-variant(@color) {
+    border-color: fade(@color, 40%);
+    background: fade(@color, 12%);
+    color: darken(@color, 14%);
+
+    a {
+        color: darken(@color, 18%);
+    }
+}
+
+& when (@media-common = true) {
+
+    .message,
+    .messages > .message {
+        margin: 0 0 12px;
+        padding: 12px 16px;
+        border: 1px solid transparent;
+        border-radius: @radiusXS;
+        font-size: @fontSizeS;
+        line-height: 1.5;
+        list-style: none;
+
+        > *:first-child::before {
+            content: none !important;
+            display: none !important;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        &.success,
+        &.message-success {
+            .message-variant(@msg-success);
+        }
+
+        &.info,
+        &.notice,
+        &.message-info,
+        &.message-notice {
+            .message-variant(@msg-info);
+        }
+
+        &.warning,
+        &.message-warning {
+            .message-variant(@msg-warning);
+        }
+
+        &.error,
+        &.message-error {
+            .message-variant(@msg-error);
+        }
+    }
+}

@@ -4,6 +4,7 @@
     <module name="Rokezzz_Category">
         <sequence>
             <module name="Magento_Catalog"/>
+            <module name="Magento_CatalogInventory"/>
             <module name="Magento_Config"/>
             <module name="Magento_LayeredNavigation"/>
             <module name="Magento_Sales"/>

@@ -37,7 +37,14 @@ final class BlockWishlistWhenDisabledPlugin
 
         /** @var Redirect $redirect */
         $redirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $redirect->setUrl($this->redirect->getRefererUrl() ?: '/');
+        $refererUrl = $this->redirect->getRefererUrl();
+        $redirectUrl = '/';
+
+        if ($refererUrl !== '' && !str_contains($refererUrl, '/wishlist')) {
+            $redirectUrl = $refererUrl;
+        }
+
+        $redirect->setUrl($redirectUrl);
 
         return $redirect;
     }

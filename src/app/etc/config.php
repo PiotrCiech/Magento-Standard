@@ -412,6 +412,7 @@ return [
         'Rokezzz_ResubmittingArchivedOrders' => 1,
         'Rokezzz_Review' => 1,
         'Rokezzz_ContractWithdrawal' => 1,
+        'Rokezzz_ShippingPayment' => 1,
         'Rokezzz_Slider' => 1,
         'Rokezzz_Styleguide' => 1,
         'Rokezzz_Tax' => 1,

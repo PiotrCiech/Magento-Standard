@@ -11,4 +11,9 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Contact\Controller\Index\Post">
+        <plugin name="rokezzz_customercontact_validate_telephone"
+                type="Rokezzz\CustomerContact\Plugin\Contact\Controller\Index\ValidateTelephonePlugin"/>
+    </type>
 </config>
