@@ -12,7 +12,7 @@ use DateTime;
 use Rokezzz\Blog\Model\AuthorFactory;
 use Rokezzz\Blog\Model\CategoryFactory;
 use Rokezzz\Blog\Model\ResourceModel\Author as AuthorResource;
-use Rokezzz\Blog\Model\ResourceModel\Category as CategoryResource;
+use Rokezzz\Blog\Model\ResourceModel\CategoryResource;
 use Rokezzz\Blog\Model\ResourceModel\Post\Collection;
 use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
 use Rokezzz\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
@@ -40,7 +40,6 @@ class PostList implements ArgumentInterface
             ->addFieldToFilter('main_table.published_at', ['lteq' => (new DateTime())->format('Y-m-d H:i:s')])
             ->setOrder('main_table.published_at', 'DESC');
 
-        // Filtrowanie po Store View
         $collection->getSelect()
             ->join(
                 ['store_table' => $collection->getTable('rokezzz_blog_post_store')],
@@ -50,7 +49,6 @@ class PostList implements ArgumentInterface
             ->where('store_table.store_id IN (?)', [0, $storeId])
             ->group('main_table.post_id');
 
-        // Filtr kategorii
         if ($this->request->getControllerName() === 'category') {
             $catIdentifier = (string)$this->request->getParam('identifier');
             $collection->getSelect()
@@ -58,7 +56,6 @@ class PostList implements ArgumentInterface
                 ->where('cat.identifier = ?', $catIdentifier);
         }
 
-        // Filtr autora
         if ($this->request->getControllerName() === 'author') {
             $authIdentifier = (string)$this->request->getParam('identifier');
             $collection->getSelect()
@@ -66,7 +63,6 @@ class PostList implements ArgumentInterface
                 ->where('auth.identifier = ?', $authIdentifier);
         }
 
-        // Filtr tagu
         if ($this->request->getControllerName() === 'tag') {
             $tagIdentifier = (string)$this->request->getParam('identifier');
             $collection->getSelect()
