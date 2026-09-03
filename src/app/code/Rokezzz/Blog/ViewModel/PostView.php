@@ -15,7 +15,7 @@ use Rokezzz\Blog\Model\AuthorFactory;
 use Rokezzz\Blog\Model\CategoryFactory;
 use Rokezzz\Blog\Model\Post;
 use Rokezzz\Blog\Model\ResourceModel\Author as AuthorResource;
-use Rokezzz\Blog\Model\ResourceModel\Category as CategoryResource;
+use Rokezzz\Blog\Model\ResourceModel\CategoryResource;
 use Rokezzz\Blog\Model\ResourceModel\Comment\CollectionCreator as CommentCollectionCreator;
 use Rokezzz\Blog\Model\ResourceModel\Post\CollectionCreator;
 use Rokezzz\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
