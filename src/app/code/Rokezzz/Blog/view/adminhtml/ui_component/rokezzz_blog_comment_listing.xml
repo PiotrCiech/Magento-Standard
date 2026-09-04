@@ -102,12 +102,14 @@
                 <label translate="true">Content</label>
             </settings>
         </column>
-        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="60">
+        <column name="status" class="Rokezzz\Blog\Ui\Component\Listing\Column\CommentStatus" sortOrder="60">
             <settings>
                 <options class="Rokezzz\Blog\Model\Comment\Source\Status"/>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Status</label>
+                <sortable>false</sortable>
             </settings>
         </column>
         <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="70">
