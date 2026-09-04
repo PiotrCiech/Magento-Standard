@@ -76,8 +76,24 @@ if (!$stockLabelViewModel instanceof StockLabel) {
                 <?php ?>
                 <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
                     class="product photo product-item-photo" tabindex="-1">
-                    <?php if ($newLabelViewModel instanceof NewLabel && $newLabelViewModel->isNew($_product)): ?>
-                    <span class="product-label product-label--new"><?= $escaper->escapeHtml(__('New')) ?></span>
+                    <?php
+                    $productLabels = $productListLabelsViewModel
+                        ? $productListLabelsViewModel->forProduct($_product)
+                        : ['badge' => null, 'discountLabel' => null];
+                    $stockLabel = $stockLabelViewModel ? $stockLabelViewModel->getLabel($_product) : null;
+                    ?>
+                    <?php if ($productLabels['badge'] !== null || $productLabels['discountLabel'] !== null): ?>
+                    <span class="product-labels">
+                        <?php if ($productLabels['badge'] !== null): ?>
+                        <span class="product-label <?= $escaper->escapeHtmlAttr($productLabels['badge']['css']) ?>"><?= $escaper->escapeHtml($productLabels['badge']['text']) ?></span>
+                        <?php endif; ?>
+                        <?php if ($productLabels['discountLabel'] !== null): ?>
+                        <span class="product-label product-label--discount"><?= $escaper->escapeHtml($productLabels['discountLabel']) ?></span>
+                        <?php endif; ?>
+                    </span>
+                    <?php endif; ?>
+                    <?php if ($stockLabel !== null): ?>
+                    <span class="product-item-stock-label"><?= $escaper->escapeHtml($stockLabel) ?></span>
                     <?php endif; ?>
                     <?= $productImage->toHtml() ?>
                 </a>

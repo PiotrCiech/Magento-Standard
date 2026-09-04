@@ -40,6 +40,10 @@ class CommentActions extends Column
                     ),
                     'label' => __('Accept'),
                     'post' => true,
+                    'confirm' => [
+                        'title' => __('Accept comment'),
+                        'message' => __('Approve this comment?'),
+                    ],
                 ],
                 'reject' => [
                     'href' => $this->urlBuilder->getUrl(
@@ -48,6 +52,10 @@ class CommentActions extends Column
                     ),
                     'label' => __('Reject'),
                     'post' => true,
+                    'confirm' => [
+                        'title' => __('Reject comment'),
+                        'message' => __('Reject this comment?'),
+                    ],
                 ],
             ];
         }

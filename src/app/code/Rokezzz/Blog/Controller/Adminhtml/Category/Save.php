@@ -11,6 +11,7 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\Request\Http as HttpRequest;
 use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Filter\FilterManager;
 use Rokezzz\Blog\Model\CategoryCreator;
 use Rokezzz\Blog\Model\ResourceModel\CategoryResource;
 
@@ -22,7 +23,8 @@ class Save extends Action implements HttpPostActionInterface
         Context $context,
         private readonly CategoryCreator $categoryCreator,
         private readonly CategoryResource $categoryResource,
-        private readonly DataPersistorInterface $dataPersistor
+        private readonly DataPersistorInterface $dataPersistor,
+        private readonly FilterManager $filterManager
     ) {
         parent::__construct($context);
     }
@@ -57,6 +59,14 @@ class Save extends Action implements HttpPostActionInterface
 
         if (empty($data['category_id'])) {
             unset($data['category_id']);
+        }
+
+        if (empty($data['identifier'])) {
+            if ($categoryId > 0 && $category->getIdentifier() !== '') {
+                $data['identifier'] = $category->getIdentifier();
+            } elseif (!empty($data['name'])) {
+                $data['identifier'] = $this->filterManager->translitUrl((string) $data['name']);
+            }
         }
 
         $category->addData($data);
