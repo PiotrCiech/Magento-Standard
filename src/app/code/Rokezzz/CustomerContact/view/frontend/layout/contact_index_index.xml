@@ -10,9 +10,6 @@
                    name="rokezzz.customer.contact.assigned.admin"
                    template="Rokezzz_CustomerContact::contact/assigned_admin.phtml"
                    cacheable="false"/>
-            <block class="Magento\Framework\View\Element\Template"
-                   name="rokezzz.customercontact.phone.validation"
-                   template="Rokezzz_CustomerContact::contact/phone-validation.phtml"/>
         </referenceBlock>
     </body>
 </page>

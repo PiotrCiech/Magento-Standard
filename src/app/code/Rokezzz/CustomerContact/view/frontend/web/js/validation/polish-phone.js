@@ -1,7 +1,8 @@
 define([
     'jquery',
+    'jquery/validate',
     'mage/translate'
-], function ($, $t) {
+], function ($) {
     'use strict';
 
     $.validator.addMethod(
@@ -19,6 +20,6 @@ define([
 
             return /^\d{9}$/.test(digits);
         },
-        $t('Please enter a valid phone number.')
+        $.mage.__('Please enter a valid phone number.')
     );
 });
