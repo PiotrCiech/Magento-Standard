@@ -38,7 +38,6 @@ final class ListingParamsSanitizer
         $params = $this->sanitize($this->request->getParams());
 
         if ($baseUrl !== '') {
-            // Base may already contain ?q=… (e.g. buildSearchListingUrl); never append again.
             $questionPos = strpos($baseUrl, '?');
 
             if ($questionPos !== false) {
