@@ -4,16 +4,29 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 
-if (!$block->isLoggedIn()) {
-    return;
-}
-
-$dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+$logoutUrl = $block->getUrl('customer/account/logout');
+$loginUrl = $block->getUrl('customer/account/login');
 ?>
-<a class="mobile-logout-link"
-   href="<?= $escaper->escapeUrl($block->getHref()) ?>"
-   title="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
-   aria-label="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
-   <?= /* @noEscape */ $dataPostParam ?>>
-    <?= $escaper->escapeHtml(__('Sign Out')) ?>
-</a>
+<div class="mobile-auth" data-bind="scope: 'customer'">
+    <a class="mobile-logout-link" href="<?= $escaper->escapeUrl($logoutUrl) ?>"
+        title="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>">
+        <?= $escaper->escapeHtml(__('Sign Out')) ?>
+    </a>
+    <a class="mobile-logout-link mobile-login-link" href="<?= $escaper->escapeUrl($loginUrl) ?>"
+        title="<?= $escaper->escapeHtmlAttr(__('Sign In')) ?>">
+        <?= $escaper->escapeHtml(__('Sign In')) ?>
+    </a>
+</div>
+<script type="text/x-magento-init">
+    {
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "customer": {
+                    "component": "Magento_Customer/js/view/customer"
+                }
+            }
+        }
+    }
+}
+</script>

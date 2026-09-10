@@ -24060,3 +24060,4 @@ Currency,Waluta,module,PayPal_Braintree
 "Message","Wiadomość",module,Magento_Contact
 "Please enter more or equal than %1 symbols.","Wpisz przynajmniej %1 znaki(-ów).",module,Magento_Contact
 "Please enter less or equal than %1 symbols.","Wpisz maksymalnie %1 znaki(-ów).",module,Magento_Contact
+"Cart","Koszyk",module,Magento_Checkout
