@@ -7,5 +7,10 @@
                 <enabled>0</enabled>
             </general>
         </rokezzz_shipping_payment>
+        <payment>
+            <checkmo>
+                <title>Dane kontaktowe</title>
+            </checkmo>
+        </payment>
     </default>
 </config>
