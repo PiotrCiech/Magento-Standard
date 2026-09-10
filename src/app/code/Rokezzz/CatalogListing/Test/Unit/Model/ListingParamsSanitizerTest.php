@@ -49,6 +49,20 @@ final class ListingParamsSanitizerTest extends TestCase
         );
     }
 
+    public function testBuildCurrentListingUrlDoesNotDuplicateExistingQuery(): void
+    {
+        $this->request->method('getParams')->willReturn([
+            QueryFactory::QUERY_VAR_NAME => 'test',
+        ]);
+
+        $this->assertSame(
+            'https://example.test/catalogsearch/result/?' . QueryFactory::QUERY_VAR_NAME . '=test',
+            $this->sanitizer->buildCurrentListingUrl(
+                'https://example.test/catalogsearch/result/?' . QueryFactory::QUERY_VAR_NAME . '=test'
+            )
+        );
+    }
+
     public function testBuildSearchListingUrlSetsQueryText(): void
     {
         $this->request->method('getParams')->willReturn([
@@ -62,7 +76,7 @@ final class ListingParamsSanitizerTest extends TestCase
         );
 
         $this->assertSame(
-            'catalogsearch/result/index?p=3&' . QueryFactory::QUERY_VAR_NAME . '=shoes',
+            'catalogsearch/result?p=3&' . QueryFactory::QUERY_VAR_NAME . '=shoes',
             $this->sanitizer->buildSearchListingUrl('shoes')
         );
     }

@@ -38,10 +38,16 @@ final class ListingParamsSanitizer
         $params = $this->sanitize($this->request->getParams());
 
         if ($baseUrl !== '') {
-            $separator = str_contains($baseUrl, '?') ? '&' : '?';
+            // Base may already contain ?q=… (e.g. buildSearchListingUrl); never append again.
+            $questionPos = strpos($baseUrl, '?');
+
+            if ($questionPos !== false) {
+                $baseUrl = substr($baseUrl, 0, $questionPos);
+            }
+
             $query = http_build_query($params);
 
-            return $query === '' ? $baseUrl : $baseUrl . $separator . $query;
+            return $query === '' ? $baseUrl : $baseUrl . '?' . $query;
         }
 
         return $this->urlBuilder->getUrl('*/*/*', [
@@ -57,7 +63,7 @@ final class ListingParamsSanitizer
         unset($params[QueryFactory::QUERY_VAR_NAME]);
         $params[QueryFactory::QUERY_VAR_NAME] = $queryText;
 
-        return $this->urlBuilder->getUrl('catalogsearch/result/index', [
+        return $this->urlBuilder->getUrl('catalogsearch/result', [
             '_query' => $params,
         ]);
     }
