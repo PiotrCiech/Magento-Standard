@@ -5,21 +5,25 @@ define([
 ], function ($) {
     'use strict';
 
-    $.validator.addMethod(
-        'validate-rokezzz-polish-phone',
-        function (value) {
-            if (!value || $.trim(value) === '') {
-                return true;
-            }
+    return function (validation) {
+        $.validator.addMethod(
+            'validate-rokezzz-polish-phone',
+            function (value) {
+                if (!value || $.trim(value) === '') {
+                    return true;
+                }
 
-            var digits = value.replace(/\D/g, '');
+                var digits = value.replace(/\D/g, '');
 
-            if (digits.indexOf('48') === 0 && digits.length === 11) {
-                digits = digits.substring(2);
-            }
+                if (digits.indexOf('48') === 0 && digits.length === 11) {
+                    digits = digits.substring(2);
+                }
 
-            return /^\d{9}$/.test(digits);
-        },
-        $.mage.__('Please enter a valid phone number.')
-    );
+                return /^\d{9}$/.test(digits);
+            },
+            $.mage.__('Please enter a valid phone number.')
+        );
+
+        return validation;
+    };
 });
