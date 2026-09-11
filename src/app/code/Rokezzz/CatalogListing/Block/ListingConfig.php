@@ -59,7 +59,7 @@ class ListingConfig extends Template
 
     public function getSearchResultUrl(): string
     {
-        return $this->urlBuilder->getUrl('catalogsearch/result/index');
+        return $this->urlBuilder->getUrl('catalogsearch/result');
     }
 
     public function getJsonConfig(): string

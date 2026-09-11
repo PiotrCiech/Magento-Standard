@@ -166,7 +166,7 @@ class ListingFragmentRenderer implements ListingFragmentRendererInterface
             'productsHtml' => '',
             'filtersHtml' => '',
             'url' => $queryText === ''
-                ? $this->urlBuilder->getUrl('catalogsearch/result/index')
+                ? $this->urlBuilder->getUrl('catalogsearch/result')
                 : $this->paramsSanitizer->buildSearchListingUrl($queryText),
             'pageTitle' => '',
         ];
