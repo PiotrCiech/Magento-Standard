@@ -5,7 +5,7 @@
         <rokezzz_order_advance>
             <order_number>
                 <enabled>1</enabled>
-                <label>Your order number</label>
+                <label>Twój numer zamówienia</label>
                 <placeholder/>
                 <max_length>64</max_length>
             </order_number>

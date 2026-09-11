@@ -34,9 +34,10 @@ $viewModel = $block->getViewModel();
                        id="name"
                        title="<?= $escaper->escapeHtmlAttr(__('Name')) ?>"
                        value="<?= $escaper->escapeHtmlAttr($viewModel->getUserName()) ?>"
-                       class="input-text"
+                       class="input-text validate-length minimum-length-2 maximum-length-100"
                        type="text"
-                       data-validate="{required:true}"/>
+                       data-validate="{required:true}"
+                       data-mage-init='{"mage/trim-input":{}}'/>
             </div>
         </div>
         <div class="field email required">
@@ -46,7 +47,7 @@ $viewModel = $block->getViewModel();
                        id="email"
                        title="<?= $escaper->escapeHtmlAttr(__('Email')) ?>"
                        value="<?= $escaper->escapeHtmlAttr($viewModel->getUserEmail()) ?>"
-                       class="input-text"
+                       class="input-text validate-length maximum-length-255"
                        type="email"
                        data-validate="{required:true, 'validate-email':true}"
                        data-mage-init='{"mage/trim-input":{}}'
@@ -73,7 +74,7 @@ $viewModel = $block->getViewModel();
                 <textarea name="comment"
                           id="comment"
                           title="<?= $escaper->escapeHtmlAttr(__('Message')) ?>"
-                          class="input-text"
+                          class="input-text validate-length minimum-length-3 maximum-length-2000"
                           cols="5"
                           rows="3"
                           data-validate="{required:true}"
@@ -95,7 +96,6 @@ $viewModel = $block->getViewModel();
         </div>
     </div>
 </form>
-<?= $block->getChildHtml('rokezzz.customercontact.phone.validation') ?>
 <script type="text/x-magento-init">
     {
         "*": {

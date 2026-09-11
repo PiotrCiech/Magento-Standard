@@ -28,6 +28,8 @@ $isWishlistEnabled = $wishlistAvailability instanceof StorefrontAvailability
             <div class="mobile-bottom-links">
                 <?= $block->getChildHtml('mobile_logout_link') ?>
                 <div class="mobile-bottom-links-row">
+                    <a class="mobile-cart-link"
+                        href="<?= $block->escapeUrl($block->getUrl('checkout/cart')) ?>"><?= $block->escapeHtml(__('Cart')) ?></a>
                     <a class="mobile-account-link"
                         href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>"><?= $block->escapeHtml(__('My Account')) ?></a>
                     <?php if ($isWishlistEnabled): ?>

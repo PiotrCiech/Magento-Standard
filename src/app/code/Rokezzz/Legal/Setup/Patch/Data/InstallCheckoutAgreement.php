@@ -15,8 +15,8 @@ use Magento\Store\Model\Store;
 final class InstallCheckoutAgreement implements DataPatchInterface
 {
     private const AGREEMENT_NAME = 'Store terms and conditions';
-    private const AGREEMENT_CONTENT = 'I accept the store terms and conditions.';
-    private const AGREEMENT_CHECKBOX_TEXT = 'I have read and accept the store terms and conditions';
+    private const AGREEMENT_CONTENT = 'Akceptuję regulamin sklepu.';
+    private const AGREEMENT_CHECKBOX_TEXT = 'Zapoznałem się i akceptuję regulamin sklepu';
     private const ENABLE_AGREEMENTS_CONFIG_PATH = 'checkout/options/enable_agreements';
 
     public function __construct(
