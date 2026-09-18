@@ -60,6 +60,7 @@
                 order: 3;
                 flex: 0 0 auto;
                 width: auto;
+                max-width: none;
                 height: 40px;
                 margin: 0 0 0 auto !important;
                 position: static;
@@ -92,6 +93,7 @@
                     cursor: pointer;
                     position: relative;
                     z-index: 10;
+                    flex-shrink: 0;
 
                     &:before {
                         display: none !important;
@@ -110,6 +112,9 @@
                 }
 
                 .form.minisearch {
+                    display: block;
+                    width: auto;
+
                     .control {
                         border: 0;
                         clear: none;
@@ -135,19 +140,24 @@
                     }
 
                     &.active {
+                        .label {
+                            visibility: hidden;
+                        }
+
                         .control {
                             position: absolute !important;
-                            top: 100%;
-                            left: 0;
-                            right: 0;
+                            top: 50% !important;
+                            left: 56px !important;
+                            right: 20px !important;
                             width: auto !important;
-                            height: auto !important;
+                            height: 40px !important;
                             margin: 0 !important;
-                            padding: 12px 20px !important;
+                            padding: 0 !important;
+                            transform: translateY(-50%);
                             background: @whiteColor;
-                            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+                            box-shadow: none;
                             box-sizing: border-box;
-                            z-index: 20 !important;
+                            z-index: 25 !important;
                             opacity: 1 !important;
                             pointer-events: auto !important;
                             overflow: visible;
@@ -159,39 +169,48 @@
                             display: block !important;
                             width: 100% !important;
                             max-width: none !important;
-                            height: 46px !important;
+                            height: 40px !important;
                             margin: 0 !important;
-                            padding: 0 52px 0 16px !important;
+                            padding: 0 44px 0 14px !important;
                             border-radius: 999px;
                             box-sizing: border-box;
+                            background: rgba(255, 255, 255, .95);
                         }
 
                         .search-autocomplete {
-                            position: relative;
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            right: 0;
                             width: 100%;
-                            margin-top: 8px;
+                            margin-top: 6px;
+                            z-index: 30;
                         }
 
                         .actions {
                             display: block !important;
                             position: absolute;
-                            top: 100%;
-                            right: 26px;
-                            width: 46px;
-                            height: 46px;
-                            margin: 12px 0 0;
+                            top: 50%;
+                            right: 24px;
+                            width: 34px;
+                            height: 34px;
+                            margin: 0;
                             padding: 0;
-                            transform: none;
-                            z-index: 21;
+                            transform: translateY(-50%);
+                            z-index: 26;
                         }
 
                         .action.search {
                             display: flex !important;
                             align-items: center;
                             justify-content: center;
-                            width: 36px !important;
-                            height: 36px !important;
-                            margin: 5px 0 0 auto;
+                            position: static !important;
+                            top: auto !important;
+                            right: auto !important;
+                            transform: none !important;
+                            width: 34px !important;
+                            height: 34px !important;
+                            margin: 0;
                             border-radius: 50%;
                             background: @mainColor !important;
                             border: none !important;
