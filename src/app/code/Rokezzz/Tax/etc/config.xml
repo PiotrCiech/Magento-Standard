@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <tax>
+            <rokezzz_display>
+                <mode>2</mode>
+            </rokezzz_display>
+            <display>
+                <type>2</type>
+                <shipping>2</shipping>
+            </display>
+            <cart_display>
+                <price>2</price>
+                <subtotal>2</subtotal>
+                <shipping>2</shipping>
+            </cart_display>
+            <sales_display>
+                <price>2</price>
+                <subtotal>2</subtotal>
+                <shipping>2</shipping>
+            </sales_display>
+        </tax>
+    </default>
+</config>

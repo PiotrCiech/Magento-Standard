@@ -10,8 +10,10 @@
 
     .page-header {
         margin-bottom: 0;
+        overflow: visible;
 
         .header.content {
+            overflow: visible;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -56,15 +58,33 @@
 
             .block.block-search {
                 order: 3;
+                flex: 0 0 auto;
                 width: auto;
+                height: 40px;
                 margin: 0 0 0 auto !important;
-                position: relative;
+                position: static;
                 display: block !important;
+                overflow: visible;
                 opacity: 1 !important;
                 visibility: visible !important;
 
+                .block-title {
+                    display: none !important;
+                }
+
+                .block-content,
+                .form.minisearch,
+                .field.search {
+                    margin: 0;
+                    padding: 0;
+                    position: static;
+                    width: auto;
+                    overflow: visible;
+                }
+
                 .label {
                     display: flex !important;
+                    float: none;
                     width: 40px;
                     height: 40px;
                     align-items: center;
@@ -90,14 +110,25 @@
                 }
 
                 .form.minisearch {
+                    .control {
+                        border: 0;
+                        clear: none;
+                    }
+
                     &:not(.active) {
                         .control {
                             position: absolute !important;
-                            z-index: -1 !important;
+                            left: -9999px !important;
+                            width: 1px !important;
+                            height: 1px !important;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            overflow: hidden;
                             opacity: 0 !important;
                             pointer-events: none !important;
                         }
 
+                        .actions,
                         .search-autocomplete {
                             display: none !important;
                         }
@@ -105,77 +136,82 @@
 
                     &.active {
                         .control {
-                            position: relative !important;
-                            z-index: 1 !important;
+                            position: absolute !important;
+                            top: 100%;
+                            left: 0;
+                            right: 0;
+                            width: auto !important;
+                            height: auto !important;
+                            margin: 0 !important;
+                            padding: 12px 20px !important;
+                            background: @whiteColor;
+                            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+                            box-sizing: border-box;
+                            z-index: 20 !important;
                             opacity: 1 !important;
                             pointer-events: auto !important;
-                        }
-                    }
-                }
-
-                .control {
-                    border-top: 0px solid #d1d1d1;
-                    clear: both;
-                    margin: 0 -15px -1px;
-                    padding: 0 15px;
-                }
-
-                &.active .block-content {
-                    display: block !important;
-                    position: absolute;
-                    top: 50px;
-                    left: auto;
-                    right: -20px;
-                    width: 100vw;
-                    background: #fff;
-                    padding: 15px;
-                    z-index: 9999;
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
-
-                    .form.minisearch {
-                        position: relative;
-                    }
-
-                    input[type="text"] {
-                        width: 100%;
-                        height: 46px;
-                        padding-right: 55px;
-                        border-radius: 999px;
-                        box-sizing: border-box;
-                    }
-
-                    .actions {
-                        position: absolute;
-                        top: 0%;
-                        right: -10px;
-                        transform: translateY(-50%);
-                        z-index: 10;
-                    }
-
-                    .action.search {
-                        width: 36px !important;
-                        height: 36px !important;
-                        display: flex !important;
-                        align-items: center;
-                        justify-content: center;
-                        border-radius: 50%;
-                        background: @mainColor !important;
-                        border: none !important;
-                        padding: 0 !important;
-
-                        &:before {
-                            display: none !important;
+                            overflow: visible;
                         }
 
-                        span {
-                            display: none !important;
-                        }
-
-                        svg.custom-search-icon {
-                            width: 18px;
-                            height: 18px;
-                            color: #fff !important;
+                        input[type="text"] {
+                            position: static !important;
+                            left: auto !important;
                             display: block !important;
+                            width: 100% !important;
+                            max-width: none !important;
+                            height: 46px !important;
+                            margin: 0 !important;
+                            padding: 0 52px 0 16px !important;
+                            border-radius: 999px;
+                            box-sizing: border-box;
+                        }
+
+                        .search-autocomplete {
+                            position: relative;
+                            width: 100%;
+                            margin-top: 8px;
+                        }
+
+                        .actions {
+                            display: block !important;
+                            position: absolute;
+                            top: 100%;
+                            right: 26px;
+                            width: 46px;
+                            height: 46px;
+                            margin: 12px 0 0;
+                            padding: 0;
+                            transform: none;
+                            z-index: 21;
+                        }
+
+                        .action.search {
+                            display: flex !important;
+                            align-items: center;
+                            justify-content: center;
+                            width: 36px !important;
+                            height: 36px !important;
+                            margin: 5px 0 0 auto;
+                            border-radius: 50%;
+                            background: @mainColor !important;
+                            border: none !important;
+                            padding: 0 !important;
+                            opacity: 1 !important;
+
+                            &:before {
+                                display: none !important;
+                            }
+
+                            span {
+                                display: none !important;
+                            }
+
+                            svg.custom-search-icon {
+                                width: 18px;
+                                height: 18px;
+                                color: #fff !important;
+                                display: block !important;
+                            }
                         }
                     }
                 }
