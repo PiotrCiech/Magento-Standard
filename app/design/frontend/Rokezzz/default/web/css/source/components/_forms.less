@@ -1,0 +1,134 @@
+@input-border-radius: 12px;
+@input-height: 44px;
+@input-line-height: 42px;
+@input-focus-shadow-size: 4px;
+@input-focus-shadow-color: fade(@mainAccentColor, 15%);
+
+& when (@media-common =true) {
+
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='number'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='url'],
+    textarea,
+    select {
+        width: 100%;
+        font-size: @fontSizeM;
+        border-radius: @input-border-radius;
+        border: 1px solid fade(@text__color, 15%);
+        background: @whiteColor;
+        color: @text__color;
+        box-sizing: border-box;
+        outline: none;
+        transition:
+            border-color .25s ease,
+            box-shadow .25s ease,
+            transform .25s ease;
+
+        &:focus,
+        &:focus-visible,
+        &:active {
+            outline: none !important;
+            border-color: @mainAccentColor;
+            box-shadow: 0 0 0 @input-focus-shadow-size @input-focus-shadow-color;
+        }
+
+        &:hover {
+            border-color: fade(@mainColor, 25%);
+        }
+    }
+
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='number'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='url'],
+    select {
+        height: @input-height;
+        padding: 0 14px;
+        line-height: @input-line-height;
+    }
+
+    textarea {
+        min-height: 120px;
+        padding: 12px 14px;
+        resize: vertical;
+        line-height: 1.4;
+    }
+
+    select {
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280' stroke-width='2'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        background-size: 16px;
+        padding-right: 40px;
+
+        option {
+            background: @whiteColor;
+            color: @text__color;
+            padding: 10px;
+        }
+    }
+
+    input[type='radio'],
+    input[type='checkbox'] {
+        accent-color: @mainColor;
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        vertical-align: -3px;
+        outline: none;
+        transition: transform 0.2s ease;
+
+        &:focus,
+        &:focus-visible,
+        &:active {
+            outline: none !important;
+            box-shadow: 0 0 0 3px fade(@mainColor, 15%);
+        }
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    label {
+        font-size: @fontSizeS;
+        font-weight: 500;
+        color: fade(@text__color, 80%);
+        margin-bottom: 6px;
+        display: inline-block;
+
+        &:has(input[type='checkbox']),
+        &:has(input[type='radio']) {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+    }
+
+    input:not([disabled]):focus,
+    textarea:not([disabled]):focus,
+    select:not([disabled]):focus {
+        box-shadow: 0 0 0 @input-focus-shadow-size @input-focus-shadow-color !important;
+        border-color: @mainAccentColor !important;
+    }
+
+    input[type='radio']:not([disabled]):focus,
+    input[type='checkbox']:not([disabled]):focus {
+        box-shadow: 0 0 0 3px fade(@mainColor, 15%) !important;
+    }
+}
