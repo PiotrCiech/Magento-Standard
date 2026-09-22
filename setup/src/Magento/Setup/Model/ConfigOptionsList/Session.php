@@ -584,7 +584,6 @@ class Session implements ConfigOptionsListInterface
         $inputToConfigMap = [];
         $configData = new ConfigData(ConfigFilePool::APP_ENV);
 
-        //Set session-save option
         if (isset($options[ConfigOptionsListConstants::INPUT_KEY_SESSION_SAVE])) {
             $configData->setOverrideWhenSave(true);
             $configData->set(
@@ -604,10 +603,8 @@ class Session implements ConfigOptionsListInterface
 
         $sessionSave = $options[ConfigOptionsListConstants::INPUT_KEY_SESSION_SAVE] ?? null;
         if ($sessionSave === ConfigOptionsListConstants::SESSION_SAVE_VALKEY) {
-            // Set all Valkey options that are specified
             $inputToConfigMap = $this->valkeyInputKeyToConfigPathMap;
         } else {
-            // Set all Redis options that are specified
             $inputToConfigMap = $this->redisInputKeyToConfigPathMap;
         }
 

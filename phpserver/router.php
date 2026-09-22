@@ -1,22 +1,4 @@
 <?php
-/**
- * Copyright 2015 Adobe
- * All Rights Reserved.
- */
-
-/**
- * this is a router file for the php Built-in web server
- * https://secure.php.net/manual/en/features.commandline.webserver.php
- *
- * It provides the same "rewrites" as the .htaccess for apache,
- * or the nginx.conf.sample for nginx.
- *
- * example usage: php -S 127.0.0.41:8082 -t ./pub/ ./router.php
- */
-
-/**
- * Set it to true to enable debug mode
- */
 define('DEBUG_ROUTER', false);
 
 $debug = function ($val) {
@@ -31,11 +13,6 @@ $debug = function ($val) {
     error_log('debug: '.$val);
 };
 
-/**
- * Caution, this is very experimental stuff
- * no guarantee for working result
- * has tons of potential big security holes
- */
 
 if (php_sapi_name() === 'cli-server') {
     $debug("URI: {$_SERVER["REQUEST_URI"]}");

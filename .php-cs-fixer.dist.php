@@ -1,12 +1,4 @@
 <?php
-/**
- * Copyright 2021 Adobe
- * All Rights Reserved.
- */
-
-/**
- * PHP Coding Standards fixer configuration
- */
 
 $finder = PhpCsFixer\Finder::create()
     ->name('*.phtml')
