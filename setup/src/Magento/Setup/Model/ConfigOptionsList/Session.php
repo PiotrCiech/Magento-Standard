@@ -602,12 +602,13 @@ class Session implements ConfigOptionsListInterface
             }
         }
 
-        if (ConfigOptionsListConstants::SESSION_SAVE_REDIS) {
-            //Set all Redis options that are specified
-            $inputToConfigMap = $this->redisInputKeyToConfigPathMap;
-        } elseif (ConfigOptionsListConstants::SESSION_SAVE_VALKEY) {
-            //Set all Valkey options that are specified
+        $sessionSave = $options[ConfigOptionsListConstants::INPUT_KEY_SESSION_SAVE] ?? null;
+        if ($sessionSave === ConfigOptionsListConstants::SESSION_SAVE_VALKEY) {
+            // Set all Valkey options that are specified
             $inputToConfigMap = $this->valkeyInputKeyToConfigPathMap;
+        } else {
+            // Set all Redis options that are specified
+            $inputToConfigMap = $this->redisInputKeyToConfigPathMap;
         }
 
         foreach ($inputToConfigMap as $inputKey => $configPath) {

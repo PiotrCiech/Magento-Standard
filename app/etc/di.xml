@@ -316,6 +316,7 @@
             <argument name="handlers" xsi:type="array">
                 <item name="db" xsi:type="string">Magento\Framework\Session\SaveHandler\DbTable</item>
                 <item name="redis" xsi:type="string">Magento\Framework\Session\SaveHandler\Redis</item>
+                <item name="valkey" xsi:type="string">Magento\Framework\Session\SaveHandler\Redis</item>
             </argument>
         </arguments>
     </type>

@@ -1,14 +1,15 @@
 # Template Magento
 
-Empty Magento 2.4.9 project prepared as a base for Rokezzz Magento projects.
+Magento 2.4.9 project prepared as a base for Rokezzz Magento projects.
 
-The project contains a Docker-based local environment, basic Magento infrastructure services, custom Rokezzz modules and code style tooling for PHP files in `app/code/Rokezzz`.
+The **Git repository contains Magento only** (application root: `app/`, `bin/`, `pub/`, `composer.json`, …). Local tooling — `compose.yaml`, `docker/`, `vite/`, `Makefile`, `.env` — lives next to the project on your machine and is **gitignored** (not pushed to remotes).
 
 Main project assumptions:
 
-- Magento source code is kept in the `src` directory.
-- Custom project modules are kept in `src/app/code/Rokezzz`.
-- Local environment is managed by `compose.yaml`.
+- Magento lives at the **repository root** (not under `src/`).
+- Custom modules live in `app/code/Rokezzz`.
+- Default storefront theme after install is **Rokezzz/default** (data patch in `Rokezzz_Core`).
+- Local Docker environment is managed by `compose.yaml` (PHP container mounts the project at `/var/www/source`).
 - PHP code style is checked by PHP-CS-Fixer and PHPCS.
 - Pull requests are checked by GitHub Actions.
 
@@ -65,50 +66,64 @@ git checkout develop
 
 Day-to-day work uses the `develop` branch (feature branches are created from it).
 
-### 5. Configure `.env`
+### 5. Local Docker / Vite (outside Git)
+
+Clone gives you Magento only. Place (or restore) local tooling next to it: `compose.yaml`, `docker/`, `vite/`, `Makefile`, `.env.example` — from the team (password manager / internal docs), not from this repo.
+
+### 6. Configure `.env`
 
 ```bash
 cp .env.example .env
 ```
 
-Set `HOST_UID` / `HOST_GID` to the values from WSL (`id -u` / `id -g`) so files under `src` have correct ownership. Passwords and ports from `.env.example` are usually fine for local use.
+Set `HOST_UID` / `HOST_GID` from WSL (`id -u` / `id -g`) so generated files have correct ownership. Passwords in `.env` must match the values used in `setup:install` below.
 
-**Important:** `.env` / `.env.example` configure **Docker** (MariaDB, Valkey, RabbitMQ, ports). They are **not** a Magento install and **do not** replace `setup:install`. Passwords in `.env` must match those used in `setup:install` (or an existing `app/etc/env.php` plus a database dump).
+**Important:** `.env` configures **Docker** (MariaDB, Valkey, RabbitMQ, OpenSearch password, ports). It is **not** a Magento install and does **not** replace `setup:install`.
 
-### 6. Start the Docker environment
+### 7. Hosts (Windows)
 
-From the project root (where `compose.yaml` lives):
+Browsers on Windows resolve names via the **Windows** hosts file (not WSL `/etc/hosts`):
+
+`C:\Windows\System32\drivers\etc\hosts` (edit Notepad **as Administrator**):
+
+```text
+127.0.0.1 rokezzz-app.local
+```
+
+### 8. Start the Docker environment
+
+From the project directory (where `compose.yaml` lives):
 
 ```bash
 make start
 # equivalent: docker compose up -d --build
 ```
 
-The first build can take a while.
+The first build can take a while. PHP mounts the Magento root at `/var/www/source`.
 
-### 7. Composer / Magento Marketplace
+### 9. Composer / Magento Marketplace
 
-`src/vendor/` is not in the repository — Composer downloads packages from `repo.magento.com`.
+`vendor/` is not in the repository — Composer downloads packages from `repo.magento.com`.
 
 #### How the team handles Marketplace packages
 
 Magento Marketplace entitlements are tied to an **account**, not to individual people. Therefore:
 
-1. There is **one shared company account** on [marketplace.magento.com](https://marketplace.magento.com/) that already owns / can download every extension listed in `src/composer.json` (InPost, Przelewy24, Furgonetka, etc.).
+1. There is **one shared company account** on [marketplace.magento.com](https://marketplace.magento.com/) that already owns / can download every extension listed in `composer.json` (InPost, Przelewy24, Furgonetka, etc.).
 2. That account has **Access Keys** (Public + Private).
 3. The keys live in the **team password manager** (1Password / Bitwarden / …) — **never in the Git repository**.
 4. A new developer only needs those keys from the team and then runs Composer. They do **not** need to open Marketplace or buy anything.
 
-New developer (from the project root → PHP container workdir is `src`):
+Inside the PHP container (workdir `/var/www/source` = Magento root):
 
 ```bash
-docker compose exec php bash
+docker compose exec -u www-data php bash
 composer config --auth http-basic.repo.magento.com PUBLIC_KEY PRIVATE_KEY
 composer install
 exit
 ```
 
-`PUBLIC_KEY` = username, `PRIVATE_KEY` = password. This creates `src/auth.json` (listed in `.gitignore` — never commit it).
+`PUBLIC_KEY` = username, `PRIVATE_KEY` = password. This creates `auth.json` in the Magento root (listed in `.gitignore` — never commit it).
 
 When you add a **new** Marketplace module: one person logs into the company account, completes Get Access / purchase, updates `composer.json` / lock — everyone else only runs `composer install` with the same keys.
 
@@ -121,20 +136,20 @@ When you add a **new** Marketplace module: one person logs into the company acco
 
 Committing `vendor/` or sharing zip archives is not a solution — it breaks Marketplace licenses and bloats the repo.
 
-### 8. Magento install and daily work
+### 10. Magento install and daily work
 
-**Important — two directories:**
+**Important — where commands run:**
 
 | Where | What you run |
 | --- | --- |
-| **Project root** (where `compose.yaml` is) | `docker compose …`, `make …` |
-| **`src/`** (= PHP container `/var/www/html`) | `composer …`, `php bin/magento …` |
+| **Host** (directory with `compose.yaml`) | `docker compose …`, `make …` |
+| **PHP container** (`/var/www/source` = Magento root) | `composer …`, `php bin/magento …` |
 
-Do **not** run `setup:install` / `bin/magento` from the project root on the host — enter the container (workdir is already `src`) or `cd src` only when you intentionally work in that tree.
+Do **not** run `setup:install` / `bin/magento` on the host — enter the container first.
 
 After `composer install` (inside the PHP container):
 
-1. **First time on this machine** (no `src/app/etc/env.php`) → [First Install](#first-install).
+1. **First time on this machine** (no `app/etc/env.php`) → [First Install](#first-install).
 2. **Afterwards**:
 
 ```bash
@@ -148,7 +163,7 @@ docker compose exec -u www-data php php bin/magento cache:flush
 ```
 
 ```bash
-# from the project root:
+# from the host (project directory):
 docker compose exec -u www-data php php bin/magento setup:upgrade
 # or after entering the container:
 # docker compose exec -u www-data php bash
@@ -162,15 +177,15 @@ make setup-upgrade
 make cache-flush
 ```
 
-- storefront: http://localhost/
-- admin: http://localhost/admin (default `admin` / `Admin123!@#` after First Install)
+- storefront: http://rokezzz-app.local/
+- admin: http://rokezzz-app.local/admin (default `admin` / `Qwerty123456` after First Install)
 - Mailhog: http://localhost:8025/
 
 Other useful commands:
 
 ```bash
 make start                           # docker compose up -d --build
-docker compose exec -u www-data php bash   # shell in src (/var/www/html)
+docker compose exec -u www-data php bash   # shell in Magento root (/var/www/source)
 make restart                         # when Varnish returns 503 Backend fetch failed
 ```
 
@@ -178,17 +193,17 @@ make restart                         # when Varnish returns 503 Backend fetch fa
 
 The local environment is defined in `compose.yaml` and contains:
 
-- `php` - PHP-FPM container based on PHP 8.5 with Magento-related extensions and Composer.
-- `nginx` - web server serving Magento from `src/pub`.
+- `php` - PHP-FPM based on PHP 8.5; Magento root mounted at `/var/www/source`.
+- `nginx` - web server serving Magento from `/var/www/source/pub`.
 - `varnish` - HTTP cache exposed on the local `HTTP_PORT`, by default `80`.
-- `db` - MariaDB 11.8 database.
-- `opensearch` - OpenSearch service used by Magento search.
-- `valkey` - Redis-compatible cache backend.
+- `db` - MariaDB 11.8 (Docker network alias `mariadb` for `--db-host=mariadb`).
+- `opensearch` - OpenSearch used by Magento search (local default: security plugin **disabled**).
+- `valkey` - Redis-compatible cache / session backend.
 - `rabbitmq` - message queue with management panel.
 - `mailhog` - local SMTP catcher for testing outgoing emails.
 - `vite` - Node.js dev server for frontend HMR (Hot Module Replacement), port `5173`.
 
-Docker configuration files are located in:
+Docker configuration files (local, not in Git):
 
 - `docker/php/Dockerfile`
 - `docker/nginx/default.conf`
@@ -211,7 +226,7 @@ make start
 Enter the PHP container:
 
 ```bash
-docker compose exec php bash
+docker compose exec -u www-data php bash
 ```
 
 ## Mailhog
@@ -229,39 +244,115 @@ make start
 
 ## First Install
 
-Only when Magento is **not yet installed** on this machine (no `src/app/etc/env.php`).  
+Only when Magento is **not yet installed** on this machine (no `app/etc/env.php`).  
 `setup:upgrade` does **not** replace this command.
 
-Passwords below must match `.env` (DB: `magento` / `magento`).
+Values below match the local `.env` (DB root password, Valkey password, OpenSearch admin password). Adjust if you changed `.env`.
 
-Run install **inside `src`**, not from the project root:
-
-1. On the host, go to the project root (where `compose.yaml` is) and start containers if they are not running.
-2. Enter the PHP container — workdir is `/var/www/html` = mounted `src/`.
-3. Only then run:
+1. Start containers from the host (`make start` / `docker compose up -d`).
+2. Enter the PHP container — workdir is `/var/www/source` (Magento root):
 
 ```bash
-php bin/magento setup:install \
-  --cleanup-database \
-  --base-url=http://localhost/ \
-  --db-host=db \
-  --db-name=magento \
-  --db-user=magento \
-  --db-password=magento \
-  --admin-firstname=Admin \
-  --admin-lastname=User \
-  --admin-email=admin@test.com \
-  --admin-user=admin \
-  --admin-password='Admin123!@#' \
-  --language=pl_PL \
-  --currency=PLN \
-  --timezone=Europe/Warsaw \
-  --use-rewrites=1 \
-  --backend-frontname=admin \
-  --search-engine=opensearch \
-  --opensearch-host=opensearch \
-  --opensearch-port=9200
+docker compose exec -u www-data php bash
 ```
+
+3. Wait until OpenSearch answers, then install:
+
+```bash
+curl -s --max-time 5 http://opensearch:9200
+```
+
+**OpenSearch auth (local):** the default `compose.yaml` sets `DISABLE_SECURITY_PLUGIN=true`, so Magento must use `--opensearch-enable-auth=0` (no username/password). Use `--opensearch-enable-auth=1` only when OpenSearch security is enabled and `OPENSEARCH_INITIAL_ADMIN_PASSWORD` is set.
+
+Install command for the **default local stack** (security plugin off):
+
+```bash
+php /var/www/source/bin/magento setup:install \
+    --base-url=http://rokezzz-app.local \
+    --db-host=mariadb \
+    --db-name=local \
+    --db-user=root \
+    --db-password='Qwerty123456' \
+    --admin-firstname=admin \
+    --admin-lastname=admin \
+    --admin-email=test@rokezzz.dev \
+    --admin-user=admin \
+    --admin-password='Qwerty123456' \
+    --language=pl_PL \
+    --currency=PLN \
+    --timezone=Europe/Warsaw \
+    --use-rewrites=1 \
+    --search-engine=opensearch \
+    --opensearch-host=opensearch \
+    --opensearch-port=9200 \
+    --opensearch-index-prefix=magento \
+    --opensearch-timeout=15 \
+    --opensearch-enable-auth=0 \
+    --cache-backend=valkey \
+    --cache-backend-valkey-server=valkey \
+    --cache-backend-valkey-password='Qwerty123456' \
+    --cache-backend-valkey-db=0 \
+    --page-cache=valkey \
+    --page-cache-valkey-server=valkey \
+    --page-cache-valkey-password='Qwerty123456' \
+    --page-cache-valkey-db=1 \
+    --session-save=valkey \
+    --session-save-valkey-host=valkey \
+    --session-save-valkey-password='Qwerty123456' \
+    --session-save-valkey-db=2 \
+    --backend-frontname=admin \
+    --cleanup-database
+```
+
+When OpenSearch security is enabled, use the same install with auth enabled (password = `OPENSEARCH_INITIAL_ADMIN_PASSWORD` from `.env`):
+
+```bash
+php /var/www/source/bin/magento setup:install \
+    --base-url=http://rokezzz-app.local \
+    --db-host=mariadb \
+    --db-name=local \
+    --db-user=root \
+    --db-password='Qwerty123456' \
+    --admin-firstname=admin \
+    --admin-lastname=admin \
+    --admin-email=test@rokezzz.dev \
+    --admin-user=admin \
+    --admin-password='Qwerty123456' \
+    --language=pl_PL \
+    --currency=PLN \
+    --timezone=Europe/Warsaw \
+    --use-rewrites=1 \
+    --search-engine=opensearch \
+    --opensearch-host=opensearch \
+    --opensearch-port=9200 \
+    --opensearch-index-prefix=magento \
+    --opensearch-timeout=15 \
+    --opensearch-enable-auth=1 \
+    --opensearch-username=admin \
+    --opensearch-password='wou5MAyRBHUQ5ACoiL' \
+    --cache-backend=valkey \
+    --cache-backend-valkey-server=valkey \
+    --cache-backend-valkey-password='Qwerty123456' \
+    --cache-backend-valkey-db=0 \
+    --page-cache=valkey \
+    --page-cache-valkey-server=valkey \
+    --page-cache-valkey-password='Qwerty123456' \
+    --page-cache-valkey-db=1 \
+    --session-save=valkey \
+    --session-save-valkey-host=valkey \
+    --session-save-valkey-password='Qwerty123456' \
+    --session-save-valkey-db=2 \
+    --backend-frontname=admin \
+    --cleanup-database
+```
+
+After a successful install, the **Rokezzz/default** theme is applied automatically (`Rokezzz_Core` data patch). Verify:
+
+```bash
+php bin/magento config:show design/theme/theme_id
+```
+
+Then:
 
 ```bash
 php bin/magento setup:upgrade
@@ -272,23 +363,21 @@ php bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFac
 php bin/magento cache:flush
 exit
 
-# host — project root
+# host — project directory
 make restart
 ```
 
-If the base URL is wrong (for example it still points at another port):
+If the base URL is wrong:
 
 ```bash
-docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://localhost/
-docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://localhost/
+docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://rokezzz-app.local/
+docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://rokezzz-app.local/
 docker compose exec -u www-data php php bin/magento cache:flush
 ```
 
-Optional Redis (Valkey) / RabbitMQ: after install, or via `--cache-backend=redis` / `--amqp-*` flags on `setup:install`.
-
 ## Varnish
 
-The `varnish` container sits in front of `nginx` and is exposed on `HTTP_PORT` (default `80`). Magento install above may still set Redis as the page cache, so after installation switch full-page cache to Varnish and point Magento at the Docker service name. Run this inside the PHP container:
+The `varnish` container sits in front of `nginx` and is exposed on `HTTP_PORT` (default `80`). The install command above configures Valkey for Magento page cache; Varnish still terminates HTTP on port 80. To point Magento FPC at Varnish explicitly (optional), run inside the PHP container:
 
 ```bash
 php bin/magento config:set --lock-env system/full_page_cache/caching_application 2
@@ -300,17 +389,17 @@ php bin/magento cache:flush
 
 ## Admin Credentials
 
-Default credentials from the example installation command:
+Default credentials from the installation command above:
 
-- URL: `http://localhost/admin`
+- URL: `http://rokezzz-app.local/admin`
 - User: `admin`
-- Password: `Admin123!@#`
+- Password: `Qwerty123456`
 
 After First Install, disable 2FA (see above); otherwise admin may require Google Authenticator / Adobe IMS.
 
 ## Rokezzz Modules
 
-Custom modules are located in `src/app/code/Rokezzz`.
+Custom modules are located in `app/code/Rokezzz`.
 
 The **Rokezzz** item in the admin menu (second from the left) groups content tools and **Administracja → Ustawienia**, which opens Rokezzz store configuration. Module settings also appear under **Stores → Configuration**: a **Rokezzz** tab for homepage features, and **General** sections for the remaining modules.
 
@@ -557,12 +646,12 @@ php bin/magento setup:di:compile
 
 ## Code Style
 
-The project contains two code style configurations:
+The project contains two code style configurations (Magento root):
 
-- `src/.php-cs-fixer.dist.php` - PHP-CS-Fixer configuration for `*.php` and `*.phtml` files in `src/app/code/Rokezzz`.
-- `src/phpcs.xml.dist` - PHPCS configuration using `PSR12` and `Magento2` rules for `app/code/Rokezzz`.
+- `.php-cs-fixer.dist.php` - PHP-CS-Fixer configuration for `*.php` and `*.phtml` files in `app/code/Rokezzz`.
+- `phpcs.xml.dist` - PHPCS configuration using `PSR12` and `Magento2` rules for `app/code/Rokezzz`.
 
-The root `Makefile` contains helper commands. Run them from the main project directory, one level above `src` (where `compose.yaml` is located).
+The `Makefile` (local tooling) contains helper commands. Run them from the project directory (where `compose.yaml` is located).
 
 Check code style and show the diff:
 
@@ -576,13 +665,13 @@ Fix code style automatically:
 make cs-fix
 ```
 
-These commands use `src/vendor/bin/php-cs-fixer` and the configuration from `src/.php-cs-fixer.dist.php`.
+These commands use `vendor/bin/php-cs-fixer` and the configuration from `.php-cs-fixer.dist.php`.
 
 ## Unit Tests
 
-PHPUnit tests live next to the modules in `src/app/code/Rokezzz/*/Test/Unit`. They cover domain rules (config flags, validators, extractors, eligibility) — not controllers, data patches, ResourceModels or `*Creator` wrappers.
+PHPUnit tests live next to the modules in `app/code/Rokezzz/*/Test/Unit`. They cover domain rules (config flags, validators, extractors, eligibility) — not controllers, data patches, ResourceModels or `*Creator` wrappers.
 
-Run them inside the PHP container (working directory is Magento `src/`):
+Run them inside the PHP container (working directory is Magento root `/var/www/source`):
 
 ```bash
 docker compose exec php vendor/bin/phpunit --bootstrap vendor/autoload.php app/code/Rokezzz
@@ -596,7 +685,7 @@ docker compose exec php vendor/bin/phpunit --bootstrap vendor/autoload.php app/c
 
 ### Static content deploy (`static-deploy`)
 
-Publishes frontend and admin static assets (CSS, JS, fonts) from modules and themes into `src/pub/static`. Use this when styles or scripts return 404, or after theme or frontend changes.
+Publishes frontend and admin static assets (CSS, JS, fonts) from modules and themes into `pub/static`. Use this when styles or scripts return 404, or after theme or frontend changes.
 
 ```bash
 make static-deploy
@@ -642,9 +731,9 @@ GitHub Actions workflow is defined in `.github/workflows/php-cs-fixer.yml`.
 
 On pull requests, GitHub checks PHP-CS-Fixer in dry-run mode for changes in:
 
-- `src/**/*.php`
-- `src/**/*.phtml`
-- `src/.php-cs-fixer.dist.php`
+- `app/code/Rokezzz/**/*.php`
+- `app/code/Rokezzz/**/*.phtml`
+- `.php-cs-fixer.dist.php`
 - `.github/workflows/php-cs-fixer.yml`
 
 The workflow fails when code style changes are required. To block merging PRs with invalid style, enable branch protection in GitHub and require the `PHP CS Fixer` status check.
