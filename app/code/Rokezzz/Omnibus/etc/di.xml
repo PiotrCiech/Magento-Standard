@@ -10,7 +10,7 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="rokezzz_omnibus_record_prices" xsi:type="object">Rokezzz\Omnibus\Console\Command\RecordPricesCommand</item>
+                <item name="rokezzz_omnibus_record_prices" xsi:type="object">Rokezzz\Omnibus\Console\Command\RecordPricesCommand\Proxy</item>
             </argument>
         </arguments>
     </type>
