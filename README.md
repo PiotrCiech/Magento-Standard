@@ -2,7 +2,7 @@
 
 Magento 2.4.9 project prepared as a base for Rokezzz Magento projects.
 
-The **Git repository contains Magento only** (application root: `app/`, `bin/`, `pub/`, `composer.json`, …). Local tooling — `compose.yaml`, `docker/`, `vite/`, `Makefile`, `.env` — lives next to the project on your machine and is **gitignored** (not pushed to remotes).
+The **Git repository contains Magento** (application root: `app/`, `bin/`, `pub/`, `composer.json`, shared `auth.json` for `repo.magento.com`, …). Local tooling — `compose.yaml`, `docker/`, `vite/`, `Makefile`, `.env` — lives next to the project on your machine and is **gitignored** (not pushed to remotes).
 
 Main project assumptions:
 
@@ -23,7 +23,6 @@ Step-by-step guide to run the project locally (Windows + WSL2 + Docker Desktop).
 - [WSL 2](https://learn.microsoft.com/windows/wsl/install) with an Ubuntu distro
 - Git (in WSL: `sudo apt update && sudo apt install -y git`)
 - A GitHub account with access to the **rokezzz** organization (ask someone on the team to invite you)
-- **Access Keys** from the shared company Magento Marketplace account (from the password manager / a teammate) — see step 7
 
 ### 2. Docker Desktop
 
@@ -105,33 +104,40 @@ The first build can take a while. PHP mounts the Magento root at `/var/www/sourc
 
 `vendor/` is not in the repository — Composer downloads packages from `repo.magento.com`.
 
-#### How the team handles Marketplace packages
+Shared company Marketplace credentials are **committed in Git** as root `auth.json` (private Rokezzz template only). After clone you already have:
 
-Magento Marketplace entitlements are tied to an **account**, not to individual people. Therefore:
+```json
+{
+    "http-basic": {
+        "repo.magento.com": {
+            "username": "…",
+            "password": "…"
+        }
+    }
+}
+```
 
-1. There is **one shared company account** on [marketplace.magento.com](https://marketplace.magento.com/) that already owns / can download every extension listed in `composer.json` (InPost, Przelewy24, Furgonetka, etc.).
-2. That account has **Access Keys** (Public + Private).
-3. The keys live in the **team password manager** (1Password / Bitwarden / …) — **never in the Git repository**.
-4. A new developer only needs those keys from the team and then runs Composer. They do **not** need to open Marketplace or buy anything.
+Composer expects HTTP Basic fields — **`username`** and **`password`** (Marketplace Public Key → `username`, Private Key → `password`). Do not swap them; that causes 401.
 
-Inside the PHP container (workdir `/var/www/source` = Magento root):
+You do **not** need a personal Marketplace account, password-manager keys, or `composer config --auth`. Just install inside the PHP container (workdir `/var/www/source` = Magento root):
 
 ```bash
 docker compose exec -u www-data php bash
-composer config --auth http-basic.repo.magento.com PUBLIC_KEY PRIVATE_KEY
 composer install
 exit
 ```
 
-`PUBLIC_KEY` = username, `PRIVATE_KEY` = password. This creates `auth.json` in the Magento root (listed in `.gitignore` — never commit it).
+#### How the team handles Marketplace packages
 
-When you add a **new** Marketplace module: one person logs into the company account, completes Get Access / purchase, updates `composer.json` / lock — everyone else only runs `composer install` with the same keys.
+1. One **shared company account** on [marketplace.magento.com](https://marketplace.magento.com/) owns / can download every extension in `composer.json` (InPost, Przelewy24, Furgonetka, etc.).
+2. Its Access Keys live in committed `auth.json` (see above). `auth.json.sample` is only a template if keys must be rotated.
+3. When adding a **new** Marketplace module: one person completes Get Access / purchase on the company account, updates `composer.json` / lock — everyone else runs `composer install`.
 
 #### When you see 401 / 404
 
 | HTTP | Meaning | What to do |
 | --- | --- | --- |
-| **401** Invalid credentials | Wrong / swapped keys | Take fresh Access Keys from the company account (Public ≠ Private) |
+| **401** Invalid credentials | Wrong keys or `username` / `password` swapped in `auth.json` | Fix `auth.json` (Public → `username`, Private → `password`) and commit if keys were rotated |
 | **404** file could not be downloaded | Company account lacks entitlement for that package | On the company account, add the missing product to My Purchases; do not create a personal “trial” account |
 
 Committing `vendor/` or sharing zip archives is not a solution — it breaks Marketplace licenses and bloats the repo.
@@ -147,10 +153,14 @@ Committing `vendor/` or sharing zip archives is not a solution — it breaks Mar
 
 Do **not** run `setup:install` / `bin/magento` on the host — enter the container first.
 
-After `composer install` (inside the PHP container):
+**Flow after `composer install`:**
 
-1. **First time on this machine** (no `app/etc/env.php`) → [First Install](#first-install).
-2. **Afterwards**:
+1. **No `app/etc/env.php` yet** → go to [First Install](#first-install), finish it to the end, then **come back here** to [After First Install / daily commands](#after-first-install--daily-commands).
+2. **Already installed** (`app/etc/env.php` exists) → skip First Install and use [After First Install / daily commands](#after-first-install--daily-commands) only.
+
+#### After First Install / daily commands
+
+Run these from the host (project directory) after a successful First Install, and on later days after pulling changes:
 
 ```bash
 docker compose exec -u root php bash -lc '
@@ -176,6 +186,8 @@ Or the Makefile shortcuts:
 make setup-upgrade
 make cache-flush
 ```
+
+When that finishes, the shop is ready:
 
 - storefront: http://rokezzz-app.local/
 - admin: http://rokezzz-app.local/admin (default `admin` / `Qwerty123456` after First Install)
@@ -244,12 +256,15 @@ make start
 
 ## First Install
 
+Part of [Getting started → step 10](#10-magento-install-and-daily-work).  
 Only when Magento is **not yet installed** on this machine (no `app/etc/env.php`).  
 `setup:upgrade` does **not** replace this command.
 
+When this section is finished, **return to step 10** → [After First Install / daily commands](#after-first-install--daily-commands) (developer mode, static deploy, URLs).
+
 Values below match the local `.env` (DB root password, Valkey password, OpenSearch admin password). Adjust if you changed `.env`.
 
-1. Start containers from the host (`make start` / `docker compose up -d`).
+1. Start containers from the host (`make start` / `docker compose up -d`) — already done if you followed steps 1–9.
 2. Enter the PHP container — workdir is `/var/www/source` (Magento root):
 
 ```bash
@@ -352,7 +367,7 @@ After a successful install, the **Rokezzz/default** theme is applied automatical
 php bin/magento config:show design/theme/theme_id
 ```
 
-Then:
+Then (still inside the PHP container, then back on the host):
 
 ```bash
 php bin/magento setup:upgrade
@@ -374,6 +389,8 @@ docker compose exec -u www-data php php bin/magento config:set web/unsecure/base
 docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://rokezzz-app.local/
 docker compose exec -u www-data php php bin/magento cache:flush
 ```
+
+**First Install ends here.** Continue with [After First Install / daily commands](#after-first-install--daily-commands) in step 10 (chown, developer mode, static content deploy). Getting started is complete only after that section.
 
 ## Varnish
 
@@ -626,8 +643,8 @@ tawk.to chat widget. Toggle property / widget IDs and behaviour in **Stores → 
 ### External integrations
 
 - **Przelewy24** — Composer package `przelewy24/magento2-przelewy24` (`PayPro_Przelewy24`), not a `Rokezzz_*` module.
-- **InPost** — `Rokezzz_InPost` plus the vendor ShipX module.
-- **Furgonetka** and a standalone **Waybill** module are not in this template.
+- **InPost** — `Rokezzz_InPost` plus the vendor ShipX module (`smartmage/inpost`).
+- **Furgonetka** — Composer package `furgonetkapl/furgonetkapl`, not a `Rokezzz_*` module.
 
 ## Post-installation
 
