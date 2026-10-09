@@ -2,7 +2,7 @@
 
 Magento 2.4.9 project prepared as a base for Rokezzz Magento projects.
 
-The **Git repository contains Magento** (application root: `app/`, `bin/`, `pub/`, `composer.json`, shared `auth.json` for `repo.magento.com`, …). Local tooling — `compose.yaml`, `docker/`, `vite/`, `Makefile`, `.env` — lives next to the project on your machine and is **gitignored** (not pushed to remotes).
+The **Git repository contains Magento** (application root: `app/`, `bin/`, `pub/`, `composer.json`, shared `auth.json` for `repo.magento.com`, …) plus frontend Vite app under `vite/` (`vite.config.js`, `package.json`, `src/` — not `node_modules`). Local Docker tooling — `compose.yaml`, `docker/`, `Makefile`, `.env` — lives next to the project on your machine and is **gitignored** (not pushed to remotes).
 
 Main project assumptions:
 
@@ -65,9 +65,9 @@ git checkout develop
 
 Day-to-day work uses the `develop` branch (feature branches are created from it).
 
-### 5. Local Docker / Vite (outside Git)
+### 5. Local Docker tooling (outside Git)
 
-Clone gives you Magento only. Place (or restore) local tooling next to it: `compose.yaml`, `docker/`, `vite/`, `Makefile`, `.env.example` — from the team (password manager / internal docs), not from this repo.
+Clone already includes Magento and `vite/`. Place (or restore) Docker tooling next to it: `compose.yaml`, `docker/`, `Makefile`, `.env.example` — from the team (password manager / internal docs), not from this repo. Vite dependencies install automatically when the `vite` container starts (`npm install` in `compose.yaml`).
 
 ### 6. Configure `.env`
 
@@ -100,26 +100,9 @@ make start
 
 The first build can take a while. PHP mounts the Magento root at `/var/www/source`.
 
-### 9. Composer / Magento Marketplace
+### 9. Composer
 
-`vendor/` is not in the repository — Composer downloads packages from `repo.magento.com`.
-
-Shared company Marketplace credentials are **committed in Git** as root `auth.json` (private Rokezzz template only). After clone you already have:
-
-```json
-{
-    "http-basic": {
-        "repo.magento.com": {
-            "username": "…",
-            "password": "…"
-        }
-    }
-}
-```
-
-Composer expects HTTP Basic fields — **`username`** and **`password`** (Marketplace Public Key → `username`, Private Key → `password`). Do not swap them; that causes 401.
-
-You do **not** need a personal Marketplace account, password-manager keys, or `composer config --auth`. Just install inside the PHP container (workdir `/var/www/source` = Magento root):
+`vendor/` is not in Git. Shared Marketplace keys are in committed `auth.json` (`username` = Public Key, `password` = Private Key — do not swap). Inside the PHP container:
 
 ```bash
 docker compose exec -u www-data php bash
@@ -127,78 +110,96 @@ composer install
 exit
 ```
 
-#### How the team handles Marketplace packages
-
-1. One **shared company account** on [marketplace.magento.com](https://marketplace.magento.com/) owns / can download every extension in `composer.json` (InPost, Przelewy24, Furgonetka, etc.).
-2. Its Access Keys live in committed `auth.json` (see above). `auth.json.sample` is only a template if keys must be rotated.
-3. When adding a **new** Marketplace module: one person completes Get Access / purchase on the company account, updates `composer.json` / lock — everyone else runs `composer install`.
-
-#### When you see 401 / 404
-
 | HTTP | Meaning | What to do |
 | --- | --- | --- |
-| **401** Invalid credentials | Wrong keys or `username` / `password` swapped in `auth.json` | Fix `auth.json` (Public → `username`, Private → `password`) and commit if keys were rotated |
-| **404** file could not be downloaded | Company account lacks entitlement for that package | On the company account, add the missing product to My Purchases; do not create a personal “trial” account |
+| **401** | Wrong / swapped keys in `auth.json` | Public → `username`, Private → `password` |
+| **404** | Company Marketplace account lacks that package | Add product on the company account |
 
-Committing `vendor/` or sharing zip archives is not a solution — it breaks Marketplace licenses and bloats the repo.
+### 10. First Install
 
-### 10. Magento install and daily work
+Do this **once** on a new machine (when there is no `app/etc/env.php`).  
+`bin/magento` / `setup:install` run **only inside the PHP container** — never on the host.
 
-**Important — where commands run:**
-
-| Where | What you run |
-| --- | --- |
-| **Host** (directory with `compose.yaml`) | `docker compose …`, `make …` |
-| **PHP container** (`/var/www/source` = Magento root) | `composer …`, `php bin/magento …` |
-
-Do **not** run `setup:install` / `bin/magento` on the host — enter the container first.
-
-**Flow after `composer install`:**
-
-1. **No `app/etc/env.php` yet** → go to [First Install](#first-install), finish it to the end, then **come back here** to [After First Install / daily commands](#after-first-install--daily-commands).
-2. **Already installed** (`app/etc/env.php` exists) → skip First Install and use [After First Install / daily commands](#after-first-install--daily-commands) only.
-
-#### After First Install / daily commands
-
-Run these from the host (project directory) after a successful First Install, and on later days after pulling changes:
+Passwords below match the default local `.env`. Adjust if you changed them.  
+Local OpenSearch has security **disabled** → `--opensearch-enable-auth=0`.
 
 ```bash
-docker compose exec -u root php bash -lc '
-  chown -R www-data:www-data pub/static var generated
-'
+docker compose exec -u www-data php bash
 
-docker compose exec -u www-data php php bin/magento deploy:mode:set developer
-docker compose exec -u www-data php php bin/magento setup:static-content:deploy -f pl_PL en_US
+curl -s --max-time 5 http://opensearch:9200
+
+php /var/www/source/bin/magento setup:install \
+    --base-url=http://rokezzz-app.local \
+    --db-host=mariadb \
+    --db-name=local \
+    --db-user=root \
+    --db-password='Qwerty123456' \
+    --admin-firstname=admin \
+    --admin-lastname=admin \
+    --admin-email=test@rokezzz.dev \
+    --admin-user=admin \
+    --admin-password='Qwerty123456' \
+    --language=pl_PL \
+    --currency=PLN \
+    --timezone=Europe/Warsaw \
+    --use-rewrites=1 \
+    --search-engine=opensearch \
+    --opensearch-host=opensearch \
+    --opensearch-port=9200 \
+    --opensearch-index-prefix=magento \
+    --opensearch-timeout=15 \
+    --opensearch-enable-auth=0 \
+    --cache-backend=valkey \
+    --cache-backend-valkey-server=valkey \
+    --cache-backend-valkey-password='Qwerty123456' \
+    --cache-backend-valkey-db=0 \
+    --page-cache=valkey \
+    --page-cache-valkey-server=valkey \
+    --page-cache-valkey-password='Qwerty123456' \
+    --page-cache-valkey-db=1 \
+    --session-save=valkey \
+    --session-save-valkey-host=valkey \
+    --session-save-valkey-password='Qwerty123456' \
+    --session-save-valkey-db=2 \
+    --backend-frontname=admin \
+    --cleanup-database
+
+php bin/magento setup:upgrade
+php bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+php bin/magento deploy:mode:set developer
+php bin/magento setup:static-content:deploy -f pl_PL en_US
+php bin/magento cache:flush
+exit
+```
+
+On the host:
+
+```bash
+docker compose exec -u root php bash -lc 'chown -R www-data:www-data pub/static var generated'
+make restart
+```
+
+**Done.** Shop should be up:
+
+- storefront: http://rokezzz-app.local/
+- admin: http://rokezzz-app.local/admin — `admin` / `Qwerty123456`
+- Mailhog: http://localhost:8025/
+
+If Varnish returns **503 Backend fetch failed**: `make restart`.  
+If the base URL is wrong:
+
+```bash
+docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://rokezzz-app.local/
+docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://rokezzz-app.local/
 docker compose exec -u www-data php php bin/magento cache:flush
 ```
 
-```bash
-# from the host (project directory):
-docker compose exec -u www-data php php bin/magento setup:upgrade
-# or after entering the container:
-# docker compose exec -u www-data php bash
-# php bin/magento setup:upgrade
-```
-
-Or the Makefile shortcuts:
+Later (already installed, after `git pull`):
 
 ```bash
 make setup-upgrade
 make cache-flush
-```
-
-When that finishes, the shop is ready:
-
-- storefront: http://rokezzz-app.local/
-- admin: http://rokezzz-app.local/admin (default `admin` / `Qwerty123456` after First Install)
-- Mailhog: http://localhost:8025/
-
-Other useful commands:
-
-```bash
-make start                           # docker compose up -d --build
-docker compose exec -u www-data php bash   # shell in Magento root (/var/www/source)
-make restart                         # when Varnish returns 503 Backend fetch failed
+# optional: make static-deploy / make static-refresh
 ```
 
 ## Docker Environment
@@ -248,150 +249,6 @@ Outgoing emails from Magento are routed through Mailhog via `msmtp` in the PHP c
 - Web UI: `http://localhost:8025` (override with `MAILHOG_UI_PORT` in `.env`)
 - SMTP port: `1025` (override with `MAILHOG_SMTP_PORT` in `.env`)
 
-After adding Mailhog, rebuild the PHP image so `msmtp` is installed:
-
-```bash
-make start
-```
-
-## First Install
-
-Part of [Getting started → step 10](#10-magento-install-and-daily-work).  
-Only when Magento is **not yet installed** on this machine (no `app/etc/env.php`).  
-`setup:upgrade` does **not** replace this command.
-
-When this section is finished, **return to step 10** → [After First Install / daily commands](#after-first-install--daily-commands) (developer mode, static deploy, URLs).
-
-Values below match the local `.env` (DB root password, Valkey password, OpenSearch admin password). Adjust if you changed `.env`.
-
-1. Start containers from the host (`make start` / `docker compose up -d`) — already done if you followed steps 1–9.
-2. Enter the PHP container — workdir is `/var/www/source` (Magento root):
-
-```bash
-docker compose exec -u www-data php bash
-```
-
-3. Wait until OpenSearch answers, then install:
-
-```bash
-curl -s --max-time 5 http://opensearch:9200
-```
-
-**OpenSearch auth (local):** the default `compose.yaml` sets `DISABLE_SECURITY_PLUGIN=true`, so Magento must use `--opensearch-enable-auth=0` (no username/password). Use `--opensearch-enable-auth=1` only when OpenSearch security is enabled and `OPENSEARCH_INITIAL_ADMIN_PASSWORD` is set.
-
-Install command for the **default local stack** (security plugin off):
-
-```bash
-php /var/www/source/bin/magento setup:install \
-    --base-url=http://rokezzz-app.local \
-    --db-host=mariadb \
-    --db-name=local \
-    --db-user=root \
-    --db-password='Qwerty123456' \
-    --admin-firstname=admin \
-    --admin-lastname=admin \
-    --admin-email=test@rokezzz.dev \
-    --admin-user=admin \
-    --admin-password='Qwerty123456' \
-    --language=pl_PL \
-    --currency=PLN \
-    --timezone=Europe/Warsaw \
-    --use-rewrites=1 \
-    --search-engine=opensearch \
-    --opensearch-host=opensearch \
-    --opensearch-port=9200 \
-    --opensearch-index-prefix=magento \
-    --opensearch-timeout=15 \
-    --opensearch-enable-auth=0 \
-    --cache-backend=valkey \
-    --cache-backend-valkey-server=valkey \
-    --cache-backend-valkey-password='Qwerty123456' \
-    --cache-backend-valkey-db=0 \
-    --page-cache=valkey \
-    --page-cache-valkey-server=valkey \
-    --page-cache-valkey-password='Qwerty123456' \
-    --page-cache-valkey-db=1 \
-    --session-save=valkey \
-    --session-save-valkey-host=valkey \
-    --session-save-valkey-password='Qwerty123456' \
-    --session-save-valkey-db=2 \
-    --backend-frontname=admin \
-    --cleanup-database
-```
-
-When OpenSearch security is enabled, use the same install with auth enabled (password = `OPENSEARCH_INITIAL_ADMIN_PASSWORD` from `.env`):
-
-```bash
-php /var/www/source/bin/magento setup:install \
-    --base-url=http://rokezzz-app.local \
-    --db-host=mariadb \
-    --db-name=local \
-    --db-user=root \
-    --db-password='Qwerty123456' \
-    --admin-firstname=admin \
-    --admin-lastname=admin \
-    --admin-email=test@rokezzz.dev \
-    --admin-user=admin \
-    --admin-password='Qwerty123456' \
-    --language=pl_PL \
-    --currency=PLN \
-    --timezone=Europe/Warsaw \
-    --use-rewrites=1 \
-    --search-engine=opensearch \
-    --opensearch-host=opensearch \
-    --opensearch-port=9200 \
-    --opensearch-index-prefix=magento \
-    --opensearch-timeout=15 \
-    --opensearch-enable-auth=1 \
-    --opensearch-username=admin \
-    --opensearch-password='wou5MAyRBHUQ5ACoiL' \
-    --cache-backend=valkey \
-    --cache-backend-valkey-server=valkey \
-    --cache-backend-valkey-password='Qwerty123456' \
-    --cache-backend-valkey-db=0 \
-    --page-cache=valkey \
-    --page-cache-valkey-server=valkey \
-    --page-cache-valkey-password='Qwerty123456' \
-    --page-cache-valkey-db=1 \
-    --session-save=valkey \
-    --session-save-valkey-host=valkey \
-    --session-save-valkey-password='Qwerty123456' \
-    --session-save-valkey-db=2 \
-    --backend-frontname=admin \
-    --cleanup-database
-```
-
-After a successful install, the **Rokezzz/default** theme is applied automatically (`Rokezzz_Core` data patch). Verify:
-
-```bash
-php bin/magento config:show design/theme/theme_id
-```
-
-Then (still inside the PHP container, then back on the host):
-
-```bash
-php bin/magento setup:upgrade
-
-# disable 2FA / Adobe IMS 2FA locally — admin login without verification
-php bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
-
-php bin/magento cache:flush
-exit
-
-# host — project directory
-make restart
-```
-
-If the base URL is wrong:
-
-```bash
-docker compose exec -u www-data php php bin/magento config:set web/unsecure/base_url http://rokezzz-app.local/
-docker compose exec -u www-data php php bin/magento config:set web/secure/base_url http://rokezzz-app.local/
-docker compose exec -u www-data php php bin/magento cache:flush
-```
-
-**First Install ends here.** Continue with [After First Install / daily commands](#after-first-install--daily-commands) in step 10 (chown, developer mode, static content deploy). Getting started is complete only after that section.
-
 ## Varnish
 
 The `varnish` container sits in front of `nginx` and is exposed on `HTTP_PORT` (default `80`). The install command above configures Valkey for Magento page cache; Varnish still terminates HTTP on port 80. To point Magento FPC at Varnish explicitly (optional), run inside the PHP container:
@@ -406,13 +263,13 @@ php bin/magento cache:flush
 
 ## Admin Credentials
 
-Default credentials from the installation command above:
+From First Install (step 10):
 
 - URL: `http://rokezzz-app.local/admin`
 - User: `admin`
 - Password: `Qwerty123456`
 
-After First Install, disable 2FA (see above); otherwise admin may require Google Authenticator / Adobe IMS.
+2FA modules are disabled in that step; otherwise admin may require Google Authenticator / Adobe IMS.
 
 ## Rokezzz Modules
 
