@@ -25,7 +25,6 @@
             <block class="Magento\Customer\Block\Account\AuthorizationLink"
                    name="mobile.logout.link"
                    as="mobile_logout_link"
-                   cacheable="false"
                    template="Magento_Customer::account/mobile-logout.phtml" />
         </referenceBlock>
         <referenceContainer name="header-wrapper">
@@ -40,7 +39,6 @@
             <block class="Magento\Customer\Block\Account\AuthorizationLink"
                    name="header.logout.link"
                    after="minicart"
-                   cacheable="false"
                    template="Magento_Customer::account/header-logout.phtml" />
         </referenceContainer>
         <referenceBlock name="report.bugs" remove="true" />

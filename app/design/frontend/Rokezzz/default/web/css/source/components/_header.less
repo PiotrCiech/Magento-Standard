@@ -378,6 +378,16 @@
                             width: 28px;
                             height: 28px;
                         }
+
+                        &.person {
+                            width: 30px;
+                            height: 30px;
+
+                            svg {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
                     }
                 }
 
@@ -424,10 +434,19 @@
                         }
 
                         &::before {
-                            color: @blackColor;
-                            font-size: 33px;
-                            line-height: 1;
+                            content: '';
                             display: block;
+                            width: 28px;
+                            height: 28px;
+                            background-color: @blackColor;
+                            -webkit-mask-image: url('../images/cart.svg');
+                            mask-image: url('../images/cart.svg');
+                            -webkit-mask-repeat: no-repeat;
+                            mask-repeat: no-repeat;
+                            -webkit-mask-position: center;
+                            mask-position: center;
+                            -webkit-mask-size: contain;
+                            mask-size: contain;
                         }
                     }
 
