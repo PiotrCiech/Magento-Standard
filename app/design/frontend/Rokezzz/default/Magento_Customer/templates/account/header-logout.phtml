@@ -4,19 +4,42 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 
-if (!$block->isLoggedIn()) {
-    return;
-}
-
-$dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+$logoutUrl = $block->getUrl('customer/account/logout');
 ?>
-<a class="header-logout-link"
-   href="<?= $escaper->escapeUrl($block->getHref()) ?>"
-   title="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
-   aria-label="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
-   <?= /* @noEscape */ $dataPostParam ?>>
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
-        <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"
-              fill="currentColor" />
-    </svg>
-</a>
+<div style="display: contents" data-bind="scope: 'customer'">
+    <a class="header-logout-link"
+       href="<?= $escaper->escapeUrl($logoutUrl) ?>"
+       title="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
+       aria-label="<?= $escaper->escapeHtmlAttr(__('Sign Out')) ?>"
+       style="display: none"
+       data-bind="visible: customer().firstname">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+            <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"
+                  fill="currentColor" />
+        </svg>
+    </a>
+    <script>
+        (function () {
+            try {
+                var data = JSON.parse(localStorage.getItem('mage-cache-storage') || '{}');
+
+                if (data.customer && data.customer.firstname) {
+                    document.currentScript.parentNode.querySelector('.header-logout-link').style.display = '';
+                }
+            } catch (e) {}
+        })();
+    </script>
+</div>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "customer": {
+                    "component": "Magento_Customer/js/view/customer"
+                }
+            }
+        }
+    }
+}
+</script>
