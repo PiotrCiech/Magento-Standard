@@ -81,4 +81,5 @@ package.json.sample
 /.env.example
 /docker/
 /vite/node_modules/
+/app/etc/.env
 /src/app/etc/.env
