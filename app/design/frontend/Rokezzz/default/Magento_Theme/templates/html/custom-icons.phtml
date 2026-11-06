@@ -2,10 +2,31 @@
 declare(strict_types=1);
 
 use Magento\Framework\View\Element\Template;
+/* Disabled until Rokezzz_Wishlist is added.
+use Rokezzz\Wishlist\ViewModel\StorefrontAvailability;
+*/
 
 /** @var Template $block */
 $accountUrl = $block->getUrl('customer/account');
+/* Disabled until Rokezzz_Wishlist is added.
+$wishlistAvailability = $block->getData('view_model');
+$isWishlistEnabled = $wishlistAvailability instanceof StorefrontAvailability
+    ? $wishlistAvailability->isEnabled()
+    : false;
+*/
 ?>
+
+<?php /* Disabled until Rokezzz_Wishlist is added.
+<?php if ($isWishlistEnabled): ?>
+<a href="<?= $block->escapeUrl($block->getUrl('wishlist/index/index')) ?>" class="favorite" title="<?= $block->escapeHtmlAttr(__('Ulubione')) ?>">
+    <svg viewBox="0 0 24 24" width="24" height="24">
+        <path
+            d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"
+            fill="black" />
+    </svg>
+</a>
+<?php endif; ?>
+*/ ?>
 
 <a href="<?= $block->escapeUrl($accountUrl) ?>" class="person" title="<?= $block->escapeHtmlAttr(__('Konto')) ?>">
     <svg viewBox="0 0 24 24" width="24" height="24">

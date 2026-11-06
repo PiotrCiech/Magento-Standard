@@ -2,10 +2,20 @@
 
 declare(strict_types=1);
 
+/* Disabled until Rokezzz_Wishlist is added.
+use Rokezzz\Wishlist\ViewModel\StorefrontAvailability;
+*/
+
 /** @var \Magento\Theme\Block\Html\Topmenu $block */
 
 $columnsLimit = $block->getColumnsLimit() ?: 0;
 $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit);
+/* Disabled until Rokezzz_Wishlist is added.
+$wishlistAvailability = $block->getData('view_model');
+$isWishlistEnabled = $wishlistAvailability instanceof StorefrontAvailability
+    ? $wishlistAvailability->isEnabled()
+    : false;
+*/
 ?>
 <div class="custom-navbar-wrapper" data-mage-init='{"Magento_Theme/js/topmenu":{}}'>
     <div class="mobile-only-nav">
@@ -24,6 +34,12 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit);
                         href="<?= $block->escapeUrl($block->getUrl('checkout/cart')) ?>"><?= $block->escapeHtml(__('Cart')) ?></a>
                     <a class="mobile-account-link"
                         href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>"><?= $block->escapeHtml(__('My Account')) ?></a>
+                    <?php /* Disabled until Rokezzz_Wishlist is added.
+                    <?php if ($isWishlistEnabled): ?>
+                    <a class="mobile-wishlist-link"
+                        href="<?= $block->escapeUrl($block->getUrl('wishlist/index/index')) ?>"><?= $block->escapeHtml(__('Wishlist')) ?></a>
+                    <?php endif; ?>
+                    */ ?>
                 </div>
             </div>
         </nav>
