@@ -18,7 +18,6 @@
     },
     "version": "2.4.9",
     "require": {
-        "dompdf/dompdf": "^3.1",
         "furgonetkapl/furgonetkapl": "^2.0",
         "gusapi/gusapi": "^6.0",
         "magento/composer": "^1.10.1-beta1",
@@ -28,9 +27,7 @@
         "magento/theme-frontend-luma": "^100.4",
         "mageplaza/magento-2-polish-language-pack": "dev-master",
         "phpseclib/phpseclib": "^3.0",
-        "przelewy24/magento2-przelewy24": "^1.6",
-        "smartmage/inpost": "^1.22",
-        "twig/twig": "^3.0"
+        "przelewy24/magento2-przelewy24": "^1.6"
     },
     "autoload": {
         "exclude-from-classmap": [
