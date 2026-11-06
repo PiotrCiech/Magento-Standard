@@ -28,11 +28,13 @@
                         <field id="enable_promoted_categories">1</field>
                     </depends>
                 </field>
+                <!-- Disabled until Rokezzz_Slider is added.
                 <field id="enable_slider" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Włącz Slider na stronie głównej</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends><field id="enable">1</field></depends>
                 </field>
+                -->
                 <field id="enable_bestsellers" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Włącz Bestsellery na stronie głównej</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

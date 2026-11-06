@@ -72,6 +72,7 @@
                     <base_url type="media" scope_info="1">rokezzz/settings</base_url>
                 </field>
             </group>
+            <!-- Disabled until Rokezzz_Invoice is added.
             <group id="invoice" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>Invoice</label>
                 <field id="system_info" translate="label comment" type="text" sortOrder="10"
@@ -100,6 +101,7 @@
                     <backend_model>Rokezzz\Settings\Model\Config\Backend\Nip</backend_model>
                 </field>
             </group>
+            -->
         </section>
     </system>
 </config>
