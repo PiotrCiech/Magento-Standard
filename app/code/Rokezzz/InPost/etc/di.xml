@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Shipping\Model\Rate\Result">
-        <plugin name="rokezzz_inpost_filter_rates_when_disabled"
-                type="Rokezzz\InPost\Plugin\Shipping\Rate\FilterInpostRatesWhenDisabledPlugin"/>
-    </type>
-</config>

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/Config/etc/config.xsd">
-    <default>
-        <rokezzz_settings>
-            <popup>
-                <delay_time>2000</delay_time> </popup>
-        </rokezzz_settings>
-    </default>
-</config>

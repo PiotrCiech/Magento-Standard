@@ -3,12 +3,10 @@ declare(strict_types=1);
 
 /** @var $block \Magento\Framework\View\Element\Template */
 /** @var $helper \Magento\Search\Helper\Data */
-/** @var \Rokezzz\CatalogListing\ViewModel\HeaderSearchConfig|null $headerSearchConfig */
 
 use Magento\Search\Helper\Data;
 
 $helper = $this->helper(Data::class);
-$headerSearchConfig = $block->getData('catalog_listing_header_search_config');
 ?>
 <div class="block block-search">
     <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
@@ -55,15 +53,3 @@ $headerSearchConfig = $block->getData('catalog_listing_header_search_config');
         </form>
     </div>
 </div>
-<script>
-    (function (config) {
-        window.rokezzzCatalogListingConfig = Object.assign(window.rokezzzCatalogListingConfig || {}, config);
-        require(['rokezzzCatalogListing'], function (catalogListing) {
-            if (catalogListing && typeof catalogListing.bindHeaderSearch === 'function') {
-                catalogListing.bindHeaderSearch(config);
-            }
-        }, function () {
-            // Module failed to load — keep default form submit behaviour.
-        });
-    })(<?= /* @noEscape */ $headerSearchConfig?->getJsonConfig() ?? '{}' ?>);
-</script>

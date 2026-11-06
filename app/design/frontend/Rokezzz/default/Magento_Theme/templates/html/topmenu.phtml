@@ -2,18 +2,10 @@
 
 declare(strict_types=1);
 
-use Magento\Wishlist\Helper\Data as WishlistHelper;
-use Rokezzz\Wishlist\ViewModel\StorefrontAvailability;
-
 /** @var \Magento\Theme\Block\Html\Topmenu $block */
 
 $columnsLimit = $block->getColumnsLimit() ?: 0;
 $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit);
-/** @var StorefrontAvailability|null $wishlistAvailability */
-$wishlistAvailability = $block->getData('view_model');
-$isWishlistEnabled = $wishlistAvailability instanceof StorefrontAvailability
-    ? $wishlistAvailability->isEnabled()
-    : $block->helper(WishlistHelper::class)->isAllow();
 ?>
 <div class="custom-navbar-wrapper" data-mage-init='{"Magento_Theme/js/topmenu":{}}'>
     <div class="mobile-only-nav">
@@ -32,10 +24,6 @@ $isWishlistEnabled = $wishlistAvailability instanceof StorefrontAvailability
                         href="<?= $block->escapeUrl($block->getUrl('checkout/cart')) ?>"><?= $block->escapeHtml(__('Cart')) ?></a>
                     <a class="mobile-account-link"
                         href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>"><?= $block->escapeHtml(__('My Account')) ?></a>
-                    <?php if ($isWishlistEnabled): ?>
-                    <a class="mobile-wishlist-link"
-                        href="<?= $block->escapeUrl($block->getUrl('wishlist/index/index')) ?>"><?= $block->escapeHtml(__('Wishlist')) ?></a>
-                    <?php endif; ?>
                 </div>
             </div>
         </nav>
